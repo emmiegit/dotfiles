@@ -1,0 +1,23 @@
+Background: #151428
+Foreground: #949494
+
+[Dark]
+Black:  #1d1f21
+Red:    #a54242
+Green:  #8c9440
+Yellow: #dea95f
+Blue:   #5c7387
+Purple: #85678f 
+Cyan:   #5e8d87
+White:  #8e8e8e
+
+[Light]
+Black:  #282a2e 
+Red:    #cc6666
+Green:  #b5bd68
+Yellow: #f0c674
+Blue:   #81a2be
+Purple: #b294bb
+Cyan:   #8abeb7
+White:  #c5c8c6
+

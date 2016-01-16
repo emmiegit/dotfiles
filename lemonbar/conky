@@ -1,0 +1,18 @@
+# Conky configuration
+
+background false
+update_interval 1
+total_run_times 0
+uppercase false
+out_to_console true
+out_to_x false
+if_up_strictness address
+format_human_readable true
+
+TEXT
+SYS\
+${time %A, %b %d %Y %l:%M:%S %p} \
+${cpu}% \
+${memperc}% \
+${if_up eno1}${downspeed eno1} ${upspeed eno1} \
+${else}down down${endif} \

@@ -1,0 +1,294 @@
+# i3 config file (v4)
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+# Use the Super key as the main $mod key.
+set $mod Mod4
+set $alt Mod1
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below. ISO 10646 = Unicode
+font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# The font above is very space-efficient, that is, it looks good, sharp and
+# clear in small sizes. However, if you need a lot of unicode glyphs or
+# right-to-left text rendering, you should instead use pango for rendering and
+# chose a FreeType font, such as:
+# font pango:DejaVu Sans Mono 10
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# Start a terminal
+# Uses your default terminal, in this case, terminator
+bindsym $mod+Return exec i3-sensible-terminal
+
+# Close focused window
+bindsym $mod+Shift+q kill
+
+# Change window focus
+# Different from defaults: uses true vim-style keybindings
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Or use arrow keys
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up bindsym $mod+Right focus right 
+# Move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# Or use arrow keys
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Jump to urget window
+bindsym $mod+x [urgent=latest] focus
+
+# Don't jump the mouse when changing focus
+mouse_warping none
+
+# Split in horizontal orientation
+# Different from defaults: uses g so h can be for movement
+bindsym $mod+g split h
+
+# Split in vertical orientation
+bindsym $mod+v split v
+
+# Enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# Change container layout
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+#bindsym $mod+f focus mode_toggle
+
+# Focus the parent container
+bindsym $mod+a focus parent
+
+# Focus the child container
+#bindsym $mod+d focus child
+
+# Customize workspace names
+#set $ws1=A
+#set $ws2=B
+#set $ws3=C
+#set $ws4=D
+#set $ws5=E
+#set $ws6=F
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# move focused container to workspace and switch there
+bindsym $mod+mod1+1 move container to workspace 1; workspace 1
+bindsym $mod+mod1+2 move container to workspace 2; workspace 2
+bindsym $mod+mod1+3 move container to workspace 3; workspace 3
+bindsym $mod+mod1+4 move container to workspace 4; workspace 4
+bindsym $mod+mod1+5 move container to workspace 5; workspace 5
+bindsym $mod+mod1+6 move container to workspace 6; workspace 6
+bindsym $mod+mod1+7 move container to workspace 7; workspace 7
+bindsym $mod+mod1+8 move container to workspace 8; workspace 8
+bindsym $mod+mod1+9 move container to workspace 9; workspace 9
+
+# set workspaces to be on certain monitors
+# odd workspaces on the first monitor, even ones on the second
+workspace 1 output DVI-D-0
+workspace 2 output DVI-D-1
+workspace 3 output DVI-D-0
+workspace 4 output DVI-D-1
+workspace 5 output DVI-D-0
+workspace 6 output DVI-D-1
+workspace 7 output DVI-D-0
+workspace 8 output DVI-D-1
+workspace 9 output DVI-D-0
+workspace 10 output DVI-D-1
+
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+
+# Restart i3 in-place
+bindsym $mod+Shift+r restart
+
+# Exit i3 (logs you out)
+bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'Do you really want to exit i3? This will log you out.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# Enter the current workspace to go back
+workspace_auto_back_and_forth yes
+bindsym $mod+z workspace back_and_forth
+
+# Move a window back and forth
+bindsym $mod+Shift+z move container to workspace back_and_forth; workspace back_and_forth
+
+# Goto marks
+bindsym $mod+m exec i3-input -F 'mark %s' -P 'Mark name: '
+bindsym $mod+Shift+m exec i3-input -F '[con_mark=%s] focus' -P 'Go to mark: '
+
+# Lighthouse launcher
+bindsym $mod+slash exec --no-startup-id printf "%s & disown" $(lighthouse) | bash
+
+# Resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym h resize shrink width 5 px or 5 ppt
+        bindsym j resize grow height 5 px or 5 ppt
+        bindsym k resize shrink height 5 px or 5 ppt
+        bindsym l resize grow width 5 px or 5 ppt 
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 5 px or 5 ppt
+        bindsym Down resize grow height 5 px or 5 ppt
+        bindsym Up resize shrink height 5 px or 5 ppt
+        bindsym Right resize grow height width 5 px or 5 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Caps_Lock mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# Handling popups when in fullscreen mode
+popup_during_fullscreen smart
+
+# Gaps settings
+smart_gaps on
+smart_borders on
+gaps inner 8
+gaps outer 0
+
+# Font settings
+font pango:DejaVu Sans 9
+
+# For i3-gaps compatibilty
+for_window [class="^.*"] border pixel 0
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+        position top
+        #i3bar_command ~/Scripts/wm/i3-bar.sh
+        mode dock
+        hidden_state show
+
+        workspace_buttons yes
+        strip_workspace_numbers yes
+
+        tray_output primary
+        tray_padding 0
+
+        colors {
+            background #000000
+            statusline #ffffff
+            separator #666666 
+            focused_workspace  #4c7899 #285577 #ffffff
+            active_workspace   #333333 #5f676a #ffffff
+            inactive_workspace #333333 #222222 #888888
+            urgent_workspace   #2f343a #900000 #ffffff
+            binding_mode       #2f343a #900000 #ffffff
+        }
+}
+
+# Window-specific settings
+for_window [class="Dolphin-emu" instance="dolphin-emu"] floating enable
+for_window [class="Firefox" instance="Navigator"] floating enable
+for_window [class="Firefox" instance="Update"] floating enable
+for_window [class="Gnome-system-monitor" instance="gnome-system-monitor"] floating enable
+for_window [class="Keepassx2" instance="keepassx2"] floating enable
+for_window [class="Pidgin" instance="Pidgin"] floating enable
+for_window [class="Skype" instance="skype"] floating enable
+for_window [class="Steam" instance="Steam"] floating enable
+for_window [class="Tagainijisho" instance="tagainijisho"] floating enable
+for_window [class="Tomboy" instance="Tomboy"] floating enable
+for_window [class="com-dreamcodex-wumpus-HuntTheWumpus" instance="sun-awt-X11-XFramePeer"] floating enable
+for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
+
+# Launch Applications
+# File explorer
+bindsym $mod+t exec pcmanfm
+
+# Web browser
+bindsym $mod+i exec icecat
+
+# Screen locker
+set $Locker exec --no-startup-id ~/Scripts/wm/lock.sh
+bindsym $mod+semicolon $Locker
+bindsym $mod+Shift+semicolon exec --no-startup-id ~/Scripts/wm/suspend.sh
+
+# Toggle autolock
+bindsym $mod+$alt+semicolon exec ~/Scripts/wm/set-autolock.sh off
+bindsym $mod+$alt+Shift+semicolon exec ~/Scripts/wm/set-autolock.sh on
+
+# Volume control
+bindsym XF86AudioLowerVolume exec --no-startup-id pamixer --decrease 1
+bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer --increase 1
+bindsym XF86AudioMute exec --no-startup-id pamixer --toggle-mute
+
+# Media Keys
+bindsym XF86AudioPlay exec --no-startup-id ~/Scripts/wm/media-play.sh
+bindsym XF86AudioStop exec --no-startup-id ~/Scripts/wm/media-stop.sh
+bindsym XF86AudioPrev exec --no-startup-id ~/Scripts/wm/media-prev.sh
+bindsym XF86AudioNext exec --no-startup-id ~/Scripts/wm/media-next.sh
+
+# Screenshot commands
+bindsym Print exec --no-startup-id ~/Scripts/wm/screenshot.sh
+bindsym Shift+Print exec --no-startup-id ~/Scripts/wm/screenshot-region.sh
+#bindsym $alt+Print exec --no-startup-id ~/Scripts/wm/screenshot-window.sh
+
+# Start-up applications
+exec_always --no-startup-id ~/Scripts/wm/new-wallpaper.sh
+exec --no-startup-id xautolock -resetsaver -detectsleep -time 5 -locker ~/Scripts/wm/lock.sh -killtime 30 -killer 'sudo pm-suspend'
+exec --no-startup-id redshift
+exec --no-startup-id pamixer --unmute
+exec --no-startup-id compton -b --config ~/.config/compton.conf
+exec --no-startup-id nvidia-settings --load-config-only
+exec --no-startup-id mocp --server
+exec --no-startup-id checkgmail
+exec --no-startup-id backintime --pw-cache start
+exec --no-startup-id tomboy --panel-applet
+
+# Set up default workspaces
+exec --no-startup-id i3-msg 'workspace 3; exec env PULSE_LATENCY_MSEC=60 skype'
+exec --no-starupt-id i3-msg 'workspace 3; exec pidgin'
+exec --no-startup-id i3-msg 'workspace 3; exec steam'
+exec --no-startup-id i3-msg 'workspace 4; exec claws-mail'
+
+# Run user startup scripts
+exec --no-startup-id ~/Scripts/wm/startup.sh
+
