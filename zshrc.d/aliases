@@ -1,0 +1,79 @@
+#!/usr/bin/env zsh
+
+### ALIASES ###
+# Default modifiers
+alias clear='printf "\033c"'
+alias df='df -h'
+alias du='du -h'
+alias shred='shred -uv'
+alias which='which -a'
+alias youtube-dl='noglob youtube-dl -o \%\(title\)s.\%\(ext\)s'
+
+# Modifiers on file operations
+# * Verbosity so you know what's going on
+# * Prevent rm from removing file systems
+# * Prevent chmod from operating on /
+alias chmod='chmod -v --preserve-root'
+alias cp='cp -v'
+alias ln='ln -v'
+alias mv='mv -v'
+alias rm='rm -v --one-file-system'
+
+# Colorize output of some programs
+alias diff='colordiff'
+alias grep='grep --color'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias ls='ls -hHF --color=tty'
+alias less='less -r'
+
+# Derivative commands
+alias la='ls -A'
+alias ll='ls -l'
+
+# Shortcut commands
+alias allgrp='cut -d: -f1 /etc/group'
+alias allusr='cut -d: -f1 /etc/passwd'
+alias checkip='curl ifconfig.me'
+alias randomart='ssh-keygen -lv -f'
+alias srcrc='source ~/.zshrc'
+alias trash='trash-put'
+alias vii3='vi ~/.config/i3/config'
+alias virc='vi -p ~/.zshrc ~/.zshrc.d/*'
+alias week='date +%V'
+alias ytmp3='noglob youtube-dl -o %\(title\)s.%\(ext\)s --extract-audio'
+
+# File navigation commands
+alias largest="find . -printf '%s %p\n' | sort -nr | head"
+alias smallest="find . -printf '%s %p\n' | sort -nr | tail"
+
+# Script shortcuts
+alias mkdesktop='/usr/local/scripts/mkdesktop.sh'
+alias tty-clock='/usr/local/scripts/wm/tty-clock.sh'
+
+# For fun
+alias chanstamp='date +%s%3N'
+alias maze='Z=╱╲;for((;;)){ printf ${Z:RANDOM&1:1};sleep .01;};unset Z'
+alias mpvnc='mpv --speed=1.5 --audio-pitch-correction=no --no-video'
+
+### FUNCTIONS ###
+# Shortcut commands
+cdls() { cd "$@" && ls; }
+mkcd() { mkdir -p "$@" && cd "$@"; }
+pexec() { echo $@; $@; }
+pls() { sudo -- "${SHELL:-zsh}" -c "$(fc -ln -1)"; }
+strerror() { python -c "import os; print(os.strerror($1))"; }
+
+# Colorize text
+red()    { printf "\e[31m\e[1m"$@"\e[0m"; }
+green()  { printf "\e[32m\e[1m"$@"\e[0m"; }
+blue()   { printf "\e[34m\e[1m"$@"\e[0m"; }
+redl()   { printf "\e[31m"$@"\e[0m"; }
+greenl() { printf "\e[32m"$@"\e[0m"; }
+bluel()  { printf "\e[34m"$@"\e[0m"; }
+
+# Hash checkers
+md5check() { test `md5sum $2 | cut -d' ' -f1` == "$1" && green '[OK]' || red '[FAIL]'; }
+sha1check() { test `sha1sum $2 | cut -d' ' -f1` == "$1" && green '[OK]' || red '[FAIL]'; }
+sha256check() { test `sha256sum $2 | cut -d' ' -f1` == "$1" && green '[OK]' || red '[FAIL]'; }
+

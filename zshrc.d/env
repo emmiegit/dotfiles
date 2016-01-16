@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+# zsh settings for environment variables
+
+PS1='<%(?.%F{green}✓%f.%F{red}✗%f)> %F{green}%n@%M%f %F{yellow}%~%f%(!.%F{red}#%f.$) '
+PS2='... '
+
+export EDITOR=vi
+export VISUAL=$EDITOR
+export GPGKEY=2C3CF0C7
+export LD_LIBRARY_PATH='/usr/local/lib'
+

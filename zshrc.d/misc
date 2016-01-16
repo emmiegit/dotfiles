@@ -1,0 +1,61 @@
+#!/usr/bin/env zsh
+
+# Makes bpython the default interactive shell
+python()  { [ $# -eq 0 ] && bpython  || env python  $@; }
+python2() { [ $# -eq 0 ] && bpython2 || env python2 $@; }
+
+## This function defines a 'cd' replacement function capable of keeping, 
+## displaying and accessing history of visited directories, up to 10 entries.
+## Type "cd --" to get a list of past locations.
+## acd_func 1.0.5, 10-nov-2004
+## Petar Marinov, http:/geocities.com/h2428, this is public domain
+#cd() {
+#  local x2 the_new_dir adir index
+#  local -i count
+#
+#  if [[ $1 ==  "--" ]]; then
+#    dirs -v
+#    return 0
+#  fi
+#
+#  the_new_dir=$1
+#  [[ -z $1 ]] && the_new_dir=$HOME
+#
+#  if [[ ${the_new_dir:0:1} == '-' ]]; then
+#    #
+#    # Extract dir N from dirs
+#    index=${the_new_dir:1}
+#    [[ -z $index ]] && index=1
+#    adir=$(dirs +$index)
+#    [[ -z $adir ]] && return 1
+#    the_new_dir=$adir
+#  fi
+#
+#  # '~' has to be substituted by ${HOME}
+#  [[ ${the_new_dir:0:1} == '~' ]] && the_new_dir="${HOME}${the_new_dir:1}"
+#
+#  #
+#  # Now change to the new dir and add to the top of the stack
+#  pushd "${the_new_dir}" > /dev/null
+#  [[ $? -ne 0 ]] && return 1
+#  the_new_dir=$(pwd)
+#
+#  #
+#  # Trim down everything beyond 11th entry
+#  popd -n +11 2>/dev/null 1>/dev/null
+#
+#  #
+#  # Remove any other occurence of this dir, skipping the top of the stack
+#  for ((count=1; count <= 10; count++)); do
+#    x2=$(dirs +${count} 2>/dev/null)
+#    [[ $? -ne 0 ]] && return 0
+#    [[ ${x2:0:1} == '~' ]] && x2="${HOME}${x2:1}"
+#    if [[ "${x2}" == "${the_new_dir}" ]]; then
+#      popd -n +$count 2>/dev/null 1>/dev/null
+#      count=count-1
+#    fi
+#  done
+#
+#  return 0
+#}
+#
