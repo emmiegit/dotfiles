@@ -167,18 +167,31 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 5 px or 5 ppt
-        bindsym j resize grow height 5 px or 5 ppt
-        bindsym k resize shrink height 5 px or 5 ppt
-        bindsym l resize grow width 5 px or 5 ppt 
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 5 px or 5 ppt
-        bindsym Down resize grow height 5 px or 5 ppt
-        bindsym Up resize shrink height 5 px or 5 ppt
-        bindsym Right resize grow height width 5 px or 5 ppt
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow height width 10 px or 10 ppt
+
+        # Holding shift while using the above increases
+        # the strength of the  effect
+        bindsym Shift+h resize shrink width 50 px or 50 ppt
+        bindsym Shiftj resize grow height 50 px or 50 ppt
+        bindsym Shift+k resize shrink height 50 px or 50 ppt
+        bindsym Shift+l resize grow width 50 px or 50 ppt 
+        # same bindings, but for the arrow keys
+        bindsym Shift+Left resize shrink width 50 px or 50 ppt
+        bindsym Shift+Down resize grow height 50 px or 50 ppt
+        bindsym Shift+Up resize shrink height 50 px or 50 ppt
+        bindsym Shift+Right resize grow height width 50 px or 50 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
+        bindsym Escape mode "default"
         bindsym Caps_Lock mode "default"
 }
 
@@ -227,17 +240,18 @@ bar {
 
 # Window-specific settings
 for_window [class="Dolphin-emu" instance="dolphin-emu"] floating enable
-for_window [class="Firefox" instance="Navigator"] floating enable
-for_window [class="Firefox" instance="Update"] floating enable
 for_window [class="Gnome-system-monitor" instance="gnome-system-monitor"] floating enable
 for_window [class="Keepassx2" instance="keepassx2"] floating enable
+for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
 for_window [class="Pidgin" instance="Pidgin"] floating enable
 for_window [class="Skype" instance="skype"] floating enable
 for_window [class="Steam" instance="Steam"] floating enable
 for_window [class="Tagainijisho" instance="tagainijisho"] floating enable
 for_window [class="Tomboy" instance="Tomboy"] floating enable
+for_window [class="Tor Browser" instance="Navigator"] floating enable
+for_window [class="Tor Browser" instance="Update"] floating enable
 for_window [class="com-dreamcodex-wumpus-HuntTheWumpus" instance="sun-awt-X11-XFramePeer"] floating enable
-for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
+for_window [instance="Toplevel"] floating enable
 
 # Launch Applications
 # File explorer
