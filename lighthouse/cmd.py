@@ -19,6 +19,28 @@ if "XDG_CONFIG_HOME" in os.environ:
 else:
     XDG_CONFIG_HOME = os.path.expanduser("~/.config")
 
+MATH_FUNCTIONS = (
+    "atan",
+    "atan2",
+    "atanh",
+    "ceil",
+    "cos",
+    "cosh",
+    "degrees",
+    "exp",
+    "exmp1",
+    "factorial",
+    "floor",
+    "inf",
+    "log",
+    "log10",
+    "radians",
+    "sin",
+    "sinh",
+    "tan",
+    "tanh",
+)
+
 ICON_THEME_CONFIG_FILES = (
     os.path.expanduser("~/.gtkrc-2.0"),
     os.path.expanduser("~/.config/gtkrc-2.0"),
@@ -69,9 +91,16 @@ def add_math_result(string):
                    .replace("pi", str(math.pi)) \
                    .replace("e", str(math.e)) \
                    .replace("x", "*") \
-                   .replace("^", "**")
+                   .replace("^", "**") \
+                   .replace("[", "(") \
+                   .replace("]", ")") \
+                   .replace("log", "log10") \
+                   .replace("ln", "log")
 
-    if not re.match(r"[0-9.+-x*/]+", string):
+    for func in MATH_FUNCTIONS:
+        string = string.replace(func, "math." + func)
+
+    if not re.match(r"[()0-9.+-x*/acdefghilmnoprstx]+", string):
         return
 
     try:
