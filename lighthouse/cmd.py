@@ -1,15 +1,10 @@
 #!/usr/bin/env python2
-
-import sys
-import random
-import re
-from time import sleep
-import logging
-from multiprocessing import Process, Value, Manager, Array
-from ctypes import c_char, c_char_p
-import subprocess
-import json
-import os
+from __future__ import division
+from multiprocessing import Array
+from ctypes import c_char
+import os, sys, subprocess
+import random, math
+import json, re
 
 try:
     import xdg.BaseDirectory
@@ -33,6 +28,7 @@ ICON_THEME_CONFIG_FILES = (
 )
 
 TERMINAL = "terminator"
+ANSWER_TOO_LONG = 30 # In digits
 MAX_OUTPUT = 100 * 1024
 result_buf = Array(c_char, MAX_OUTPUT);
 
@@ -67,6 +63,32 @@ def get_process_output(process, string, action):
     out_act = ((action % (process_out) if ("%s" in action) else action))
     return (out_str, out_act)
 
+# Other results
+def add_math_result(string):
+    string = string.lower() \
+                   .replace("pi", str(math.pi)) \
+                   .replace("e", str(math.e)) \
+                   .replace("x", "*") \
+                   .replace("^", "**")
+
+    if not re.match(r"[0-9.+-x*/]+", string):
+        return
+
+    try:
+        answer = eval(string)
+
+        if type(answer) in (int, float):
+            prepend_output("= %s" % (answer), "true")
+        elif type(answer) == long:
+            if math.log(abs(answer)) < ANSWER_TOO_LONG: # Make sure the output isn't hideously long
+                prepend_output("= %d" % (answer), "true")
+            else:
+                prepend_output("= %s..." % (str(answer)[:ANSWER_TOO_LONG]), "true")
+    except ZeroDivisionError:
+        prepend_output("= undefined", "true")
+    except:
+        pass
+
 # XDG functions
 def xdg_find_desktop_entry(cmd):
     files = list(xdg.BaseDirectory.load_data_paths(\
@@ -95,7 +117,8 @@ def xdg_get_icon(desktop_entry):
     if icon:
         fn = xdg.IconTheme.getIconPath(icon, theme=xdg_get_icon_theme())
 
-        if fn.endswith(".svg"):
+        if fn.lower().endswith(".svg"):
+            # Temporary, because lighthouse can't show svgs :(
             return xdg.IconTheme.getIconPath(icon)
         else:
             return fn
@@ -149,7 +172,7 @@ def parse_line():
 
     try:
         complete = subprocess.check_output("compgen -c %s" % (line), shell=True, executable="/bin/bash")
-        complete = complete.split('\n')
+        complete = complete.split("\n")
 
         for cmd_num in range(min(len(complete), 5)):
                 # Look for XDG applications of the given name.
@@ -159,14 +182,11 @@ def parse_line():
     except:
         pass
 
-    finally:
-        # Could be bash...
-        prepend_output("run '%s' in a shell" % (line),
-                      "%s -e %s" % (TERMINAL, line))
-        # Could be a command...
-        prepend_output("execute '%s'" % line, line)
-
-        update_output()
+    # Make sure these three items are at the top
+    add_math_result(line)
+    prepend_output("run '%s' in a shell" % (line), "%s -e %s" % (TERMINAL, line))
+    prepend_output("execute '%s'" % line, line)
+    update_output()
 
 # Main loop
 if __name__ == "__main__":
