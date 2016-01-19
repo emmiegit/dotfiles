@@ -157,7 +157,7 @@ bindsym $mod+m exec i3-input -F 'mark %s' -P 'Mark name: '
 bindsym $mod+Shift+m exec i3-input -F '[con_mark=%s] focus' -P 'Go to mark: '
 
 # Lighthouse launcher
-bindsym $mod+slash exec --no-startup-id printf "%s & disown" $(lighthouse) | bash
+bindsym $mod+slash exec --no-startup-id printf '%s & disown' $(lighthouse) | bash
 
 # Resize window (you can also use the mouse for that)
 mode "resize" {
@@ -179,15 +179,15 @@ mode "resize" {
 
         # Holding shift while using the above increases
         # the strength of the  effect
-        bindsym Shift+h resize shrink width 50 px or 50 ppt
-        bindsym Shiftj resize grow height 50 px or 50 ppt
-        bindsym Shift+k resize shrink height 50 px or 50 ppt
-        bindsym Shift+l resize grow width 50 px or 50 ppt 
+        bindsym Shift+h resize shrink width 5 px or 5 ppt
+        bindsym Shiftj resize grow height 5 px or 5 ppt
+        bindsym Shift+k resize shrink height 5 px or 5 ppt
+        bindsym Shift+l resize grow width 5 px or 5 ppt 
         # same bindings, but for the arrow keys
-        bindsym Shift+Left resize shrink width 50 px or 50 ppt
-        bindsym Shift+Down resize grow height 50 px or 50 ppt
-        bindsym Shift+Up resize shrink height 50 px or 50 ppt
-        bindsym Shift+Right resize grow height width 50 px or 50 ppt
+        bindsym Shift+Left resize shrink width 5 px or 5 ppt
+        bindsym Shift+Down resize grow height 5 px or 5 ppt
+        bindsym Shift+Up resize shrink height 5 px or 5 ppt
+        bindsym Shift+Right resize grow height width 5 px or 5 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
@@ -290,10 +290,10 @@ exec_always --no-startup-id ~/Scripts/wm/new-wallpaper.sh
 exec --no-startup-id xautolock -resetsaver -detectsleep -time 5 -locker ~/Scripts/wm/lock.sh -killtime 30 -killer 'sudo pm-suspend'
 exec --no-startup-id redshift
 exec --no-startup-id pamixer --unmute
+exec --no-startup-id udiskie -sN2
 exec --no-startup-id compton -b --config ~/.config/compton.conf
 exec --no-startup-id nvidia-settings --load-config-only
 exec --no-startup-id mocp --server
-exec --no-startup-id checkgmail
 exec --no-startup-id backintime --pw-cache start
 exec --no-startup-id tomboy --panel-applet
 

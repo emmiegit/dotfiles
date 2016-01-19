@@ -55,6 +55,7 @@ alias tty-clock='/usr/local/scripts/wm/tty-clock.sh'
 alias chanstamp='date +%s%3N'
 alias maze='Z=╱╲;for((;;)){ printf ${Z:RANDOM&1:1};sleep .01;};unset Z'
 alias mpvnc='mpv --speed=1.5 --audio-pitch-correction=no --no-video'
+alias mpvac='mpv --speed=0.67 --audio-pitch-correction=no --no-video'
 
 ### FUNCTIONS ###
 # Shortcut commands

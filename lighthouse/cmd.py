@@ -1,7 +1,8 @@
-#!/usr/bin/python2.7
+#!/usr/bin/env python2
 
 import sys
 import random
+import re
 from time import sleep
 import logging
 from multiprocessing import Process, Value, Manager, Array
@@ -10,194 +11,165 @@ import subprocess
 import json
 import os
 
+try:
+    import xdg.BaseDirectory
+    import xdg.DesktopEntry
+    import xdg.IconTheme
+    HAS_XDG = True
+except ImportError:
+    HAS_XDG = False
+
+if "XDG_CONFIG_HOME" in os.environ:
+    XDG_CONFIG_HOME = os.environ["XDG_CONFIG_HOME"]
+else:
+    XDG_CONFIG_HOME = os.path.expanduser("~/.config")
+
+ICON_THEME_CONFIG_FILES = (
+    os.path.expanduser("~/.gtkrc-2.0"),
+    os.path.expanduser("~/.config/gtkrc-2.0"),
+    "/etc/gtk-2.0/gtkrc",
+    "%s/gtk-3.0/settings.ini" % XDG_CONFIG_HOME,
+    "/etc/gtk-3.0/settings.ini",
+)
+
+TERMINAL = "terminator"
 MAX_OUTPUT = 100 * 1024
+result_buf = Array(c_char, MAX_OUTPUT);
 
-resultStr = Array(c_char, MAX_OUTPUT);
-
+# Output management
 def clear_output():
-  resultStr.value = json.dumps([])
-
-def sanitize_output(string):
-  string = string.replace("{", "\{")
-  string = string.replace("}", "\}")
-  string = string.replace("|", "\|")
-  string = string.replace("\n", " ")
-  return string
-
-def create_result(title, action):
-  return "{" + title + " |" + action + " }"
-
-def append_output(title, action):
-  title = sanitize_output(title)
-  action = sanitize_output(action)
-  results = json.loads(resultStr.value)
-  if len(results) < 2:
-    results.append(create_result(title, action))
-  else: # ignore the bottom two default options
-    results.insert(-2, create_result(title, action))
-  resultStr.value = json.dumps(results)
-
-def prepend_output(title, action):
-  title = sanitize_output(title)
-  action = sanitize_output(action)
-  results = json.loads(resultStr.value)
-  results = [create_result(title, action)] + results
-  resultStr.value = json.dumps(results)
+    result_buf.value = json.dumps([])
 
 def update_output():
-  results = json.loads(resultStr.value)
-  print "".join(results)
-  sys.stdout.flush()
+    results = json.loads(result_buf.value)
+    print("".join(results))
+    sys.stdout.flush()
 
-# Possibly add integration with Artha?
+def append_output(title, action):
+    result = create_result(title, action)
+    results = json.loads(result_buf.value)
 
-find_thr = None
-def find(query):
-  sleep(.1) # Don't be too aggressive...
-  try:
-    find_out = str(subprocess.check_output(["find", os.path.expanduser("~"), "-name", query]))
-  except subprocess.CalledProcessError as e:
-    find_out = str(e.output)
-  find_array = find_out.split("\n")[:-1]
-  if (len(find_array) == 0): return
-  for i in xrange(min(5, len(find_array))):
-    append_output(str(find_array[i]),"urxvt -e bash -c 'if [[ $(file "+find_array[i]+" | grep text) != \"\" ]]; then vim "+find_array[i]+"; else cd $(dirname "+find_array[i]+"); bash; fi;'");
-  update_output()
+    if len(results) < 2:
+        results.append(result)
+    else: # Ignore the bottom two default option
+        results.insert(-2, result)
 
-def get_process_output(process, formatting, action):
-  process_out = str(subprocess.check_output(process))
-  if "%s" in formatting:
-    out_str = formatting % (process_out)
-  else:
-    out_str = formatting
-  if "%s" in action:
-    out_action = action % (process_out)
-  else:
-    out_action = action
-  return (out_str, out_action)
+    result_buf.value = json.dumps(results)
 
-def get_xdg_cmd(cmd):
+def prepend_output(title, action):
+    results = json.loads(result_buf.value)
+    results.insert(0, create_result(title, action))
+    result_buf.value = json.dumps(results)
 
-    import re
+def get_process_output(process, string, action):
+    process_out = str(subprocess.check_output(process))
+    out_str = ((string % (process_out) if ("%s" in string) else string))
+    out_act = ((action % (process_out) if ("%s" in action) else action))
+    return (out_str, out_act)
 
-    try:
-        import xdg.BaseDirectory
-        import xdg.DesktopEntry
-        import xdg.IconTheme
-    except ImportError:
+# XDG functions
+def xdg_find_desktop_entry(cmd):
+    files = list(xdg.BaseDirectory.load_data_paths(\
+            "applications", "%s.desktop" % (cmd)))
+
+    if files:
+        # Earlier paths take precedence
+        return xdg.DesktopEntry.DesktopEntry(files[0])
+
+def xdg_get_icon_theme():
+    for fn in ICON_THEME_CONFIG_FILES:
+        try:
+            for line in file(fn, 'r').readlines():
+                # Extract icon theme and remove quotes
+                match = re.match(r'^\s*gtk-icon-theme-name\s*=\s*("?)(.*)\1\s*', line)
+                if match:
+                    return match.group(2)
+        except:
+            pass
+
+    # Fallback icon theme, required to be present
+    return "hicolor"
+
+def xdg_get_icon(desktop_entry):
+    icon = desktop_entry.getIcon()
+    if icon:
+        fn = xdg.IconTheme.getIconPath(icon, theme=xdg_get_icon_theme())
+
+        if fn.endswith(".svg"):
+            return xdg.IconTheme.getIconPath(icon)
+        else:
+            return fn
+
+def xdg_get_exec(desktop_entry):
+    # Since the exec path may contain subsitution parameters such as %f,
+    # we need to remove them.
+    exec_spec = desktop_entry.getExec()
+    return re.sub(r"%.", "", exec_spec).strip()
+
+def xdg_get_cmd(cmd):
+    if not HAS_XDG:
         return
 
-    def find_desktop_entry(cmd):
-
-        search_name = "%s.desktop" % cmd
-        desktop_files = list(xdg.BaseDirectory.load_data_paths('applications',
-                                                               search_name))
-        if not desktop_files:
-            return
-        else:
-            # Earlier paths take precedence.
-            desktop_file = desktop_files[0]
-            desktop_entry = xdg.DesktopEntry.DesktopEntry(desktop_file)
-            return desktop_entry
-
-    def get_icon(desktop_entry):
-
-        icon_name = desktop_entry.getIcon()
-        if not icon_name:
-            return
-        else:
-            icon_path = xdg.IconTheme.getIconPath(icon_name)
-            return icon_path
-
-    def get_xdg_exec(desktop_entry):
-
-        exec_spec = desktop_entry.getExec()
-        # The XDG exec string contains substitution patterns.
-        exec_path = re.sub("%.", "", exec_spec).strip()
-        return exec_path
-
-    desktop_entry = find_desktop_entry(cmd)
+    desktop_entry = xdg_find_desktop_entry(cmd)
     if not desktop_entry:
         return
 
-    exec_path = get_xdg_exec(desktop_entry)
+    exec_path = xdg_get_exec(desktop_entry)
     if not exec_path:
         return
 
-    icon = get_icon(desktop_entry)
-    if not icon:
-        menu_entry = cmd
-    else:
+    icon = xdg_get_icon(desktop_entry)
+    if icon:
         menu_entry = "%%I%s%%%s" % (icon, cmd)
+    else:
+        menu_entry = cmd
 
     return (menu_entry, exec_path)
 
+# Helper functions
+def sanitize(string):
+    return string.replace("{", "\\{") \
+                 .replace("}", "\\}") \
+                 .replace("|", "\\|") \
+                 .replace("\n", " ")
 
-special = {
-    "bat": (lambda x: get_process_output("acpi", "%s", "")),
-    "vi": (lambda x: ("vim","terminator -e vim")),
-}
+def create_result(title, action):
+    return "{%s |%s }" % \
+        (sanitize(title),
+         sanitize(action))
 
-while 1:
-    userInput = sys.stdin.readline()
-    userInput = userInput[:-1]
-
-    # Clear results
+# Main function
+def parse_line():
+    line = sys.stdin.readline()[:-1]
     clear_output()
 
-    # Kill previous worker threads
-    if find_thr is not None:
-        find_thr.terminate()
-
-    # We don't handle empty strings
-    if userInput == '':
+    if not line:
         update_output()
-        continue
+        return
 
     try:
-        complete = subprocess.check_output("compgen -c %s" % (userInput),
-                                               shell=True, executable="/bin/bash")
+        complete = subprocess.check_output("compgen -c %s" % (line), shell=True, executable="/bin/bash")
         complete = complete.split('\n')
 
         for cmd_num in range(min(len(complete), 5)):
                 # Look for XDG applications of the given name.
-                xdg_cmd = get_xdg_cmd(complete[cmd_num])
+                xdg_cmd = xdg_get_cmd(complete[cmd_num])
                 if xdg_cmd:
                     append_output(*xdg_cmd)
-
     except:
-        # if no command exist with the user input
-        # but it can still be python or a special bash command
         pass
 
     finally:
-        # Scan for keywords
-        for keyword in special:
-            if userInput[0:len(keyword)] == keyword:
-                out = special[keyword](userInput)
-                if out is not None:
-                    prepend_output(*out)
-
-        # Could be a command...
-        append_output("execute '"+userInput+"'", userInput)
-
         # Could be bash...
-        append_output("run '%s' in a shell" % (userInput),
-                      "terminator -e %s" % (userInput))
-
-        # Is this python?
-        try:
-            out = eval(userInput)
-            if (type(out) != str and str(out)[0] == '<'):
-                pass  # We don't want gibberish type stuff
-            else:
-                prepend_output("python: "+str(out),
-                            "terminator -e python2.7 -i -c 'print "+userInput+"'")
-        except Exception as e:
-            pass
-
-        # Spawn worker threads
-        find_thr = Process(target=find, args=(userInput,))
-        find_thr.start()
+        prepend_output("run '%s' in a shell" % (line),
+                      "%s -e %s" % (TERMINAL, line))
+        # Could be a command...
+        prepend_output("execute '%s'" % line, line)
 
         update_output()
+
+# Main loop
+if __name__ == "__main__":
+    while True:
+        parse_line()
+
