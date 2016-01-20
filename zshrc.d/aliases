@@ -30,6 +30,7 @@ alias less='less -r'
 # Derivative commands
 alias la='ls -A'
 alias ll='ls -l'
+alias lla='ls -Al'
 
 # Shortcut commands
 alias allgrp='cut -d: -f1 /etc/group'
@@ -60,6 +61,7 @@ alias mpvac='mpv --speed=0.67 --audio-pitch-correction=no --no-video'
 ### FUNCTIONS ###
 # Shortcut commands
 cdls() { cd "$@" && ls; }
+digq() { dig "$@" | grep 'Query time'; }
 mkcd() { mkdir -p "$@" && cd "$@"; }
 pexec() { echo $@; $@; }
 pls() { sudo -- "${SHELL:-zsh}" -c "$(fc -ln -1)"; }
