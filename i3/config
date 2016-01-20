@@ -251,6 +251,7 @@ for_window [class="Tomboy" instance="Tomboy"] floating enable
 for_window [class="Tor Browser" instance="Navigator"] floating enable
 for_window [class="Tor Browser" instance="Update"] floating enable
 for_window [class="com-dreamcodex-wumpus-HuntTheWumpus" instance="sun-awt-X11-XFramePeer"] floating enable
+for_window [class="Icecat" title="Preferences"] floating enable
 for_window [instance="Toplevel"] floating enable
 
 # Launch Applications
