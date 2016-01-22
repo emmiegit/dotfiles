@@ -6,6 +6,8 @@ alias clear='printf "\033c"'
 alias df='df -h'
 alias du='du -h'
 alias shred='shred -uv'
+alias vi='vi -p'
+alias vim='vi -p'
 alias which='which -a'
 alias youtube-dl='noglob youtube-dl -o \%\(title\)s.\%\(ext\)s'
 
@@ -43,6 +45,8 @@ alias vii3='vi ~/.config/i3/config'
 alias virc='vi -p ~/.zshrc ~/.zshrc.d/*'
 alias week='date +%V'
 alias ytmp3='noglob youtube-dl -o %\(title\)s.%\(ext\)s --extract-audio'
+alias sctl='sudo -E systemctl'
+alias jctl='journalctl'
 
 # File navigation commands
 alias largest="find . -printf '%s %p\n' | sort -nr | head"

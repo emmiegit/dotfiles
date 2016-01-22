@@ -284,14 +284,13 @@ bindsym XF86AudioNext exec --no-startup-id ~/Scripts/wm/media-next.sh
 # Screenshot commands
 bindsym Print exec --no-startup-id ~/Scripts/wm/screenshot.sh
 bindsym Shift+Print exec --no-startup-id ~/Scripts/wm/screenshot-region.sh
-#bindsym $alt+Print exec --no-startup-id ~/Scripts/wm/screenshot-window.sh
 
 # Start-up applications
 exec_always --no-startup-id ~/Scripts/wm/new-wallpaper.sh
 exec --no-startup-id xautolock -resetsaver -detectsleep -time 5 -locker ~/Scripts/wm/lock.sh -killtime 30 -killer 'sudo pm-suspend'
 exec --no-startup-id redshift
 exec --no-startup-id pamixer --unmute
-exec --no-startup-id udiskie -sN2
+exec --no-startup-id udiskie --smart-tray --notify
 exec --no-startup-id compton -b --config ~/.config/compton.conf
 exec --no-startup-id nvidia-settings --load-config-only
 exec --no-startup-id mocp --server
