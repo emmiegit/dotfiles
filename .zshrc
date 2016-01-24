@@ -41,6 +41,7 @@ source "${HOME}/.zshrc.d/misc"
 # Other sourcing
 source '/etc/profile.d/fzf.zsh'
 source '/usr/share/doc/pkgfile/command-not-found.zsh'
+source '/usr/share/cdargs/cdargs-zsh.sh'
 source '/usr/local/scripts/apps/gvim.sh'
 eval $(thefuck --alias)
 

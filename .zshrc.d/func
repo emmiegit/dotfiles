@@ -29,8 +29,8 @@ anon() {
 # For comparing binary files
 bdiff() {
     if [[ $# -lt 2 ]]; then
-        echo "Not enough arguments."
-        echo "Usage: bdiff first-file second-file"
+        echo 2> 'Not enough arguments.'
+        echo 2> 'Usage: bdiff first-file second-file'
         return 1
     fi
 
@@ -67,6 +67,42 @@ datediff() {
     d1=$(date -d "$1" +%s)
     d2=$(date -d "$2" +%s)
     echo $(( (d1 - d2) / 86400 )) days
+}
+
+# Batch converts from one format to another
+ffbatch() {
+    if [[ $# -lt 2 ]]; then
+        echo >&2 'Not enough arguments.'
+        echo >&2 'Usage: ffbatch mp3 ogg'
+    fi
+
+    find -type f -name "*.$1" -print0 \
+        | while read -d $'\0' a; do
+            ffmpeg -i "$a" -qsacle:a 0 "${a[@]/%$1/$2}" < /dev/null
+        done
+    #rm -ir **/*.$1
+}
+
+# Joins L and R tracks into a single file.
+ffstereo() {
+    if [[ $# -lt 3 ]]; then
+        echo >&2 'Not enough arguments.'
+        echo >&2 'Usage: ffstereo left-track-file right-track-file output-file'
+        return 1
+    fi
+
+    ffmpeg -i "$1" -i "$2" -filter_complex "[0:a][1:a]amerge=inputs=2[aout]" -map "[aout]" -c:a flac "$3"
+}
+
+# Changes the volume of a video or audio file.
+ffvolume() {
+    if [[ $# -lt 3 ]]; then
+        echo >&2 'Not enough arguments.'
+        echo >&2 'Usage: ffvolume input-file output-file volume-modifier'
+        return 1
+    fi
+
+    ffmpeg -i "$1" -af "volume=$3" "$2"
 }
 
 # Look for a certain .desktop file
