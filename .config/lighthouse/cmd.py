@@ -14,10 +14,17 @@ try:
 except ImportError:
     HAS_XDG = False
 
+HERE = os.path.dirname(sys.argv[0])
+
 if "XDG_CONFIG_HOME" in os.environ:
     XDG_CONFIG_HOME = os.environ["XDG_CONFIG_HOME"]
 else:
     XDG_CONFIG_HOME = os.path.expanduser("~/.config")
+
+try:
+    SHORTCUTS = json.load(file("%s/shortcuts.json" % (HERE), 'r'))
+except:
+    SHORTCUTS = {}
 
 MATH_FUNCTIONS = (
     "atan",
@@ -211,7 +218,11 @@ def parse_line():
     except:
         pass
 
-    # Make sure these three items are at the top
+    shortcut = SHORTCUTS.get(line)
+    if shortcut:
+        append_output("shortcut: %s" % (shortcut), shortcut)
+
+    # Make sure these items are at the top
     add_math_result(line)
     prepend_output("run '%s' in a shell" % (line), "%s -e %s" % (TERMINAL, line))
     prepend_output("execute '%s'" % line, line)

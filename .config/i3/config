@@ -34,7 +34,8 @@ bindsym $mod+l focus right
 # Or use arrow keys
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
-bindsym $mod+Up focus up bindsym $mod+Right focus right 
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right 
 # Move focused window
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
@@ -157,7 +158,7 @@ bindsym $mod+m exec i3-input -F 'mark %s' -P 'Mark name: '
 bindsym $mod+Shift+m exec i3-input -F '[con_mark=%s] focus' -P 'Go to mark: '
 
 # Lighthouse launcher
-bindsym $mod+slash exec --no-startup-id printf '%s & disown' $(lighthouse) | bash
+bindsym $mod+slash exec --no-startup-id printf '%s & disown' "$(lighthouse)" | bash
 
 # Resize window (you can also use the mouse for that)
 mode "resize" {
@@ -207,7 +208,7 @@ gaps inner 8
 gaps outer 0
 
 # Font settings
-font pango:DejaVu Sans 9
+font pango:Droid Sans 9
 
 # For i3-gaps compatibilty
 for_window [class="^.*"] border pixel 0
@@ -229,7 +230,7 @@ bar {
         colors {
             background #000000
             statusline #ffffff
-            separator #666666 
+            separator #666666
             focused_workspace  #4c7899 #285577 #ffffff
             active_workspace   #333333 #5f676a #ffffff
             inactive_workspace #333333 #222222 #888888

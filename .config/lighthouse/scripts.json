@@ -1,13 +1,13 @@
 [
     {"location": "~/.config/lighthouse/scripts/find_xdg.py"},
     {"location": "~/.config/lighthouse/scripts/find.py",
-     "term": "urvxt",
+     "term": "terminator",
      "number_of_output": 4
     },
     {"location": "~/.config/lighthouse/scripts/basic.py",
      "show_execute": true,
      "show_in_shell": true,
-     "term": "urvxt"
+     "term": "terminator"
     },
     {"location": "~/.config/lighthouse/scripts/search.py",
      "number_of_output": 3
