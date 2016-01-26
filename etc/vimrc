@@ -106,8 +106,14 @@ if has("autocmd")
   filetype plugin indent on
 endif
 
+" Set number of lines to the cursor when moving vertically
+if (&lines > 35)
+  set scrolloff=9     
+else
+  set scrolloff=2
+endif
+
 set timeoutlen=100  " To prevent the lag on 'O'
-set scrolloff=9     " Set number of lines to the cursor when moving vertically
 set ruler           " Display the bar at the bottom 
 set wrap            " Wrap long lines
 set hlsearch        " Highlight matches when searching
@@ -118,9 +124,10 @@ set smartcase       " Do smart case matching
 set incsearch       " Incremental search
 set autowrite       " Automatically save before commands like :next and :make
 set hidden          " Hide buffers when they are abandoned
-set mouse=a         " Enable mouse usage (all modes)
+set mouse=n         " Enable mouse usage (normal mode only)
 set lazyredraw      " Don't redraw when running macros
 set magic           " Use traditional regular expressions (see wiki)
+set relativenumber  " Use relative line numbers (see below)
 
 " Pressing * or # when in visual mode searches for the current selection
 vnoremap <silent> * :call VisualSelection('f')<cr>
@@ -135,45 +142,34 @@ endfunc
 
 " And call it on certain files
 if has("autocmd")
+  autocmd BufWrite *.c :call DeleteTrailingWS()
   autocmd BufWrite *.py :call DeleteTrailingWS()
 endif
 
-"" vimgrep settings
-"" When you press gv you vimgrep after the selected text
-"vnoremap <silent> gv :call VisualSelection('gv')<CR>
-"
-"" Open vimgrep and put the cursor in the right position
-"map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
-"
-"" Vimgreps in the current file
-"map <leader><space> :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
-"
-"" When you press <leader>r you can search and replace the selected text
-"vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
-"
-"" Do :help cope if you are unsure what cope is. It's super useful!
-""
-"" When you search with vimgrep, display your results in cope by doing:
-""   <leader>cc
-""
-"" To go to the next search result do:
-""   <leader>n
-""
-"" To go to the previous search results do:
-""   <leader>p
-""
-"map <leader>cc :botright cope<cr>
-"map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
-"map <leader>n :cn<cr>
-"map <leader>p :cp<cr>
-"
-"" Spelling checking
-"" Pressing ,ss will toggle and untoggle spell checking
-"map <leader>ss :setlocal spell!<cr>
-"
-"" Shortcuts using <leader>
-"map <leader>sn ]s
-"map <leader>sp [s
-"map <leader>sa zg
-"map <leader>s? z=
+" Set relative line numbers and some of the settings surrounding it
+func! LineNumberToggle()
+  if (&relativenumber == 1)
+    :call SetAbsoluteNumbers()
+  else
+    :call SetRelativeNumbers()
+  endif
+endfunc
+
+func! SetAbsoluteNumbers()
+  set norelativenumber
+  set number
+endfunc
+
+func! SetRelativeNumbers()
+  set nonumber
+  set relativenumber
+endfunc
+
+nnoremap <C-n> :call LineNumberToggle()<cr>
+
+" Switch between the two modes when in insert/normal.
+"if has("autocmd")
+"  autocmd InsertEnter * :call SetAbsoluteNumbers()
+"  autocmd InsertLeave * :call SetRelativeNumbers()
+"endif
 

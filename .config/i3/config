@@ -176,19 +176,19 @@ mode "resize" {
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow height width 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
 
         # Holding shift while using the above increases
         # the strength of the  effect
-        bindsym Shift+h resize shrink width 5 px or 5 ppt
-        bindsym Shiftj resize grow height 5 px or 5 ppt
-        bindsym Shift+k resize shrink height 5 px or 5 ppt
-        bindsym Shift+l resize grow width 5 px or 5 ppt 
+        bindsym Shift+h resize shrink width 2 px or 2 ppt
+        bindsym Shift+j resize grow height 2 px or 2 ppt
+        bindsym Shift+k resize shrink height 2 px or 2 ppt
+        bindsym Shift+l resize grow width 2 px or 2 ppt
         # same bindings, but for the arrow keys
-        bindsym Shift+Left resize shrink width 5 px or 5 ppt
-        bindsym Shift+Down resize grow height 5 px or 5 ppt
-        bindsym Shift+Up resize shrink height 5 px or 5 ppt
-        bindsym Shift+Right resize grow height width 5 px or 5 ppt
+        bindsym Shift+Left resize shrink width 2 px or 2 ppt
+        bindsym Shift+Down resize grow height 2 px or 2 ppt
+        bindsym Shift+Up resize shrink height 2 px or 2 ppt
+        bindsym Shift+Right resize grow width 2 px or 2 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
@@ -217,7 +217,7 @@ for_window [class="^.*"] border pixel 0
 # finds out, if available)
 bar {
         position top
-        #i3bar_command ~/Scripts/wm/i3-bar.sh
+        #i3bar_command /usr/local/scripts/wm/i3-bar.sh
         mode dock
         hidden_state show
 
@@ -266,32 +266,38 @@ bindsym $mod+t exec pcmanfm
 bindsym $mod+i exec icecat
 
 # Screen locker
-set $Locker exec --no-startup-id ~/Scripts/wm/lock.sh
+set $Locker exec --no-startup-id /usr/local/scripts/wm/lock.sh
 bindsym $mod+semicolon $Locker
-bindsym $mod+Shift+semicolon exec --no-startup-id ~/Scripts/wm/suspend.sh
+bindsym $mod+Shift+semicolon exec --no-startup-id /usr/local/scripts/wm/suspend.sh
 
 # Toggle autolock
-bindsym $mod+$alt+l exec ~/Scripts/wm/set-autolock.sh off
-bindsym $mod+$alt+Shift+l exec ~/Scripts/wm/set-autolock.sh on
+bindsym $mod+$alt+l exec /usr/local/scripts/wm/set-autolock.sh off
+bindsym $mod+$alt+Shift+l exec /usr/local/scripts/wm/set-autolock.sh on
 
 # Volume control
 bindsym XF86AudioLowerVolume exec --no-startup-id pamixer --decrease 1
 bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer --increase 1
 bindsym XF86AudioMute exec --no-startup-id pamixer --toggle-mute
+bindsym Shift+XF86AudioLowerVolume exec --no-startup-id pamixer --decrease 10
+bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id pamixer --increase 10
 
 # Media Keys
-bindsym XF86AudioPlay exec --no-startup-id ~/Scripts/wm/media-play.sh
-bindsym XF86AudioStop exec --no-startup-id ~/Scripts/wm/media-stop.sh
-bindsym XF86AudioPrev exec --no-startup-id ~/Scripts/wm/media-prev.sh
-bindsym XF86AudioNext exec --no-startup-id ~/Scripts/wm/media-next.sh
+bindsym XF86AudioPlay exec --no-startup-id /usr/local/scripts/wm/media/play.sh
+bindsym XF86AudioStop exec --no-startup-id /usr/local/scripts/wm/media/stop.sh
+bindsym XF86AudioPrev exec --no-startup-id /usr/local/scripts/wm/media/prev.sh
+bindsym XF86AudioNext exec --no-startup-id /usr/local/scripts/wm/media/next.sh
+bindsym Shift+XF86AudioPlay exec --no-startup-id /usr/local/scripts/wm/media/like.sh
+bindsym Shift+XF86AudioStop exec --no-startup-id /usr/local/scripts/wm/media/dislike.sh
+bindsym Shift+XF86AudioPrev exec --no-startup-id /usr/local/scripts/wm/media/prevpause.sh
+bindsym Shift+XF86AudioNext exec --no-startup-id /usr/local/scripts/wm/media/nextpause.sh
 
 # Screenshot commands
-bindsym Print exec --no-startup-id ~/Scripts/wm/screenshot.sh
-bindsym Shift+Print exec --no-startup-id ~/Scripts/wm/screenshot-region.sh
+bindsym Print exec --no-startup-id /usr/local/scripts/wm/screenshot.sh
+bindsym Shift+Print exec --no-startup-id /usr/local/scripts/wm/screenshot-region.sh
 
 # Start-up applications
-exec_always --no-startup-id ~/Scripts/wm/new-wallpaper.sh
-exec --no-startup-id ~/Scripts/wm/start-autolock.sh
+exec --no-startup-id /usr/local/scripts/wm/new-wallpaper.sh
+exec --no-startup-id /usr/local/scripts/wm/start-autolock.sh
 exec --no-startup-id redshift
 exec --no-startup-id pamixer --unmute
 exec --no-startup-id udiskie --notify
@@ -302,12 +308,11 @@ exec --no-startup-id backintime --pw-cache start
 exec --no-startup-id tomboy --panel-applet
 
 # Set up default workspaces
-exec --no-startup-id i3-msg 'workspace 3; exec env PULSE_LATENCY_MSEC=60 skype'
-exec --no-starupt-id i3-msg 'workspace 3; exec pidgin'
+exec --no-startup-id i3-msg 'workspace 3; exec pidgin'
 exec --no-startup-id i3-msg 'workspace 3; exec steam'
 exec --no-startup-id i3-msg 'workspace 4; exec claws-mail'
 
 # Run user startup scripts
-exec --no-startup-id ~/Scripts/wm/startup.sh
+exec --no-startup-id /usr/local/scripts/wm/startup.sh
 
 # vim:filetype=i3

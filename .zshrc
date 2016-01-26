@@ -30,7 +30,8 @@ unsetopt beep
 bindkey -v
 # End of lines configured by zsh-newuser-install
 
-plugins=(git)
+# Plugins for oh-my-zsh
+plugins=(chucknorris encode64 gem git github jsontools lol npm nyan pip scala urltools)
 
 # Source files from .zshrc.d/
 source "${HOME}/.zshrc.d/aliases"

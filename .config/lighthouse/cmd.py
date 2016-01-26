@@ -22,7 +22,10 @@ else:
     XDG_CONFIG_HOME = os.path.expanduser("~/.config")
 
 try:
-    SHORTCUTS = json.load(file("%s/shortcuts.json" % (HERE), 'r'))
+    _dict = json.load(file("%s/shortcuts.json" % (HERE), 'r'))
+    SHORTCUTS = {}
+    for key in _dict.keys():
+        SHORTCUTS[key.lower()] = _dict[key]
 except:
     SHORTCUTS = {}
 
