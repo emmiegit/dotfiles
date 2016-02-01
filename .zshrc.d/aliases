@@ -3,9 +3,12 @@
 ### ALIASES ###
 # Default modifiers
 alias clear='printf "\033c"'
+alias cower='cower --color auto'
 alias df='df -h'
 alias du='du -h'
 alias shred='shred -uv'
+alias sudo='sudo'
+alias valgrind='valgrind --track-origins=yes'
 alias vi='vi -p'
 alias vim='vi -p'
 alias which='which -a'
@@ -31,8 +34,10 @@ alias less='less -r'
 
 # Derivative commands
 alias la='ls -A'
+alias latr='ls -Altr'
 alias ll='ls -l'
 alias lla='ls -Al'
+alias ltr='ls -ltr'
 
 # Shortcut commands
 alias allgrp='cut -d: -f1 /etc/group'
@@ -42,11 +47,17 @@ alias randomart='ssh-keygen -lv -f'
 alias srcrc='source ~/.zshrc'
 alias trash='trash-put'
 alias vii3='vi ~/.config/i3/config'
+alias vigtk='sudo vi -p /usr/share/gtk-2.0/gtkrc /usr/share/gtk-3.0/settings.ini'
 alias virc='vi -p ~/.zshrc ~/.zshrc.d/*'
 alias week='date +%V'
 alias ytmp3='noglob youtube-dl -o %\(title\)s.%\(ext\)s --extract-audio'
 alias sctl='sudo -E systemctl'
 alias jctl='journalctl'
+
+# gcalcli shortcuts
+alias calm='gcalcli calm'
+alias calw='gcalcli calw'
+alias gadd='gcalcli add'
 
 # File navigation commands
 alias largest="find . -printf '%s %p\n' | sort -nr | head"
@@ -54,7 +65,6 @@ alias smallest="find . -printf '%s %p\n' | sort -nr | tail"
 
 # Script shortcuts
 alias mkdesktop='/usr/local/scripts/mkdesktop.sh'
-alias tty-clock='/usr/local/scripts/wm/tty-clock.sh'
 
 # For fun
 alias chanstamp='date +%s%3N'

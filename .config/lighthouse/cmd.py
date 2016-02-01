@@ -210,14 +210,14 @@ def parse_line():
         return
 
     try:
-        complete = subprocess.check_output("compgen -c %s" % (line), shell=True, executable="/bin/bash")
-        complete = complete.split("\n")
+        complete = subprocess.check_output("compgen -c %s" % (line),
+                shell=True, executable="/bin/bash").split("\n")
 
         for cmd_num in range(min(len(complete), 5)):
-                # Look for XDG applications of the given name.
-                xdg_cmd = xdg_get_cmd(complete[cmd_num])
-                if xdg_cmd:
-                    append_output(*xdg_cmd)
+            # Look for XDG applications of the given name.
+            xdg_cmd = xdg_get_cmd(complete[cmd_num])
+            if xdg_cmd:
+                append_output(*xdg_cmd)
     except:
         pass
 

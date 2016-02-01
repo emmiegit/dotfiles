@@ -17,10 +17,6 @@ font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# Start a terminal
-# Uses your default terminal, in this case, terminator
-bindsym $mod+Return exec i3-sensible-terminal
-
 # Close focused window
 bindsym $mod+Shift+q kill
 
@@ -55,14 +51,14 @@ bindsym $mod+x [urgent=latest] focus
 mouse_warping none
 
 # Split in horizontal orientation
-# Different from defaults: uses g so h can be for movement
+# Different from defaults: uses g so h can be used for movement
 bindsym $mod+g split h
 
 # Split in vertical orientation
 bindsym $mod+v split v
 
 # Enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen
+bindsym $mod+Shift+f fullscreen
 
 # Change container layout
 bindsym $mod+s layout stacking
@@ -73,21 +69,13 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-#bindsym $mod+f focus mode_toggle
+bindsym $mod+f focus mode_toggle
 
 # Focus the parent container
 bindsym $mod+a focus parent
 
 # Focus the child container
 #bindsym $mod+d focus child
-
-# Customize workspace names
-#set $ws1=A
-#set $ws2=B
-#set $ws3=C
-#set $ws4=D
-#set $ws5=E
-#set $ws6=F
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -247,8 +235,10 @@ bar {
 # Available tokens: class, instance, window_role, con_id, id, window_type, con_mark, title, urgent, workspace
 for_window [class="Dolphin-emu" instance="dolphin-emu"] floating enable
 for_window [class="Gnome-system-monitor" instance="gnome-system-monitor"] floating enable
+for_window [class="Gpa" instance="gpa"] floating enable
 for_window [class="Icecat" title="Preferences"] floating enable
 for_window [class="Keepassx2" instance="keepassx2"] floating enable
+for_window [class="LinuxTycoon" instance="LinuxTycoon"] floating enable
 for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
 for_window [class="Pidgin" instance="Pidgin"] floating enable
 for_window [class="Skype" instance="skype"] floating enable
@@ -258,15 +248,24 @@ for_window [class="Tomboy" instance="Tomboy"] floating enable
 for_window [class="Tor Browser" instance="Navigator"] floating enable
 for_window [class="Tor Browser" instance="Update"] floating enable
 for_window [class="com-dreamcodex-wumpus-HuntTheWumpus"] floating enable
+for_window [class="qBittorrent" instance="qbittorrent"] floating enable
 for_window [instance="Toplevel"] floating enable
 for_window [title="Terminator Preferences"] floating enable
 
 # Launch Applications
+# Start a terminal
+# Uses your default terminal, in this case, terminator
+bindsym $mod+Return exec i3-sensible-terminal
+
 # File explorer
 bindsym $mod+t exec pcmanfm
 
+# Text editor
+bindsym $mod+Shift+Return exec gvim
+
 # Web browser
 bindsym $mod+i exec icecat
+bindsym $mod+Shift+i exec chromium
 
 # Screen locker
 set $Locker exec --no-startup-id /usr/local/scripts/wm/lock.sh
@@ -283,6 +282,7 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer --increase 1
 bindsym XF86AudioMute exec --no-startup-id pamixer --toggle-mute
 bindsym Shift+XF86AudioLowerVolume exec --no-startup-id pamixer --decrease 10
 bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id pamixer --increase 10
+bindsym Shift+XF86AudioMute exec --no-startup-id pamixer --mute
 
 # Media Keys
 bindsym XF86AudioPlay exec --no-startup-id /usr/local/scripts/wm/media/play.sh
@@ -291,18 +291,20 @@ bindsym XF86AudioPrev exec --no-startup-id /usr/local/scripts/wm/media/prev.sh
 bindsym XF86AudioNext exec --no-startup-id /usr/local/scripts/wm/media/next.sh
 bindsym Shift+XF86AudioPlay exec --no-startup-id /usr/local/scripts/wm/media/like.sh
 bindsym Shift+XF86AudioStop exec --no-startup-id /usr/local/scripts/wm/media/dislike.sh
-bindsym Shift+XF86AudioPrev exec --no-startup-id /usr/local/scripts/wm/media/prevpause.sh
-bindsym Shift+XF86AudioNext exec --no-startup-id /usr/local/scripts/wm/media/nextpause.sh
 
 # Screenshot commands
-bindsym Print exec --no-startup-id /usr/local/scripts/wm/screenshot.sh
-bindsym Shift+Print exec --no-startup-id /usr/local/scripts/wm/screenshot-region.sh
+bindsym --release Print exec --no-startup-id /usr/local/scripts/wm/screenshot.sh
+bindsym --release Shift+Print exec --no-startup-id /usr/local/scripts/wm/screenshot-region.sh
+bindsym --release Ctrl+Print exec --no-startup-id /usr/local/scripts/wm/screenshot-monitor-0.sh
+bindsym --release Ctrl+Shift+Print exec --no-startup-id /usr/local/scripts/wm/screenshot-monitor-1.sh
 
 # Start-up applications
 exec --no-startup-id /usr/local/scripts/wm/new-wallpaper.sh
 exec --no-startup-id /usr/local/scripts/wm/start-autolock.sh
+exec --no-startup-id ~/Programming/Python/Twitter/toxic_bot.py
 exec --no-startup-id redshift
 exec --no-startup-id pamixer --unmute
+exec --no-startup-id dropbox-cli start
 exec --no-startup-id udiskie --notify
 exec --no-startup-id compton -b --config ~/.config/compton.conf
 exec --no-startup-id nvidia-settings --load-config-only
@@ -311,6 +313,8 @@ exec --no-startup-id backintime --pw-cache start
 exec --no-startup-id tomboy --panel-applet
 
 # Set up default workspaces
+exec --no-startup-id i3-msg 'workspace 3; exec terminator'
+exec --no-startup-id i3-msg 'workspace 3; exec discord'
 exec --no-startup-id i3-msg 'workspace 3; exec pidgin'
 exec --no-startup-id i3-msg 'workspace 3; exec steam'
 exec --no-startup-id i3-msg 'workspace 4; exec claws-mail'
