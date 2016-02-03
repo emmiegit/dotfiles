@@ -253,28 +253,33 @@ for_window [instance="Toplevel"] floating enable
 for_window [title="Terminator Preferences"] floating enable
 
 # Launch Applications
+set $Terminal terminator
+set $Explorer pcmanfm
+set $Editor gvim
+set $Browser icecat
+set $Email claws-mail
+set $Locker /usr/local/scripts/wm/lock.sh
+
 # Start a terminal
-# Uses your default terminal, in this case, terminator
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec $Terminal
 
 # File explorer
-bindsym $mod+t exec pcmanfm
+bindsym $mod+t exec $Explorer
 
 # Text editor
-bindsym $mod+Shift+Return exec gvim
+bindsym $mod+Shift+Return exec $Editor
 
 # Web browser
-bindsym $mod+i exec icecat
+bindsym $mod+i exec $Browser
 bindsym $mod+Shift+i exec chromium
 
 # Screen locker
-set $Locker exec --no-startup-id /usr/local/scripts/wm/lock.sh
-bindsym $mod+semicolon $Locker
+bindsym $mod+semicolon exec --no-startup-id $Locker
 bindsym $mod+Shift+semicolon exec --no-startup-id /usr/local/scripts/wm/suspend.sh
 
 # Toggle autolock
-bindsym $mod+$alt+l exec /usr/local/scripts/wm/set-autolock.sh off
-bindsym $mod+$alt+Shift+l exec /usr/local/scripts/wm/set-autolock.sh on
+bindsym $mod+$alt+l exec --no-startup-id /usr/local/scripts/wm/set-autolock.sh off
+bindsym $mod+$alt+Shift+l exec --no-startup-id /usr/local/scripts/wm/set-autolock.sh on
 
 # Volume control
 bindsym XF86AudioLowerVolume exec --no-startup-id pamixer --decrease 1
@@ -301,6 +306,7 @@ bindsym --release Ctrl+Shift+Print exec --no-startup-id /usr/local/scripts/wm/sc
 # Start-up applications
 exec --no-startup-id /usr/local/scripts/wm/new-wallpaper.sh
 exec --no-startup-id /usr/local/scripts/wm/start-autolock.sh
+exec --no-startup-id /usr/local/scripts/wm/gmail-check-notify.py
 exec --no-startup-id ~/Programming/Python/Twitter/toxic_bot.py
 exec --no-startup-id redshift
 exec --no-startup-id pamixer --unmute
@@ -313,11 +319,12 @@ exec --no-startup-id backintime --pw-cache start
 exec --no-startup-id tomboy --panel-applet
 
 # Set up default workspaces
-exec --no-startup-id i3-msg 'workspace 3; exec terminator'
-exec --no-startup-id i3-msg 'workspace 3; exec discord'
-exec --no-startup-id i3-msg 'workspace 3; exec pidgin'
-exec --no-startup-id i3-msg 'workspace 3; exec steam'
-exec --no-startup-id i3-msg 'workspace 4; exec claws-mail'
+exec i3-msg 'workspace 3; exec $Terminal'
+exec i3-msg 'workspace 3; exec discord'
+exec i3-msg 'workspace 3; exec pidgin'
+exec i3-msg 'workspace 3; exec steam'
+exec i3-msg 'workspace 4; exec $Terminal'
+exec i3-msg 'workspace 4; exec $Email'
 
 # Run user startup scripts
 exec --no-startup-id /usr/local/scripts/wm/startup.sh

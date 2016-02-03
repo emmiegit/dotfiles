@@ -4,7 +4,7 @@
 PS1='<%(?.%F{green}✓%f.%F{red}✗%f)> %F{green}%n@%M%f %F{yellow}%~%f%(!.%F{red}#%f.$) '
 PS2='... '
 
-export PATH="$PATH:~/.gem/ruby/2.3.0/bin"
+export PATH="$PATH:$HOME/.gem/ruby/2.3.0/bin"
 export EDITOR=vi
 export VISUAL=$EDITOR
 export GPGKEY=2C3CF0C7

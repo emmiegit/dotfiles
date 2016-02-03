@@ -58,15 +58,6 @@ confirm() {
     esac
 }
 
-# Count the number of files in the directory.
-countf() {
-    if [[ $# -eq 0 ]]; then
-        ls -1 | wc -l
-    else
-        ls -1 $@ | wc -l
-    fi
-}
-
 # Simple function to calculate date differences
 datediff() {
     d1=$(date -d "$1" +%s)
@@ -83,7 +74,7 @@ ffbatch() {
 
     find -type f -name "*.$1" -print0 \
         | while read -d $'\0' a; do
-            ffmpeg -i "$a" -qsacle:a 0 "${a[@]/%$1/$2}" < /dev/null
+            ffmpeg -i "$a" "${a[@]/%$1/$2}" < /dev/null
         done
     #rm -ir **/*.$1
 }

@@ -80,6 +80,7 @@ mkcd() { mkdir -p "$@" && cd "$@"; }
 pexec() { echo $@; $@; }
 pls() { sudo -- "${SHELL:-zsh}" -c "$(fc -ln -1)"; }
 strerror() { python -c "import os; print(os.strerror($1))"; }
+countf() { /usr/bin/ls -1 $@ | wc -l; }
 
 # Colorize text
 red()    { printf "\e[31m\e[1m"$@"\e[0m"; }
