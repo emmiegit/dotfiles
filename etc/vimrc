@@ -8,17 +8,26 @@
 " This line should not be removed as it ensures that various options are
 " properly set to work with the Vim-related packages available in Debian.
 
+" Set the colorscheme
 if has("syntax")
   syntax on
+  try
+    colorscheme void
+  catch
+    try
+      colorscheme desert
+    catch
+        colorscheme delek
+    endtry
+  endtry
 endif
 
-" Set the colorscheme
-try
-  colorscheme desert
-endtry
+" Settings for vim powerline
+set laststatus=2
+set t_Co=256
 
 " Without this, most of vim's nice features are broken for me
-" If you're having issues, change this line
+" If you're having issues, start by changing this line
 set nocompatible
 
 " Set utf-8 as the standard encoding
@@ -172,4 +181,12 @@ nnoremap <C-n> :call LineNumberToggle()<cr>
 "  autocmd InsertEnter * :call SetAbsoluteNumbers()
 "  autocmd InsertLeave * :call SetRelativeNumbers()
 "endif
+
+func! EnableSpellCheck()
+  setlocal spell spelllang=en_us
+endfunc
+
+func! DisableSpellCheck()
+  setlocal spell spelllang=
+endfunc
 
