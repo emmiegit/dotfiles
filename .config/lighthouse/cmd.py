@@ -4,7 +4,7 @@ from multiprocessing import Array
 from ctypes import c_char
 import os, sys, subprocess
 import random, math
-import json, re
+import json, re, time
 
 try:
     import xdg.BaseDirectory
@@ -127,6 +127,14 @@ def add_math_result(string):
         prepend_output("= undefined", "true")
     except:
         pass
+
+def get_calendar_event():
+    try:
+        outp = subprocess.check_output(("gcalcli", "agenda", time.ctime()))
+        evt = outp.splitlines()[1]
+        return re.sub("\x1b\\[.*?m", "", evt)
+    except:
+        return None
 
 # XDG functions
 def xdg_find_desktop_entry(cmd):
