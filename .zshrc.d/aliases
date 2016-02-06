@@ -6,6 +6,8 @@ alias clear='printf "\033c"'
 alias cower='cower --color auto'
 alias df='df -h'
 alias du='du -h'
+alias iotop='sudo iotop -o'
+alias pdflatex='pdflatex -halt-on-error'
 alias shred='shred -uv'
 alias sudo='sudo'
 alias valgrind='valgrind --track-origins=yes'
@@ -22,7 +24,10 @@ alias chmod='chmod -v --preserve-root'
 alias cp='cp -v'
 alias ln='ln -v'
 alias mv='mv -v'
-alias rm='rm -v --one-file-system'
+alias rm='rm -v --one-file-system --preserve-root'
+
+# Disabled commands
+alias dm-tool='command-disabled'
 
 # Colorize output of some programs
 alias diff='colordiff'
@@ -43,16 +48,17 @@ alias ltr='ls -ltr'
 alias allgrp='cut -d: -f1 /etc/group'
 alias allusr='cut -d: -f1 /etc/passwd'
 alias checkip='curl ifconfig.me'
+alias define='sdcv'
+alias jctl='journalctl'
+alias open='xdg-open'
 alias randomart='ssh-keygen -lv -f'
+alias sctl='sudo -E systemctl'
 alias srcrc='source ~/.zshrc'
-alias trash='trash-put'
-alias vii3='vi ~/.config/i3/config'
 alias vigtk='sudo vi -p /usr/share/gtk-2.0/gtkrc /usr/share/gtk-3.0/settings.ini'
+alias vii3='vi ~/.config/i3/config'
 alias virc='vi -p ~/.zshrc ~/.zshrc.d/*'
 alias week='date +%V'
 alias ytmp3='noglob youtube-dl -o %\(title\)s.%\(ext\)s --extract-audio'
-alias sctl='sudo -E systemctl'
-alias jctl='journalctl'
 
 # gcalcli shortcuts
 alias calm='gcalcli calm'
@@ -75,12 +81,13 @@ alias mpvac='mpv --speed=0.67 --audio-pitch-correction=no --no-video'
 ### FUNCTIONS ###
 # Shortcut commands
 cdls() { cd "$@" && ls; }
+countf() { /usr/bin/ls -1 $@ | wc -l; }
 digq() { dig "$@" | grep 'Query time'; }
 mkcd() { mkdir -p "$@" && cd "$@"; }
 pexec() { echo $@; $@; }
 pls() { sudo -- "${SHELL:-zsh}" -c "$(fc -ln -1)"; }
 strerror() { python -c "import os; print(os.strerror($1))"; }
-countf() { /usr/bin/ls -1 $@ | wc -l; }
+trash() { [ $# -eq 0 ] && trash-list || trash-put $@; }
 
 # Colorize text
 red()    { printf "\e[31m\e[1m"$@"\e[0m"; }

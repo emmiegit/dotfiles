@@ -29,8 +29,8 @@ anon() {
 # For comparing binary files
 bdiff() {
     if [[ $# -lt 2 ]]; then
-        echo 2> 'Not enough arguments.'
-        echo 2> 'Usage: bdiff first-file second-file'
+        echo >&2 'Not enough arguments.'
+        echo >&2 'Usage: bdiff first-file second-file'
         return 1
     fi
 
@@ -39,13 +39,20 @@ bdiff() {
 
 # Currency conversion. Be sure to use official abbreviations
 cconv() {
-  wget -qO- "http://www.google.com/finance/converter?a=$1&from=$2&to=$3" | sed '/res/!d;s/<[^>]*>//g';
+    wget -qO- "http://www.google.com/finance/converter?a=$1&from=$2&to=$3" | sed '/res/!d;s/<[^>]*>//g';
 } 
 
 # cd function similar to the one provided with bash
 #cd() {
 #
 #}
+
+# A command replacement that says 'this command is disabled'.
+command-disabled() {
+    echo >&2 'This command has been disabled for safety purposes.'
+    echo >&2 'If you really want to run it, invoke it directly. (e.g. /bin/false instead of false)'
+    return 1
+}
 
 # A simple confirmation message. Usage: 'confirm && (action)'
 confirm() {
