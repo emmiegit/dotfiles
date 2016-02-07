@@ -124,6 +124,22 @@ insult() {
     curl -s randominsults.net | sed -n '/<strong>/{s;^.*<i>\(.*\)</i>.*$;\1;p}'
 }
 
+# List dbus services
+lsdbus() {
+    if [ $# -eq 0 -o "$1" -eq "--help" ]; then
+        echo >&2 'Not enough arguments.'
+        echo >&2 'Usage: lsdbus (session | system)'
+        return 1
+    fi
+
+    dbus-send "--$1" \
+              --dest=org.freedesktop.DBus \
+              --type=method_call \
+              --print-reply \
+              /org/freedesktop \
+              org.freedesktop.DBus.ListNames
+}
+
 # Print your most used shell commands
 mostused() {
     history \

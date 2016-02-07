@@ -205,11 +205,12 @@ font pango:Droid Sans 9
 # For i3-gaps compatibilty
 for_window [class="^.*"] border pixel 0
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
+# Settings for the status bar
 bar {
         position top
         #i3bar_command /usr/local/scripts/wm/i3-bar.sh
+        status_command python /usr/lib/python2.7/site-packages/powerline/bindings/i3/powerline-i3.py
+        font pango:Droid Sans Mono Dotted for Powerline 9
         mode dock
         hidden_state show
 
@@ -292,7 +293,7 @@ bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id pamixer --increase 10
 bindsym Shift+XF86AudioMute exec --no-startup-id pamixer --mute
 
 # Media Keys
-bindsym XF86AudioPlay exec --no-startup-id /usr/local/scripts/wm/media/play.sh
+bindsym XF86AudioPlay exec --no-startup-id /usr/local/scripts/wm/media/playpause.sh
 bindsym XF86AudioStop exec --no-startup-id /usr/local/scripts/wm/media/stop.sh
 bindsym XF86AudioPrev exec --no-startup-id /usr/local/scripts/wm/media/prev.sh
 bindsym XF86AudioNext exec --no-startup-id /usr/local/scripts/wm/media/next.sh

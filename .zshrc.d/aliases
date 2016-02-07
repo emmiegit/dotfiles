@@ -63,7 +63,7 @@ alias ytmp3='noglob youtube-dl -o %\(title\)s.%\(ext\)s --extract-audio'
 # gcalcli shortcuts
 alias calm='gcalcli calm'
 alias calw='gcalcli calw'
-alias gadd='gcalcli add'
+alias gadd='gcalcli add --calendar "grawcards@gmail.com"'
 
 # File navigation commands
 alias largest="find . -printf '%s %p\n' | sort -nr | head"
