@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-source $(dirname $0)/config
+source "$(dirname $0)/config"
 
 # Parser main loop
 while read -r line; do
-    case $line in
+    case "${line}" in
         SYS*)
             # Conky output:
             # 0 - Weekday
@@ -20,41 +20,44 @@ while read -r line; do
             arr=(${line#???})
 
             # Date and time
-            date="%{F${color_sec_b1}}${sep_left}%{F${color_icon} B${color_sec_b1}} ${arr[0]} ${arr[1]} ${arr[2]} ${arr[3]} ${arr[4]} ${arr[5]}"
+            date="${sep_left} ${arr[0]} ${arr[1]} ${arr[2]} ${arr[3]} ${arr[4]} ${arr[5]}"
 
             # CPU
             if [ ${arr[6]::-1} -gt ${cpu_alert} ]; then
-                cpu_back="${color_cpu}"
+                cpu_back="${color_alert}"
                 cpu_fore="${color_back}"
             else
-                cpu_back="${color_sec_b2}"
+                cpu_back="${color_back}"
                 cpu_fore="${color_fore}"
             fi
             cpu="%{F${cpu_back}}${sep_left}%{F${cpu_fore} B${cpu_back}} CPU: ${arr[6]}"
 
             # Memory
             if [ ${arr[7]::-1} -gt ${mem_alert} ]; then
-                mem_back="${color_mem}"
+                mem_back="${color_alert}"
                 mem_fore="${color_back}"
             else
-                mem_back="${color_sec_b2}"
+                mem_back="${color_back}"
                 mem_fore="${color_fore}"
             fi
             mem="%{F${mem_back}}${sepl_left}%{F${mem_fore} B${mem_back}} MEM: ${arr[7]}"
 
             # Network
-            net_back="${color_sec_b2}"
+            net_back="${color_back}"
             net_fore="${color_fore}"
 
-            netd="%{F${net_back}}${sepl_left}%{F${net_fore} B${net_back}} ${arr[8]}"
             netu="%{F${net_back}}${sepl_left}%{F${net_fore} B${net_back}} ${arr[9]}"
-            net="NET: ${netd} /${netu}"
+            netd="%{F${net_back}}${sepl_left}%{F${net_fore} B${net_back}} ${arr[8]}"
+            net="NET: ${netu} /${netd}"
+            ;;
+        WIN*)
+            title="${line:3}"
             ;;
     esac
 
-    wsp="[1]"
-    title="xterm"
+    wsp="%{B${color_active_wsp}}[1]%{F${color_active_wsp} B${color_back}}${sep_right}%{B${color_back} F${color_fore}}"
     # Finally, output
-    echo "%{l}${wsp}%{c}${title}%{r}${cpu} ${mem} ${net} ${date}"
+    #echo "%{l}${wsp}%{c}${title}%{r} ${cpu} ${mem} ${net} ${date}"
+    echo "%{l}${wsp}%{c}${title}%{r} stuff"
 done
 

@@ -19,7 +19,7 @@ volume() {
 }
 
 music() {
-    /usr/local/scripts/wm/media-nowplaying.sh
+    /usr/local/scripts/wm/media/nowplaying.sh
 }
 
 main() {
@@ -43,6 +43,8 @@ main() {
 
 main > "${panel_fifo}" &
 
-cat "${panel_fifo}" | "$(dirname $0)/parser" | lemonbar -p -B "${bg_color}" -F "${fg_color}"
+cat "${panel_fifo}" \
+    | "$(dirname $0)/parser" \
+    | lemonbar -p -f "${font}" -f "${iconfont}" -B "${bg_color}" -F "${fg_color}"
 wait
 

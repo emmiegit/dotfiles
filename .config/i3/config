@@ -200,7 +200,7 @@ for_window [class="^.*"] border pixel 0
 bar {
         position top
         #i3bar_command /usr/local/scripts/wm/i3-bar.sh
-        status_command python /usr/lib/python2.7/site-packages/powerline/bindings/i3/powerline-i3.py
+
         font pango:Droid Sans Mono Dotted for Powerline 9
         mode dock
         hidden_state show
@@ -209,7 +209,7 @@ bar {
         strip_workspace_numbers yes
 
         tray_output primary
-        tray_padding 0
+        tray_padding 1
 
         colors {
             background #000000
@@ -234,7 +234,6 @@ for_window [class="Icecat" title="Preferences"] floating enable
 for_window [class="Keepassx2" instance="keepassx2"] floating enable
 for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
 for_window [class="Pidgin" instance="Pidgin"] floating enable
-for_window [class="Pidgin" instance="Pidgin"] workspace 3
 for_window [class="Skype" instance="skype"] floating enable
 for_window [class="Steam" instance="Steam"] floating enable
 for_window [class="Tagainijisho" instance="tagainijisho"] floating enable
@@ -272,8 +271,8 @@ bindsym $mod+semicolon exec --no-startup-id $Locker
 bindsym $mod+Shift+semicolon exec --no-startup-id /usr/local/scripts/wm/suspend.sh
 
 # Toggle autolock
-bindsym $mod+$alt+l exec --no-startup-id /usr/local/scripts/wm/set-autolock.sh off
-bindsym $mod+$alt+Shift+l exec --no-startup-id /usr/local/scripts/wm/set-autolock.sh on
+bindsym $mod+$alt+l exec --no-startup-id /usr/local/scripts/wm/set-autolock.sh on
+bindsym $mod+$alt+Shift+l exec --no-startup-id /usr/local/scripts/wm/set-autolock.sh off
 
 # Volume control
 bindsym XF86AudioLowerVolume exec --no-startup-id pamixer --decrease 1
@@ -317,8 +316,8 @@ exec i3-msg 'workspace 3; exec $Terminal'
 exec i3-msg 'workspace 3; exec discord'
 exec i3-msg 'workspace 3; exec pidgin'
 exec i3-msg 'workspace 3; exec steam'
-exec i3-msg 'workspace 4; exec $Terminal'
-exec i3-msg 'workspace 4; exec $Email'
+exec sleep .1 && i3-msg 'workspace 4; exec $Terminal'
+exec sleep .1 && i3-msg 'workspace 4; exec $Email'
 
 # Run user startup scripts
 exec --no-startup-id /usr/local/scripts/wm/startup.sh
