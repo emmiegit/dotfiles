@@ -14,6 +14,7 @@ if has("syntax")
   try
     colorscheme void
   catch
+    " Fallback colorschemes
     try
       colorscheme desert
     catch
@@ -26,8 +27,8 @@ endif
 set laststatus=2
 set t_Co=256
 
-" Without this, most of vim's nice features are broken for me
-" If you're having issues, start by changing this line
+" Set nocompatible vim options
+"set cpo=aABceFs<
 set nocompatible
 
 " Set utf-8 as the standard encoding
@@ -61,7 +62,7 @@ set nobackup
 set nowb
 set noswapfile
 
-" Treat long lines as break lines
+" Move by row, not by line
 "map j gj
 "map k gk
 
@@ -99,6 +100,7 @@ set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 
 " Allow tab completion in the menu
+set wildmode=longest,list,full
 set wildmenu
 set wildignore=*.o,*.d,*~,*.pyc,.git
 
@@ -126,7 +128,6 @@ set timeoutlen=100  " To prevent the lag on 'O'
 set ruler           " Display the bar at the bottom 
 set wrap            " Wrap long lines
 set hlsearch        " Highlight matches when searching
-set nowrapscan      " Don't start from the beginning when the search is complete
 set showcmd		    " Show (partial) command in status line.
 set showmatch       " Show matching brackets.
 set mat=2           " How many tenths of a second to blink when matching brackets
@@ -138,6 +139,7 @@ set mouse=n         " Enable mouse usage (normal mode only)
 set lazyredraw      " Don't redraw when running macros
 set magic           " Use traditional regular expressions (see wiki)
 set relativenumber  " Use relative line numbers (see below)
+set noshowmode      " Powerline does this for me, so I don't need two modes.
 
 " Pressing * or # when in visual mode searches for the current selection
 vnoremap <silent> * :call VisualSelection('f')<cr>

@@ -37,6 +37,19 @@ bdiff() {
     cmp -l "$1" "$2" | gawk '{printf "%08X %02X %02X\n", $1-1, strtonum(0$2), strtonum(0$3)}'
 }
 
+# Refresh cava as a workaround for the sensitivity issue
+#cavaloop() {
+#    while true; do
+#        cava &
+#        (
+#            sleep 2
+#            kill -0 $! 2> /dev/null || break
+#            kill $!
+#        ) &
+#        fg -1
+#    done
+#}
+
 # Currency conversion. Be sure to use official abbreviations
 cconv() {
     wget -qO- "http://www.google.com/finance/converter?a=$1&from=$2&to=$3" | sed '/res/!d;s/<[^>]*>//g';
