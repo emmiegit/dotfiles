@@ -312,11 +312,9 @@ exec --no-startup-id backintime --pw-cache start
 exec --no-startup-id tomboy --panel-applet
 
 # Set up default workspaces
-exec i3-msg 'workspace 3; exec $Terminal'
 exec i3-msg 'workspace 3; exec discord'
 exec i3-msg 'workspace 3; exec pidgin'
 exec i3-msg 'workspace 3; exec steam'
-exec sleep .1 && i3-msg 'workspace 4; exec $Terminal'
 exec sleep .1 && i3-msg 'workspace 4; exec $Email'
 
 # Run user startup scripts
