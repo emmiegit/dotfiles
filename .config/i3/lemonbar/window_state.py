@@ -4,19 +4,19 @@ import subprocess
 
 def window_title():
     try:
-        return subprocess.check_output(("xdotool", "getactivewindow", "getwindowname"))
+        return subprocess.check_output(("xdotool", "getactivewindow", "getwindowname")).decode("utf-8")
     except subprocess.CalledProcessError:
         return "??"
 
 
-def lockscreen_state():
+def autolock_state():
     try:
         with open(AUTOLOCK_STATE_FILE, 'r') as fh:
             state = fh.read()
 
-            if state == b"on":
+            if state.strip() == "on":
                 return True
-            elif state == b"off":
+            elif state.strip() == "off":
                 return False
     except (FileNotFoundError, IOError, OSError):
         return None

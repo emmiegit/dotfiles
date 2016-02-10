@@ -1,13 +1,9 @@
 #!/usr/bin/env python3
-from constants import *
-from media import *
-from system_stats import *
-from window_state import *
+from lemongadgetimpl import *
 import atexit
 import os
 import subprocess
 import sys
-import time
 
 
 def acquire_lock():
@@ -16,7 +12,7 @@ def acquire_lock():
         sys.exit(1)
 
     with open(LOCK_FILE, 'w+') as fh:
-        pass
+        fh.write(str(os.getpid()))
 
 
 def release_lock():
@@ -45,28 +41,12 @@ def build_command():
     return cmd
 
 
-def format_text(text, bg=None, fg=None, align=NO_ALIGNMENT):
-    if bg and fg:
-        return "%s%%{B%s F%s}%s" % (align, bg, fg, text)
-    elif bg:
-        return "%s%%{B%s}%s" % (align, bg, text)
-    elif fg:
-        return "%s%%{F%s}%s" % (align, fg, text)
-    else:
-        return "%s%s" % (align, text)
-
-
 if __name__ == "__main__":
-    # Acquire lock
     acquire_lock()
     atexit.register(release_lock)
-
-    # Set up pipe
     command = build_command()
     process = subprocess.Popen(command, stdin=subprocess.PIPE)
 
-    # Main loop
-    while True:
-        process.stdin.write(b"test\n")
-        process.stdin.flush()
-        time.sleep(1)
+    controller = LemonGadgetController(process)
+    controller.register_all(GADGETS)
+    controller.start()

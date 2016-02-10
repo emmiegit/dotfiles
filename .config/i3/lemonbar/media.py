@@ -1,22 +1,22 @@
-from constants import PIANOBAR_NOWPLAYING
+from constants import AUDIO_PLAYER_SCRIPT, PIANOBAR_NOWPLAYING
 import subprocess
 
 
 def audio_player():
     try:
-        return subprocess.check_output(("/usr/local/scripts/wm/media/detect-audio-player.sh",))
+        return subprocess.check_output(AUDIO_PLAYER_SCRIPT)
     except subprocess.CalledProcessError:
-        return "??"
+        return b"??"
 
 
 def now_playing():
     player = audio_player()
-    if player == b"mocp":
+    if player == "mocp":
         try:
-            return subprocess.check_output(("mocp", "-Q", "%song by %artist"))
+            return subprocess.check_output(("mocp", "-Q", "%song by %artist")).decode("utf-8")
         except subprocess.CalledProcessError:
             return "(error)"
-    elif player == b"pianobar":
+    elif player == "pianobar":
         artist = "??"
         title = "??"
 
@@ -31,7 +31,7 @@ def now_playing():
             return "(error)"
 
         return "%s by %s" % (title, artist)
-    elif player == b"vlc":
+    elif player == "vlc":
         try:
             output = subprocess.check_output((
                 "qdbus", "org.mpris.MediaPlayer2.vlc",

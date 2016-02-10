@@ -1,26 +1,31 @@
 import os
 
 # Files
-LOCK_FILE = "/tmp/%s-lemonbar.lock" % (os.environ["USER"],)
+LOCK_FILE = "/tmp/%s_lemonbar.lock" % (os.environ["USER"],)
 AUTOLOCK_STATE_FILE = "/usr/local/scripts/dat/autolock_state"
 PIANOBAR_NOWPLAYING = "%s/.config/pianobar/nowplaying" % (os.environ["HOME"],)
+AUDIO_PLAYER_SCRIPT = ("/usr/local/scripts/wm/media/detect-audio-player.sh",)
 
-# Alert threshholds
-CPU_ALERT = 70
-MEMORY_ALERT = 50
+# Static data
+ZIP_CODE = 92521
+TICK_RATE = 1 / 10
+CPU_PERC_ALERT = 70
+MEMORY_PERC_ALERT = 50
+NETWORK_ALERT = 500 * (1 << 10)
 
 # Colors
 BACKGROUND_COLOR = "#ff000000"
+SECONDARY_COLOR = "#ff262626"
 FOREGROUND_COLOR = "#ffcccccc"
+ALERT_COLOR = "#ff4d0000"
 ACTIVE_WORKSPACE_COLOR = "#ff061739"
-URGENT_WORKSPACE_COLOR = "#ff4d0000"
+URGENT_WORKSPACE_COLOR = ALERT_COLOR
 INACTIVE_WORKSPACE_COLOR = BACKGROUND_COLOR
 
 # Alignment
-NO_ALIGNMENT = ""
-ALIGN_LEFT = "%{l}"
-ALIGN_CENTER = "%{c}"
-ALIGN_RIGHT = "%{r}"
+ALIGN_LEFT = 0
+ALIGN_CENTER = 1
+ALIGN_RIGHT = 2
 
 # Fonts
 FONTS = (
@@ -29,15 +34,16 @@ FONTS = (
 )
 
 # Icons and special characters
-SEPARATOR_LEFT = "\xee\x82\xb2"
-SEPARATOR_RIGHT = "\xee\x82\xb0"
-LIGHT_SEPARATOR_LEFT = "\xee\x82\xb3"
-LIGHT_SEPARATOR_RIGHT = "\xee\x82\xb1"
-ICON_MEDIA_PLAY = "\xef\x81\x8b"
-ICON_MEDIA_PAUSE = "\xef\x81\x8c"
-ICON_UNKNOWN = "\xef\x84\xa8"
-ICON_WIFI = "\xef\x87\xab"
-ICON_TUX = "\xef\x85\xbc"
+DEGREES = b"\xc2\xb0".decode("utf-8")
+SEPARATOR_LEFT = b"\xee\x82\xb2".decode("utf-8")
+SEPARATOR_RIGHT = b"\xee\x82\xb0".decode("utf-8")
+LIGHT_SEPARATOR_LEFT = b"\xee\x82\xb3".decode("utf-8")
+LIGHT_SEPARATOR_RIGHT = b"\xee\x82\xb1".decode("utf-8")
+ICON_MEDIA_PLAY = b"\xef\x81\x8b".decode("utf-8")
+ICON_MEDIA_PAUSE = b"\xef\x81\x8c".decode("utf-8")
+ICON_UNKNOWN = b"\xef\x84\xa8".decode("utf-8")
+ICON_WIFI = b"\xef\x87\xab".decode("utf-8")
+ICON_TUX = b"\xef\x85\xbc".decode("utf-8")
 
 # terminusicons2 (wip)
 ICON_CLOCK = "\xc3\x95"

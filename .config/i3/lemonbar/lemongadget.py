@@ -1,4 +1,5 @@
 from constants import *
+import atexit
 import time
 
 
@@ -30,6 +31,8 @@ class LemonGadgetController(object):
     def register_all(self, gadgets):
         for gadget in gadgets:
             self.register(gadget)
+            if hasattr(gadget, "quit"):
+                atexit.register(gadget.quit)
 
     def _flush(self):
         if self._left:
@@ -86,7 +89,7 @@ class LemonGadget(object):
         if self._write is None:
             raise RuntimeError("LemonGagdet is not registered with a LemonGagetController.")
 
-        self._write("".join(self._buf))
+        self._write("".join(self._buf).encode("utf-8"))
 
     def append_separator(self, transition_color):
         if self.alignment == ALIGN_CENTER:
