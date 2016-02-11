@@ -1,11 +1,15 @@
 from constants import *
+import threading
+import time
 
 
-class LemonGadgetController(object):
+class LemonGadgetController(threading.Thread):
     def __init__(self, process):
+        super().__init__()
         self.gadgets = []
         self.proc = process
         self.cleanup_hooks = []
+        self.alive = True
         self._left = []
         self._center = []
         self._right = []
@@ -44,10 +48,6 @@ class LemonGadgetController(object):
         self.proc.stdin.write(string.encode("utf-8"))
 
     def _flush(self):
-        print("left: %s" % self._left)
-        print("center: %s" % self._center)
-        print("right: %s" % self._right)
-
         if self._left:
             self._write("%{l}")
             self._write("".join(self._left))
@@ -64,7 +64,15 @@ class LemonGadgetController(object):
             self._right = []
 
         self._write("\n")
-        self.proc.stdin.flush()
+        try:
+            self.proc.stdin.flush()
+        except BrokenPipeError:
+            return
+
+    def run(self):
+        while self.alive:
+            self.tick()
+            time.sleep(TICK_RATE)
 
     def tick(self):
         for gadget in self.gadgets:
@@ -72,6 +80,7 @@ class LemonGadgetController(object):
         self._flush()
 
     def quit(self):
+        self.alive = False
         for hook in self.cleanup_hooks:
             hook()
 
@@ -82,6 +91,7 @@ class LemonGadget(object):
         self.alignment = alignment
         self.preupdate = None
         self.icon_font = 2
+        self.max_length = 100
         self._count = cycle - 1
         self._buf = []
         self._lastbg = BACKGROUND_COLOR
@@ -108,13 +118,16 @@ class LemonGadget(object):
         self.flush()
 
     def update(self):
-        raise NotImplementedError
+        raise NotImplementedError("Abstract class method.")
 
     def flush(self):
         if self._write is None:
             raise RuntimeError("This LemonGagdet is not registered with a LemonGagetController.")
 
-        self._write("".join(self._buf))
+        text = "".join(self._buf)
+        if len(text) > self.max_length:
+            text = text[:self.max_length - 3] + "..."
+        self._write(text)
 
     def add_anchor(self, leftclick="", rightclick=""):
         self._buf.append("%%{A:%s:%s}" % (leftclick, rightclick))

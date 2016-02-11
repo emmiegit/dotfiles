@@ -11,8 +11,10 @@ class WorkspacesGadget(LemonGadget):
     def __init__(self, cycle, alignment, monitor):
         super().__init__(cycle, alignment)
         self.i3_handle = i3Handle(monitor)
+        self.max_length = 600
 
     def update(self):
+        lastbg = self._lastbg
         workspaces = self.i3_handle.get_workspace_list()
         for index, (workspace, state, monitor) in enumerate(workspaces):
             if index == 0:
@@ -36,11 +38,11 @@ class WorkspacesGadget(LemonGadget):
                     self.append_separator(URGENT_WORKSPACE_COLOR)
 
             self.add_anchor(leftclick="i3-msg workspace %s" % workspace)
-            self.append_text(workspace)
+            self.append_text(" %s " % workspace)
             self.end_anchor()
 
             if index == len(workspaces) - 1:
-                self.append_separator(BACKGROUND_COLOR)
+                self.append_separator(lastbg)
 
     def quit(self):
         self.i3_handle.quit()
@@ -49,7 +51,6 @@ class WorkspacesGadget(LemonGadget):
 # media.py
 class NowPlayingGadget(LemonGadget):
     def update(self):
-        self.append_light_separator()
         self.append_icon(ICON_MUSIC)
         self.append_text(" ")
         self.append_text(now_playing())
@@ -58,11 +59,17 @@ class NowPlayingGadget(LemonGadget):
 class VolumeGadget(LemonGadget):
     def update(self):
         self.append_light_separator()
+        self.add_anchor(leftclick="pamixer --toggle-mute")
         self.append_icon(ICON_VOLUME)
         if is_muted():
-            self.append_text("MUTED")
+            self.append_text("--% ")
         else:
-            self.append_text("%d%%" % get_volume())
+            volume = get_volume()
+            if volume >= 0:
+                self.append_text("%2d%% " % volume)
+            else:
+                self.append_text("??")
+        self.end_anchor()
 
 
 # system_stats.py
@@ -75,9 +82,11 @@ class CPUGadget(LemonGadget):
         if perc >= CPU_PERC_ALERT:
             self.add_format(fg=ALERT_COLOR)
 
+        self.add_anchor(leftclick="gnome-system-monitor")
         self.append_icon(ICON_CPU)
-        self.append_text("%d%%" % perc)
+        self.append_text("%2d%%" % perc)
         self.add_format(fg=lastfg)
+        self.end_anchor()
         self.append_text(" ")
 
 
@@ -90,9 +99,11 @@ class MemoryGadget(LemonGadget):
         if perc >= MEMORY_PERC_ALERT:
             self.add_format(fg=ALERT_COLOR)
 
+        self.add_anchor(leftclick="gnome-system-monitor")
         self.append_icon(ICON_MEMORY)
-        self.append_text("%d%%" % perc)
+        self.append_text("%2d%%" % perc)
         self.add_format(fg=lastfg)
+        self.end_anchor()
         self.append_text(" ")
 
 
@@ -115,7 +126,7 @@ class NetworkGadget(LemonGadget):
 
         up, down = network_up_down()
         lastfg = self._lastfg
-        if True or up >= NETWORK_ALERT:
+        if up >= NETWORK_ALERT:
             self.add_format(fg=ALERT_COLOR)
 
         self.append_text("%d %s " % self.get_units(up)[1:])
@@ -161,8 +172,11 @@ class NetworkUsageGadget(LemonGadget):
 
 class TimeGadget(LemonGadget):
     def update(self):
+        self.add_anchor(leftclick="%s -e 'gcalcli agenda; %s'" % (TERMINAL, SHELL))
         self.append_light_separator()
+        self.append_text(" ")
         self.append_text(formatted_time())
+        self.end_anchor()
 
 
 # weather.py
@@ -198,7 +212,7 @@ class AutolockStateGadget(LemonGadget):
     def update(self):
         if not autolock_state():
             self.append_light_separator()
-            self.append_text("X")
+            self.append_text(" X ")
             self.append_light_separator()
 
 

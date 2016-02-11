@@ -49,6 +49,7 @@ def now_playing():
         return "(none)"
 
 
+# TODO: switch to use libpulseaudio
 def is_muted():
     return subprocess.getoutput("pamixer --get-mute") == "true"
 
