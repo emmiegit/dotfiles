@@ -33,5 +33,21 @@ def network_units(bytes_moved):
         return bytes_moved, bytes_moved, "bytes"
 
 
+def network_units_kb(bytes_moved):
+    if bytes_moved > (1 << 30):
+        return bytes_moved, (bytes_moved / (1 << 30)), "GiB"
+    elif bytes_moved > (1 << 20):
+        return bytes_moved, (bytes_moved / (1 << 20)), "MiB"
+    else:
+        return bytes_moved, (bytes_moved / (1 << 10)), "KiB"
+
+
+def network_units_mb(bytes_moved):
+    if bytes_moved > (1 << 30):
+        return bytes_moved, (bytes_moved / (1 << 30)), "GiB"
+    else:
+        return bytes_moved, (bytes_moved / (1 << 20)), "MiB"
+
+
 def formatted_time():
     return time.strftime("%A, %b %d %Y %l:%M:%S %p")

@@ -25,8 +25,8 @@ class WorkspacesGadget(LemonGadget):
                 else:
                     raise ValueError("Invalid workspace state: %s" % state)
 
-                # print workspace icon
-                self.append_text("W:")
+                self.append_icon(ICON_WORKSPACE)
+                self.append_text(" ")
             else:
                 if state == WORKSPACE_INACTIVE:
                     self.append_separator(INACTIVE_WORKSPACE_COLOR)
@@ -50,74 +50,118 @@ class WorkspacesGadget(LemonGadget):
 class NowPlayingGadget(LemonGadget):
     def update(self):
         self.append_light_separator()
-        # music note icon
+        self.append_icon(ICON_MUSIC)
+        self.append_text(" ")
         self.append_text(now_playing())
 
 
 class VolumeGadget(LemonGadget):
     def update(self):
         self.append_light_separator()
-        self.append_text("X" if is_muted() else "<")
-        self.append_text(get_volume())
+        self.append_icon(ICON_VOLUME)
+        if is_muted():
+            self.append_text("MUTED")
+        else:
+            self.append_text("%d%%" % get_volume())
 
 
 # system_stats.py
 class CPUGadget(LemonGadget):
     def update(self):
+        self.append_light_separator()
         perc = int(cpu_percentage())
 
         lastfg = self._lastfg
         if perc >= CPU_PERC_ALERT:
             self.add_format(fg=ALERT_COLOR)
 
-        # cpu icon
+        self.append_icon(ICON_CPU)
         self.append_text("%d%%" % perc)
         self.add_format(fg=lastfg)
+        self.append_text(" ")
 
 
 class MemoryGadget(LemonGadget):
     def update(self):
+        self.append_light_separator()
         perc = int(memory_percentage())
 
         lastfg = self._lastfg
         if perc >= MEMORY_PERC_ALERT:
             self.add_format(fg=ALERT_COLOR)
 
-        # memory icon
+        self.append_icon(ICON_MEMORY)
         self.append_text("%d%%" % perc)
         self.add_format(fg=lastfg)
+        self.append_text(" ")
 
 
 class NetworkGadget(LemonGadget):
-    def update(self):
-        up, down = network_up_down()
+    def __init__(self, cycle, alignment, minunits=MIN_UNIT_BYTES):
+        super().__init__(cycle, alignment)
 
-        if up + down >= NETWORK_ALERT:
-            self.append_separator(ALERT_COLOR)
+        if minunits == MIN_UNIT_BYTES:
+            self.get_units = network_units
+        elif minunits == MIN_UNIT_KBYTES:
+            self.get_units = network_units_kb
+        elif minunits == MIN_UNIT_MBYTES:
+            self.get_units = network_units_mb
         else:
-            self.append_light_separator()
+            raise ValueError("Invalid value for minunits: %s" % minunits)
 
-        # network icon
-        self.append_text("%s / %s" % (network_units(up), network_units(down)))
+    def update(self):
+        self.append_light_separator()
+        self.append_icon(ICON_UPLOAD)
+
+        up, down = network_up_down()
+        lastfg = self._lastfg
+        if True or up >= NETWORK_ALERT:
+            self.add_format(fg=ALERT_COLOR)
+
+        self.append_text("%d %s " % self.get_units(up)[1:])
+        self.add_format(fg=lastfg)
+        self.append_icon(ICON_DOWNLOAD)
+
+        lastfg = self._lastfg
+        if down >= NETWORK_ALERT:
+            self.add_format(fg=ALERT_COLOR)
+
+        self.append_text("%d %s " % self.get_units(down)[1:])
+        self.add_format(fg=lastfg)
 
 
 class NetworkUsageGadget(LemonGadget):
+    def __init__(self, cycle, alignment, minunits=MIN_UNIT_BYTES):
+        super().__init__(cycle, alignment)
+
+        if minunits == MIN_UNIT_BYTES:
+            self.get_units = network_units
+        elif minunits == MIN_UNIT_KBYTES:
+            self.get_units = network_units_kb
+        elif minunits == MIN_UNIT_MBYTES:
+            self.get_units = network_units_mb
+        else:
+            raise ValueError("Invalid value for minunits: %s" % minunits)
+
     def update(self):
+        self.append_light_separator()
         up, down = network_up_down()
         usage = up + down
 
-        if usage >= NETWORK_ALERT:
-            self.append_separator(ALERT_COLOR)
-        else:
-            self.append_light_separator()
+        self.append_icon(ICON_UPLOAD)
+        self.append_icon(ICON_DOWNLOAD)
 
-        # network icon
-        self.append_text(network_units(usage))
+        lastfg = self._lastfg
+        if usage >= NETWORK_ALERT:
+            self.add_format(fg=ALERT_COLOR)
+
+        self.append_text("%d %s " % self.get_units(usage)[1:])
+        self.add_format(fg=lastfg)
 
 
 class TimeGadget(LemonGadget):
     def update(self):
-        self.append_separator(SECONDARY_COLOR)
+        self.append_light_separator()
         self.append_text(formatted_time())
 
 
@@ -153,11 +197,21 @@ class WindowTitleGadget(LemonGadget):
 class AutolockStateGadget(LemonGadget):
     def update(self):
         if not autolock_state():
+            self.append_light_separator()
             self.append_text("X")
             self.append_light_separator()
 
 
 # misc
+class Space(LemonGadget):
+    def __init__(self, alignment, spacecount=1):
+        super().__init__(100, alignment)
+        self.spaces = " " * spacecount
+
+    def update(self):
+        self.append_text(self.spaces)
+
+
 class DummyGadget(LemonGadget):
     def __init__(self, cycle, alignment, text="<TEST>"):
         super().__init__(cycle, alignment)
@@ -166,6 +220,7 @@ class DummyGadget(LemonGadget):
     def update(self):
         self.append_text(self.text)
 
+
 class DummyIconGadget(LemonGadget):
     def __init__(self, cycle, alignment, text=""):
         super().__init__(cycle, alignment)
@@ -173,18 +228,4 @@ class DummyIconGadget(LemonGadget):
 
     def update(self):
         self.append_icon(self.text)
-
-# support for left vs right monitor?
-GADGETS = (
-    WorkspacesGadget(1, ALIGN_LEFT, LEFT_MONITOR),
-    AutolockStateGadget(1, ALIGN_LEFT),
-
-    WindowTitleGadget(1, ALIGN_CENTER),
-
-    DummyIconGadget(1, ALIGN_RIGHT, ICON_CPU),
-    CPUGadget(1, ALIGN_RIGHT),
-    MemoryGadget(1, ALIGN_RIGHT),
-    TimeGadget(1, ALIGN_RIGHT),
-)
-
 

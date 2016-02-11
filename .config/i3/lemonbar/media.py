@@ -11,12 +11,12 @@ def audio_player():
 
 def now_playing():
     player = audio_player()
-    if player == "mocp":
+    if player == b"mocp":
         try:
             return subprocess.check_output(("mocp", "-Q", "%song by %artist")).decode("utf-8")
         except subprocess.CalledProcessError:
             return "(error)"
-    elif player == "pianobar":
+    elif player == b"pianobar":
         artist = "??"
         title = "??"
 
@@ -31,7 +31,7 @@ def now_playing():
             return "(error)"
 
         return "%s by %s" % (title, artist)
-    elif player == "vlc":
+    elif player == b"vlc":
         try:
             output = subprocess.check_output((
                 "qdbus", "org.mpris.MediaPlayer2.vlc",
@@ -57,6 +57,6 @@ def get_volume():
     volume = subprocess.getoutput("pamixer --get-volume")
 
     if volume.isdigit():
-        return "%s%%" % (volume,)
+        return int(volume)
     else:
-        return "??"
+        return -1

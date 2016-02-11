@@ -144,13 +144,13 @@ class LemonGadget(object):
         return RuntimeError("Attempt to append separator in centered gadget.")
 
     def append_left_separator(self, transition_color):
-        self._buf.append("%%{B%s F%s}%s%%{F%s}" %
-                         (transition_color, self._lastbg, SEPARATOR_RIGHT, self._lastfg))
+        self._buf.append("%%{B%s F%s}%s%%{B%s F%s}" %
+                         (transition_color, self._lastbg, SEPARATOR_RIGHT, transition_color, self._lastfg))
         self._lastbg = transition_color
 
     def append_right_separator(self, transition_color):
-        self._buf.append("%%{B%s F%s}%s%%{F%s}" %
-                         (self._lastbg, transition_color, SEPARATOR_LEFT, self._lastfg))
+        self._buf.append("%%{B%s F%s}%s%%{B%s F%s}" %
+                         (self._lastbg, transition_color, SEPARATOR_LEFT, transition_color, self._lastfg))
         self._lastbg = transition_color
 
     def append_light_separator(self):

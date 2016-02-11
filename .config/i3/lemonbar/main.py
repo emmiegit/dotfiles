@@ -5,6 +5,25 @@ import os
 import subprocess
 import sys
 
+# support for left vs right monitor?
+GADGETS = (
+    # Left
+    WorkspacesGadget(1, ALIGN_LEFT, LEFT_MONITOR),
+    AutolockStateGadget(1, ALIGN_LEFT),
+
+    # Centered
+    WindowTitleGadget(1, ALIGN_CENTER),
+
+    # Right
+    NowPlayingGadget(1, ALIGN_RIGHT),
+    Space(ALIGN_RIGHT),
+    CPUGadget(1, ALIGN_RIGHT),
+    MemoryGadget(1, ALIGN_RIGHT),
+    NetworkGadget(1, ALIGN_RIGHT, MIN_UNIT_KBYTES),
+    VolumeGadget(1, ALIGN_RIGHT),
+    TimeGadget(1, ALIGN_RIGHT),
+)
+
 
 def acquire_lock():
     if os.path.exists(LOCK_FILE):
