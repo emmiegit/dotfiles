@@ -204,8 +204,17 @@ class WeatherCelsiusGadget(LemonGadget):
 
 # window_state.py
 class WindowTitleGadget(LemonGadget):
+    def __init__(self, cycle, alignment):
+        super().__init__(cycle, alignment)
+        self.xprop_handle = XpropSpyHandle()
+        self.xprop_handle.start()
+
     def update(self):
-        self.append_text(window_title().rstrip())
+        self.append_text(self.xprop_handle.title)
+
+    def quit(self):
+        self.xprop_handle.alive = False
+        self.xprop_handle.join()
 
 
 class AutolockStateGadget(LemonGadget):

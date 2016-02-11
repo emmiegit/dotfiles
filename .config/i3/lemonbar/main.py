@@ -52,10 +52,8 @@ def release_lock(*args, **kwargs):
 
 
 def build_lemonbar_command(monitor):
-    #cmd = ["lemonbar", "-p"]
-    cmd = ["lemonbar"]
+    cmd = ["lemonbar", "-g"]
 
-    cmd.append("-g")
     if monitor == LEFT_MONITOR:
         cmd.append("%dx%d+%d+%d" % (LEFT_MONITOR_WIDTH, BAR_HEIGHT, 0, 0))
     elif monitor == RIGHT_MONITOR:
@@ -87,18 +85,16 @@ if __name__ == "__main__":
     atexit.register(release_lock)
     signal.signal(signal.SIGTERM, release_lock)
 
-    shell_command = ("sh",)
-
     left_lemonbar_command = build_lemonbar_command(LEFT_MONITOR)
     left_lemonbar_proc = subprocess.Popen(left_lemonbar_command, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-    left_shell_proc = subprocess.Popen(shell_command, stdin=left_lemonbar_proc.stdout, stdout=subprocess.DEVNULL)
+    left_shell_proc = subprocess.Popen(("sh",), stdin=left_lemonbar_proc.stdout, stdout=subprocess.DEVNULL)
     left_controller = LemonGadgetController(left_lemonbar_proc)
     left_controller.register_all(LEFT_GADGETS)
     left_controller.start()
 
     right_lemonbar_command = build_lemonbar_command(RIGHT_MONITOR)
     right_lemonbar_proc = subprocess.Popen(right_lemonbar_command, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-    right_shell_proc = subprocess.Popen(shell_command, stdin=right_lemonbar_proc.stdout, stdout=subprocess.DEVNULL)
+    right_shell_proc = subprocess.Popen(("sh",), stdin=right_lemonbar_proc.stdout, stdout=subprocess.DEVNULL)
     right_controller = LemonGadgetController(right_lemonbar_proc)
     right_controller.register_all(RIGHT_GADGETS)
     right_controller.start()

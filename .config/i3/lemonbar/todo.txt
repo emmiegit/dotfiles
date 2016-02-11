@@ -1,5 +1,3 @@
-Use xprop -spy instead of xdotool.
-Let dual bars work properly.
 Change media modules to use libpulseaudio.
 Make AutolockStateGadget not look retarded.
 
