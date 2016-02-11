@@ -10,26 +10,23 @@ from window_state import *
 class WorkspacesGadget(LemonGadget):
     def __init__(self, cycle, alignment, monitor):
         super().__init__(cycle, alignment)
-        self.i3_handle = i3Handle()
-        self.monitor = monitor
+        self.i3_handle = i3Handle(monitor)
 
     def update(self):
-        first = True
-
-        for workspace, state, monitor in self.i3_handle.get_workspace_list():
-            if monitor != self.monitor:
-                continue
-
-            if first:
-                first = False
+        workspaces = self.i3_handle.get_workspace_list()
+        for index, (workspace, state, monitor) in enumerate(workspaces):
+            if index == 0:
                 if state == WORKSPACE_INACTIVE:
                     self.append_format(bg=INACTIVE_WORKSPACE_COLOR)
                 elif state == WORKSPACE_ACTIVE or state == WORKSPACE_FOCUSED:
                     self.append_format(bg=ACTIVE_WORKSPACE_COLOR)
                 elif state == WORKSPACE_URGENT:
                     self.append_format(bg=URGENT_WORKSPACE_COLOR)
+                else:
+                    raise ValueError("Invalid workspace state: %s" % state)
 
                 # print workspace icon
+                self.append_text("W:")
             else:
                 if state == WORKSPACE_INACTIVE:
                     self.append_separator(INACTIVE_WORKSPACE_COLOR)
@@ -38,7 +35,11 @@ class WorkspacesGadget(LemonGadget):
                 elif state == WORKSPACE_URGENT:
                     self.append_separator(URGENT_WORKSPACE_COLOR)
 
+            print(self._lastbg)
             self.append_text(workspace)
+
+            if index == len(workspaces) - 1:
+                self.append_separator(BACKGROUND_COLOR)
 
     def quit(self):
         self.i3_handle.quit()
@@ -156,14 +157,14 @@ class AutolockStateGadget(LemonGadget):
 
 # support for left vs right monitor?
 GADGETS = (
-    WorkspacesGadget(1, ALIGN_LEFT, "DVI-D-0"),
-    AutolockStateGadget(10, ALIGN_LEFT),
+    WorkspacesGadget(1, ALIGN_LEFT, LEFT_MONITOR),
+    AutolockStateGadget(1, ALIGN_LEFT),
 
-    WindowTitleGadget(1, ALIGN_CENTER),
+    #WindowTitleGadget(1, ALIGN_CENTER),
 
-    CPUGadget(2, ALIGN_RIGHT),
-    MemoryGadget(2, ALIGN_RIGHT),
-    TimeGadget(5, ALIGN_RIGHT),
+    #CPUGadget(1, ALIGN_RIGHT),
+    #MemoryGadget(1, ALIGN_RIGHT),
+    #TimeGadget(1, ALIGN_RIGHT),
 )
 
 

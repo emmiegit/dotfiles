@@ -199,7 +199,7 @@ for_window [class="^.*"] border pixel 0
 # Settings for the status bar
 bar {
         position top
-        #i3bar_command /usr/local/scripts/wm/i3-bar.sh
+        #i3bar_command ~/.config/i3/lemonbar/main.py
 
         font pango:Droid Sans Mono Dotted for Powerline 9
         mode dock
@@ -314,7 +314,6 @@ exec --no-startup-id tomboy --panel-applet
 # Set up default workspaces
 exec i3-msg 'workspace 3; exec discord'
 exec i3-msg 'workspace 3; exec pidgin'
-exec i3-msg 'workspace 3; exec steam'
 exec sleep .1 && i3-msg 'workspace 4; exec $Email'
 
 # Run user startup scripts

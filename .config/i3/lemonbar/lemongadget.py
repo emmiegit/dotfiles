@@ -1,18 +1,26 @@
 from constants import *
-import atexit
-import time
 
 
 class LemonGadgetController(object):
     def __init__(self, process):
         self.gadgets = []
         self.proc = process
+        self.cleanup_hooks = []
         self._left = []
-        self._write_left = self._left.append
         self._center = []
-        self._write_center = self._center.append
         self._right = []
-        self._write_right = self._right.append
+
+    def _write_left(self, text):
+        if text:
+            self._left.append(text)
+
+    def _write_center(self, text):
+        if text:
+            self._center.append(text)
+
+    def _write_right(self, text):
+        if text:
+            self._right.append(text)
 
     def register(self, gadget):
         self.gadgets.append(gadget)
@@ -26,54 +34,70 @@ class LemonGadgetController(object):
         else:
             raise ValueError("Invalid alignment id: %s" % (gadget.alignment,))
 
-        gadget._write = self.proc.stdin.write
-
     def register_all(self, gadgets):
         for gadget in gadgets:
             self.register(gadget)
             if hasattr(gadget, "quit"):
-                atexit.register(gadget.quit)
+                self.cleanup_hooks.append(gadget.quit)
+
+    def _write(self, string):
+        self.proc.stdin.write(string.encode("utf-8"))
 
     def _flush(self):
+        print("left: %s" % self._left)
+        print("center: %s" % self._center)
+        print("right: %s" % self._right)
+
         if self._left:
-            self.proc.stdin.write("%{l}")
-            self.proc.stdin.write("".join(self._left))
+            self._write("%{l}")
+            self._write("".join(self._left))
             self._left = []
 
         if self._center:
-            self.proc.stdin.write("%{c}")
-            self.proc.stdin.write("".join(self._center))
+            self._write("%{c}")
+            self._write("".join(self._center))
             self._center = []
 
         if self._right:
-            self.proc.stdin.write("%{r}")
-            self.proc.stdin.write("".join(self._right))
+            self._write("%{r}")
+            self._write("".join(self._right))
             self._right = []
 
+        self._write("\n")
         self.proc.stdin.flush()
-
-    def start(self):
-        while True:
-            self.tick()
-            time.sleep(TICK_RATE)
 
     def tick(self):
         for gadget in self.gadgets:
             gadget.tick()
-            self._flush()
+        self._flush()
+
+    def quit(self):
+        for hook in self.cleanup_hooks:
+            hook()
 
 
 class LemonGadget(object):
     def __init__(self, cycle, alignment):
         self.cycle = cycle
         self.alignment = alignment
-        self._count = 0
+        self.preupdate = None
+        self._count = cycle - 1
         self._buf = []
         self._lastbg = BACKGROUND_COLOR
+        self._lastfg = FOREGROUND_COLOR
         self._write = None
 
+        if alignment == ALIGN_LEFT:
+            self.append_separator = self.append_left_separator
+        elif alignment == ALIGN_RIGHT:
+            self.append_separator = self.append_right_separator
+        elif alignment == ALIGN_CENTER:
+            self.append_separator = self._cant_append
+        else:
+            raise ValueError("Invalid value for \"alignment\": %s" % alignment)
+
     def tick(self):
-        if self._count == self.cycle - 1:
+        if self._count >= self.cycle - 1:
             self._count = 0
             self._buf = []
             self.update()
@@ -89,20 +113,20 @@ class LemonGadget(object):
         if self._write is None:
             raise RuntimeError("LemonGagdet is not registered with a LemonGagetController.")
 
-        self._write("".join(self._buf).encode("utf-8"))
+        self._write("".join(self._buf))
 
-    def append_separator(self, transition_color):
-        if self.alignment == ALIGN_CENTER:
-            return
-        elif self.alignment == ALIGN_LEFT:
-            sep = SEPARATOR_RIGHT
-        elif self.alignment == ALIGN_RIGHT:
-            sep = SEPARATOR_LEFT
-        else:
-            raise ValueError("Invalid alignment: %s" % repr(self.alignment))
+    @staticmethod
+    def _cant_append(self, transition_color):
+        return RuntimeError("Attempt to append separator in centered gadget.")
 
-        self._buf.append("%%{B%s F%s}%s%%{B%s F%s}" %
-                         (transition_color, self._lastbg, sep, self._lastbg, transition_color))
+    def append_left_separator(self, transition_color):
+        self._buf.append("%%{B%s F%s}%s%%{F%s}" %
+                         (transition_color, self._lastbg, SEPARATOR_RIGHT, self._lastfg))
+        self._lastbg = transition_color
+
+    def append_right_separator(self, transition_color):
+        self._buf.append("%%{B%s F%s}%s%%{F%s}" %
+                         (self._lastbg, transition_color, SEPARATOR_LEFT, self._lastfg))
         self._lastbg = transition_color
 
     def append_light_separator(self):
@@ -128,5 +152,5 @@ class LemonGadget(object):
             self._buf.append("%%{B%s}" % bg)
             self._lastbg = bg
         elif fg:
-            self._buf("%s%%{F%s}" % fg)
+            self._buf.append("%%{F%s}" % fg)
 

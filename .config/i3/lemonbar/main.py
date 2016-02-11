@@ -24,7 +24,8 @@ def release_lock():
 
 
 def build_command():
-    cmd = ["lemonbar", "-p"]
+    #cmd = ["lemonbar", "-p"]
+    cmd = ["lemonbar"]
 
     for font in FONTS:
         cmd.append("-f")
@@ -45,8 +46,16 @@ if __name__ == "__main__":
     acquire_lock()
     atexit.register(release_lock)
     command = build_command()
+    #command = ("cat",)
     process = subprocess.Popen(command, stdin=subprocess.PIPE)
+    atexit.register(process.stdin.close)
 
     controller = LemonGadgetController(process)
     controller.register_all(GADGETS)
-    controller.start()
+
+    try:
+        controller.tick()
+        time.sleep(120)
+        controller.quit()
+    except KeyboardInterrupt:
+        controller.quit()
