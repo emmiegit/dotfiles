@@ -86,7 +86,7 @@ class LemonGadgetController(threading.Thread):
 
 
 class LemonGadget(object):
-    def __init__(self, cycle, alignment):
+    def __init__(self, cycle, alignment, **kwargs):
         self.cycle = cycle
         self.alignment = alignment
         self.preupdate = None
@@ -97,6 +97,9 @@ class LemonGadget(object):
         self._lastbg = BACKGROUND_COLOR
         self._lastfg = FOREGROUND_COLOR
         self._write = None
+
+        for key, value in kwargs.items():
+            setattr(self, key, value)
 
         if alignment == ALIGN_LEFT:
             self.append_separator = self.append_left_separator

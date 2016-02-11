@@ -9,7 +9,7 @@ import sys
 LEFT_GADGETS = (
     # Left
     WorkspacesGadget(1, ALIGN_LEFT, LEFT_MONITOR),
-    NowPlayingGadget(20, ALIGN_LEFT),
+    NowPlayingGadget(20, ALIGN_LEFT, blank_if_none=True),
 
     # Center
     WindowTitleGadget(1, ALIGN_CENTER),
@@ -37,7 +37,7 @@ RIGHT_GADGETS = (
 def acquire_lock(*args, **kwargs):
     if os.path.exists(LOCK_FILE):
         print("Lock file already exists. Is the process already running?", file=sys.stderr)
-        sys.exit(1)
+        #sys.exit(1)
 
     with open(LOCK_FILE, 'w+') as fh:
         fh.write(str(os.getpid()))
@@ -83,7 +83,6 @@ def build_lemonbar_command(monitor):
 if __name__ == "__main__":
     acquire_lock()
     atexit.register(release_lock)
-    signal.signal(signal.SIGTERM, release_lock)
 
     left_lemonbar_command = build_lemonbar_command(LEFT_MONITOR)
     left_lemonbar_proc = subprocess.Popen(left_lemonbar_command, stdin=subprocess.PIPE, stdout=subprocess.PIPE)

@@ -50,10 +50,17 @@ class WorkspacesGadget(LemonGadget):
 
 # media.py
 class NowPlayingGadget(LemonGadget):
+    blank_if_none = False
+
     def update(self):
+        song = now_playing()
+
+        if song == "(none)" and self.blank_if_none:
+            return
+
         self.append_icon(ICON_MUSIC)
         self.append_text(" ")
-        self.append_text(now_playing())
+        self.append_text(song)
 
 
 class VolumeGadget(LemonGadget):

@@ -13,12 +13,20 @@ def now_playing():
     player = audio_player()
     if player == b"mocp":
         try:
-            return subprocess.check_output(("mocp", "-Q", "%song by %artist")).decode("utf-8")
+            song = subprocess.check_output(("mocp", "-Q", "%song")).decode("utf-8").rstrip()
+            artist = subprocess.check_output(("mocp", "-Q", "%artist")).decode("utf-8").rstrip()
+
+            if not song:
+                song = "(unknown)"
+            if not artist:
+                artist = "(unknown)"
+
+            return "%s by %s" % (song, artist)
         except subprocess.CalledProcessError:
             return "(error)"
     elif player == b"pianobar":
-        artist = "??"
-        title = "??"
+        artist = "(unknown)"
+        title = "(unknown)"
 
         try:
             with open(PIANOBAR_NOWPLAYING, 'r') as fh:

@@ -1,4 +1,5 @@
 from constants import AUTOLOCK_STATE_FILE
+import os
 import re
 import subprocess
 import threading
@@ -11,7 +12,8 @@ class XpropSpyHandle(threading.Thread):
     def __init__(self):
         super().__init__()
         self.alive = True
-        self.proc = subprocess.Popen(("xprop", "-spy", "-root", "_NET_ACTIVE_WINDOW"), stdout=subprocess.PIPE)
+        self.proc = subprocess.Popen(("xprop", "-spy", "-root", "_NET_ACTIVE_WINDOW"),
+                stdout=subprocess.PIPE, preexec_fn=os.setsid)
         self.window_id = 0
         self.title = ""
 
@@ -28,7 +30,7 @@ class XpropSpyHandle(threading.Thread):
             try:
                 window_data = subprocess.check_output(("xprop", "-id", match.group(1)))
             except subprocess.CalledProcessError:
-                self.title = "??"
+                self.title = ""
                 continue
 
             match = XPROP_ID_REGEX.findall(window_data.decode("utf-8"))
