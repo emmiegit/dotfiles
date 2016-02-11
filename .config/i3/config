@@ -197,9 +197,14 @@ font pango:Droid Sans 9
 for_window [class="^.*"] border pixel 0
 
 # Settings for the status bar
+# Lemonbar
+#bar {
+#        i3bar_command ~/.config/i3/lemonbar/main.py
+#}
+
+# Default i3 bar
 bar {
         position top
-        #i3bar_command ~/.config/i3/lemonbar/main.py
 
         font pango:Droid Sans Mono Dotted for Powerline 9
         mode dock
@@ -226,10 +231,11 @@ bar {
 # Window-specific settings
 # Available tokens: class, instance, window_role, con_id, id, window_type, con_mark, title, urgent, workspace
 for_window [class="Bleachbit" instance="bleachbit"] floating enable
-for_window [class="Claws-mail" instance="claws-mail"] workspace 4
+for_window [class="Claws-mail" instance="claws-mail"] floating enable
 for_window [class="Dolphin-emu" instance="dolphin-emu"] floating enable
 for_window [class="Gnome-system-monitor" instance="gnome-system-monitor"] floating enable
 for_window [class="Gpa" instance="gpa"] floating enable
+for_window [class="Gucharmap" instance="gucharmap"] floating enable
 for_window [class="Icecat" title="Preferences"] floating enable
 for_window [class="Keepassx2" instance="keepassx2"] floating enable
 for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
@@ -237,7 +243,7 @@ for_window [class="Pidgin" instance="Pidgin"] floating enable
 for_window [class="Skype" instance="skype"] floating enable
 for_window [class="Steam" instance="Steam"] floating enable
 for_window [class="Tagainijisho" instance="tagainijisho"] floating enable
-for_window [class="Tomboy" instance="Tomboy"] floating enable; workspace 4
+for_window [class="Tomboy" instance="Tomboy"] floating enable
 for_window [class="Tor Browser" instance="Navigator"] floating enable
 for_window [class="Tor Browser" instance="Update"] floating enable
 for_window [class="com-dreamcodex-wumpus-HuntTheWumpus"] floating enable

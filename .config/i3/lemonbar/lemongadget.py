@@ -81,6 +81,7 @@ class LemonGadget(object):
         self.cycle = cycle
         self.alignment = alignment
         self.preupdate = None
+        self.icon_font = 2
         self._count = cycle - 1
         self._buf = []
         self._lastbg = BACKGROUND_COLOR
@@ -92,7 +93,7 @@ class LemonGadget(object):
         elif alignment == ALIGN_RIGHT:
             self.append_separator = self.append_right_separator
         elif alignment == ALIGN_CENTER:
-            self.append_separator = self._cant_append
+            self.append_separator = self._cant_append_sep
         else:
             raise ValueError("Invalid value for \"alignment\": %s" % alignment)
 
@@ -111,12 +112,35 @@ class LemonGadget(object):
 
     def flush(self):
         if self._write is None:
-            raise RuntimeError("LemonGagdet is not registered with a LemonGagetController.")
+            raise RuntimeError("This LemonGagdet is not registered with a LemonGagetController.")
 
         self._write("".join(self._buf))
 
+    def add_anchor(self, leftclick="", rightclick=""):
+        self._buf.append("%%{A:%s:%s}" % (leftclick, rightclick))
+
+    def end_anchor(self):
+        self._buf.append("%{A}")
+
+    def add_format(self, bg=None, fg=None):
+        if bg == self._lastbg:
+            bg = None
+        if fg == self._lastfg:
+            fg = None
+
+        if bg and fg:
+            self._buf.append("%%{B%s F%s}" % (bg, fg))
+            self._lastbg = bg
+            self._lastfg = fg
+        elif bg:
+            self._buf.append("%%{B%s}" % bg)
+            self._lastbg = bg
+        elif fg:
+            self._buf.append("%%{F%s}" % fg)
+            self._lastfg = fg
+
     @staticmethod
-    def _cant_append(self, transition_color):
+    def _cant_append_sep(self, transition_color):
         return RuntimeError("Attempt to append separator in centered gadget.")
 
     def append_left_separator(self, transition_color):
@@ -141,16 +165,9 @@ class LemonGadget(object):
 
         self._buf.append(sep)
 
+    def append_icon(self, text):
+        self._buf.append("%%{T%d}%s%%{T-}" % (self.icon_font, text))
+
     def append_text(self, text):
         self._buf.append(text)
-
-    def append_format(self, bg=None, fg=None):
-        if bg and fg:
-            self._buf.append("%%{B%s F%s}" % (bg, fg))
-            self._lastbg = bg
-        elif bg:
-            self._buf.append("%%{B%s}" % bg)
-            self._lastbg = bg
-        elif fg:
-            self._buf.append("%%{F%s}" % fg)
 

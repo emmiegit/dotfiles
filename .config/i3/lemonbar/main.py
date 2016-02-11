@@ -23,7 +23,7 @@ def release_lock():
     os.unlink(LOCK_FILE)
 
 
-def build_command():
+def build_lemonbar_command():
     #cmd = ["lemonbar", "-p"]
     cmd = ["lemonbar"]
 
@@ -45,12 +45,12 @@ def build_command():
 if __name__ == "__main__":
     acquire_lock()
     atexit.register(release_lock)
-    command = build_command()
-    #command = ("cat",)
-    process = subprocess.Popen(command, stdin=subprocess.PIPE)
-    atexit.register(process.stdin.close)
+    lemonbar_command = build_lemonbar_command()
+    bash_command = ("bash",)
+    lemonbar_proc = subprocess.Popen(lemonbar_command, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+    bash_proc = subprocess.Popen(bash_command, stdin=lemonbar_proc.stdout, stdout=subprocess.DEVNULL)
 
-    controller = LemonGadgetController(process)
+    controller = LemonGadgetController(lemonbar_proc)
     controller.register_all(GADGETS)
 
     try:

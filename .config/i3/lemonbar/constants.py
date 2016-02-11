@@ -19,8 +19,8 @@ NETWORK_ALERT = 500 * (1 << 10)
 BACKGROUND_COLOR = "#ff000000"
 SECONDARY_COLOR = "#ff262626"
 FOREGROUND_COLOR = "#ffcccccc"
-ALERT_COLOR = "#ff4d0000"
-ACTIVE_WORKSPACE_COLOR = "#ff061739"
+ALERT_COLOR = "#ff22195b"
+ACTIVE_WORKSPACE_COLOR = "#ff18255a"
 URGENT_WORKSPACE_COLOR = ALERT_COLOR
 INACTIVE_WORKSPACE_COLOR = BACKGROUND_COLOR
 
@@ -31,8 +31,8 @@ ALIGN_RIGHT = 2
 
 # Fonts
 FONTS = (
-    "-xos4-terminesspowerline-medium-r-normal--12-120-72-72-c-60-iso10646-1",
-    "-xos4-terminusicons2mono-medium-r-normal--12-120-72-72-m-60-iso8859-1",
+    "DroidSansMonoDottedForPowerline-9:Regular",
+    "Terminusicons2Mono-15:Regular",
 )
 
 # Icons and special characters
@@ -46,19 +46,17 @@ ICON_MEDIA_PAUSE = b"\xef\x81\x8c".decode("utf-8")
 ICON_UNKNOWN = b"\xef\x84\xa8".decode("utf-8")
 ICON_WIFI = b"\xef\x87\xab".decode("utf-8")
 ICON_TUX = b"\xef\x85\xbc".decode("utf-8")
-
-# terminusicons2 (wip)
-ICON_CLOCK = "\xc3\x95"
-ICON_CPU = "\xc3\x8f"
-ICON_MEMORY = "\xc3\x9e"
-ICON_DOWNLOAD = "\xc3\x90"
-ICON_UPLOAD = "\xc3\x91"
-ICON_VOLUME = "\xc3\x94"
-ICON_HARD_DRIVE = "\xc3\x80"
-ICON_HOME = "\xc3\x86"
-ICON_MAIL = "\xc3\x93"
-ICON_CHAT = "\xc3\x92"
-ICON_MUSIC = "\xc3\x8e"
-ICON_PROGRAM = "\xc3\x82"
-ICON_CONTACT = "\xc3\x81"
-ICON_WORKSPACE = "\xc3\x89"
+ICON_CLOCK = b"\xc3\x95".decode("utf-8")
+ICON_CPU = b"\xc3\x8f".decode("utf-8")
+ICON_MEMORY = b"\xc3\x9e".decode("utf-8")
+ICON_DOWNLOAD = b"\xc3\x90".decode("utf-8")
+ICON_UPLOAD = b"\xc3\x91".decode("utf-8")
+ICON_VOLUME = b"\xc3\x94".decode("utf-8")
+ICON_HARD_DRIVE = b"\xc3\x80".decode("utf-8")
+ICON_HOME = b"\xc3\x86".decode("utf-8")
+ICON_MAIL = b"\xc3\x93".decode("utf-8")
+ICON_CHAT = b"\xc3\x92".decode("utf-8")
+ICON_MUSIC = b"\xc3\x8e".decode("utf-8")
+ICON_PROGRAM = b"\xc3\x82".decode("utf-8")
+ICON_CONTACT = b"\xc3\x81".decode("utf-8")
+ICON_WORKSPACE = b"\xc3\x89".decode("utf-8")
