@@ -11,14 +11,21 @@ XPROP_ID_REGEX = re.compile(r'_NET_WM_NAME.*? = "(.*)"')
 class XpropSpyHandle(threading.Thread):
     def __init__(self):
         super().__init__()
-        self.alive = True
         self.proc = subprocess.Popen(("xprop", "-spy", "-root", "_NET_ACTIVE_WINDOW"),
                 stdout=subprocess.PIPE, preexec_fn=os.setsid)
         self.window_id = 0
         self.title = ""
+        self._death = threading.Event()
+
+    def kill(self):
+        self._death.set()
+        self.proc.terminate()
+
+    def is_dead(self):
+        return self._death.isSet()
 
     def run(self):
-        while self.alive:
+        while not self.is_dead():
             try:
                 update = self.proc.stdout.readline()
             except BrokenPipeError:

@@ -188,7 +188,7 @@ popup_during_fullscreen smart
 smart_gaps on
 smart_borders on
 gaps inner 8
-gaps outer 0
+gaps outer current plus 4
 
 # Font settings
 font pango:Droid Sans 9
@@ -197,36 +197,36 @@ font pango:Droid Sans 9
 for_window [class="^.*"] border pixel 0
 
 # Settings for the status bar
-# Lemonbar
-bar {
-        i3bar_command ~/.config/i3/lemonbar/main.py
-}
+## Lemonbar
+#bar {
+#        i3bar_command ~/.config/i3/lemonbar/main.py
+#}
 
 # Default i3 bar
-#bar {
-#        position top
-#
-#        font pango:Droid Sans Mono Dotted for Powerline 9
-#        mode dock
-#        hidden_state show
-#
-#        workspace_buttons yes
-#        strip_workspace_numbers yes
-#
-#        tray_output primary
-#        tray_padding 1
-#
-#        colors {
-#            background #000000
-#            statusline #ffffff
-#            separator #666666
-#            focused_workspace  #4c7899 #285577 #ffffff
-#            active_workspace   #333333 #5f676a #ffffff
-#            inactive_workspace #333333 #222222 #888888
-#            urgent_workspace   #2f343a #900000 #ffffff
-#            binding_mode       #2f343a #900000 #ffffff
-#        }
-#}
+bar {
+        position top
+
+        font pango:Droid Sans Mono Dotted for Powerline 9
+        mode dock
+        hidden_state show
+
+        workspace_buttons yes
+        strip_workspace_numbers yes
+
+        tray_output primary
+        tray_padding 1
+
+        colors {
+            background #000000
+            statusline #ffffff
+            separator #666666
+            focused_workspace  #4c7899 #285577 #ffffff
+            active_workspace   #333333 #5f676a #ffffff
+            inactive_workspace #333333 #222222 #888888
+            urgent_workspace   #2f343a #900000 #ffffff
+            binding_mode       #2f343a #900000 #ffffff
+        }
+}
 
 # Window-specific settings
 # Available tokens: class, instance, window_role, con_id, id, window_type, con_mark, title, urgent, workspace

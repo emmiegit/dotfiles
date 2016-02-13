@@ -7,21 +7,23 @@ WORKSPACE_URGENT = 3
 
 
 class i3Handle(object):
-    def __init__(self, monitor=None):
+    def __init__(self):
         self.state = None
         self.socket = i3.Socket()
         self.workspaces = None
         self.outputs = None
-        self.monitor = monitor
         self.refresh()
+        self.subscription = None
+
+    def start(self):
         self.subscription = i3.Subscription(self.refresh, "workspace")
 
-    def refresh(self, *args):
+    def refresh(self, event=None, data=None, subscription=None):
         self.workspaces = self.socket.get("get_workspaces")
         self.outputs = self.socket.get("get_outputs")
 
     def get_workspace_list(self):
-        results = []
+        results = {}
         for workspace in self.workspaces:
             output = None
             for out in self.outputs:
@@ -31,11 +33,12 @@ class i3Handle(object):
             if not output:
                 continue
             name = workspace["name"]
-            if self.monitor and self.monitor == output["name"]:
-                results.append((name, self.get_state(workspace, output), output["name"]))
+            if output["name"] not in results.keys():
+                results[output["name"]] = []
+            results[output["name"]].append((name, self.get_state(workspace, output), output["name"]))
         return results
 
-    def quit(self):
+    def kill(self):
         self.subscription.close()
 
     @staticmethod

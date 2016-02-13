@@ -1,4 +1,4 @@
+Fix ridiculus CPU usage.
 Change media modules to use libpulseaudio.
-Make the program exit properly.
 Make AutolockStateGadget not look retarded.
 

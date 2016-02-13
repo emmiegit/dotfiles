@@ -9,13 +9,14 @@ from window_state import *
 # i3_workspaces.py
 class WorkspacesGadget(LemonGadget):
     def __init__(self, cycle, alignment, monitor):
-        super().__init__(cycle, alignment)
-        self.i3_handle = i3Handle(monitor)
+        super().__init__(cycle, alignment, wants="i3")
+        self.i3_handle = i3Handle()
+        self.monitor = monitor
         self.max_length = 600
 
     def update(self):
         lastbg = self._lastbg
-        workspaces = self.i3_handle.get_workspace_list()
+        workspaces = self.i3_handle.get_workspace_list()[self.monitor]
         for index, (workspace, state, monitor) in enumerate(workspaces):
             if index == 0:
                 if state == WORKSPACE_INACTIVE:
@@ -43,9 +44,6 @@ class WorkspacesGadget(LemonGadget):
 
             if index == len(workspaces) - 1:
                 self.append_separator(lastbg)
-
-    def quit(self):
-        self.i3_handle.quit()
 
 
 # media.py
@@ -115,8 +113,8 @@ class MemoryGadget(LemonGadget):
 
 
 class NetworkGadget(LemonGadget):
-    def __init__(self, cycle, alignment, minunits=MIN_UNIT_BYTES):
-        super().__init__(cycle, alignment)
+    def __init__(self, cycle, alignment, minunits=MIN_UNIT_BYTES, **kwargs):
+        super().__init__(cycle, alignment, **kwargs)
 
         if minunits == MIN_UNIT_BYTES:
             self.get_units = network_units
@@ -212,16 +210,10 @@ class WeatherCelsiusGadget(LemonGadget):
 # window_state.py
 class WindowTitleGadget(LemonGadget):
     def __init__(self, cycle, alignment):
-        super().__init__(cycle, alignment)
-        self.xprop_handle = XpropSpyHandle()
-        self.xprop_handle.start()
+        super().__init__(cycle, alignment, wants="xprop")
 
     def update(self):
-        self.append_text(self.xprop_handle.title)
-
-    def quit(self):
-        self.xprop_handle.alive = False
-        self.xprop_handle.join()
+        self.append_text(self.handle.title)
 
 
 class AutolockStateGadget(LemonGadget):

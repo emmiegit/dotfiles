@@ -1,98 +1,17 @@
 from constants import *
-import threading
-import time
-
-
-class LemonGadgetController(threading.Thread):
-    def __init__(self, process):
-        super().__init__()
-        self.gadgets = []
-        self.proc = process
-        self.cleanup_hooks = []
-        self.alive = True
-        self._left = []
-        self._center = []
-        self._right = []
-
-    def _write_left(self, text):
-        if text:
-            self._left.append(text)
-
-    def _write_center(self, text):
-        if text:
-            self._center.append(text)
-
-    def _write_right(self, text):
-        if text:
-            self._right.append(text)
-
-    def register(self, gadget):
-        self.gadgets.append(gadget)
-
-        if gadget.alignment == ALIGN_LEFT:
-            gadget._write = self._write_left
-        elif gadget.alignment == ALIGN_CENTER:
-            gadget._write = self._write_center
-        elif gadget.alignment == ALIGN_RIGHT:
-            gadget._write = self._write_right
-        else:
-            raise ValueError("Invalid alignment id: %s" % (gadget.alignment,))
-
-    def register_all(self, gadgets):
-        for gadget in gadgets:
-            self.register(gadget)
-            if hasattr(gadget, "quit"):
-                self.cleanup_hooks.append(gadget.quit)
-
-    def _write(self, string):
-        self.proc.stdin.write(string.encode("utf-8"))
-
-    def _flush(self):
-        if self._left:
-            self._write("%{l}")
-            self._write("".join(self._left))
-            self._left = []
-
-        if self._center:
-            self._write("%{c}")
-            self._write("".join(self._center))
-            self._center = []
-
-        if self._right:
-            self._write("%{r}")
-            self._write("".join(self._right))
-            self._right = []
-
-        self._write("\n")
-        try:
-            self.proc.stdin.flush()
-        except BrokenPipeError:
-            return
-
-    def run(self):
-        while self.alive:
-            self.tick()
-            time.sleep(TICK_RATE)
-
-    def tick(self):
-        for gadget in self.gadgets:
-            gadget.tick()
-        self._flush()
-
-    def quit(self):
-        self.alive = False
-        for hook in self.cleanup_hooks:
-            hook()
 
 
 class LemonGadget(object):
-    def __init__(self, cycle, alignment, **kwargs):
-        self.cycle = cycle
+    def __init__(self, delay, alignment, wants=None, **kwargs):
+        self.delay = delay
+        self.cycle = int(delay / TICK_DELAY)
         self.alignment = alignment
         self.preupdate = None
+        self.wants = wants
+        self.handle = None
         self.icon_font = 2
         self.max_length = 100
-        self._count = cycle - 1
+        self._count = self.cycle - 1
         self._buf = []
         self._lastbg = BACKGROUND_COLOR
         self._lastfg = FOREGROUND_COLOR
@@ -125,7 +44,7 @@ class LemonGadget(object):
 
     def flush(self):
         if self._write is None:
-            raise RuntimeError("This LemonGagdet is not registered with a LemonGagetController.")
+            raise RuntimeError("This LemonGadget is not registered with a LemonGadgetController.")
 
         text = "".join(self._buf)
         if len(text) > self.max_length:
