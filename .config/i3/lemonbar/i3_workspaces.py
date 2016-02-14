@@ -1,3 +1,5 @@
+from constants import *
+from lemongadget import LemonGadget
 import i3
 
 WORKSPACE_FOCUSED = 0
@@ -53,3 +55,41 @@ class i3Handle(object):
         else:
             return WORKSPACE_INACTIVE
 
+
+class WorkspacesGadget(LemonGadget):
+    def __init__(self, cycle, alignment, monitor):
+        super().__init__(cycle, alignment, wants="i3")
+        self.i3_handle = i3Handle()
+        self.monitor = monitor
+        self.max_length = 600
+
+    def update(self):
+        lastbg = self._lastbg
+        workspaces = self.i3_handle.get_workspace_list()[self.monitor]
+        for index, (workspace, state, monitor) in enumerate(workspaces):
+            if index == 0:
+                if state == WORKSPACE_INACTIVE:
+                    self.add_format(bg=INACTIVE_WORKSPACE_COLOR)
+                elif state == WORKSPACE_ACTIVE or state == WORKSPACE_FOCUSED:
+                    self.add_format(bg=ACTIVE_WORKSPACE_COLOR)
+                elif state == WORKSPACE_URGENT:
+                    self.add_format(bg=URGENT_WORKSPACE_COLOR)
+                else:
+                    raise ValueError("Invalid workspace state: %s" % state)
+
+                self.append_icon(ICON_WORKSPACE)
+                self.append_text(" ")
+            else:
+                if state == WORKSPACE_INACTIVE:
+                    self.append_separator(INACTIVE_WORKSPACE_COLOR)
+                elif state == WORKSPACE_ACTIVE or state == WORKSPACE_FOCUSED:
+                    self.append_separator(ACTIVE_WORKSPACE_COLOR)
+                elif state == WORKSPACE_URGENT:
+                    self.append_separator(URGENT_WORKSPACE_COLOR)
+
+            self.add_anchor(leftclick="i3-msg workspace %s" % workspace)
+            self.append_text(" %s " % workspace)
+            self.end_anchor()
+
+            if index == len(workspaces) - 1:
+                self.append_separator(lastbg)

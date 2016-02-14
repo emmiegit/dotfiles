@@ -1,4 +1,5 @@
-from constants import AUDIO_PLAYER_SCRIPT, PIANOBAR_NOWPLAYING
+from lemongadget import LemonGadget
+from constants import AUDIO_PLAYER_SCRIPT, ICON_MUSIC, ICON_VOLUME, PIANOBAR_NOWPLAYING
 import subprocess
 
 
@@ -69,3 +70,36 @@ def get_volume():
         return int(volume)
     else:
         return -1
+
+
+class NowPlayingGadget(LemonGadget):
+    blank_if_none = False
+
+    def update(self):
+        song = now_playing()
+
+        if song == "(none)" and self.blank_if_none:
+            return
+
+        self.append_icon(ICON_MUSIC)
+        self.append_text(" ")
+        self.append_text(song)
+        self.append_text(" ")
+
+
+class VolumeGadget(LemonGadget):
+    def update(self):
+        self.append_light_separator()
+        self.add_anchor(leftclick="pamixer --toggle-mute")
+        self.append_icon(ICON_VOLUME)
+        if is_muted():
+            self.append_text("--% ")
+        else:
+            volume = get_volume()
+            if volume >= 0:
+                self.append_text("%2d%% " % volume)
+            else:
+                self.append_text("??")
+        self.end_anchor()
+
+

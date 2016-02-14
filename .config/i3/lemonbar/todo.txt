@@ -1,4 +1,4 @@
-Fix ridiculus CPU usage.
+Fix issue with WorkspaceGadget not updating.
 Change media modules to use libpulseaudio.
 Make AutolockStateGadget not look retarded.
 

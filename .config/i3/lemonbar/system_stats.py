@@ -1,3 +1,5 @@
+from constants import *
+from lemongadget import LemonGadget
 import psutil
 import time
 
@@ -50,4 +52,112 @@ def network_units_mb(bytes_moved):
 
 
 def formatted_time():
-    return time.strftime("%A, %b %d %Y %l:%M:%S %p")
+    return time.strftime("%A, %b %d %Y%l:%M:%S %p")
+
+
+class CPUGadget(LemonGadget):
+    def update(self):
+        self.append_light_separator()
+        perc = int(cpu_percentage())
+
+        lastfg = self._lastfg
+        if perc >= CPU_PERC_ALERT:
+            self.add_format(fg=ALERT_COLOR)
+
+        self.add_anchor(leftclick="gnome-system-monitor")
+        self.append_icon(ICON_CPU)
+        self.append_text("%2d%%" % perc)
+        self.add_format(fg=lastfg)
+        self.end_anchor()
+        self.append_text(" ")
+
+
+class MemoryGadget(LemonGadget):
+    def update(self):
+        self.append_light_separator()
+        perc = int(memory_percentage())
+
+        lastfg = self._lastfg
+        if perc >= MEMORY_PERC_ALERT:
+            self.add_format(fg=ALERT_COLOR)
+
+        self.add_anchor(leftclick="gnome-system-monitor")
+        self.append_icon(ICON_MEMORY)
+        self.append_text("%2d%%" % perc)
+        self.add_format(fg=lastfg)
+        self.end_anchor()
+        self.append_text(" ")
+
+
+class NetworkGadget(LemonGadget):
+    def __init__(self, cycle, alignment, minunits=MIN_UNIT_BYTES, **kwargs):
+        super().__init__(cycle, alignment, **kwargs)
+
+        if minunits == MIN_UNIT_BYTES:
+            self.get_units = network_units
+        elif minunits == MIN_UNIT_KBYTES:
+            self.get_units = network_units_kb
+        elif minunits == MIN_UNIT_MBYTES:
+            self.get_units = network_units_mb
+        else:
+            raise ValueError("Invalid value for minunits: %s" % minunits)
+
+    def update(self):
+        self.append_light_separator()
+        self.append_icon(ICON_UPLOAD)
+
+        up, down = network_up_down()
+        lastfg = self._lastfg
+        if up >= NETWORK_ALERT:
+            self.add_format(fg=ALERT_COLOR)
+
+        self.append_text("%d %s " % self.get_units(up)[1:])
+        self.add_format(fg=lastfg)
+        self.append_icon(ICON_DOWNLOAD)
+
+        lastfg = self._lastfg
+        if down >= NETWORK_ALERT:
+            self.add_format(fg=ALERT_COLOR)
+
+        self.append_text("%d %s " % self.get_units(down)[1:])
+        self.add_format(fg=lastfg)
+
+
+class NetworkUsageGadget(LemonGadget):
+    def __init__(self, cycle, alignment, minunits=MIN_UNIT_BYTES):
+        super().__init__(cycle, alignment)
+
+        if minunits == MIN_UNIT_BYTES:
+            self.get_units = network_units
+        elif minunits == MIN_UNIT_KBYTES:
+            self.get_units = network_units_kb
+        elif minunits == MIN_UNIT_MBYTES:
+            self.get_units = network_units_mb
+        else:
+            raise ValueError("Invalid value for minunits: %s" % minunits)
+
+    def update(self):
+        self.append_light_separator()
+        up, down = network_up_down()
+        usage = up + down
+
+        self.append_icon(ICON_UPLOAD)
+        self.append_icon(ICON_DOWNLOAD)
+
+        lastfg = self._lastfg
+        if usage >= NETWORK_ALERT:
+            self.add_format(fg=ALERT_COLOR)
+
+        self.append_text("%d %s " % self.get_units(usage)[1:])
+        self.add_format(fg=lastfg)
+
+
+class TimeGadget(LemonGadget):
+    def update(self):
+        self.add_anchor(leftclick="%s -e 'gcalcli agenda; %s'" % (TERMINAL, SHELL))
+        self.append_light_separator()
+        self.append_text(" ")
+        self.append_text(formatted_time())
+        self.end_anchor()
+
+

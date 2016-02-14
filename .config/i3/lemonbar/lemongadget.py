@@ -3,10 +3,23 @@ from constants import *
 
 class LemonGadget(object):
     def __init__(self, delay, alignment, wants=None, **kwargs):
-        self.delay = delay
-        self.cycle = int(delay / TICK_DELAY)
+        """
+        Creates a LemonGadget object, which, when managed by a LemonGadgetController, can
+        pass text for lemonbar to display. Includes methods that help with lemonbar formatting,
+        such as add_anchor() rather than manually appending "%{A:left_click:right_click}".
+        :param delay: how many seconds should pass in between actually updating the gadget
+        :param alignment: where the gadget should be: left, center, or right-aligned
+        :param wants: if the gadget needs a special service, like the i3Handle, it must say so here
+        :param kwargs: you can manually set class
+        """
+        if delay < 0:
+            self.delay = -1
+            self.cycle = -1
+        else:
+            self.delay = delay
+            self.cycle = int(delay / TICK_DELAY)
+
         self.alignment = alignment
-        self.preupdate = None
         self.wants = wants
         self.handle = None
         self.icon_font = 2
@@ -27,10 +40,15 @@ class LemonGadget(object):
         elif alignment == ALIGN_CENTER:
             self.append_separator = self._cant_append_sep
         else:
-            raise ValueError("Invalid value for \"alignment\": %s" % alignment)
+            raise ValueError("Invalid value for alignment: %s" % repr(self.alignment))
 
     def tick(self):
-        if self._count >= self.cycle - 1:
+        """
+        Run every time the LemonGadgetController ticks.
+        It will only invoke update() if the time since last update is greater
+        than self.delay.
+        """
+        if self.cycle > 0 and self._count >= self.cycle - 1:
             self._count = 0
             self._buf = []
             self.update()
@@ -96,7 +114,7 @@ class LemonGadget(object):
         elif self.alignment == ALIGN_RIGHT:
             sep = LIGHT_SEPARATOR_LEFT
         else:
-            raise ValueError("Invalid alignment: %s" % repr(self.alignment))
+            raise ValueError("Invalid value for alignment: %s" % repr(self.alignment))
 
         self._buf.append(sep)
 

@@ -1,4 +1,5 @@
 from constants import AUTOLOCK_STATE_FILE
+from lemongadget import LemonGadget
 import os
 import re
 import subprocess
@@ -56,4 +57,20 @@ def autolock_state():
                 return False
     except (FileNotFoundError, IOError, OSError):
         return None
+
+
+class WindowTitleGadget(LemonGadget):
+    def __init__(self, cycle, alignment):
+        super().__init__(cycle, alignment, wants="xprop")
+
+    def update(self):
+        self.append_text(self.handle.title)
+
+
+class AutolockStateGadget(LemonGadget):
+    def update(self):
+        if not autolock_state():
+            self.append_light_separator()
+            self.append_text(" X ")
+            self.append_light_separator()
 

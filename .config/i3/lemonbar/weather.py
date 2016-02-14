@@ -1,3 +1,5 @@
+from constants import *
+from lemongadget import LemonGadget
 from urllib.request import urlopen, URLError
 import re
 
@@ -23,4 +25,26 @@ def weather_celsius(zip_code):
         return weather, temp
     else:
         return weather, (temp - 32) / 1.8
+
+
+class WeatherFahrenheitGadget(LemonGadget):
+    def update(self):
+        weather, temp = weather_fahrenheit(ZIP_CODE)
+        if weather is None and temp is None:
+            self.append_text("(error)")
+        elif weather is None:
+            self.append_text("%.1f%sF" % (temp, DEGREES))
+        else:
+            self.append_text("%s %s.1f%sF" % (weather, temp, DEGREES))
+
+
+class WeatherCelsiusGadget(LemonGadget):
+    def update(self):
+        weather, temp = weather_celsius(ZIP_CODE)
+        if weather is None and temp is None:
+            self.append_text("(error)")
+        elif weather is None:
+            self.append_text("%.1f%sC" % (temp, DEGREES))
+        else:
+            self.append_text("%s %s.1f%sF" % (weather, temp, DEGREES))
 
