@@ -2,6 +2,7 @@
     "charmap": "gucharmap",
     "kinematics": "xdg-open '/home/ammon/Documents/Stock/kinematics.pdf'",
     "league": "league-of-legends",
+    "newwp": "/usr/local/scripts/wm/new-wallpaper.sh",
     "rant": "gvim /dev/null",
     "smash": "dolphin-emu-cli --exec /usr/share/iso/wii+gamecube/super-smash-bros-melee-usa.iso",
     "smg": "xdg-open '/home/ammon/Documents/School/Textbooks/St. Martin'\"'\"'s Guide to Writing - 10th Edition.pdf'",
