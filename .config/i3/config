@@ -247,6 +247,8 @@ for_window [class="Tomboy" instance="Tomboy"] floating enable
 for_window [class="Tor Browser" instance="Navigator"] floating enable
 for_window [class="Tor Browser" instance="Update"] floating enable
 for_window [class="com-dreamcodex-wumpus-HuntTheWumpus"] floating enable
+for_window [class="net-minecraft-bootstrap-Bootst"] floating enable
+for_window [class="net-technicpack-launcher-LauncherMain"] floating enable
 for_window [class="qBittorrent" instance="qbittorrent"] floating enable
 for_window [instance="Toplevel"] floating enable
 for_window [title="Terminator Preferences"] floating enable

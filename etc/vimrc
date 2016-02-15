@@ -95,6 +95,10 @@ endtry
 set ai
 set si
 
+" Turn off physical line wrapping (i.e. the automatic insert of newlines)
+set textwidth=0
+set wrapmargin=0
+
 " Have backspace actually go backwards
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
