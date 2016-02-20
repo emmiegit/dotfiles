@@ -42,9 +42,6 @@ set ffs=unix,dos,mac
 set splitbelow
 set splitright
 
-" Use smart tabbing
-set smarttab
-
 " Use 4 spaces for tabs
 set expandtab
 set tabstop=4
@@ -61,10 +58,6 @@ set tw=500
 set nobackup
 set nowb
 set noswapfile
-
-" Move by row, not by line
-"map j gj
-"map k gk
 
 " Move between windows easier
 map <C-j> <C-W>j
@@ -128,22 +121,24 @@ else
   set scrolloff=2
 endif
 
-set timeoutlen=100  " To prevent the lag on 'O'
-set ruler           " Display the bar at the bottom 
-set wrap            " Wrap long lines
-set hlsearch        " Highlight matches when searching
-set showcmd		    " Show (partial) command in status line.
-set showmatch       " Show matching brackets.
-set mat=2           " How many tenths of a second to blink when matching brackets
-set smartcase       " Do smart case matching
-set incsearch       " Incremental search
 set autowrite       " Automatically save before commands like :next and :make
 set hidden          " Hide buffers when they are abandoned
-set mouse=n         " Enable mouse usage (normal mode only)
+set hlsearch        " Highlight matches when searching
+set incsearch       " Incremental search
 set lazyredraw      " Don't redraw when running macros
 set magic           " Use traditional regular expressions (see wiki)
-set relativenumber  " Use relative line numbers (see below)
+set mat=2           " How many tenths of a second to blink when matching brackets
+set mouse=n         " Enable mouse usage (normal mode only)
 set noshowmode      " Powerline does this for me, so I don't need two modes.
+set nosmartindent   " Prevent audo dedent on Python comment
+set relativenumber  " Use relative line numbers (see below)
+set ruler           " Display the bar at the bottom 
+set showcmd		    " Show (partial) command in status line.
+set showmatch       " Show matching brackets.
+set smartcase       " Do smart case matching
+set smarttab        " Use smart tabbing
+set timeoutlen=100  " To prevent the lag on 'O'
+set wrap            " Wrap long lines
 
 " Pressing * or # when in visual mode searches for the current selection
 vnoremap <silent> * :call VisualSelection('f')<cr>

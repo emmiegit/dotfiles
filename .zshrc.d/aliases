@@ -40,6 +40,7 @@ alias ls='ls -hHF --color=tty'
 alias less='less -r'
 
 # Derivative commands
+alias cpa='cp -a'
 alias la='ls -A'
 alias latr='ls -Altr'
 alias ll='ls -l'
