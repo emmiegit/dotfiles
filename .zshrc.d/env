@@ -11,4 +11,5 @@ export GPGKEY=2C3CF0C7
 export LD_LIBRARY_PATH='/usr/local/lib'
 export WINEPREFIX=$HOME/.wine/
 export WINEHOME=$HOME/.wine/
+export QT_STYLE_OVERRIDE=GTK+
 
