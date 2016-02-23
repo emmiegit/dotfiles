@@ -1,34 +1,11 @@
 #!/usr/bin/env python3
-from i3_workspaces import *
-from controller import *
-from media import *
-from misc import *
-from system_stats import *
-from window_state import *
+from bar import GADGETS
+from constants import *
+from controller import LemonGadgetController
 import os
 import signal
 import subprocess
 import sys
-
-# You can specify which gadgets you want here. Order matters.
-GADGETS = (
-    # Left monitor
-    WorkspacesGadget(0.5, ALIGN_LEFT, LEFT_MONITOR),
-    WindowTitleGadget(0.3, ALIGN_CENTER),
-    CPUGadget(2.0, ALIGN_RIGHT),
-    MemoryGadget(8.0, ALIGN_RIGHT),
-    NetworkGadget(2.0, ALIGN_RIGHT, MIN_UNIT_KBYTES),
-    VolumeGadget(0.3, ALIGN_RIGHT),
-    TimeGadget(0.5, ALIGN_RIGHT),
-
-    # Right monitor
-    NextMonitor(ALIGN_RIGHT),
-
-    WorkspacesGadget(0.5, ALIGN_LEFT, RIGHT_MONITOR),
-    WindowTitleGadget(0.1, ALIGN_CENTER),
-    NowPlayingGadget(4.0, ALIGN_RIGHT, blank_if_none=True),
-    TimeGadget(0.5, ALIGN_RIGHT),
-)
 
 
 def acquire_lock():
@@ -36,7 +13,7 @@ def acquire_lock():
     Create the lock file, or quit if it already exists.
     """
     if os.path.exists(LOCK_FILE):
-        print("Lock file already exists. Is the process already running?", file=sys.stderr)
+        print("Lock file at \"%s\" already exists. Is the process already running?" % LOCK_FILE, file=sys.stderr)
         sys.exit(1)
 
     with open(LOCK_FILE, 'w+') as fh:
@@ -49,7 +26,7 @@ def release_lock():
     :return: whether the operation succeeded or not
     """
     if not os.path.exists(LOCK_FILE):
-        print("Lock file disappeared. Did somebody delete it manually?", file=sys.stderr)
+        print("Lock file at \"%s\" disappeared. Did somebody delete it manually?" % LOCK_FILE, file=sys.stderr)
         return False
 
     os.unlink(LOCK_FILE)

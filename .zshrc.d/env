@@ -6,10 +6,10 @@ PS2='... '
 
 export PATH="$PATH:$HOME/.gem/ruby/2.3.0/bin"
 export EDITOR=vi
-export VISUAL=$EDITOR
+export VISUAL="$EDITOR"
 export GPGKEY=2C3CF0C7
 export LD_LIBRARY_PATH='/usr/local/lib'
-export WINEPREFIX=$HOME/.wine/
-export WINEHOME=$HOME/.wine/
-export QT_STYLE_OVERRIDE=GTK+
+export WINEPREFIX="$HOME/.wine"
+export WINEHOME="$HOME/.wine"
+export QT_STYLE_OVERRIDE='GTK+'
 

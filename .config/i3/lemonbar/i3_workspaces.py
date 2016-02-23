@@ -11,14 +11,16 @@ WORKSPACE_URGENT = 3
 class i3Handle(object):
     def __init__(self):
         self.state = None
-        self.socket = i3.Socket()
+        self.socket = None
+        self.subscription = None
+        self.outputs = None
         self.workspaces = []
-        self.outputs = []
-        self.subscription = i3.Subscription(self.refresh, "workspace")
-        self.refresh()
 
     def start(self):
-        pass
+        print("i3Handle started")
+        self.socket = i3.Socket()
+        self.subscription = i3.Subscription(self.refresh, "workspace")
+        self.refresh()
 
     def refresh(self, event=None, data=None, subscription=None):
         self.workspaces = self.socket.get("get_workspaces")
@@ -67,9 +69,6 @@ class WorkspacesGadget(LemonGadget):
     def update(self):
         lastbg = self._lastbg
         workspaces = self.i3_handle.get_workspace_list().get(self.monitor, [])
-        if self.__last != workspaces:
-            print(workspaces)
-            self.__last = workspaces
         for index, (workspace, state, monitor) in enumerate(workspaces):
             if index == 0:
                 if state == WORKSPACE_INACTIVE:
@@ -97,3 +96,4 @@ class WorkspacesGadget(LemonGadget):
 
             if index == len(workspaces) - 1:
                 self.append_separator(lastbg)
+
