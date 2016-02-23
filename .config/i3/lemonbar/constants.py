@@ -7,8 +7,6 @@ PIANOBAR_NOWPLAYING = "%s/.config/pianobar/nowplaying" % (os.environ["HOME"],)
 AUDIO_PLAYER_SCRIPT = ("/usr/local/scripts/wm/media/detect-audio-player.sh",)
 
 # Static data
-LEFT_MONITOR = "DVI-D-0"
-RIGHT_MONITOR = "DVI-D-1"
 BAR_HEIGHT = 15
 TERMINAL = "terminator"
 SHELL = "zsh"

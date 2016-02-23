@@ -1,34 +1,10 @@
 #!/usr/bin/env python3
-from i3_workspaces import WorkspacesGadget
-from controller import *
-from media import *
-from misc import *
-from system_stats import *
-from window_state import *
+from bar import GADGETS
+from controller import LemonGadgetController
 import os
 import signal
 import subprocess
 import sys
-
-# You can specify which gadgets you want here. Order matters.
-GADGETS = (
-    # Left monitor
-    WorkspacesGadget(0.5, ALIGN_LEFT, LEFT_MONITOR),
-    WindowTitleGadget(0.3, ALIGN_CENTER),
-    CPUGadget(2.0, ALIGN_RIGHT),
-    MemoryGadget(8.0, ALIGN_RIGHT),
-    NetworkGadget(4.0, ALIGN_RIGHT, MIN_UNIT_KBYTES),
-    VolumeGadget(0.2, ALIGN_RIGHT),
-    TimeGadget(0.5, ALIGN_RIGHT),
-
-    # Right monitor
-    NextMonitor(ALIGN_RIGHT),
-
-    WorkspacesGadget(0.5, ALIGN_LEFT, RIGHT_MONITOR),
-    WindowTitleGadget(0.1, ALIGN_CENTER),
-    NowPlayingGadget(4.0, ALIGN_RIGHT, blank_if_none=True),
-    TimeGadget(0.5, ALIGN_RIGHT),
-)
 
 
 def acquire_lock():

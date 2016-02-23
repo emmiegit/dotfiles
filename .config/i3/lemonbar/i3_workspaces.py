@@ -11,14 +11,15 @@ WORKSPACE_URGENT = 3
 class i3Handle(object):
     def __init__(self):
         self.state = None
-        self.socket = i3.Socket()
+        self.socket = None
         self.workspaces = None
         self.outputs = None
-        self.refresh()
         self.subscription = None
 
     def start(self):
+        self.socket = i3.Socket()
         self.subscription = i3.Subscription(self.refresh, "workspace")
+        self.refresh()
 
     def refresh(self, event=None, data=None, subscription=None):
         self.workspaces = self.socket.get("get_workspaces")
