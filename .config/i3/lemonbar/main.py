@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from i3_workspaces import WorkspacesGadget
+from i3_workspaces import *
 from controller import *
 from media import *
 from misc import *
@@ -17,8 +17,8 @@ GADGETS = (
     WindowTitleGadget(0.3, ALIGN_CENTER),
     CPUGadget(2.0, ALIGN_RIGHT),
     MemoryGadget(8.0, ALIGN_RIGHT),
-    NetworkGadget(4.0, ALIGN_RIGHT, MIN_UNIT_KBYTES),
-    VolumeGadget(0.2, ALIGN_RIGHT),
+    NetworkGadget(2.0, ALIGN_RIGHT, MIN_UNIT_KBYTES),
+    VolumeGadget(0.3, ALIGN_RIGHT),
     TimeGadget(0.5, ALIGN_RIGHT),
 
     # Right monitor
@@ -61,7 +61,7 @@ def build_lemonbar_command():
     Generates the command-line program that is run to start up lemonbar.
     :return: the command to be invoked as a list, with each argument as a separate item
     """
-    cmd = ["lemonbar"]
+    cmd = ["lemonbar", "-g", "x12"]
 
     for font in FONTS:
         cmd.append("-f")
@@ -87,7 +87,7 @@ def build_kill_function(controller):
         print("Caught signal %d, terminating..." % signum)
         controller.kill()
         print("Waiting for thread to finish...")
-        controller.join()
+        controller.join(0.3)
         release_lock()
     return _func
 
@@ -105,6 +105,7 @@ if __name__ == "__main__":
 
     # Set up signal handlers
     killfunc = build_kill_function(controller)
+    signal.signal(signal.SIGHUP, killfunc)
     signal.signal(signal.SIGTERM, killfunc)
 
     # Instead of a SIGINT handler, capture KeyboardInterrupt instead

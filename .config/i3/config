@@ -188,7 +188,8 @@ popup_during_fullscreen smart
 smart_gaps on
 smart_borders on
 gaps inner 8
-gaps outer current plus 4
+gaps outer 0
+#gaps outer current plus 4
 
 # Font settings
 font pango:Droid Sans 9
@@ -236,6 +237,7 @@ for_window [class="Dolphin-emu" instance="dolphin-emu"] floating enable
 for_window [class="Gnome-system-monitor" instance="gnome-system-monitor"] floating enable
 for_window [class="Gpa" instance="gpa"] floating enable
 for_window [class="Gucharmap" instance="gucharmap"] floating enable
+for_window [class="Haguichi" instance="haguichi"] floating enable
 for_window [class="Icecat" title="Preferences"] floating enable
 for_window [class="Keepassx2" instance="keepassx2"] floating enable
 for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
@@ -318,10 +320,10 @@ exec --no-startup-id nvidia-settings --load-config-only
 exec --no-startup-id mocp --server
 exec --no-startup-id backintime --pw-cache start
 exec --no-startup-id tomboy --panel-applet
+exec --no-startup-id ytfs ~/Videos/YouTube/Search
 
 # Set up default workspaces
-exec i3-msg 'workspace 3; exec discord'
-exec i3-msg 'workspace 3; exec pidgin'
+exec sleep .1 && i3-msg 'workspace 3; exec discord; exec pidgin'
 exec sleep .1 && i3-msg 'workspace 4; exec $Email'
 
 # Run user startup scripts

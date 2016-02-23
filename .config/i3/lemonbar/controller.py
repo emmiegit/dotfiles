@@ -13,7 +13,7 @@ class LemonGadgetController(threading.Thread):
         ALIGN_RIGHT: "%{r}",
     }
 
-    def __init__(self, process, sync_to_whole_second=True):
+    def __init__(self, process, sync_to_whole_second=False):
         super().__init__()
         self.gadgets = []
         self.proc = process

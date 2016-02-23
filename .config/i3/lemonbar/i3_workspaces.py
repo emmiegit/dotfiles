@@ -12,13 +12,13 @@ class i3Handle(object):
     def __init__(self):
         self.state = None
         self.socket = i3.Socket()
-        self.workspaces = None
-        self.outputs = None
+        self.workspaces = []
+        self.outputs = []
+        self.subscription = i3.Subscription(self.refresh, "workspace")
         self.refresh()
-        self.subscription = None
 
     def start(self):
-        self.subscription = i3.Subscription(self.refresh, "workspace")
+        pass
 
     def refresh(self, event=None, data=None, subscription=None):
         self.workspaces = self.socket.get("get_workspaces")
@@ -62,10 +62,14 @@ class WorkspacesGadget(LemonGadget):
         self.i3_handle = i3Handle()
         self.monitor = monitor
         self.max_length = 600
+        self.__last = None
 
     def update(self):
         lastbg = self._lastbg
-        workspaces = self.i3_handle.get_workspace_list()[self.monitor]
+        workspaces = self.i3_handle.get_workspace_list().get(self.monitor, [])
+        if self.__last != workspaces:
+            print(workspaces)
+            self.__last = workspaces
         for index, (workspace, state, monitor) in enumerate(workspaces):
             if index == 0:
                 if state == WORKSPACE_INACTIVE:
