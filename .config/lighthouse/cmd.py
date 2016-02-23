@@ -165,7 +165,9 @@ def xdg_get_icon(desktop_entry):
         fn = xdg.IconTheme.getIconPath(icon, theme=xdg_get_icon_theme())
 
         if fn.lower().endswith(".svg"):
-            # Temporary, because lighthouse can't show svgs :(
+            # Temporary, because lighthouse can't show svgs
+            # Eventually use imagemagick to convert svg -> png
+            # convert -density [value] -resize [size] [input] [output]
             return xdg.IconTheme.getIconPath(icon)
         else:
             return fn
