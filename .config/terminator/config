@@ -10,6 +10,7 @@
 [keybindings]
   cycle_next = None
   cycle_prev = None
+  full_screen = None
   go_down = <Alt>j
   go_left = <Alt>h
   go_right = <Alt>l
