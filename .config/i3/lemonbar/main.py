@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from bar import GADGETS
+from constants import *
 from controller import LemonGadgetController
 import os
 import signal
@@ -12,7 +13,7 @@ def acquire_lock():
     Create the lock file, or quit if it already exists.
     """
     if os.path.exists(LOCK_FILE):
-        print("Lock file already exists. Is the process already running?", file=sys.stderr)
+        print("Lock file at \"%s\" already exists. Is the process already running?" % LOCK_FILE, file=sys.stderr)
         sys.exit(1)
 
     with open(LOCK_FILE, 'w+') as fh:
@@ -25,7 +26,7 @@ def release_lock():
     :return: whether the operation succeeded or not
     """
     if not os.path.exists(LOCK_FILE):
-        print("Lock file disappeared. Did somebody delete it manually?", file=sys.stderr)
+        print("Lock file at \"%s\" disappeared. Did somebody delete it manually?" % LOCK_FILE, file=sys.stderr)
         return False
 
     os.unlink(LOCK_FILE)
