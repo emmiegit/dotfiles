@@ -1,0 +1,3 @@
+Is plugged in: /sys/bus/acpi/drivers/ac/ACPI0003:00/power_supply/AC/online
+Battery: /sys/bus/acpi/drivers/battery/PNP0C0A:00/power_supply/${BATTERY}/uevent
+
