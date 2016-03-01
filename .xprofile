@@ -1,0 +1,29 @@
+#!/bin/sh
+# xprofile - Commands to run before the window manager is started.
+
+/usr/local/scripts/wm/vim-keyswap.sh
+
+# Disable acceleration
+xset m 0 0
+
+xinput --set-prop 'ZLY ZELOTES GAME MOUSE' 'Device Accel Constant Deceleration' 0.4
+xinput --set-prop 'ZLY ZELOTES GAME MOUSE' 'Device Accel Adaptive Deceleration' 1
+xinput --set-prop 'ZLY ZELOTES GAME MOUSE' 'Device Accel Velocity Scaling' 10
+
+xinput --set-prop 'Microsoft Microsoft® Comfort Mouse 4500' 'Device Accel Constant Deceleration' 1
+xinput --set-prop 'Microsoft Microsoft® Comfort Mouse 4500' 'Device Accel Adaptive Deceleration' 1
+xinput --set-prop 'Microsoft Microsoft® Comfort Mouse 4500' 'Device Accel Velocity Scaling' 10
+
+xsetwacom --set 'Wacom Intuos S 2 Pen stylus' Area 2500 2500 5000 5000
+
+#xinput --set-prop 'Wacom Bamboo Connect Pen stylus'  --type=float 'Coordinate Transformation Matrix' 0.5 0 0 0 1 0 0 0
+#xinput --set-prop 'Wacom Bamboo Connect Pen eraser' --type=float 'Coordinate Transformation Matrix' 0.5 0 0 0 1 0 0 0
+#xinput --set-prop 'Wacom Bamboo Connect Pad pad' --type=float 'Coordinate Transformation Matrix' 0.5 0 0 0 1 0 0 0
+
+# Bradley's tablet
+xsetwacom --set 'Wacom Bamboo Connect Pen stylus' MapToOutput HEAD-0
+xsetwacom --set 'Wacom Bamboo Connect Pen eraser' MapToOutput HEAD-0
+xsetwacom --set 'Wacom Bamboo Connect Pad pad' MapToOutput HEAD-0
+xsetwacom --set 'Wacom Bamboo Connect Pen stylus' Area 2000 3000 10360 7600
+xsetwacom --set 'Wacom Bamboo Connect Pen eraser' Area 2000 3000 10360 7600
+
