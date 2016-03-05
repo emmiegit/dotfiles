@@ -60,7 +60,7 @@ def get_directories(directory):
     if hasattr(gen, "next"):
         return gen.next()[1]
     else:
-        return get.__next__()[1]
+        return gen.__next__()[1]
 
 
 def is_charging():
@@ -85,7 +85,7 @@ def get_battery_stats(interface):
     return stats
 
 
-def get_battery(battery):
+def battery_percentage(battery):
     devices = get_directories("/sys/bus/acpi/drivers/battery")
     if not devices:
         return False
