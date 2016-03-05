@@ -56,11 +56,7 @@ def get_directories(directory):
     if not os.path.exists(directory):
         return []
 
-    gen = os.walk(directory)
-    if hasattr(gen, "next"):
-        return gen.next()[1]
-    else:
-        return gen.__next__()[1]
+    return os.walk(directory).__next__()[1]
 
 
 def is_charging():
@@ -89,11 +85,15 @@ def get_battery_stats(interface):
 def battery_percentage(battery):
     devices = get_directories("/sys/bus/acpi/drivers/battery")
     if not devices:
-        return False
+        return -1
 
     interface = os.path.join("/sys/bus/acpi/drivers/battery", devices[0], "power_supply", battery, "uevent")
-    stats = get_battery_stats(interface)
-    return stats["POWER_SUPPLY_ENERGY_NOW"] / stats["POWER_SUPPLY_ENERGY_FULL"]
+    try:
+        stats = get_battery_stats(interface)
+    except IOError:
+        return -1
+    else:
+        return 100.0 * stats["POWER_SUPPLY_ENERGY_NOW"] / stats["POWER_SUPPLY_ENERGY_FULL"]
 
 
 def formatted_time():
@@ -205,4 +205,13 @@ class TimeGadget(LemonGadget):
         self.append_text(formatted_time())
         self.end_anchor()
 
+
+class BatteryGadget(LemonGadget):
+    def __init__(self, cycle, alignment, battery_device):
+        super().__init__(cycle, alignment)
+        self.battery = battery_device
+
+    def update(self):
+        self.append_light_separator()
+        self.append_text(" %d%%" % int(battery_percentage(self.battery)))
 
