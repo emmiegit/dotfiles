@@ -78,6 +78,7 @@ def get_battery_stats(interface):
         stats = {}
         for line in fh.readlines():
             key, value = line.split("=")
+            value = value.rstrip()
             if value.isdigit():
                 value = int(value)
             stats[key] = value
