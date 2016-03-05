@@ -27,6 +27,7 @@ def acquire_lock():
                 pid = int(fh.read())
                 if check_pid(pid):
                     print("Lemonbar is already running (pid %d)." % pid, file=sys.stderr)
+                    signal.alarm(1)
                     sys.exit(1)
         except (ValueError, IOError) as err:
             print("Unable to check pid file at \"%s\": %s" %

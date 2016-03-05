@@ -2,13 +2,14 @@ from constants import *
 from lemongadget import LemonGadget
 import psutil
 import time
+import os
 
 NETWORK_TEST_DELAY = 0.0001
+BATTERY_TEST_DELAY = 0.001
 
 
 def cpu_percentage():
     return psutil.cpu_percent()
-
 
 def memory_percentage():
     return psutil.virtual_memory().percent
@@ -51,8 +52,51 @@ def network_units_mb(bytes_moved):
         return bytes_moved, (bytes_moved / (1 << 20)), "MiB"
 
 
+def get_directories(directory):
+    if not os.path.exists(directory):
+        return []
+
+    gen = os.walk(directory)
+    if hasattr(gen, "next"):
+        return gen.next()[1]
+    else:
+        return get.__next__()[1]
+
+
+def is_charging():
+    devices = get_directories("/sys/bus/acpi/drivers/ac")
+    if not devices:
+        return False
+
+    interface = os.path.join("/sys/bus/acpi/drivers/ac", devices[0], "power_supply/AC/online")
+    with open(interface, 'r') as fh:
+        return online == "1\n"
+
+
+def get_battery_stats(interface):
+    with open(interface, 'r') as fh:
+        stats = {}
+        for line in fh.readlines():
+            key, value = line.split("=")
+            if value.isdigit():
+                value = int(value)
+            stats[key] = value
+
+    return stats
+
+
+def get_battery(battery):
+    devices = get_directories("/sys/bus/acpi/drivers/battery")
+    if not devices:
+        return False
+
+    interface = os.path.join("/sys/bus/acpi/drivers/battery", devices[0], "power_supply", battery, "uevent")
+    stats = get_battery_stats(interface)
+    return stats["POWER_SUPPLY_ENERGY_NOW"] / stats["POWER_SUPPLY_ENERGY_FULL"]
+
+
 def formatted_time():
-    return time.strftime("%A, %b %d %Y%l:%M:%S %p")
+    return time.strftime("%A, %b %d %Y %l:%M:%S %p")
 
 
 class CPUGadget(LemonGadget):
