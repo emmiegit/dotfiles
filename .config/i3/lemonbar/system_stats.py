@@ -213,5 +213,5 @@ class BatteryGadget(LemonGadget):
 
     def update(self):
         self.append_light_separator()
-        self.append_text(" %d%%" % int(battery_percentage(self.battery)))
+        self.append_text(" %d%% " % int(battery_percentage(self.battery)))
 
