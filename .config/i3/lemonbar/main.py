@@ -8,16 +8,38 @@ import subprocess
 import sys
 
 
+def check_pid(pid):
+    try:
+        os.kill(pid, 0)
+    except OSError:
+        return False
+    else:
+        return True
+
+
 def acquire_lock():
     """
-    Create the lock file, or quit if it already exists.
+    Create the pid file, or quit if it already exists or some other issue occurs.
     """
-    if os.path.exists(LOCK_FILE):
-        print("Lock file at \"%s\" already exists. Is the process already running?" % LOCK_FILE, file=sys.stderr)
-        sys.exit(1)
+    if os.path.exists(PID_FILE):
+        try:
+            with open(PID_FILE, 'r') as fh:
+                pid = int(fh.read())
+                if check_pid(pid):
+                    print("Lemonbar is already running (pid %d)." % pid, file=sys.stderr)
+                    sys.exit(1)
+        except (ValueError, IOError) as err:
+            print("Unable to check pid file at \"%s\": %s" %
+                  (PID_FILE, err), file=sys.stderr)
+            sys.exit(1)
 
-    with open(LOCK_FILE, 'w+') as fh:
-        fh.write(str(os.getpid()))
+    try:
+        with open(PID_FILE, 'w+') as fh:
+            fh.write(str(os.getpid()))
+            fh.write("\n")
+    except IOError as err:
+        print("Unable to write pid to pid file at \"%s\": %s" % (PID_FILE, err))
+        sys.exit(1)
 
 
 def release_lock():
@@ -25,11 +47,25 @@ def release_lock():
     Remove the lock file.
     :return: whether the operation succeeded or not
     """
-    if not os.path.exists(LOCK_FILE):
-        print("Lock file at \"%s\" disappeared. Did somebody delete it manually?" % LOCK_FILE, file=sys.stderr)
+    if not os.path.exists(PID_FILE):
+        print("Pid file at \"%s\" disappeared. Did somebody delete it manually?" % PID_FILE, file=sys.stderr)
         return False
 
-    os.unlink(LOCK_FILE)
+    try:
+        with open(PID_FILE, 'r') as fh:
+            pid = int(fh.read())
+            if os.getpid() != pid:
+                print("Pid file at \"%s\" has a different process id (%d) than our own (%d)! Not removing pid file." %
+                      (PID_FILE, pid, os.getpid()), file=sys.stderr)
+                return False
+    except IOError as err:
+        print("Unable to open pid file at \"%s\" to check process id: %s" % (PID_FILE, err))
+        return False
+
+    try:
+        os.unlink(PID_FILE)
+    except IOError as err:
+        print("Unable to remove pid file at \"%s\": %s" % (PID_FILE, err))
     return True
 
 
@@ -64,8 +100,17 @@ def build_kill_function(controller):
         print("Caught signal %d, terminating..." % signum)
         controller.kill()
         print("Waiting for thread to finish...")
-        controller.join(0.3)
-        release_lock()
+
+        # Terrible hack, but I honestly couldn't find a different way to do this.
+        # If you make the i3.Subscription initialize in start(), then it doesn't update.
+        # For anybody who finds a way to fix this, please tell me about it.
+        def _exit(signum=None, frame=None):
+            release_lock()
+            sys.exit()
+
+        signal.signal(signal.SIGALRM, _exit)
+        signal.alarm(1)
+        controller.join()
     return _func
 
 

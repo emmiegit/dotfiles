@@ -10,17 +10,14 @@ WORKSPACE_URGENT = 3
 
 class i3Handle(object):
     def __init__(self):
-        self.state = None
-        self.socket = None
-        self.subscription = None
-        self.outputs = None
-        self.workspaces = []
-
-    def start(self):
-        print("i3Handle started")
         self.socket = i3.Socket()
         self.subscription = i3.Subscription(self.refresh, "workspace")
+        self.outputs = None
+        self.workspaces = []
         self.refresh()
+
+    def start(self):
+        pass
 
     def refresh(self, event=None, data=None, subscription=None):
         self.workspaces = self.socket.get("get_workspaces")
@@ -64,7 +61,6 @@ class WorkspacesGadget(LemonGadget):
         self.i3_handle = i3Handle()
         self.monitor = monitor
         self.max_length = 600
-        self.__last = None
 
     def update(self):
         lastbg = self._lastbg

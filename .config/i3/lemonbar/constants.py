@@ -1,7 +1,7 @@
 import os
 
 # Files
-LOCK_FILE = "/tmp/%s_lemonbar.lock" % (os.environ["USER"],)
+PID_FILE = "/run/user/%d/lemonbar.pid" % os.geteuid()
 AUTOLOCK_STATE_FILE = "/usr/local/scripts/dat/autolock_state"
 PIANOBAR_NOWPLAYING = "%s/.config/pianobar/nowplaying" % (os.environ["HOME"],)
 AUDIO_PLAYER_SCRIPT = ("/usr/local/scripts/wm/media/detect-audio-player.sh",)

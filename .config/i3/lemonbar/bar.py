@@ -3,7 +3,6 @@ This file contains the per-computer specification of how you want
 your bar to work.
 """
 
-from constants import *
 from i3_workspaces import *
 from media import *
 from misc import *
@@ -11,8 +10,8 @@ from system_stats import *
 from window_state import *
 
 # Monitor names from xrandr
-LEFT_MONITOR = 'DVI-D-0'
-RIGHT_MONITOR = 'DVI-D-1'
+LEFT_MONITOR = "DVI-D-0"
+RIGHT_MONITOR = "DVI-D-1"
 
 # You can specify which gadgets you want here. Order matters.
 
