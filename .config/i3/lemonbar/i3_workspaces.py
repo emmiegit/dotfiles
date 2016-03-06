@@ -86,9 +86,9 @@ class WorkspacesGadget(LemonGadget):
                 elif state == WORKSPACE_URGENT:
                     self.append_separator(URGENT_WORKSPACE_COLOR)
 
-            self.add_anchor(leftclick="i3-msg workspace %s" % workspace)
+            #self.add_anchor(leftclick="i3-msg workspace %s" % workspace)
             self.append_text(" %s " % workspace)
-            self.end_anchor()
+            #self.end_anchor()
 
             if index == len(workspaces) - 1:
                 self.append_separator(lastbg)
