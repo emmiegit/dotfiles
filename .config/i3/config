@@ -318,7 +318,7 @@ exec --no-startup-id compton -b --config ~/.config/compton.conf
 exec --no-startup-id nvidia-settings --load-config-only
 exec --no-startup-id mocp --server
 exec --no-startup-id backintime --pw-cache start
-exec --no-startup-id tomboy --panel-applet
+exec --no-startup-id tomboy --open-note 'To do:'
 exec --no-startup-id ytfs ~/Videos/YouTube/Search
 
 # Set up default workspaces

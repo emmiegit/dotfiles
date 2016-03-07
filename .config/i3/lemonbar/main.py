@@ -6,6 +6,7 @@ import os
 import signal
 import subprocess
 import sys
+import time
 
 
 def check_pid(pid):
@@ -26,9 +27,9 @@ def acquire_lock():
             with open(PID_FILE, 'r') as fh:
                 pid = int(fh.read())
                 if check_pid(pid):
-                    print("Lemonbar is already running (pid %d)." % pid, file=sys.stderr)
-                    signal.alarm(1)
-                    sys.exit(1)
+                    print("Lemonbar is already running (pid %d), killing previous instance." % pid, file=sys.stderr)
+                    os.kill(pid, signal.SIGTERM);
+                    time.sleep(0.5)
         except (ValueError, IOError) as err:
             print("Unable to check pid file at \"%s\": %s" %
                   (PID_FILE, err), file=sys.stderr)
