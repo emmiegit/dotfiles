@@ -2,6 +2,7 @@ from constants import *
 from lemongadget import LemonGadget
 import psutil
 import time
+import math
 import os
 
 NETWORK_TEST_DELAY = 0.0001
@@ -9,7 +10,7 @@ BATTERY_TEST_DELAY = 0.001
 
 
 def cpu_percentage():
-    return psutil.cpu_percent() / psutil.cpu_count()
+    return psutil.cpu_percent()
 
 def memory_percentage():
     return psutil.virtual_memory().percent
