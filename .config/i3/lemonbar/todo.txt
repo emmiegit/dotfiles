@@ -1,6 +1,0 @@
-Add PacmanGadget.
-Add AURGadget.
-Add PacmanAURGadget.
-Change media modules to use libpulseaudio.
-Make AutolockStateGadget not look retarded.
-
