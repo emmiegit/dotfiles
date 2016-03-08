@@ -9,7 +9,7 @@ BATTERY_TEST_DELAY = 0.001
 
 
 def cpu_percentage():
-    return psutil.cpu_percent()
+    return psutil.cpu_percent() / psutil.cpu_count()
 
 def memory_percentage():
     return psutil.virtual_memory().percent

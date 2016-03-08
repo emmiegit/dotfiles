@@ -2,3 +2,11 @@
 bar.py
 bar.log
 
+# Project artifacts
+barman
+*.cpp.o
+
+# Misc files
+.ycm_extra_conf.py
+.ycm_extra_conf.pyc
+

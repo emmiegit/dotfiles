@@ -198,9 +198,9 @@ for_window [class="^.*"] border pixel 0
 
 # Settings for the status bar
 # Lemonbar
-bar {
-        i3bar_command ~/.config/i3/lemonbar/main.py
-}
+#bar {
+#        i3bar_command ~/.config/i3/lemonbar/main.py
+#}
 
 # Default i3 bar
 #bar {

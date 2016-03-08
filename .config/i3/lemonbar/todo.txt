@@ -1,8 +1,6 @@
-Fix issue with WorkspaceGadget not updating.
 Add PacmanGadget.
 Add AURGadget.
 Add PacmanAURGadget.
 Change media modules to use libpulseaudio.
-Add BatteryGadget.
 Make AutolockStateGadget not look retarded.
 
