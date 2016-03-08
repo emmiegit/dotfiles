@@ -1,0 +1,4 @@
+# Contains computer-specific lemonbar settings
+bar.py
+bar.log
+
