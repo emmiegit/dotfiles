@@ -23,6 +23,11 @@ class i3Handle(object):
         self.workspaces = self.socket.get("get_workspaces")
         self.outputs = self.socket.get("get_outputs")
 
+        if self.workspaces is None:
+            self.workspaces = []
+        if self.outputs is None:
+            self.outputs = []
+
     def get_workspace_list(self):
         results = {}
         for workspace in self.workspaces:
@@ -65,6 +70,7 @@ class WorkspacesGadget(LemonGadget):
     def update(self):
         lastbg = self._lastbg
         workspaces = self.i3_handle.get_workspace_list().get(self.monitor, [])
+        print(workspaces)
         for index, (workspace, state, monitor) in enumerate(workspaces):
             if index == 0:
                 if state == WORKSPACE_INACTIVE:

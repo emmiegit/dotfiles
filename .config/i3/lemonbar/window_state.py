@@ -35,10 +35,15 @@ class XpropSpyHandle(threading.Thread):
             match = XPROP_SPY_REGEX.match(update.decode("utf-8"))
             if not match:
                 continue
+
+            if match.group(1) == "0x0":
+                self.title = ""
+                continue
+
             try:
                 window_data = subprocess.check_output(("xprop", "-id", match.group(1)))
             except subprocess.CalledProcessError:
-                self.title = ""
+                self.title = "??"
                 continue
 
             match = XPROP_ID_REGEX.findall(window_data.decode("utf-8"))
