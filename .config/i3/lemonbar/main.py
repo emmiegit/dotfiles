@@ -117,6 +117,7 @@ def build_kill_function(controller):
 
 
 if __name__ == "__main__":
+    os.chdir(os.path.dirname(sys.argv[0]))
     acquire_lock()
 
     # Create lemonbar child process
