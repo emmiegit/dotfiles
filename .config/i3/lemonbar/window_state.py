@@ -34,6 +34,7 @@ class XpropSpyHandle(threading.Thread):
 
             match = XPROP_SPY_REGEX.match(update.decode("utf-8"))
             if not match:
+                self.title = ""
                 continue
 
             if match.group(1) == "0x0":
