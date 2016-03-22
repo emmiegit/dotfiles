@@ -5,7 +5,6 @@ import time
 import math
 import os
 
-NETWORK_TEST_DELAY = 0.0001
 BATTERY_TEST_DELAY = 0.001
 
 
@@ -14,16 +13,6 @@ def cpu_percentage():
 
 def memory_percentage():
     return psutil.virtual_memory().percent
-
-
-def network_up_down():
-    net = psutil.net_io_counters()
-    time.sleep(NETWORK_TEST_DELAY)
-    net2 = psutil.net_io_counters()
-
-    up = (net2.bytes_sent - net.bytes_sent) / NETWORK_TEST_DELAY
-    down = (net2.bytes_recv - net.bytes_recv) / NETWORK_TEST_DELAY
-    return up, down
 
 
 def network_units(bytes_moved):
@@ -138,6 +127,10 @@ class MemoryGadget(LemonGadget):
 class NetworkGadget(LemonGadget):
     def __init__(self, cycle, alignment, minunits=MIN_UNIT_BYTES, **kwargs):
         super().__init__(cycle, alignment, **kwargs)
+        self.last_time = time.time()
+        net = psutil.net_io_counters()
+        self.up_bytes = net.bytes_sent
+        self.down_bytes = net.bytes_recv
 
         if minunits == MIN_UNIT_BYTES:
             self.get_units = network_units
@@ -148,11 +141,23 @@ class NetworkGadget(LemonGadget):
         else:
             raise ValueError("Invalid value for minunits: %s" % minunits)
 
+    def network_up_down(self):
+        net = psutil.net_io_counters()
+        ctime = time.time()
+
+        up = int((net.bytes_sent - self.up_bytes) / (ctime - self.last_time))
+        down = int((net.bytes_recv - self.down_bytes) / (ctime - self.last_time))
+        self.up_bytes = net.bytes_sent
+        self.down_bytes = net.bytes_recv
+        self.last_time = ctime
+
+        return up, down
+
     def update(self):
         self.append_light_separator()
         self.append_icon(ICON_UPLOAD)
 
-        up, down = network_up_down()
+        up, down = self.network_up_down()
         lastfg = self._lastfg
         if up >= NETWORK_ALERT:
             self.add_format(fg=ALERT_COLOR)
@@ -172,6 +177,10 @@ class NetworkGadget(LemonGadget):
 class NetworkUsageGadget(LemonGadget):
     def __init__(self, cycle, alignment, minunits=MIN_UNIT_BYTES):
         super().__init__(cycle, alignment)
+        self.last_time = time.time()
+        net = psutil.net_io_counters()
+        self.up_bytes = net.bytes_sent
+        self.down_bytes = net.bytes_recv
 
         if minunits == MIN_UNIT_BYTES:
             self.get_units = network_units
@@ -182,9 +191,22 @@ class NetworkUsageGadget(LemonGadget):
         else:
             raise ValueError("Invalid value for minunits: %s" % minunits)
 
+    def network_up_down(self):
+        net = psutil.net_io_counters()
+        ctime = time.time()
+
+        up = int((net.bytes_sent - self.up_bytes) / (ctime - self.last_time))
+        down = int((net.bytes_recv - self.down_bytes) / (ctime - self.last_time))
+        self.up_bytes = net.bytes_sent
+        self.down_bytes = net.bytes_recv
+        self.last_time = ctime
+
+        return up, down
+
+
     def update(self):
         self.append_light_separator()
-        up, down = network_up_down()
+        up, down = self.network_up_down()
         usage = up + down
 
         self.append_icon(ICON_UPLOAD)
