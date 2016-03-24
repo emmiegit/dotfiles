@@ -103,7 +103,7 @@ AutoNext = yes
 #                     documentation for more information.)
 #
 #FormatString = "%(n:%n :)%(a:%a - :)%(t:%t:)%(A: \(%A\):)"
-FormatString = "%(t:%t:No title)"
+FormatString = "%(t:%t:No title) by %(a:%a:Unknown)"
 
 # Input and output buffer sizes (in kilobytes).
 #InputBuffer = 512                  # Minimum value is 32KB
