@@ -1,7 +1,6 @@
 user = grawcards@gmail.com
 password_command = gpg -d ~/.config/pianobar/pandora_password.gpg
 
-tls_fingerprint = 13CC51AC0C31CD96C55015C76914360F7AC41A00
 event_command = /home/ammon/.config/pianobar/event_handler.sh
 
 autostart_station = 1845213479252313920

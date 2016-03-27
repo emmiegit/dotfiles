@@ -8,3 +8,6 @@ bindkey "${terminfo[kend]}" end-of-line
 python()  { [ $# -eq 0 ] && bpython  || env python  $@; }
 python2() { [ $# -eq 0 ] && bpython2 || env python2 $@; }
 
+# Start ssh-agent
+eval $(ssh-agent -t 15m)
+
