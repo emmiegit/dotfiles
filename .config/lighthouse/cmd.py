@@ -231,9 +231,9 @@ def parse_line():
     except:
         pass
 
-    shortcut = SHORTCUTS.get(line)
-    if shortcut:
-        append_output("shortcut: %s" % (shortcut), shortcut)
+    for shortcut in SHORTCUTS.keys():
+        if shortcut.startswith(line):
+            append_output("shortcut: %s" % shortcut, SHORTCUTS[shortcut])
 
     # Make sure these items are at the top
     add_math_result(line)

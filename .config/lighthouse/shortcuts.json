@@ -1,5 +1,6 @@
 {
     "charmap": "gucharmap",
+    "discordcanary": "DiscordCanary",
     "intellij": "idea.sh",
     "kinematics": "xdg-open '/home/ammon/Documents/Stock/kinematics.pdf'",
     "league": "league-of-legends",

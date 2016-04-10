@@ -4,7 +4,6 @@
 # Use the Super key as the main $mod key.
 set $mod Mod4
 set $alt Mod1
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -103,8 +102,8 @@ bindsym $mod+mod1+7 move container to workspace 7; workspace 7
 bindsym $mod+mod1+8 move container to workspace 8; workspace 8
 bindsym $mod+mod1+9 move container to workspace 9; workspace 9
 
-# Set workspaces to be on certain monitors
-# odd workspaces on the first monitor, even ones on the second
+## Set workspaces to be on certain monitors
+## odd workspaces on the first monitor, even ones on the second
 workspace 1 output DVI-D-0
 workspace 2 output DVI-D-1
 workspace 3 output DVI-D-0
@@ -203,30 +202,30 @@ for_window [class="^.*"] border pixel 0
 #}
 
 # Default i3 bar
-#bar {
-#        position top
-#
-#        font pango:Droid Sans Mono Dotted for Powerline 9
-#        mode dock
-#        hidden_state show
-#
-#        workspace_buttons yes
-#        strip_workspace_numbers yes
-#
-#        tray_output primary
-#        tray_padding 1
-#
-#        colors {
-#            background #000000
-#            statusline #ffffff
-#            separator #666666
-#            focused_workspace  #4c7899 #285577 #ffffff
-#            active_workspace   #333333 #5f676a #ffffff
-#            inactive_workspace #333333 #222222 #888888
-#            urgent_workspace   #2f343a #900000 #ffffff
-#            binding_mode       #2f343a #900000 #ffffff
-#        }
-#}
+bar {
+        position top
+
+        font pango:Droid Sans Mono Dotted for Powerline 8
+        mode dock
+        hidden_state show
+
+        workspace_buttons yes
+        strip_workspace_numbers yes
+
+        tray_output DVI-D-0
+        tray_padding 1
+
+        colors {
+            background #000000
+            statusline #ffffff
+            separator #666666
+            focused_workspace  #4c7899 #285577 #ffffff
+            active_workspace   #333333 #5f676a #ffffff
+            inactive_workspace #333333 #222222 #888888
+            urgent_workspace   #2f343a #900000 #ffffff
+            binding_mode       #2f343a #900000 #ffffff
+        }
+}
 
 # Window-specific settings
 # Available tokens: class, instance, window_role, con_id, id, window_type, con_mark, title, urgent, workspace
@@ -247,7 +246,11 @@ for_window [class="Tagainijisho" instance="tagainijisho"] floating enable
 for_window [class="Tomboy" instance="Tomboy"] floating enable
 for_window [class="Tor Browser" instance="Navigator"] floating enable
 for_window [class="Tor Browser" instance="Update"] floating enable
+for_window [class="Uim-im-switcher-gtk" instance="uim-im-switcher-gtk"] floating enable
+for_window [class="Uim-input-pad-ja" instance="Uim-input-pad-ja"] floating enable
+for_window [class="Uim-pref-gtk" instance="uim-pref-gtk"] floating enable
 for_window [class="com-dreamcodex-wumpus-HuntTheWumpus"] floating enable
+for_window [class="discord" instance="discord"] floating enable
 for_window [class="net-minecraft-bootstrap-Bootst"] floating enable
 for_window [class="net-technicpack-launcher-LauncherMain"] floating enable
 for_window [class="qBittorrent" instance="qbittorrent"] floating enable
@@ -274,9 +277,11 @@ bindsym $mod+Shift+Return exec $Editor
 # Web browser
 bindsym $mod+i exec $Browser
 bindsym $mod+Shift+i exec chromium
+
 # Screen locker
 bindsym $mod+semicolon exec --no-startup-id $Locker
 bindsym $mod+Shift+semicolon exec --no-startup-id /usr/local/scripts/wm/suspend.sh
+bindsym $mod+$alt+semicolon exec --no-startup-id /usr/local/scripts/wm/lock-screen-sleep.sh
 
 # Toggle autolock
 bindsym $mod+$alt+l exec --no-startup-id /usr/local/scripts/wm/set-autolock.sh on
@@ -319,10 +324,11 @@ exec --no-startup-id nvidia-settings --load-config-only
 exec --no-startup-id mocp --server
 exec --no-startup-id backintime --pw-cache start
 exec --no-startup-id ytfs ~/Videos/YouTube/Search
+exec --no-startup-id uim-xim
 
 # Set up default workspaces
-exec i3-msg 'workspace 2; exec discord'
-exec i3-msg 'workspace 3; exec $Email; exec pidgin'
+exec i3-msg 'workspace 2; exec DiscordCanary; exec pidgin'
+exec i3-msg 'workspace 3; exec $Email'
 
 # Run user startup scripts
 exec --no-startup-id /usr/local/scripts/wm/startup.sh
