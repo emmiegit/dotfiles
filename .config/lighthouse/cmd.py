@@ -117,14 +117,14 @@ def add_math_result(string):
         answer = eval(string)
 
         if type(answer) in (int, float):
-            prepend_output("= %s" % (answer), "true")
+            append_output("= %s" % (answer), "true")
         elif type(answer) == long:
             if math.log(abs(answer)) < ANSWER_TOO_LONG: # Make sure the output isn't hideously long
-                prepend_output("= %d" % (answer), "true")
+                append_output("= %d" % (answer), "true")
             else:
-                prepend_output("= %s..." % (str(answer)[:ANSWER_TOO_LONG]), "true")
+                append_output("= %s..." % (str(answer)[:ANSWER_TOO_LONG]), "true")
     except ZeroDivisionError:
-        prepend_output("= undefined", "true")
+        append_output("= undefined", "true")
     except:
         pass
 
@@ -190,20 +190,21 @@ def xdg_get_cmd(cmd):
     if not exec_path:
         return
 
-    icon = xdg_get_icon(desktop_entry)
-    if icon:
-        menu_entry = "%%I%s%%%s" % (icon, cmd)
-    else:
-        menu_entry = cmd
+    #icon = xdg_get_icon(desktop_entry)
+    #if icon:
+    #    menu_entry = "%%I%s%%%s" % (icon, cmd)
+    #else:
+    #    menu_entry = cmd
 
-    return (menu_entry, exec_path)
+    return (cmd, exec_path)
 
 # Helper functions
 def sanitize(string):
     return string.replace("{", "\\{") \
                  .replace("}", "\\}") \
                  .replace("|", "\\|") \
-                 .replace("\n", " ")
+                 .replace("\n", " ") \
+                 .replace("\t", " ")
 
 def create_result(title, action):
     return "{%s |%s }" % \
@@ -219,9 +220,13 @@ def parse_line():
         update_output()
         return
 
+    for shortcut in SHORTCUTS.keys():
+        if shortcut.startswith(line):
+            append_output("shortcut: %s -> %s" % (shortcut, SHORTCUTS[shortcut]), SHORTCUTS[shortcut])
+
     try:
         complete = subprocess.check_output("compgen -c %s" % (line),
-                shell=True, executable="/bin/bash").split("\n")
+                shell=True, executable="/usr/bin/bash").split("\n")
 
         for cmd_num in range(min(len(complete), 5)):
             # Look for XDG applications of the given name.
@@ -231,14 +236,9 @@ def parse_line():
     except:
         pass
 
-    for shortcut in SHORTCUTS.keys():
-        if shortcut.startswith(line):
-            append_output("shortcut: %s" % shortcut, SHORTCUTS[shortcut])
-
-    # Make sure these items are at the top
+    append_output("execute '%s'" % line, line)
+    #append_output("run '%s' in a shell" % (line), "%s -e '%s'" % (TERMINAL, line))
     add_math_result(line)
-    prepend_output("run '%s' in a shell" % (line), "%s -e %s" % (TERMINAL, line))
-    prepend_output("execute '%s'" % line, line)
     update_output()
 
 # Main loop
