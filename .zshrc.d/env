@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 # zsh settings for environment variables
 
-PS1='<%(?.%F{green}✓%f.%F{red}✗%f)> %F{green}%n@%M%f %F{yellow}%~%f%(!.%F{red}#%f.$) '
+PS1='<%(?.%F{green}✓%f.%F{red}✗%f)> %F{green}%n@%m%f %F{yellow}%~%f%(!.%F{red}#%f.$) '
 PS2='... '
 
 export PATH="$PATH:$HOME/.gem/ruby/2.3.0/bin"
