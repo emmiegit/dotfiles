@@ -101,6 +101,7 @@ bindsym $mod+mod1+6 move container to workspace 6; workspace 6
 bindsym $mod+mod1+7 move container to workspace 7; workspace 7
 bindsym $mod+mod1+8 move container to workspace 8; workspace 8
 bindsym $mod+mod1+9 move container to workspace 9; workspace 9
+bindsym $mod+mod1+0 move container to workspace 10; workspace 10
 
 ## Set workspaces to be on certain monitors
 ## odd workspaces on the first monitor, even ones on the second
@@ -314,7 +315,7 @@ bindsym --release Ctrl+Shift+Print exec --no-startup-id /usr/local/scripts/wm/sc
 exec --no-startup-id /usr/local/scripts/wm/new-wallpaper.sh
 exec --no-startup-id /usr/local/scripts/wm/start-autolock.sh
 exec --no-startup-id /usr/local/scripts/wm/gmail-check-notify.py
-exec --no-startup-id ~/Programming/Python/Twitter/toxic_bot_service.sh start
+exec --no-startup-id ~/Programming/Misc/python-old/Twitter/toxic_bot_service.sh start
 exec --no-startup-id redshift
 exec --no-startup-id pamixer --unmute
 exec --no-startup-id dropbox-cli start
