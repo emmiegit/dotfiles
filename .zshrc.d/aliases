@@ -6,17 +6,19 @@ alias clear='printf "\033c"'
 alias cower='cower --color auto'
 alias df='df -h'
 alias du='du -h'
+alias free='free -h'
 alias iotop='sudo iotop -o'
 alias pdflatex='pdflatex -halt-on-error'
 alias pgrep='pgrep -fl'
 alias shred='shred -uv'
-alias sudo='sudo'
+alias sudo='sudo -E'
 alias valgrind='valgrind --track-origins=yes'
-alias vi='vi -p'
-alias view='view -p'
-alias vim='vi -p'
+alias vi='vim'
+alias view='vim -Rp'
+alias vim='vim -p'
 alias which='which -a'
 alias youtube-dl='noglob youtube-dl -o \%\(title\)s.\%\(ext\)s'
+alias xsnow='xsnow -nokeepsnow -notrees'
 
 # Modifiers on file operations
 # * Verbosity so you know what's going on
@@ -31,7 +33,7 @@ alias rm='rm -v --one-file-system'
 # Disabled commands
 alias dm-tool='command-disabled'
 
-# Colorize output of some programs
+# Colorize output
 alias diff='colordiff'
 alias grep='grep --color'
 alias egrep='egrep --color=auto'
@@ -52,15 +54,18 @@ alias allgrp='cut -d: -f1 /etc/group'
 alias allusr='cut -d: -f1 /etc/passwd'
 alias checkip='curl ifconfig.me'
 alias define='sdcv'
+alias doc2pdf='libreoffice --headless --invisible --norestore --convert-to pdf'
+alias dtail='dmesg | tail'
 alias jctl='journalctl'
+alias keyart='ssh-keygen -lv -f'
 alias lsnet='ls /sys/class/net'
 alias open='xdg-open'
-alias randomart='ssh-keygen -lv -f'
 alias sctl='sudo -E systemctl'
 alias srcrc='source ~/.zshrc'
+alias sshagent='eval $(ssh-agent -t 15m)'
 alias vigtk='sudo vi -p /usr/share/gtk-2.0/gtkrc /usr/share/gtk-3.0/settings.ini'
-alias vii3='vi ~/.config/i3/config'
-alias virc='vi -p ~/.zshrc ~/.zshrc.d/*'
+alias vii3='vim ~/.config/i3/config'
+alias virc='vim -p ~/.zshrc ~/.zshrc.d/*'
 alias week='date +%V'
 alias ytmp3='noglob youtube-dl -o %\(title\)s.%\(ext\)s --extract-audio'
 
@@ -86,14 +91,18 @@ alias mpvac='mpv --speed=0.67 --audio-pitch-correction=no --no-video'
 ### FUNCTIONS ###
 # Shortcut commands
 cdls() { cd "$@" && ls; }
+cdmv() { mv "$1" "$2" && cd "$2"; }
+catls() { [ -d "$1" ] && ls "$1" || cat "$1"; }
 countf() { /usr/bin/ls -1 $@ | wc -l; }
 digq() { dig "$@" | grep 'Query time'; }
+lsicon() { ls /usr/share/icons/Numix-Circle/scalable/apps | grep "$1"; }
 mkcd() { mkdir -p "$@" && cd "$@"; }
+pacbin() { pacman -Ql "$1" | grep --color=never bin; }
 pexec() { echo $@; $@; }
 pls() { sudo -- "${SHELL:-zsh}" -c "$(fc -ln -1)"; }
 strerror() { python -c "import os; print(os.strerror($1))"; }
 trash() { [ $# -eq 0 ] && trash-list || trash-put $@; }
-xkeyev() { xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'; }
+
 # Colorize text
 red()    { printf "\e[31m\e[1m"$@"\e[0m"; }
 green()  { printf "\e[32m\e[1m"$@"\e[0m"; }
