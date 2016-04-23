@@ -18,6 +18,8 @@
   group_all = None
   group_tab = None
   help = None
+  insert_number = None
+  insert_padded = None
   layout_launcher = None
   new_terminator = None
   next_tab = <Primary>Tab
@@ -44,6 +46,7 @@
     audible_bell = True
     background_color = "#151428"
     background_image = None
+    cursor_color = "#949494"
     font = Monospace 11
     foreground_color = "#949494"
     palette = "#1d1f21:#a54242:#8c9440:#dea95f:#5c7387:#85678f:#5e8d87:#8e8e8e:#282a2e:#cc6666:#b5bd68:#f0c674:#81a2be:#b294bb:#8abeb7:#c5c8c6"
