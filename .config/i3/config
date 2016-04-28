@@ -142,6 +142,10 @@ bindsym $mod+Shift+m exec i3-input -F '[con_mark=%s] focus' -P 'Go to mark: '
 # Lighthouse launcher
 bindsym $mod+slash exec --no-startup-id printf '%s & disown' "$(lighthouse)" | bash
 
+# Tablet modes
+bindsym $mod+y exec --no-startup-id /usr/local/scripts/wm/set-wacom-mode.sh draw
+bindsym $mod+Shift+y exec --no-startup-id /usr/local/scripts/wm/set-wacom-mode.sh osu
+
 # Resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -324,7 +328,6 @@ exec --no-startup-id compton -b --config ~/.config/compton.conf
 exec --no-startup-id nvidia-settings --load-config-only
 exec --no-startup-id mocp --server
 exec --no-startup-id backintime --pw-cache start
-exec --no-startup-id ytfs ~/Videos/YouTube/Search
 exec --no-startup-id steam
 exec --no-startup-id uim-xim
 

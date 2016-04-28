@@ -1,22 +1,5 @@
 #!/usr/bin/env zsh
 
-# For math commands, e.g. = 2+5*3
-= () {
-    if [[ $1 == -h ]] || [[ $1 == --help ]]; then
-        man bc
-        return
-    fi
-
-    local calc="${@//x/*}"
-    calc="${calc//,/}"
-    calc="${calc//\[/\(}"
-    calc="${calc//\]/\)}"
-    bc -l <<< "scale=10;$calc"
-}
-
-# Allow the usage of '*' in =
-alias eq='noglob ='
-
 # For screenfetches on anonymous imageboards
 anon() {
     local name="anonymous"
