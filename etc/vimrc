@@ -26,6 +26,7 @@ endif
 " Settings for vim powerline
 set laststatus=2
 set t_Co=256
+let g:powerline_pycmd="py3"
 
 " Set nocompatible vim options
 "set cpo=aABceFs<
@@ -55,9 +56,9 @@ set lbr
 set tw=500
 
 " Disable swap and backup files
-set nobackup
+"set nobackup
 set nowb
-set noswapfile
+"set noswapfile
 
 " Move between windows easier
 map <C-j> <C-W>j

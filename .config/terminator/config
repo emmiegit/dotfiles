@@ -24,6 +24,7 @@
   new_terminator = None
   next_tab = <Primary>Tab
   prev_tab = <Primary><Shift>Tab
+  close_term = None
   resize_down = <Primary><Shift>j
   resize_left = <Primary><Shift>h
   resize_right = <Primary><Shift>l
