@@ -156,12 +156,12 @@ rmln() {
     fi
 
     for lnk in $@; do
-        if [[ -d $lnk ]]; then
+        if [[ -d $lnk ]]
             printf >&2 '%s is not a link, won'\''t remove.\n' "$lnk"
-        elif [[ -L $lnk ]] || [[ $(stat -c %h "$lnk") -gt 1 ]]; then
+        if [[ -L $lnk ]] || [[ $(stat -c %h "$lnk") -gt 1 ]]; then
             rm -v "$lnk"
         else
-            printf >&2 '%s is not a link, won'\''t remove.\n' "$lnk"
+            printf >&2 '%s is not a link, won'\'' remove.\n' "$lnk"
         fi
     done
 }

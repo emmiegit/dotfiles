@@ -40,8 +40,9 @@ source "${HOME}/.zshrc.d/env"
 source "${HOME}/.zshrc.d/misc"
 
 # Other sourcing
-source '/etc/profile.d/fzf.zsh'
+source '/usr/share/fzf/fzf.zsh'
 source '/usr/share/doc/pkgfile/command-not-found.zsh'
-#source '/usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh'
-eval $(thefuck --alias)
+source '/etc/profile.d/fzf-extras.zsh'
+#dosource '/usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh'
+eval "$(thefuck --alias)"
 
