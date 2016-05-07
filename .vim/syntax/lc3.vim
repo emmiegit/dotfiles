@@ -23,7 +23,7 @@ syn region lc3String            start=+"+ skip=+\\\\\|\\"+ end=+"+
 syn region lc3Comment           start=";" end="$"
 
 " Keywords
-syn keyword lc3Opcode add and br brn brz brp brnz brzp brnzp getc in
+syn keyword lc3Opcode add and br brn brz brp brnz brzp brnp brnzp getc in
 syn keyword lc3Opcode jmp jsr jsrr ld ldb ldi ldr ldw lea lshf halt not
 syn keyword lc3Opcode out puts ret rti rshfa rshfl shf st stb sti str trap
 
