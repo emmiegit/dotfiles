@@ -3,9 +3,9 @@
     "discordcanary": "DiscordCanary",
     "intellij": "idea.sh",
     "league": "league-of-legends",
+    "melee": "dolphin-emu-cli --exec /usr/share/iso/wii+gamecube/super-smash-bros-melee-usa.iso",
     "new-wallpaper": "/usr/local/scripts/wm/new-wallpaper.sh",
     "rant": "gvim /dev/null",
-    "smash": "dolphin-emu-cli --exec /usr/share/iso/wii+gamecube/super-smash-bros-melee-usa.iso",
     "smg": "xdg-open '/home/ammon/Documents/School/Textbooks/St. Martin'\\''s Guide to Writing - 10th Edition.pdf'",
     "system-monitor": "gnome-system-monitor",
     "tor": "tor-browser-en"
