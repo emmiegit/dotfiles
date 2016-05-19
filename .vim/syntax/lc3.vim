@@ -14,7 +14,7 @@ syn case ignore
 syn sync minlines=5
 
 " Expressions
-syn match lc3Label              "[a-zA-Z0-9_]\+"
+syn match lc3Label              "[a-zA-Z0-9_]\+\w"
 syn match lc3Register           "[rR][0-7]"
 syn match lc3PseudoOp           "\.[a-zA-Z]\+"
 syn match lc3Decimal            "#-\?[0-9]\+"

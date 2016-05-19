@@ -17,7 +17,7 @@ alias vi='vim'
 alias view='vim -Rp'
 alias vim='vim -p'
 alias which='which -a'
-alias youtube-dl='noglob youtube-dl -o \%\(title\)s.\%\(ext\)s'
+alias yt-dl='noglob youtube-dl -o \%\(title\)s.\%\(ext\)s'
 alias xsnow='xsnow -nokeepsnow -notrees'
 
 # Modifiers on file operations
