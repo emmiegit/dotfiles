@@ -1,0 +1,8 @@
+[User Interface]
+colors = yes
+dateformat = MM/dd/YYYY HH:mm
+reldates = yes
+
+[Data]
+ignore_extension = []
+

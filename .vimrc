@@ -55,10 +55,9 @@ set history=1000
 set lbr
 set tw=500
 
-" Disable swap and backup files
-"set nobackup
-set nowb
-"set noswapfile
+" Set relative line numbers
+set number
+set relativenumber
 
 " Move between windows easier
 map <C-j> <C-W>j
@@ -138,7 +137,7 @@ set showcmd		    " Show (partial) command in status line.
 set showmatch       " Show matching brackets.
 set smartcase       " Do smart case matching
 set smarttab        " Use smart tabbing
-set timeoutlen=100  " To prevent the lag on 'O'
+set timeoutlen=50   " To prevent the lag on 'O'
 set wrap            " Wrap long lines
 
 " Pressing * or # when in visual mode searches for the current selection
@@ -157,27 +156,6 @@ if has("autocmd")
   autocmd BufWrite *.c :call DeleteTrailingWS()
   autocmd BufWrite *.py :call DeleteTrailingWS()
 endif
-
-" Set relative line numbers and some of the settings surrounding it
-func! LineNumberToggle()
-  if (&relativenumber == 1)
-    :call SetAbsoluteNumbers()
-  else
-    :call SetRelativeNumbers()
-  endif
-endfunc
-
-func! SetAbsoluteNumbers()
-  set norelativenumber
-  set number
-endfunc
-
-func! SetRelativeNumbers()
-  set nonumber
-  set relativenumber
-endfunc
-
-nnoremap <C-n> :call LineNumberToggle()<cr>
 
 " Switch between the two modes when in insert/normal.
 "if has("autocmd")
