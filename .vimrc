@@ -2,8 +2,8 @@
 " vimrc "
 """""""""
 
-" Standard options {{{
-""""""""""""""""""""""
+" General options {{{
+"""""""""""""""""""""
 "
 " Disable vi compatibility options
 "set cpo=aABceFs<
@@ -223,7 +223,7 @@ let g:ycm_global_ycm_extra_conf = '/etc/vim/ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 1
 " }}}
 
-" Helper Functions {{{
+" Helper functions {{{
 """"""""""""""""""""""
 " Delete trailing white space on save
 func! DeleteTrailingWS()
