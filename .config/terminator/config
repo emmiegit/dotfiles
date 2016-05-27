@@ -8,6 +8,7 @@
   title_transmit_bg_color = "#c69095"
   title_transmit_fg_color = "#000000"
 [keybindings]
+  broadcast_off = None
   close_term = None
   cycle_next = None
   cycle_prev = None

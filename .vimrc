@@ -163,6 +163,7 @@ noremap <leader>m mmHmt:%s/<C-v><cr>//ge<cr>'tzt'm
 command W w !sudo tee % > /dev/null
 
 " Move between windows easier
+nnoremap <SID><C-M-S-j> <Plug>IMAP_JumpForward
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
