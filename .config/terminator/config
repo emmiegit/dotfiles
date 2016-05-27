@@ -8,31 +8,44 @@
   title_transmit_bg_color = "#c69095"
   title_transmit_fg_color = "#000000"
 [keybindings]
+  broadcast_all = None
+  broadcast_group = None
   broadcast_off = None
   close_term = None
+  close_window = None
   cycle_next = None
   cycle_prev = None
   full_screen = None
   go_down = <Alt>j
   go_left = <Alt>h
+  go_next = None
+  go_prev = None
   go_right = <Alt>l
   go_up = <Alt>k
   group_all = None
   group_tab = None
   help = None
+  hide_window = None
   insert_number = None
   insert_padded = None
   layout_launcher = None
   new_terminator = None
   next_tab = <Primary>Tab
   prev_tab = <Primary><Shift>Tab
+  reset = <Primary><Shift>r
+  reset_clear = None
   resize_down = <Primary><Shift>j
   resize_left = <Primary><Shift>h
   resize_right = <Primary><Shift>l
   resize_up = <Primary><Shift>k
   rotate_ccw = <Shift><Alt>r
   rotate_cw = <Alt>r
+  scaled_zoom = None
+  split_horiz = <Shift><Alt>o
+  split_vert = <Shift><Alt>e
   toggle_zoom = None
+  ungroup_all = None
+  ungroup_tab = None
 [layouts]
   [[default]]
     [[[child1]]]

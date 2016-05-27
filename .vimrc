@@ -163,11 +163,15 @@ noremap <leader>m mmHmt:%s/<C-v><cr>//ge<cr>'tzt'm
 command W w !sudo tee % > /dev/null
 
 " Move between windows easier
-nnoremap <SID><C-M-S-j> <Plug>IMAP_JumpForward
+nnoremap <SID> <Plug>IMAP_JumpForward
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+
+" Open a newline without going into insert mode
+nnoremap <silent> <C-o> o<esc>
+nnoremap <silent> <C-S-O> O<esc>
 
 " Pressing * or # when in visual mode searches for the current selection
 vnoremap <silent> * :call VisualSelection('f')<cr>
@@ -177,18 +181,18 @@ vnoremap <silent> # :call VisualSelection('b')<cr>
 nnoremap gV `[v`]
 
 " Close the current buffer
-map <leader>bd :Bclose<cr>:tabclose<cr>gT
+cmap <leader>bd :Bclose<cr>:tabclose<cr>gT
 
 " Close all the buffers
 map <leader>ba :bufdo bd<cr>
 map <leader>l :bnext<cr>
 map <leader>h :bprevious<cr>
 
-"" Useful mappings for managing tabs
-"map <leader>tn :tabnew<cr>
-"map <leader>to :tabonly<cr>
-"map <leader>tc :tabclose<cr>
-"map <leader>tm :tabmove<cr>
+" Useful mappings for managing tabs
+map <leader>tn :tabnew<cr>
+map <leader>to :tabonly<cr>
+map <leader>tc :tabclose<cr>
+map <leader>tm :tabmove<cr>
 
 " Open a new tab with the current buffer's path
 map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
