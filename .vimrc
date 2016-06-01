@@ -3,22 +3,12 @@
 """""""""
 
 " General options {{{
-"""""""""""""""""""""
-"
-" Disable vi compatibility options
-"set cpo=aABceFs<
-set nocompatible
-
-" Set utf-8 as the standard encoding
-" and en_US as the standard language
-set encoding=utf8
-
-" Set Unix as the standard file type
-set ffs=unix,dos,mac
-
 set autoread        " Set to auto read when a file is changed
 set autowrite       " Automatically save before commands like :next and :make
+set backupcopy=yes  " Preserve hard links when making copies
 set confirm         " Instead of failing a command, raise a dialog asking what to do
+set encoding=utf8   " Set default encoding
+set ffs=unix,dos    " Set Unix as the standard line ending
 set hidden          " Hide buffers when they are abandoned
 set hlsearch        " Highlight matches when searching
 set incsearch       " Incremental search
@@ -26,6 +16,7 @@ set lazyredraw      " Don't redraw when running macros
 set magic           " Use traditional regular expressions (see wiki)
 set mat=2           " How many tenths of a second to blink when matching brackets
 set mouse=n         " Enable mouse usage (normal mode only)
+set nocompatible    " Disable vi compatibility options
 set noshowmode      " Powerline does this for me, so I don't need two modes.
 set nosmartindent   " Prevent audo dedent on Python comment
 set relativenumber  " Use relative line numbers (see below)
@@ -269,6 +260,32 @@ func! VisualSelection()
   let @/ = l:pattern
   let @" = l:saved_reg
 endfunc
+" }}}
+
+" Transparent GPG Encryption {{{
+augroup gpg_encrypted
+  au!
+
+  " Disable options that write the plaintext to disk
+  autocmd BufReadPre,FileReadPre *.gpg set viminfo=
+  autocmd BufReadPre,FileReadPre *.gpg set noswapfile noundofile nobackup
+
+  " Switch to binary moe
+  autocmd BufReadPre,FileReadPre *.gpg set bin
+  autocmd BufReadPre,FileReadPre *.gpg let ch_save = &ch|set ch=2
+  autocmd BufReadPost,FileReadPost *.gpg '[,']!gpg --decrypt 2> /dev/null
+
+  " Switch to normal mode for editing
+  autocmd BufReadPost,FileReadPost *.gpg set nobin
+  autocmd BufReadPost,FileReadPost *.gpg let &ch = ch_save|unlet ch_save
+  autocmd BufReadPost,FileReadPost *.gpg execute ":doautocmd BufReadPost " . expand("%:r")
+
+  " Encrypt all text before writing
+  autocmd BufWritePre,FileWritePre *.gpg '[,']!gpg --default-recipient-self -ae 2> /dev/null
+
+  " Undo the encryption so we can edit again
+  autocmd BufWritePost,FileWritePost *.gpg u
+augroup END
 " }}}
 
 " vim: set ts=2 sw=2 foldmethod=marker foldlevel=0:
