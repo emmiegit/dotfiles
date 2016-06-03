@@ -41,8 +41,8 @@
   rotate_ccw = <Shift><Alt>r
   rotate_cw = <Alt>r
   scaled_zoom = None
-  split_horiz = <Shift><Alt>o
-  split_vert = <Shift><Alt>e
+  split_horiz = <Shift><Ctrl>o
+  split_vert = <Shift><Ctrl>e
   toggle_zoom = None
   ungroup_all = None
   ungroup_tab = None

@@ -161,8 +161,8 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 " Open a newline without going into insert mode
-nnoremap <silent> <C-o> o<esc>
-nnoremap <silent> <C-S-O> O<esc>
+nmap <S-Enter> O<esc>
+nmap <cr> o<esc>
 
 " Pressing * or # when in visual mode searches for the current selection
 vnoremap <silent> * :call VisualSelection('f')<cr>
@@ -217,6 +217,9 @@ let g:tex_flavor='latex'
 " YouCompleteMe options
 let g:ycm_global_ycm_extra_conf = '/etc/vim/ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 1
+
+" Instant Markdown
+let g:instat_markdown_autostart = 0
 " }}}
 
 " Helper functions {{{
