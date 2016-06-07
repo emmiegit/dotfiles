@@ -5,6 +5,7 @@
     "league": "league-of-legends",
     "melee": "dolphin-emu-cli --exec /usr/share/iso/wii+gamecube/super-smash-bros-melee-usa.iso",
     "new-wallpaper": "/usr/local/scripts/wm/new-wallpaper.sh",
+    "projectm": "dolphin-emu-cli --exec /usr/share/iso/wii+gamecube/gecko-1931.elf",
     "rant": "gvim /dev/null",
     "smg": "xdg-open '/home/ammon/Documents/School/Textbooks/St. Martin'\\''s Guide to Writing - 10th Edition.pdf'",
     "system-monitor": "gnome-system-monitor",

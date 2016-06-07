@@ -38,6 +38,7 @@ source "${HOME}/.zshrc.d/aliases"
 source "${HOME}/.zshrc.d/func"
 source "${HOME}/.zshrc.d/env"
 source "${HOME}/.zshrc.d/misc"
+#source "${HOME}/.zshrc.d/oh-my-zsh"
 
 # Other sourcing
 source '/usr/share/fzf/key-bindings.zsh'

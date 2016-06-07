@@ -21,7 +21,7 @@ set noshowmode      " Powerline does this for me, so I don't need two modes.
 set nosmartindent   " Prevent audo dedent on Python comment
 set relativenumber  " Use relative line numbers (see below)
 set ruler           " Display the bar at the bottom 
-set showcmd		      " Show (partial) command in status line.
+set showcmd         " Show (partial) command in status line.
 set showmatch       " Show matching brackets.
 set smartcase       " Do smart case matching
 set smarttab        " Use smart tabbing
@@ -161,7 +161,7 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 " Open a newline without going into insert mode
-nmap <S-Enter> O<esc>
+nmap <S-cr> O<esc>
 nmap <cr> o<esc>
 
 " Pressing * or # when in visual mode searches for the current selection

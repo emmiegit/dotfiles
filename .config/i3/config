@@ -116,9 +116,6 @@ workspace 8 output DVI-D-1
 workspace 9 output DVI-D-0
 workspace 10 output DVI-D-1
 
-# Enable floating windows on permanent workspaces
-for_window [workspace="2"] floating enable
-
 # Reload the configuration file
 bindsym $mod+Shift+c reload
 
@@ -255,7 +252,6 @@ for_window [class="Uim-im-switcher-gtk" instance="uim-im-switcher-gtk"] floating
 for_window [class="Uim-input-pad-ja" instance="Uim-input-pad-ja"] floating enable
 for_window [class="Uim-pref-gtk" instance="uim-pref-gtk"] floating enable
 for_window [class="com-dreamcodex-wumpus-HuntTheWumpus"] floating enable
-for_window [class="discord" instance="discord"] floating enable
 for_window [class="net-minecraft-bootstrap-Bootst"] floating enable
 for_window [class="net-technicpack-launcher-LauncherMain"] floating enable
 for_window [class="qBittorrent" instance="qbittorrent"] floating enable
@@ -332,7 +328,7 @@ exec --no-startup-id steam
 exec --no-startup-id uim-xim
 
 # Set up default workspaces
-exec i3-msg 'workspace 2; exec DiscordCanary; exec pidgin'
+exec i3-msg 'workspace 2; exec $Terminal; exec DiscordCanary; exec pidgin'
 exec i3-msg 'workspace 3; exec $Email'
 
 # Run user startup scripts
