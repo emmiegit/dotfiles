@@ -5,7 +5,6 @@ zstyle ':completion:*' expand prefix suffix
 zstyle ':completion:*' file-sort name
 zstyle ':completion:*' ignore-parents parent pwd
 zstyle ':completion:*' insert-unambiguous true
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
 zstyle ':completion:*' list-suffixes true
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'l:|=* r:|=*'
@@ -30,20 +29,21 @@ unsetopt beep
 bindkey -v
 # End of lines configured by zsh-newuser-install
 
-# Plugins for oh-my-zsh
-plugins=(chucknorris encode64 gem git github jsontools lol npm nyan pip scala urltools safe-paste)
+# Source oh-my-zsh setting
+source "${HOME}/.zshrc.d/oh-my-zsh"
+
+# LS_COLORS is part of oh-my-zsh, so set completion colors here
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # Source files from .zshrc.d/
 source "${HOME}/.zshrc.d/aliases"
 source "${HOME}/.zshrc.d/func"
 source "${HOME}/.zshrc.d/env"
 source "${HOME}/.zshrc.d/misc"
-#source "${HOME}/.zshrc.d/oh-my-zsh"
 
 # Other sourcing
 source '/usr/share/fzf/key-bindings.zsh'
 source '/usr/share/doc/pkgfile/command-not-found.zsh'
 source '/etc/profile.d/fzf-extras.zsh'
-#source '/usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh'
 eval "$(thefuck --alias)"
 

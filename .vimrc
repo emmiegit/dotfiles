@@ -216,7 +216,7 @@ let g:tex_flavor='latex'
 
 " YouCompleteMe options
 let g:ycm_global_ycm_extra_conf = '/etc/vim/ycm_extra_conf.py'
-let g:ycm_confirm_extra_conf = 1
+let g:ycm_confirm_extra_conf = 0
 
 " Instant Markdown
 let g:instat_markdown_autostart = 0

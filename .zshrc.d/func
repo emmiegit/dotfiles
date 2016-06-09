@@ -55,6 +55,24 @@ datediff() {
     echo $(( (d1 - d2) / 86400 )) days
 }
 
+# Easily convert from base64
+decode64() {
+    if [[ $# -eq 0 ]]; then
+        cat | base64 --decode
+    else
+        echo "$1" | base64 --decode
+    fi
+}
+
+# Easily convert to base64
+encode64() {
+    if [[ $# -eq 0 ]]; then
+        cat | base64
+    else
+        echo "$1" | base64
+    fi
+}
+
 # Batch converts from one format to another
 ffbatch() {
     if [[ $# -lt 2 ]]; then
