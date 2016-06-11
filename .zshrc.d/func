@@ -167,22 +167,23 @@ pjson() {
 
 # Only remove if the target is a symbolic link
 # or if it is a hard link with multiple links
-rmln() {
-    if [[ $# -eq 0 ]]; then
-        echo >&2 'Usage: rmln link...'
-        return 1
-    fi
-
-    for lnk in "$@"; do
-        if [[ -L $lnk ]]; then
-            rm -v "$lnk"
-        elif [[ ! -d $lnk ]] && [[ "$(stat -c %h "$lnk")" -gt 1 ]]; then
-            rm -v "$lnk"
-        else
-            printf >&2 '%s is not a link, won'\''t remove.\n' "$lnk"
-        fi
-    done
-}
+# DEPRECATED in favor the rmln program written in C
+#rmln() {
+#    if [[ $# -eq 0 ]]; then
+#        echo >&2 'Usage: rmln link...'
+#        return 1
+#    fi
+#
+#    for lnk in "$@"; do
+#        if [[ -L $lnk ]]; then
+#            rm -v "$lnk"
+#        elif [[ ! -d $lnk ]] && [[ "$(stat -c %h "$lnk")" -gt 1 ]]; then
+#            rm -v "$lnk"
+#        else
+#            printf >&2 '%s is not a link, won'\''t remove.\n' "$lnk"
+#        fi
+#    done
+#}
 
 # Generate a dice roll
 roll() {

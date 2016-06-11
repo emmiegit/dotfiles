@@ -28,7 +28,7 @@ DISABLE_AUTO_UPDATE="true"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(cp fbterm git-extras github jsontools nyan pip same-paste urltools)
+plugins=(cp fbterm git-extras github jsontools nyan pip same-paste systemd urltools)
 
 # User configuration
 # You may need to manually set your language environment

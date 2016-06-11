@@ -219,7 +219,7 @@ let g:ycm_global_ycm_extra_conf = '/etc/vim/ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 0
 
 " Instant Markdown
-let g:instat_markdown_autostart = 0
+let g:instant_markdown_autostart = 0
 " }}}
 
 " Helper functions {{{
