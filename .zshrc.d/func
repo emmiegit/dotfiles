@@ -165,48 +165,40 @@ pjson() {
     echo "$@" | python -m json.tool
 }
 
-# Only remove if the target is a symbolic link
-# or if it is a hard link with multiple links
-# DEPRECATED in favor the rmln program written in C
-#rmln() {
-#    if [[ $# -eq 0 ]]; then
-#        echo >&2 'Usage: rmln link...'
-#        return 1
-#    fi
-#
-#    for lnk in "$@"; do
-#        if [[ -L $lnk ]]; then
-#            rm -v "$lnk"
-#        elif [[ ! -d $lnk ]] && [[ "$(stat -c %h "$lnk")" -gt 1 ]]; then
-#            rm -v "$lnk"
-#        else
-#            printf >&2 '%s is not a link, won'\''t remove.\n' "$lnk"
-#        fi
-#    done
-#}
-
 # Generate a dice roll
 roll() {
     local upper=$1
     [[ -z "$upper" ]] && upper=100
-    echo $[ 1 + $[ RANDOM % ${upper} ]]
+    echo $[ 1 + $[ RANDOM % $upper ] ]
 }
 
 # Run one of my scripts without specifying the path
 scr() {
-    if [[ $1 != *.* ]]; then
-        local script="/usr/local/scripts/$1.sh"
-    else
-        local script="/usr/local/scripts/$1"
-    fi
-
-    if [[ ! -f "$script" ]]; then
-        printf >&2 'Cannot find script: "%s"\n' "$1"
+    if [[ $# -eq 0 ]]; then
+        printf >&2 'Usage: scr script-name.\n'
         return 1
+    elif [[ $1 != *.* ]]; then
+        local fn="$1"
+    else
+        local fn="$1.sh"
     fi
 
-    shift
-    $script $@
+    IFS=$'\n' \
+    local scripts=($(find -L '/usr/local/scripts' -iname "*$fn*" -executable -print))
+    local scriptcount="${#scripts[@]}"
+
+    if [[ $scriptcount -eq 0 ]]; then
+        printf >&2 'Cannot find script "%s".\n' "$fn"
+        return 1
+    elif [[ $scriptcount -gt 1 ]]; then
+        printf >&2 'Multiple script candidates:\n'
+        printf >&2 '%s\n' "${scripts[@]}"
+        return 1
+    else
+        shift
+        "${scripts[1]}" "$@"
+        return 0
+    fi
 }
 
 # Set the title of the terminal
@@ -224,7 +216,7 @@ sl() {
     [[ $[ $rand & 4 ] -gt 0 ]] && sett+=F
     [[ $[ $rand & 8 ] -gt 0 ]] && sett+=c
     
-    env sl -$sett
+    env sl "-$sett"
 }
 
 # Ask for confirmation and then suspend
@@ -235,15 +227,14 @@ suspend() {
 
 # Suspend the computer
 suspendnow() {
-    # sudoers can suspend without typing a password
-    sudo pm-suspend
+    systemctl suspend
 }
 
 # Suspend and lock the screen
 suspendlock() {
     confirm && {
         suspendnow
-        scr wm/i3_lock.sh
+        scr i3_lock.sh
     }
 }
 
