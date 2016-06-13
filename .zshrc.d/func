@@ -111,10 +111,9 @@ ffvolume() {
 
 # Look for a certain .desktop file
 findapp() {
-    while [[ $# -gt 0 ]]; do
-        grep -rnw "$1" /usr/share/applications/
-        grep -rnw "$1" ~/.local/share/applications/
-        shift
+    for arg in "$@"; do
+        grep -rnw "$arg" /usr/share/applications/
+        grep -rnw "$arg" ~/.local/share/applications/
     done
 }
 
@@ -127,7 +126,7 @@ insult() {
 
 # List dbus services
 lsdbus() {
-    if [ $# -eq 0 -o "$1" -eq "--help" ]; then
+    if [[ $# -eq 0 ]] || [[ $1 == '--help' ]]; then
         echo >&2 'Not enough arguments.'
         echo >&2 'Usage: lsdbus (session | system)'
         return 1
@@ -177,7 +176,7 @@ scr() {
     if [[ $# -eq 0 ]]; then
         printf >&2 'Usage: scr script-name.\n'
         return 1
-    elif [[ $1 != *.* ]]; then
+    elif [[ $1 == *.* ]]; then
         local fn="$1"
     else
         local fn="$1.sh"
