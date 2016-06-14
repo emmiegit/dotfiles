@@ -64,6 +64,11 @@ decode64() {
     fi
 }
 
+# Source only if the file exists
+dosource() {
+    [[ -f $1 ]] && source "$1"
+}
+
 # Easily convert to base64
 encode64() {
     if [[ $# -eq 0 ]]; then
@@ -176,12 +181,9 @@ scr() {
     if [[ $# -eq 0 ]]; then
         printf >&2 'Usage: scr script-name.\n'
         return 1
-    elif [[ $1 == *.* ]]; then
-        local fn="$1"
-    else
-        local fn="$1.sh"
     fi
 
+    local fn="$1"
     IFS=$'\n' \
     local scripts=($(find -L '/usr/local/scripts' -iname "*$fn*" -executable -print))
     local scriptcount="${#scripts[@]}"
