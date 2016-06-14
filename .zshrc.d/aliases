@@ -33,12 +33,21 @@ alias rm='rm -v --one-file-system'
 # Disabled commands
 alias dm-tool='command-disabled'
 
+# Platform dependent
+case "$(uname)" in
+    Darwin)
+        alias ls='ls -@hGF'
+        ;;
+    Linux)
+        alias grep='grep --color'
+        alias egrep='egrep --color=auto'
+        alias fgrep='fgrep --color=auto'
+        alias ls='ls -hHF --color=tty'
+        ;;
+esac
+
 # Colorize output
 alias diff='colordiff'
-alias grep='grep --color'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias ls='ls -hHF --color=tty'
 alias less='less -r'
 
 # Derivative commands
