@@ -8,3 +8,8 @@ bindkey "${terminfo[kend]}" end-of-line
 python()  { [ $# -eq 0 ] && bpython  || env python  $@; }
 python2() { [ $# -eq 0 ] && bpython2 || env python2 $@; }
 
+if [[ "$(uname -r)" == 'Darwin' ]]; then
+    unalias ls
+    alias ls='ls -G'
+fi
+
