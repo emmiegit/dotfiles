@@ -42,8 +42,8 @@ source "${HOME}/.zshrc.d/env"
 source "${HOME}/.zshrc.d/misc"
 
 # Other sourcing
-source '/usr/share/fzf/key-bindings.zsh'
-source '/usr/share/doc/pkgfile/command-not-found.zsh'
-source '/etc/profile.d/fzf-extras.zsh'
-eval "$(thefuck --alias)"
+dosource '/usr/share/fzf/key-bindings.zsh'
+dosource '/usr/share/doc/pkgfile/command-not-found.zsh'
+dosource '/etc/profile.d/fzf-extras.zsh'
+which thefuck > /dev/null && eval "$(thefuck --alias)"
 

@@ -64,6 +64,11 @@ decode64() {
     fi
 }
 
+# Source only if the file exists
+dosource() {
+    [[ -f $1 ]] && source "$1"
+}
+
 # Easily convert to base64
 encode64() {
     if [[ $# -eq 0 ]]; then
