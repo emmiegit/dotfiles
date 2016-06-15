@@ -1,15 +1,5 @@
-case "$(uname)" in
-    Darwin)
-        ZSH="$HOME/.oh-my-zsh"
-        ZSH_CACHE_DIR="$HOME/.cache/zsh"
-        ZSH_CUSTOM="$HOME/.oh-my-zsh"
-        ;;
-    Linux)
-        ZSH='/usr/share/oh-my-zsh'
-        ZSH_CACHE_DIR="$HOME/.cache/zsh"
-        ZSH_CUSTOM="$HOME/.oh-my-zsh"
-        ;;
-esac
+# Path to your oh-my-zsh installation.
+ZSH=/usr/share/oh-my-zsh/
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -38,7 +28,13 @@ DISABLE_AUTO_UPDATE="true"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(cp fbterm git-extras github jsontools nyan pip safe-paste systemd urltools vi-mode)
+plugins=(cp fbterm git-extras github jsontools nyan pip safe-paste systemd urltools vi-mode zsh-autosuggestions)
+
+# User configuration
+# You may need to manually set your language environment
+
+ZSH_CACHE_DIR="$HOME/.cache/zsh"
+ZSH_CUSTOM="$HOME/.oh-my-zsh"
 
 source "$ZSH/oh-my-zsh.sh"
 

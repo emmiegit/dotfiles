@@ -2,8 +2,9 @@
 # zsh settings for environment variables
 
 export PATH="$PATH:$HOME/.gem/ruby/2.3.0/bin"
+export LANG=en_US.UTF-8
 export EDITOR=vim
-export VISUAL=$EDITOR
+export VISUAL="$EDITOR"
 export GPGKEY=2C3CF0C7
 export LD_LIBRARY_PATH='/usr/local/lib'
 export AURDEST="/tmp/$USER/pacaur"
