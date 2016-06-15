@@ -194,8 +194,10 @@ scr() {
         printf >&2 '%s\n' "${scripts[@]}"
         return 1
     else
+        local script="${scripts[1]}"
+        echo "$script"
         shift
-        "${scripts[1]}" "$@"
+        "$script" "$@"
         return 0
     fi
 }
