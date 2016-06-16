@@ -1,6 +1,9 @@
 #!/usr/bin/env zsh
 # zsh settings for environment variables
 
+unset PATH
+source /etc/profile
+
 case "$(uname)" in
     Darwin)
         export PATH="$PATH:$HOME/Binaries"
