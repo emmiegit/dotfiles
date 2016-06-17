@@ -197,7 +197,7 @@ nmap <M-k> mz:m-2<cr>`z
 vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
 vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
-" :ss toggles spellcheck
+" ss toggles spellcheck
 map <leader>ss :setlocal spell!<cr>
 
 " Save session
@@ -265,7 +265,10 @@ func! VisualSelection()
 endfunc
 " }}}
 
-" Transparent GPG Encryption {{{
+" File-Specific Settings {{{
+au FileType sh setl sw=4 ts=4 noet
+
+" Transparent GPG Encryption
 augroup gpg_encrypted
   au!
 

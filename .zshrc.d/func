@@ -176,18 +176,14 @@ scr() {
     if [[ $# -eq 0 ]]; then
         printf >&2 'Usage: scr script-name.\n'
         return 1
-    elif [[ $1 == *.* ]]; then
-        local fn="$1"
-    else
-        local fn="$1.sh"
     fi
 
     IFS=$'\n' \
-    local scripts=($(find -L '/usr/local/scripts' -iname "*$fn*" -executable -print))
+    local scripts=($(find -L '/usr/local/scripts' -iname "*$1*" -executable -print))
     local scriptcount="${#scripts[@]}"
 
     if [[ $scriptcount -eq 0 ]]; then
-        printf >&2 'Cannot find script "%s".\n' "$fn"
+        printf >&2 'Cannot find script "%s".\n' "$1"
         return 1
     elif [[ $scriptcount -gt 1 ]]; then
         printf >&2 'Multiple script candidates:\n'
