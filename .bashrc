@@ -27,7 +27,7 @@ __prompt_command() {
 
     PS1+="${GREEN}\u@\h${RESET} ${YELLOW}\w${RESET}"
 
-    if [ $EUID -eq 0 ]; then
+    if [[ $EUID -eq 0 ]]; then
         PS1+="${RED}#${RESET} "
     else
         PS1+="\$ "

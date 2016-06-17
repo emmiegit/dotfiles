@@ -9,7 +9,7 @@ alias du='du -kh'
 alias free='free -h'
 alias iotop='sudo iotop -o'
 alias pdflatex='pdflatex -halt-on-error'
-alias pgrep='pgrep -fl'
+alias pgrep='pgrep -afl'
 alias shred='shred -uv'
 alias sudo='sudo -EH'
 alias valgrind='valgrind --track-origins=yes'
@@ -28,17 +28,28 @@ alias chmod='chmod -v --preserve-root'
 alias cp='cp -v'
 alias ln='ln -v'
 alias mv='mv -v'
-alias rm='rm -v --one-file-system'
 
 # Disabled commands
 alias dm-tool='command-disabled'
 
+# Platform-specific commands
+case "$(uname)" in
+    Darwin)
+        alias ls='ls -G'
+        alias rm='rm -v'
+        ;;
+    Linux)
+        alias ls='ls -hHF --color=tty'
+        alias rm='rm -v --one-file-system'
+        alias grep='grep --color'
+        alias egrep='egrep --color=auto'
+        alias fgrep='fgrep --color=auto'
+        alias open='xdg-open'
+        ;;
+esac
+
 # Colorize output
 alias diff='colordiff'
-alias grep='grep --color'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias ls='ls -hHF --color=tty'
 alias less='less -r'
 
 # Derivative commands
@@ -64,7 +75,6 @@ alias dtail='dmesg | tail'
 alias jctl='journalctl'
 alias keyart='ssh-keygen -lv -f'
 alias lsnet='ls /sys/class/net'
-alias open='xdg-open'
 alias sctl='sudo -E systemctl'
 alias srcrc='source ~/.zshrc'
 alias sshagent='eval $(ssh-agent -t 15m)'
@@ -87,9 +97,6 @@ alias gadd='gcalcli add --calendar "grawcards@gmail.com"'
 alias largest="find . -printf '%s %p\n' | sort -nr | head"
 alias smallest="find . -printf '%s %p\n' | sort -nr | tail"
 
-# Script shortcuts
-alias mkdesktop='/usr/local/scripts/mkdesktop.sh'
-
 # For fun
 alias chanstamp='date +%s%3N'
 alias maze='Z=╱╲;for((;;)){ printf ${Z:RANDOM&1:1};sleep .01;};unset Z'
@@ -100,8 +107,8 @@ alias mpvac='mpv --speed=0.67 --audio-pitch-correction=no --no-video'
 # Shortcut commands
 cdls() { cd "$@" && ls; }
 cdmv() { mv "$1" "$2" && cd "$2"; }
-catls() { [ -d "$1" ] && ls "$1" || cat "$1"; }
-countf() { /usr/bin/ls -1 $@ | wc -l; }
+catls() { [[ -d "$1" ]] && ls "$1" || cat "$1"; }
+countf() { /usr/bin/ls -1 "$@" | wc -l; }
 digq() { dig "$@" | grep 'Query time'; }
 lsicon() { ls /usr/share/icons/Numix-Circle/scalable/apps | grep "$1"; }
 mkcd() { mkdir -p "$@" && cd "$@"; }
@@ -109,7 +116,7 @@ pacbin() { pacman -Ql "$1" | grep --color=never bin; }
 pexec() { echo $@; $@; }
 pls() { sudo -- "${SHELL:-zsh}" -c "$(fc -ln -1)"; }
 strerror() { python -c "import os; print(os.strerror($1))"; }
-trash() { [ $# -eq 0 ] && trash-list || trash-put $@; }
+trash() { [[ $# -eq 0 ]] && trash-list || trash-put $@; }
 
 # Colorize text
 red()    { printf "\e[31m\e[1m"$@"\e[0m"; }
@@ -120,7 +127,7 @@ greenl() { printf "\e[32m"$@"\e[0m"; }
 bluel()  { printf "\e[34m"$@"\e[0m"; }
 
 # Hash checkers
-md5check() { test `md5sum $2 | cut -d' ' -f1` == "$1" && green '[OK]' || red '[FAIL]'; }
-sha1check() { test `sha1sum $2 | cut -d' ' -f1` == "$1" && green '[OK]' || red '[FAIL]'; }
-sha256check() { test `sha256sum $2 | cut -d' ' -f1` == "$1" && green '[OK]' || red '[FAIL]'; }
+md5check()    { [[ $(md5sum "$2"    | cut -d' ' -f1) == "$1" ]] && green '[OK]' || red '[FAIL]'; }
+sha1check()   { [[ $(sha1sum "$2"   | cut -d' ' -f1) == "$1" ]] && green '[OK]' || red '[FAIL]'; }
+sha256check() { [[ $(sha256sum "$2" | cut -d' ' -f1) == "$1" ]] && green '[OK]' || red '[FAIL]'; }
 
