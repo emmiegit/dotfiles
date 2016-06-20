@@ -4,8 +4,7 @@
 bindkey "${terminfo[khome]}" beginning-of-line
 bindkey "${terminfo[kend]}" end-of-line
 
-# Set ^R to be like in bash
-bindkey '^R' history-incremental-search-backward
+which fzf > /dev/null || bindkey '^R' history-incremental-search-backward
 
 # Makes bpython the default interactive shell
 python()  { [[ $# -eq 0 ]] && bpython  || env python  "$@"; }
