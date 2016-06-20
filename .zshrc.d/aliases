@@ -24,7 +24,6 @@ alias xsnow='xsnow -nokeepsnow -notrees'
 # * Verbosity so you know what's going on
 # * Prevent rm from removing file systems
 # * Prevent chmod from operating on /
-alias chmod='chmod -v --preserve-root'
 alias cp='cp -v'
 alias ln='ln -v'
 alias mv='mv -v'
@@ -35,10 +34,12 @@ alias dm-tool='command-disabled'
 # Platform-specific commands
 case "$(uname)" in
     Darwin)
+        alias chmod='chmod -v'
         alias ls='ls -GF'
         alias rm='rm -v'
         ;;
     Linux)
+        alias chmod='chmod -v --preserve-root'
         alias ls='ls -hHF --color=tty'
         alias rm='rm -v --one-file-system'
         alias grep='grep --color'
