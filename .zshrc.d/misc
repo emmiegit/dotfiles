@@ -8,3 +8,14 @@ bindkey "${terminfo[kend]}" end-of-line
 python()  { [[ $# -eq 0 ]] && bpython  || env python  "$@"; }
 python2() { [[ $# -eq 0 ]] && bpython2 || env python2 "$@"; }
 
+if [[ $EUID -eq 0 ]]; then
+    case "$(uname)" in
+        Darwin)
+            alias ls='ls -AGF'
+            ;;
+        Linux)
+            alias ls='ls -AhHF --color=tty'
+            ;;
+    esac
+fi
+
