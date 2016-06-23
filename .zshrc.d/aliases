@@ -128,7 +128,8 @@ greenl() { printf "\e[32m"$@"\e[0m"; }
 bluel()  { printf "\e[34m"$@"\e[0m"; }
 
 # Hash checkers
-md5check()    { [[ $(md5sum "$2"    | cut -d' ' -f1) == "$1" ]] && green '[OK]' || red '[FAIL]'; }
-sha1check()   { [[ $(sha1sum "$2"   | cut -d' ' -f1) == "$1" ]] && green '[OK]' || red '[FAIL]'; }
+md5check()    { [[ $(md5sum    "$2" | cut -d' ' -f1) == "$1" ]] && green '[OK]' || red '[FAIL]'; }
+sha1check()   { [[ $(sha1sum   "$2" | cut -d' ' -f1) == "$1" ]] && green '[OK]' || red '[FAIL]'; }
 sha256check() { [[ $(sha256sum "$2" | cut -d' ' -f1) == "$1" ]] && green '[OK]' || red '[FAIL]'; }
+sha512check() { [[ $(sha512sum "$2" | cut -d' ' -f1) == "$1" ]] && green '[OK]' || red '[FAIL]'; }
 

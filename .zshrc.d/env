@@ -15,10 +15,10 @@ case "$(uname)" in
         ;;
 esac
 
-export LANG=en_US.UTF-8
-export EDITOR=vim
+export LANG='en_US.UTF-8'
+export EDITOR='vim'
 export VISUAL="$EDITOR"
-export GPGKEY=2C3CF0C7
+export GPGKEY='2C3CF0C7'
 export LD_LIBRARY_PATH='/usr/local/lib'
 export WINEPREFIX="$HOME/.wine/"
 export WINEHOME="$HOME/.wine/"

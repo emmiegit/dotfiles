@@ -25,11 +25,6 @@ cconv() {
     wget -qO- "http://www.google.com/finance/converter?a=$1&from=$2&to=$3" | sed '/res/!d;s/<[^>]*>//g';
 } 
 
-# cd function similar to the one provided with bash
-#cd() {
-#
-#}
-
 # A command replacement that says 'this command is disabled'.
 command-disabled() {
     echo >&2 'This command has been disabled for safety purposes.'
@@ -168,8 +163,8 @@ pjson() {
 roll() {
     if [[ $# -gt 1 ]]; then
         case "$1" in
-            d*) local upper="${1:1:-1}" ;;
-            D*) local upper="${1:1:-1}" ;;
+            d*) local upper="${1:1}" ;;
+            D*) local upper="${1:1}" ;;
             *) local upper="$1" ;;
         esac
     else
