@@ -224,6 +224,18 @@ sl() {
     env sl "-$sett"
 }
 
+# Make sure the user is shutting down the right machine
+shutdown() {
+    sleep 0.5
+    printf 'About to shutdown %s. You sure? ' "$(cat /etc/hostname)"
+    read -r response
+    case "$response" in
+        y*) sudo shutdown now ;;
+        Y*) sudo shutdown now ;;
+        *) echo >&2 'Aborting.'
+    esac
+}
+
 # Ask for confirmation and then suspend
 suspend() {
     confirm && \
