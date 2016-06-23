@@ -35,7 +35,7 @@ alias dm-tool='command-disabled'
 case "$(uname)" in
     Darwin)
         alias chmod='chmod -v'
-        alias ls='ls -GF'
+        alias ls='ls -GFL'
         alias rm='rm -v'
         ;;
     Linux)
