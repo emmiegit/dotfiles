@@ -166,9 +166,17 @@ pjson() {
 
 # Generate a dice roll
 roll() {
-    local upper=$1
-    [[ -z "$upper" ]] && upper=100
-    echo $[ 1 + $[ RANDOM % $upper ] ]
+    if [[ $# -gt 1 ]]; then
+        case "$1" in
+            d*) local upper="${1:1:-1}" ;;
+            D*) local upper="${1:1:-1}" ;;
+            *) local upper="$1" ;;
+        esac
+    else
+        local upper=100
+    fi
+
+    echo $[ 1 + $[ RANDOM % "$upper" ] ]
 }
 
 # Run one of my scripts without specifying the path
