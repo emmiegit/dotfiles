@@ -37,6 +37,7 @@ case "$(uname)" in
         alias chmod='chmod -v'
         alias ls='ls -GFL'
         alias rm='rm -v'
+        alias vim='env vim -p'
         ;;
     Linux)
         alias chmod='chmod -v --preserve-root'
