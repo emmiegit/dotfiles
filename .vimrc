@@ -225,15 +225,7 @@ let g:localvimrc_persistence_file = expand('$HOME') . '/.vim_runtime/localvimrc_
 
 " Only source .lvimrc files in ~/Programming
 let g:localvimrc_blacklist = '.*'
-
-if has('unix')
-  let s:uname = system('uname -s')
-  if s:uname == 'Darwin\n'
-    let g:localvimrc_whitelist = expand('$HOME') . '/Documents/.*'
-  else
-    let g:localvimrc_whitelist = expand('$HOME') . '/Programming/.*'
-  endif
-endif
+let g:localvimrc_whitelist = [expand('$HOME') . '/Documents/.*', expand('$HOME') . '/Programming/.*']
 
 " Instant Markdown
 let g:instant_markdown_autostart = 1
