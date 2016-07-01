@@ -208,7 +208,7 @@ nnoremap <leader>s :mksession<cr>
 " Settings for vim powerline
 set laststatus=2
 set t_Co=256
-let g:powerline_pycmd="py3"
+let g:powerline_pycmd='py3'
 
 " Set blank .tex files to be LaTeX
 let g:tex_flavor='latex'
@@ -225,7 +225,15 @@ let g:localvimrc_persistence_file = expand('$HOME') . '/.vim_runtime/localvimrc_
 
 " Only source .lvimrc files in ~/Programming
 let g:localvimrc_blacklist = '.*'
-let g:localvimrc_whitelist = expand('$HOME') . '/Programming/.*'
+
+if has('unix')
+  let s:uname = system('uname -s')
+  if s:uname == 'Darwin\n'
+    let g:localvimrc_whitelist = expand('$HOME') . '/Documents/.*'
+  else
+    let g:localvimrc_whitelist = expand('$HOME') . '/Programming/.*'
+  endif
+endif
 
 " Instant Markdown
 let g:instant_markdown_autostart = 1
