@@ -275,8 +275,9 @@ endfunc
 " }}}
 
 " File-Specific Settings {{{
-au FileType sh setl sw=4 ts=4 noet
-au FileType c cpp setl si
+autocmd BufRead *.c setl smartindent
+autocmd BufRead *.cpp setl smartindent
+autocmd BufRead *.sh setl shiftwidth=4 tabstop=4 noexpandtab
 
 " Transparent GPG Encryption
 augroup gpg_encrypted
