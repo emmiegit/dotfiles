@@ -275,6 +275,8 @@ endfunc
 " }}}
 
 " File-Specific Settings {{{
+autocmd BufRead *.txt nunmap j
+autocmd BufRead *.txt nunmap k
 autocmd BufRead *.c setl smartindent
 autocmd BufRead *.cpp setl smartindent
 autocmd BufRead *.sh setl shiftwidth=4 tabstop=4 noexpandtab
