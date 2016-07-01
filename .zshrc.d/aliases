@@ -40,7 +40,7 @@ case "$(uname)" in
         ;;
     Linux)
         alias chmod='chmod -v --preserve-root'
-        alias ls='ls -hHF --color=tty'
+        alias ls='ls -hHFN --group-directories-first --color=tty'
         alias rm='rm -v --one-file-system'
         alias grep='grep --color'
         alias egrep='egrep --color=auto'
@@ -51,7 +51,7 @@ esac
 
 # Colorize output
 alias diff='colordiff'
-alias less='less -r'
+alias less='less -RMi'
 
 # Derivative commands
 alias cpa='cp -a'
