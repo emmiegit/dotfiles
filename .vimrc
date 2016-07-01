@@ -55,26 +55,6 @@ set guioptions-=r
 set guioptions-=R
 set guioptions-=l
 set guioptions-=L
-
-" Change cursor color and type in different modes
-"highlight Cursor guifg=white guibg=black
-"highlight iCursor guifg=white guibg=steelblue
-"set guicursor=n-v-c:block-cursor
-"set guicursor+=i:ver100-iCursor
-"set guicursor+=n-v-c:blinkon0
-"set guicursor+=i:blinkwait10
-"
-if &term =~ '^xterm\\|rxvt'
-  " solid underscore
-  let &t_SI .= "\<Esc>[4 q"
-  " solid block
-  let &t_EI .= "\<Esc>[2 q"
-  " 1 or 0 -> blinking block
-  " 3 -> blinking underscore
-  " 5 -> blinking vertical bar
-  " 6 -> solid vertical bar
-endif
-
 " }}}
 
 " Behavior settings {{{
@@ -114,9 +94,8 @@ try
 catch
 endtry
 
-" Enable auto indent and smart indent
+" Enable auto indent
 set ai
-set si
 
 " Turn off physical line wrapping (i.e. the automatic insert of newlines)
 set textwidth=0
@@ -238,8 +217,18 @@ let g:tex_flavor='latex'
 let g:ycm_global_ycm_extra_conf = '/etc/vim/ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 0
 
+" Local vimrc
+let g:localvimrc_reverse = 1
+let g:localvimrc_count = 1
+let g:localvimrc_persistent = 2
+let g:localvimrc_persistence_file = expand('$HOME') . '/.vim_runtime/localvimrc_persist'
+
+" Only source .lvimrc files in ~/Programming
+let g:localvimrc_blacklist = '.*'
+let g:localvimrc_whitelist = expand('$HOME') . '/Programming/.*'
+
 " Instant Markdown
-let g:instant_markdown_autostart = 0
+let g:instant_markdown_autostart = 1
 " }}}
 
 " Helper functions {{{
@@ -287,6 +276,7 @@ endfunc
 
 " File-Specific Settings {{{
 au FileType sh setl sw=4 ts=4 noet
+au FileType c cpp setl si
 
 " Transparent GPG Encryption
 augroup gpg_encrypted
