@@ -1,6 +1,6 @@
 {
     "charmap": "gucharmap",
-    "discordcanary": "DiscordCanary",
+    "discord": "discord-canary",
     "intellij": "idea.sh",
     "league": "league-of-legends",
     "melee": "dolphin-emu-cli --exec /usr/share/iso/wii+gamecube/super-smash-bros-melee-usa.iso",
