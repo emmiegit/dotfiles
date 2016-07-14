@@ -118,7 +118,6 @@ mkcd() { mkdir -p "$@" && cd "$@"; }
 pacbin() { pacman -Ql "$1" | grep --color=never bin; }
 pexec() { echo $@; $@; }
 pls() { sudo -- "${SHELL:-zsh}" -c "$(fc -ln -1)"; }
-strerror() { python -c "import os; print(os.strerror($1))"; }
 trash() { [[ $# -eq 0 ]] && trash-list || trash-put $@; }
 
 # Colorize text
