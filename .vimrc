@@ -17,14 +17,15 @@ set magic           " Use traditional regular expressions (see wiki)
 set mat=2           " How many tenths of a second to blink when matching brackets
 set mouse=n         " Enable mouse usage (normal mode only)
 set nocompatible    " Disable vi compatibility options
-set noshowmode      " Powerline does this for me, so I don't need two modes.
+set noshowmode      " Powerline does this for me, so I don't need two modes
 set nosmartindent   " Prevent audo dedent on Python comment
 set relativenumber  " Use relative line numbers (see below)
 set ruler           " Display the bar at the bottom 
-set showcmd         " Show (partial) command in status line.
-set showmatch       " Show matching brackets.
+set showcmd         " Show (partial) command in status line
+set showmatch       " Show matching brackets
 set smartcase       " Do smart case matching
 set smarttab        " Use smart tabbing
+set tabpagemax=500  " Maximum number of tabs
 set timeoutlen=50   " To prevent the lag on 'O'
 set wrap            " Wrap long lines
 " }}}

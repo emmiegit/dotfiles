@@ -115,7 +115,7 @@ countf() { /usr/bin/ls -1 "$@" | wc -l; }
 digq() { dig "$@" | grep 'Query time'; }
 lsicon() { ls /usr/share/icons/Numix-Circle/scalable/apps | grep "$1"; }
 mkcd() { mkdir -p "$@" && cd "$@"; }
-pacbin() { pacman -Ql "$1" | grep --color=never bin; }
+pacbin() { pacman -Ql "$1" | /usr/bin/grep --color=never bin | awk '{print $2}'; }
 pexec() { echo $@; $@; }
 pls() { sudo -- "${SHELL:-zsh}" -c "$(fc -ln -1)"; }
 trash() { [[ $# -eq 0 ]] && trash-list || trash-put $@; }
