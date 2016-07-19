@@ -18,7 +18,7 @@ alias vi='vim'
 alias view='vim -Rp'
 alias vim='vim -p'
 alias which='which -a'
-alias yt-dl='noglob youtube-dl -o \%\(title\)s.\%\(ext\)s'
+alias ytdl='noglob youtube-dl -o \%\(title\)s.\%\(ext\)s'
 alias xsnow='xsnow -nokeepsnow -notrees'
 
 # Modifiers on file operations
@@ -38,13 +38,14 @@ case "$(uname)" in
         alias chmod='chmod -v'
         alias ls='ls -GFL'
         alias rm='rm -v'
+        alias grep='grep -I'
         alias vim='env vim -p'
         ;;
     Linux)
         alias chmod='chmod -v --preserve-root'
         alias ls='ls -hHFN --group-directories-first --color=tty'
         alias rm='rm -v --one-file-system'
-        alias grep='grep --color'
+        alias grep='grep -I --color'
         alias egrep='egrep --color=auto'
         alias fgrep='fgrep --color=auto'
         alias open='xdg-open'
