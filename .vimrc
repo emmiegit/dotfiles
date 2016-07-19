@@ -277,6 +277,7 @@ endfunc
 
 " File-Specific Settings {{{
 autocmd BufRead *.c setl smartindent shiftwidth=8 tabstop=8 noexpandtab
+autocmd BufRead *.h setl smartindent shiftwidth=8 tabstop=8 noexpandtab
 autocmd BufRead *.cpp setl smartindent
 autocmd BufRead *.sh setl shiftwidth=4 tabstop=4 noexpandtab
 
