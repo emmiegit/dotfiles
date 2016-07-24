@@ -217,6 +217,7 @@ let g:tex_flavor='latex'
 " YouCompleteMe options
 let g:ycm_global_ycm_extra_conf = '/etc/vim/ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 0
+let g:ycm_autoclose_preview_window_after_completion = 1
 
 " Local vimrc
 let g:localvimrc_reverse = 1
