@@ -327,7 +327,7 @@ exec --no-startup-id steam
 exec --no-startup-id uim-xim
 
 # Set up default workspaces
-exec i3-msg 'workspace 2; exec $Terminal; exec DiscordCanary; exec pidgin'
+exec i3-msg 'workspace 2; exec $Terminal; exec discord-canary; exec pidgin'
 exec i3-msg 'workspace 3; exec $Email'
 
 # Run user startup scripts

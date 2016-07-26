@@ -13,12 +13,11 @@ alias pdflatex='pdflatex -halt-on-error'
 alias pgrep='pgrep -afl'
 alias shred='shred -uv'
 alias sudo='sudo -EH'
-alias valgrind='valgrind --track-origins=yes'
 alias vi='vim'
 alias view='vim -Rp'
 alias vim='vim -p'
 alias which='which -a'
-alias yt-dl='noglob youtube-dl -o \%\(title\)s.\%\(ext\)s'
+alias ytdl='noglob youtube-dl -o \%\(title\)s.\%\(ext\)s'
 alias xsnow='xsnow -nokeepsnow -notrees'
 
 # Modifiers on file operations
@@ -38,13 +37,14 @@ case "$(uname)" in
         alias chmod='chmod -v'
         alias ls='ls -GFL'
         alias rm='rm -v'
+        alias grep='grep -I'
         alias vim='env vim -p'
         ;;
     Linux)
         alias chmod='chmod -v --preserve-root'
         alias ls='ls -hHFN --group-directories-first --color=tty'
         alias rm='rm -v --one-file-system'
-        alias grep='grep --color'
+        alias grep='grep -I --color'
         alias egrep='egrep --color=auto'
         alias fgrep='fgrep --color=auto'
         alias open='xdg-open'
@@ -90,6 +90,19 @@ alias week='date +%V'
 alias ytmp3='noglob youtube-dl -o %\(title\)s.%\(ext\)s --extract-audio'
 alias md='mkdir -p'
 
+# Valgrind shortcuts
+alias memcheck='valgrind --tool=memcheck --track-origins=yes'
+alias cachegrind='valgrind --tool=cachegrind'
+alias callgrind='valgrind --tool=callgrind'
+alias helgrind='valgrind --tool=helgrind'
+alias drd='valgrind --tool=drd'
+alias massif='valgrind --tool=massif'
+alias dhat='valgrind --tool=dhat'
+alias sgcheck='valgrind --tool=sgcheck'
+alias bbv='valgrind --tool=bbv'
+alias lackey='valgrind --tool=lackey'
+alias nulgrind='valgrind --tool=none'
+
 # gcalcli shortcuts
 alias calm='gcalcli calm'
 alias calw='gcalcli calw'
@@ -115,10 +128,10 @@ countf() { /usr/bin/ls -1 "$@" | wc -l; }
 digq() { dig "$@" | grep 'Query time'; }
 lsicon() { ls /usr/share/icons/Numix-Circle/scalable/apps | grep "$1"; }
 mkcd() { mkdir -p "$@" && cd "$@"; }
-pacbin() { pacman -Ql "$1" | grep --color=never bin; }
+myip() { wget -qO- http://ipecho.net/plain; echo; }
+pacbin() { pacman -Ql "$1" | /usr/bin/grep --color=never /bin/ | awk '{print $2}'; }
 pexec() { echo $@; $@; }
 pls() { sudo -- "${SHELL:-zsh}" -c "$(fc -ln -1)"; }
-strerror() { python -c "import os; print(os.strerror($1))"; }
 trash() { [[ $# -eq 0 ]] && trash-list || trash-put $@; }
 
 # Colorize text
