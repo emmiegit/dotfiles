@@ -37,7 +37,7 @@ case "$(uname)" in
         alias chmod='chmod -v'
         alias ls='ls -GFL'
         alias rm='rm -v'
-        alias grep='grep -I'
+        alias grep='grep -I --color=auto'
         alias vim='env vim -p'
         ;;
     Linux)
