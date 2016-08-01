@@ -153,6 +153,9 @@ noremap <leader>m mmHmt:%s/<C-v><cr>//ge<cr>'tzt'm
 " :W sudo saves the file
 command W w !sudo tee % > /dev/null
 
+" :Cstyle sets my preferred formatting for C programs
+command Cstyle set ts=8 sw=8 noet
+
 " Move between windows easier
 nnoremap <SID> <Plug>IMAP_JumpForward
 map <C-j> <C-W>j
