@@ -154,7 +154,7 @@ noremap <leader>m mmHmt:%s/<C-v><cr>//ge<cr>'tzt'm
 command W w !sudo tee % > /dev/null
 
 " :Cstyle sets my preferred formatting for C programs
-command Cstyle set ts=8 sw=8 noet
+command Cstyle set shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab
 
 " Move between windows easier
 nnoremap <SID> <Plug>IMAP_JumpForward
@@ -280,8 +280,8 @@ endfunc
 " }}}
 
 " File-Specific Settings {{{
-autocmd BufRead *.c setl smartindent shiftwidth=8 tabstop=8 noexpandtab
-autocmd BufRead *.h setl smartindent shiftwidth=8 tabstop=8 noexpandtab
+autocmd BufRead *.c setl smartindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab
+autocmd BufRead *.h setl smartindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab
 autocmd BufRead *.cpp setl smartindent
 autocmd BufRead *.sh setl shiftwidth=4 tabstop=4 noexpandtab
 
