@@ -28,7 +28,11 @@ set smarttab        " Use smart tabbing
 set tabpagemax=500  " Maximum number of tabs
 set timeoutlen=50   " To prevent the lag on 'O'
 set wrap            " Wrap long lines
+
+" Set leader key
+let mapleader = ","
 " }}}
+
 
 " Appearance {{{
 """"""""""""""""
@@ -50,12 +54,6 @@ set tw=500
 " Set relative line numbers
 set number
 set relativenumber
-
-" Disable scrollbars
-set guioptions-=r
-set guioptions-=R
-set guioptions-=l
-set guioptions-=L
 " }}}
 
 " Behavior settings {{{
@@ -145,7 +143,7 @@ map Y y$
 nnoremap <C-l> :nohl<cr><C-l>
 
 " Remove ^M from Windows newlines
-noremap <leader>m mmHmt:%s/<C-v><cr>//ge<cr>'tzt'm
+noremap <leader>dos mmHmt:%s/<C-v><cr>//ge<cr>'tzt'm
 " }}}
 
 " New commands {{{
@@ -160,11 +158,10 @@ command Cstyle set shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab
 nnoremap <SID> <Plug>IMAP_JumpForward
 map <C-j> <C-W>j
 map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+" map <C-h> <C-W>h
+" map <C-l> <C-W>l
 
 " Open a newline without going into insert mode
-nmap <S-cr> O<esc>
 nmap <cr> o<esc>
 
 " Pressing * or # when in visual mode searches for the current selection
@@ -179,8 +176,8 @@ cmap <leader>bd :Bclose<cr>:tabclose<cr>gT
 
 " Close all the buffers
 map <leader>ba :bufdo bd<cr>
-map <leader>l :bnext<cr>
-map <leader>h :bprevious<cr>
+map <leader>bn :bnext<cr>
+map <leader>bp :bprevious<cr>
 
 " Useful mappings for managing tabs
 map <leader>tn :tabnew<cr>
