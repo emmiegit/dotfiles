@@ -36,6 +36,7 @@ alias dm-tool='command-disabled'
 case "$(uname)" in
     Darwin)
         alias chmod='chmod -v'
+        alias df='df -kh'
         alias ls='ls -GFL'
         alias rm='rm -v'
         alias grep='grep -I --color=auto'
@@ -78,7 +79,6 @@ alias lxb='ls -lXB'      # Sort by extension
 # Shortcut commands
 alias allgrp='cut -d: -f1 /etc/group'
 alias allusr='cut -d: -f1 /etc/passwd'
-alias checkip='curl ifconfig.me'
 alias define='sdcv'
 alias doc2pdf='libreoffice --headless --invisible --norestore --convert-to pdf'
 alias dtail='dmesg | tail'
@@ -88,7 +88,6 @@ alias lsnet='ls /sys/class/net'
 alias sctl='sudo -E systemctl'
 alias srcrc='source ~/.zshrc'
 alias sshagent='eval $(ssh-agent -t 15m)'
-alias vigtk='sudo vi -p /usr/share/gtk-2.0/gtkrc /usr/share/gtk-3.0/settings.ini'
 alias vii3='vim ~/.config/i3/config'
 alias virc='vim -p ~/.zshrc ~/.zshrc.d/*'
 alias vibrc='vim ~/.bashrc'
