@@ -3,6 +3,7 @@
 """""""""
 
 " General options {{{
+"""""""""""""""""""""
 set autoread        " Set to auto read when a file is changed
 set autowrite       " Automatically save before commands like :next and :make
 set backupcopy=yes  " Preserve hard links when making copies
@@ -32,7 +33,6 @@ set wrap            " Wrap long lines
 " Set leader key
 let mapleader = ","
 " }}}
-
 
 " Appearance {{{
 """"""""""""""""
@@ -308,4 +308,4 @@ augroup gpg_encrypted
 augroup END
 " }}}
 
-" vim: set ts=2 sw=2 foldmethod=marker foldlevel=0:
+" vim: set ts=2 sw=2 fdm=marker foldlevel=0:

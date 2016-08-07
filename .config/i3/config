@@ -1,16 +1,21 @@
 # i3 config file (v4)
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+# Basics {{{
+############
 # Use the Super key as the main $mod key.
 set $mod Mod4
 set $alt Mod1
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # Close focused window
 bindsym $mod+Shift+q kill
+# }}}
 
-# Change window focus
+# General window movement {{{
+#############################
 # Different from defaults: uses true vim-style keybindings
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -22,6 +27,7 @@ bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right 
+
 # Move focused window
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
@@ -33,19 +39,31 @@ bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
+# }}}
 
+# Other window movement {{{
+###########################
 # Jump to urget window
 bindsym $mod+x [urgent=latest] focus
 
 # Don't jump the mouse when changing focus
 mouse_warping none
 
+# Toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# Change focus between tiling / floating windows
+bindsym $mod+f focus mode_toggle
+# }}}
+
+# Layout {{{
+############
+# Split in vertical orientation
+bindsym $mod+v split v
+
 # Split in horizontal orientation
 # Different from defaults: uses g so h can be used for movement
 bindsym $mod+g split h
-
-# Split in vertical orientation
-bindsym $mod+v split v
 
 # Enter fullscreen mode for the focused container
 bindsym $mod+Shift+f fullscreen
@@ -55,19 +73,32 @@ bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
-# Toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
-
-# change focus between tiling / floating windows
-bindsym $mod+f focus mode_toggle
-
 # Focus the parent container
 bindsym $mod+a focus parent
 
 # Focus the child container
 bindsym $mod+d focus child
+# }}}
 
-# switch to workspace
+# Workspaces {{{
+################
+# Set workspaces to be on certain monitors
+# odd workspaces on the first monitor, even ones on the second
+workspace 1 output DVI-D-0
+workspace 2 output DVI-D-1
+workspace 3 output DVI-D-0
+workspace 4 output DVI-D-1
+workspace 5 output DVI-D-0
+workspace 6 output DVI-D-1
+workspace 7 output DVI-D-0
+workspace 8 output DVI-D-1
+workspace 9 output DVI-D-0
+workspace 10 output DVI-D-1
+# }}}
+
+# Workspace switching {{{
+#########################
+# Switch to workspace
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
 bindsym $mod+3 workspace 3
@@ -103,29 +134,7 @@ bindsym $mod+mod1+8 move container to workspace 8; workspace 8
 bindsym $mod+mod1+9 move container to workspace 9; workspace 9
 bindsym $mod+mod1+0 move container to workspace 10; workspace 10
 
-## Set workspaces to be on certain monitors
-## odd workspaces on the first monitor, even ones on the second
-workspace 1 output DVI-D-0
-workspace 2 output DVI-D-1
-workspace 3 output DVI-D-0
-workspace 4 output DVI-D-1
-workspace 5 output DVI-D-0
-workspace 6 output DVI-D-1
-workspace 7 output DVI-D-0
-workspace 8 output DVI-D-1
-workspace 9 output DVI-D-0
-workspace 10 output DVI-D-1
-
-# Reload the configuration file
-bindsym $mod+Shift+c reload
-
-# Restart i3 in-place
-bindsym $mod+Shift+r restart
-
-# Exit i3 (logs you out)
-bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'Do you really want to exit i3? This will log you out.' -b 'Yes, exit i3' 'i3-msg exit'"
-
-# Enter the current workspace to go back
+# Switch to the last workspace
 workspace_auto_back_and_forth yes
 bindsym $mod+z workspace back_and_forth
 
@@ -135,13 +144,18 @@ bindsym $mod+Shift+z move container to workspace back_and_forth; workspace back_
 # Goto marks
 bindsym $mod+m exec i3-input -F 'mark %s' -P 'Mark name: '
 bindsym $mod+Shift+m exec i3-input -F '[con_mark=%s] focus' -P 'Go to mark: '
+# }}}
 
-# Lighthouse launcher
-bindsym $mod+slash exec --no-startup-id printf '%s & disown' "$(lighthouse)" | bash
+# Basic keybinds {{{
+####################
+# Reload the configuration file
+bindsym $mod+Shift+c reload
 
-# Tablet modes
-bindsym $mod+y exec --no-startup-id /usr/local/scripts/wm/set-wacom-mode.sh draw
-bindsym $mod+Shift+y exec --no-startup-id /usr/local/scripts/wm/set-wacom-mode.sh osu
+# Restart i3 in-place
+bindsym $mod+Shift+r restart
+
+# Exit i3
+bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'Do you really want to exit i3? This will log you out.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # Resize window (you can also use the mouse for that)
 mode "resize" {
@@ -180,29 +194,29 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+# }}}
+
+# Appearance {{{
+font pango:Droid Sans 9
 
 # Handling popups when in fullscreen mode
 popup_during_fullscreen smart
+# }}}
 
-# Gaps settings
+# Gaps settings {{{
+###################
 smart_gaps on
 smart_borders on
 gaps inner 8
 gaps outer 0
 #gaps outer current plus 4
 
-# Font settings
-font pango:Droid Sans 9
-
 # For i3-gaps compatibilty
 for_window [class="^.*"] border pixel 0
+# }}}
 
-# Settings for the status bar
-# Lemonbar
-#bar {
-#        i3bar_command ~/.config/i3/lemonbar/main.py
-#}
-
+# Status bar {{{
+################
 # Default i3 bar
 bar {
         position top
@@ -228,8 +242,10 @@ bar {
             binding_mode       #2f343a #900000 #ffffff
         }
 }
+# }}}
 
-# Window-specific settings
+# Window-specific settings {{{
+##############################
 # Available tokens: class, instance, window_role, con_id, id, window_type, con_mark, title, urgent, workspace
 for_window [class="Bleachbit" instance="bleachbit"] floating enable
 for_window [class="Dolphin-emu" instance="dolphin-emu"] floating enable
@@ -256,14 +272,22 @@ for_window [class="net-technicpack-launcher-LauncherMain"] floating enable
 for_window [class="qBittorrent" instance="qbittorrent"] floating enable
 for_window [instance="Toplevel"] floating enable
 for_window [title="Terminator Preferences"] floating enable
+# }}}
 
-# Launch Applications
+# Default applications {{{
+##########################
 set $Terminal terminator
 set $Explorer pcmanfm
 set $Editor gvim
 set $Browser icecat
 set $Email claws-mail
 set $Locker /usr/local/scripts/wm/lock.sh
+# }}}
+
+# Application keybinds {{{
+##########################
+# Lighthouse launcher
+bindsym $mod+slash exec --no-startup-id printf '%s & disown' "$(lighthouse)" | bash
 
 # Start a terminal
 bindsym $mod+Return exec $Terminal
@@ -310,7 +334,13 @@ bindsym --release Shift+Print exec --no-startup-id /usr/local/scripts/wm/screens
 bindsym --release Ctrl+Print exec --no-startup-id /usr/local/scripts/wm/screenshot-monitor-0.sh
 bindsym --release Ctrl+Shift+Print exec --no-startup-id /usr/local/scripts/wm/screenshot-monitor-1.sh
 
-# Start-up applications
+# Tablet modes
+bindsym $mod+y exec --no-startup-id /usr/local/scripts/wm/set-wacom-mode.sh draw
+bindsym $mod+Shift+y exec --no-startup-id /usr/local/scripts/wm/set-wacom-mode.sh osu
+# }}}
+
+# Start-up applications {{{
+###########################
 exec --no-startup-id /usr/local/scripts/wm/new-wallpaper.sh
 exec --no-startup-id /usr/local/scripts/wm/start-autolock.sh
 exec --no-startup-id /usr/local/scripts/wm/gmail-check-notify.py
@@ -324,13 +354,14 @@ exec --no-startup-id nvidia-settings --load-config-only
 exec --no-startup-id mocp --server
 exec --no-startup-id backintime --pw-cache start
 exec --no-startup-id steam
-exec --no-startup-id uim-xim
+#exec --no-startup-id uim-xim
 
-# Set up default workspaces
-exec i3-msg 'workspace 2; exec $Terminal; exec discord-canary; exec pidgin'
-exec i3-msg 'workspace 3; exec $Email'
-
-# Run user startup scripts
+# User startup scripts
 exec --no-startup-id /usr/local/scripts/wm/startup.sh
 
-# vim:filetype=i3
+# Default workspaces
+exec i3-msg 'workspace 2; exec $Terminal; exec discord-canary; exec pidgin'
+exec i3-msg 'workspace 3; exec $Email'
+# }}}
+
+# vim: ft=i3 fdm=marker foldlevel=0:
