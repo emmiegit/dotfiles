@@ -4,9 +4,6 @@
 # Swap escape and caps lock for vim
 /usr/local/scripts/wm/vim-keyswap.sh
 
-# Bind Scroll lock
-xmodmap -e 'add mod3 = Scroll_Lock'
-
 # Disable acceleration
 xset m 0 0
 
@@ -23,8 +20,7 @@ xinput --set-prop 'USB Optical Mouse' 'Device Accel Constant Deceleration' 1
 xinput --set-prop 'USB Optical Mouse' 'Device Accel Adaptive Deceleration' 1
 xinput --set-prop 'USB Optical Mouse' 'Device Accel Velocity Scaling' 7
 
-xsetwacom --set 'Wacom Intuos S 2 Pen stylus' MapToOutput HEAD-0
-xsetwacom --set 'Wacom Intuos S 2 Pen stylus' Area 2000 2000 8220 5500
+/usr/local/scripts/wm/set-wacom-mode.sh osu
 
 # Bradley's tablet
 xsetwacom --set 'Wacom Bamboo Connect Pen stylus' MapToOutput HEAD-0
