@@ -12,25 +12,9 @@ xinput --set-prop 'ZLY ZELOTES GAME MOUSE' 'Device Accel Constant Deceleration' 
 xinput --set-prop 'ZLY ZELOTES GAME MOUSE' 'Device Accel Adaptive Deceleration' 1
 xinput --set-prop 'ZLY ZELOTES GAME MOUSE' 'Device Accel Velocity Scaling' 10
 
-xinput --set-prop 'Microsoft Microsoft® Comfort Mouse 4500' 'Device Accel Constant Deceleration' 1
-xinput --set-prop 'Microsoft Microsoft® Comfort Mouse 4500' 'Device Accel Adaptive Deceleration' 1
-xinput --set-prop 'Microsoft Microsoft® Comfort Mouse 4500' 'Device Accel Velocity Scaling' 10
-
 xinput --set-prop 'USB Optical Mouse' 'Device Accel Constant Deceleration' 1
 xinput --set-prop 'USB Optical Mouse' 'Device Accel Adaptive Deceleration' 1
 xinput --set-prop 'USB Optical Mouse' 'Device Accel Velocity Scaling' 7
 
 /usr/local/scripts/wm/set-wacom-mode.sh osu
-
-# Bradley's tablet
-xsetwacom --set 'Wacom Bamboo Connect Pen stylus' MapToOutput HEAD-0
-xsetwacom --set 'Wacom Bamboo Connect Pen eraser' MapToOutput HEAD-0
-xsetwacom --set 'Wacom Bamboo Connect Pad pad' MapToOutput HEAD-0
-xsetwacom --set 'Wacom Bamboo Connect Pen stylus' Area 2000 3000 10360 7600
-xsetwacom --set 'Wacom Bamboo Connect Pen eraser' Area 2000 3000 10360 7600
-
-## Set input method
-#export GTK_IM_MODULE='uim'
-#export QT_IM_MODULE='uim'
-#export XMODIFIERS='@im=uim'
 
