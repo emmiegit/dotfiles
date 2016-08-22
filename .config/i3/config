@@ -354,7 +354,6 @@ exec --no-startup-id nvidia-settings --load-config-only
 exec --no-startup-id mocp --server
 exec --no-startup-id backintime --pw-cache start
 exec --no-startup-id steam
-#exec --no-startup-id uim-xim
 
 # User startup scripts
 exec --no-startup-id /usr/local/scripts/wm/startup.sh

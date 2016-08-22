@@ -27,6 +27,7 @@ alias xsnow='xsnow -nokeepsnow -notrees'
 alias cp='cp -v'
 alias ln='ln -v'
 alias mv='mv -v'
+alias rmdir='rmdir -v'
 alias rmln='rmln -v'
 
 # Disabled commands
