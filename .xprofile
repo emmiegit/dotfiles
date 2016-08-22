@@ -4,9 +4,6 @@
 # Swap escape and caps lock for vim
 /usr/local/scripts/wm/vim-keyswap.sh
 
-# Bind Scroll lock
-xmodmap -e 'add mod3 = Scroll_Lock'
-
 # Disable acceleration
 xset m 0 0
 
@@ -15,26 +12,9 @@ xinput --set-prop 'ZLY ZELOTES GAME MOUSE' 'Device Accel Constant Deceleration' 
 xinput --set-prop 'ZLY ZELOTES GAME MOUSE' 'Device Accel Adaptive Deceleration' 1
 xinput --set-prop 'ZLY ZELOTES GAME MOUSE' 'Device Accel Velocity Scaling' 10
 
-xinput --set-prop 'Microsoft Microsoft® Comfort Mouse 4500' 'Device Accel Constant Deceleration' 1
-xinput --set-prop 'Microsoft Microsoft® Comfort Mouse 4500' 'Device Accel Adaptive Deceleration' 1
-xinput --set-prop 'Microsoft Microsoft® Comfort Mouse 4500' 'Device Accel Velocity Scaling' 10
-
 xinput --set-prop 'USB Optical Mouse' 'Device Accel Constant Deceleration' 1
 xinput --set-prop 'USB Optical Mouse' 'Device Accel Adaptive Deceleration' 1
 xinput --set-prop 'USB Optical Mouse' 'Device Accel Velocity Scaling' 7
 
-xsetwacom --set 'Wacom Intuos S 2 Pen stylus' MapToOutput HEAD-0
-xsetwacom --set 'Wacom Intuos S 2 Pen stylus' Area 2000 2000 8220 5500
-
-# Bradley's tablet
-xsetwacom --set 'Wacom Bamboo Connect Pen stylus' MapToOutput HEAD-0
-xsetwacom --set 'Wacom Bamboo Connect Pen eraser' MapToOutput HEAD-0
-xsetwacom --set 'Wacom Bamboo Connect Pad pad' MapToOutput HEAD-0
-xsetwacom --set 'Wacom Bamboo Connect Pen stylus' Area 2000 3000 10360 7600
-xsetwacom --set 'Wacom Bamboo Connect Pen eraser' Area 2000 3000 10360 7600
-
-## Set input method
-#export GTK_IM_MODULE='uim'
-#export QT_IM_MODULE='uim'
-#export XMODIFIERS='@im=uim'
+/usr/local/scripts/wm/set-wacom-mode.sh osu
 
