@@ -344,7 +344,7 @@ bindsym $mod+Shift+y exec --no-startup-id /usr/local/scripts/wm/set-wacom-mode.s
 exec --no-startup-id /usr/local/scripts/wm/new-wallpaper.sh
 exec --no-startup-id /usr/local/scripts/wm/start-autolock.sh
 exec --no-startup-id /usr/local/scripts/wm/gmail-check-notify.py
-exec --no-startup-id ~/Programming/Misc/python/Twitter/toxic_bot_service.sh start
+exec --no-startup-id ~/Programming/misc/python/Twitter/toxic_bot_service.sh start
 exec --no-startup-id redshift
 exec --no-startup-id pamixer --unmute
 exec --no-startup-id dropbox-cli start
@@ -352,8 +352,7 @@ exec --no-startup-id udiskie --notify
 exec --no-startup-id compton -b --config ~/.config/compton.conf
 exec --no-startup-id nvidia-settings --load-config-only
 exec --no-startup-id mocp --server
-exec --no-startup-id backintime --pw-cache start
-exec --no-startup-id steam
+exec --no-startup-id sleep 20 && steam
 
 # User startup scripts
 exec --no-startup-id /usr/local/scripts/wm/startup.sh

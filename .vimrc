@@ -4,34 +4,35 @@
 
 " General options {{{
 """""""""""""""""""""
-set autoread        " Set to auto read when a file is changed
-set autowrite       " Automatically save before commands like :next and :make
-set backupcopy=yes  " Preserve hard links when making copies
-set confirm         " Instead of failing a command, raise a dialog asking what to do
-set encoding=utf8   " Set default encoding
-set ffs=unix,dos    " Set Unix as the standard line ending
-set hidden          " Hide buffers when they are abandoned
-set hlsearch        " Highlight matches when searching
-set incsearch       " Incremental search
-set lazyredraw      " Don't redraw when running macros
-set magic           " Use traditional regular expressions (see wiki)
-set mat=2           " How many tenths of a second to blink when matching brackets
-set mouse=n         " Enable mouse usage (normal mode only)
-set nocompatible    " Disable vi compatibility options
-set noshowmode      " Powerline does this for me, so I don't need two modes
-set nosmartindent   " Prevent audo dedent on Python comment
-set relativenumber  " Use relative line numbers (see below)
-set ruler           " Display the bar at the bottom 
-set showcmd         " Show (partial) command in status line
-set showmatch       " Show matching brackets
-set smartcase       " Do smart case matching
-set smarttab        " Use smart tabbing
-set tabpagemax=500  " Maximum number of tabs
-set timeoutlen=50   " To prevent the lag on 'O'
-set wrap            " Wrap long lines
+set autoread         " Set to auto read when a file is changed
+set autowrite        " Automatically save before commands like :next and :make
+set backupcopy=yes   " Preserve hard links when making copies
+set confirm          " Instead of failing a command, raise a dialog asking what to do
+set encoding=utf8    " Set default encoding
+set ffs=unix,dos     " Set Unix as the standard line ending
+set hidden           " Hide buffers when they are abandoned
+set hlsearch         " Highlight matches when searching
+set incsearch        " Incremental search
+set lazyredraw       " Don't redraw when running macros
+set magic            " Use traditional regular expressions (see wiki)
+set mat=2            " How many tenths of a second to blink when matching brackets
+set mouse=n          " Enable mouse usage (normal mode only)
+set nocompatible     " Disable vi compatibility options
+set noshowmode       " Powerline does this for me, so I don't need two modes
+set nosmartindent    " Prevent audo dedent on Python comment
+set relativenumber   " Use relative line numbers (see below)
+set ruler            " Display the bar at the bottom 
+set showcmd          " Show (partial) command in status line
+set showmatch        " Show matching brackets
+set smartcase        " Do smart case matching
+set smarttab         " Use smart tabbing
+set tabpagemax=500   " Maximum number of tabs
+set timeoutlen=50    " To prevent the lag on 'O'
+set undolevels=10000 " Allow for 10,000 undos
+set wrap             " Wrap long lines
 
 " Set leader key
-let mapleader = ","
+let mapleader = '\\'
 " }}}
 
 " Appearance {{{
@@ -217,7 +218,7 @@ let g:tex_flavor='latex'
 " YouCompleteMe options
 let g:ycm_global_ycm_extra_conf = '/etc/vim/ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 0
-let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
 
 " Local vimrc
 let g:localvimrc_reverse = 1
@@ -277,9 +278,12 @@ endfunc
 " }}}
 
 " File-Specific Settings {{{
-autocmd BufRead *.c setl smartindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab
-autocmd BufRead *.h setl smartindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab
-autocmd BufRead *.cpp setl smartindent
+autocmd BufRead *.c setl cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab
+autocmd BufRead *.h setl cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab
+autocmd BufRead *.cc setl cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab
+autocmd BufRead *.hh setl cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab
+autocmd BufRead *.cpp setl cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab
+autocmd BufRead *.hpp setl cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab
 autocmd BufRead *.sh setl shiftwidth=4 tabstop=4 noexpandtab
 
 " Transparent GPG Encryption
