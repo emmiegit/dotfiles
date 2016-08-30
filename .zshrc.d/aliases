@@ -9,6 +9,7 @@ alias du='du -kh'
 alias ed='ed -p:'
 alias free='free -h'
 alias iotop='sudo iotop -o'
+alias make='make -s'
 alias pdflatex='pdflatex -halt-on-error'
 alias pgrep='pgrep -afl'
 alias shred='shred -uv'
@@ -16,7 +17,6 @@ alias sudo='sudo -EH'
 alias vi='vim'
 alias view='vim -Rp'
 alias vim='vim -p'
-alias which='which -a'
 alias ytdl='noglob youtube-dl -o \%\(title\)s.\%\(ext\)s'
 alias xsnow='xsnow -nokeepsnow -notrees'
 
@@ -27,7 +27,6 @@ alias xsnow='xsnow -nokeepsnow -notrees'
 alias cp='cp -v'
 alias ln='ln -v'
 alias mv='mv -v'
-alias rmdir='rmdir -v'
 alias rmln='rmln -v'
 
 # Disabled commands
@@ -42,6 +41,7 @@ case "$(uname)" in
         alias rm='rm -v'
         alias grep='grep -I --color=auto'
         alias vim='env vim -p'
+        alias rmdir='rmdir -v'
         ;;
     Linux)
         alias chmod='chmod -v --preserve-root'
@@ -132,6 +132,7 @@ cdls() { cd "$@" && ls; }
 cdmv() { mv "$1" "$2" && cd "$2"; }
 catls() { [[ -d "$1" ]] && ls "$1" || cat "$1"; }
 countf() { /usr/bin/ls -1 "$@" | wc -l; }
+# dhex() { dhex "$@" 2> /dev/null; }
 digq() { dig "$@" | grep 'Query time'; }
 lsicon() { ls /usr/share/icons/Numix-Circle/scalable/apps | grep "$1"; }
 mkcd() { mkdir -p "$@" && cd "$@"; }
