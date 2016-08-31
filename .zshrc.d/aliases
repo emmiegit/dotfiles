@@ -37,11 +37,12 @@ case "$(uname)" in
     Darwin)
         alias chmod='chmod -v'
         alias df='df -kh'
+        alias grep='grep -I --color=auto'
         alias ls='ls -GFL'
         alias rm='rm -v'
-        alias grep='grep -I --color=auto'
-        alias vim='env vim -p'
         alias rmdir='rmdir -v'
+        alias stat='gstat'
+        alias vim='env vim -p'
         ;;
     Linux)
         alias chmod='chmod -v --preserve-root'
