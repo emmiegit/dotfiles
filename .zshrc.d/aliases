@@ -40,7 +40,6 @@ case "$(uname)" in
         alias grep='grep -I --color=auto'
         alias ls='ls -GFL'
         alias rm='rm -v'
-        alias rmdir='rmdir -v'
         alias stat='gstat'
         alias vim='env vim -p'
         ;;
@@ -54,6 +53,7 @@ case "$(uname)" in
         alias open='xdg-open'
         alias pbcopy='xsel -bi'
         alias pbpaste='xsel -b'
+        alias rmdir='rmdir -v'
         ;;
 esac
 
