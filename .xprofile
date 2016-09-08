@@ -16,5 +16,7 @@ xinput --set-prop 'USB Optical Mouse' 'Device Accel Constant Deceleration' 1
 xinput --set-prop 'USB Optical Mouse' 'Device Accel Adaptive Deceleration' 1
 xinput --set-prop 'USB Optical Mouse' 'Device Accel Velocity Scaling' 7
 
-/usr/local/scripts/wm/set-wacom-mode.sh osu
+export XMODIFIERS=@uim=xim
+export GTK_IM_MODULE=uim
+export QT_IM_MODULE=uim
 

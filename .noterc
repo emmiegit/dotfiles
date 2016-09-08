@@ -1,8 +1,12 @@
-[User Interface]
+[ui]
 colors = yes
 dateformat = MM/dd/YYYY HH:mm
 reldates = yes
 
-[Data]
+[data]
 ignore_extension = []
+
+[git]
+enabled = yes
+suppress_output = yes
 

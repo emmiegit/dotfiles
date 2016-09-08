@@ -28,7 +28,7 @@ syn keyword alternatumTodo     TODO FIXME
 " For version 5.8 and later: only when an item doesn't have highlighting yet
 if version >= 508 || !exists("did_alternatum_syn_inits")
 	if version < 508
-		let did_antz_syn_inits = 1
+		let did_alternatum_syn_inits = 1
 		command -nargs=+ HiLink hi link <args>
 	else
 		command -nargs=+ HiLink hi def link <args>

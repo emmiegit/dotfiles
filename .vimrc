@@ -32,7 +32,7 @@ set undolevels=10000 " Allow for 10,000 undos
 set wrap             " Wrap long lines
 
 " Set leader key
-let mapleader = '\\'
+let mapleader = '\'
 " }}}
 
 " Appearance {{{
@@ -49,8 +49,8 @@ if has("syntax")
 endif
 "
 " Linebreak at 500 characters
-set lbr
-set tw=500
+set linebreak
+set textwidth=500
 
 " Set relative line numbers
 set number
@@ -63,6 +63,10 @@ set relativenumber
 set splitbelow
 set splitright
 
+" Only time out on keybinds, not mappings
+set notimeout
+set ttimeout
+
 " How many lines of history to remember
 set history=1000
 
@@ -71,9 +75,12 @@ filetype plugin on
 filetype indent on
 
 " Backup settings
-set backup
-set backupdir=~/.vim_runtime/backups
-set writebackup
+try
+  set backup
+  set backupdir=~/.vim_runtime/backups
+  set writebackup
+catch
+endtry
 
 " Allow you to do undoes even when you close vim
 try
@@ -83,6 +90,8 @@ catch
 endtry
 
 " Use 4 spaces for tabs
+" See the 'file-specific settings' section for file types
+" that override these settings.
 set expandtab
 set tabstop=4
 set shiftwidth=4
@@ -90,7 +99,7 @@ set shiftwidth=4
 " Set the behavior when switching between buffers
 try
   set switchbuf=useopen,usetab,newtab
-  set stal=2
+  set showtabline=2
 catch
 endtry
 
@@ -219,6 +228,7 @@ let g:tex_flavor='latex'
 let g:ycm_global_ycm_extra_conf = '/etc/vim/ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_autoclose_preview_window_after_completion = 1
+let g:EclimCompletionMethod = 'omnifunc'
 
 " Local vimrc
 let g:localvimrc_reverse = 1
@@ -231,7 +241,7 @@ let g:localvimrc_blacklist = '.*'
 let g:localvimrc_whitelist = [expand('$HOME') . '/Documents/.*', expand('$HOME') . '/Programming/.*']
 
 " Instant Markdown
-let g:instant_markdown_autostart = 1
+let g:instant_markdown_autostart = 0
 " }}}
 
 " Helper functions {{{
