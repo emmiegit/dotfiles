@@ -163,7 +163,7 @@ mostused() {
       | sort \
       | uniq -c \
       | sort -nr \
-      | head
+      | head -n 20
 }
 
 # Pretty print a JSON file

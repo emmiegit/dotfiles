@@ -342,7 +342,6 @@ bindsym $mod+Shift+y exec --no-startup-id /usr/local/scripts/wm/set-wacom-mode.s
 exec --no-startup-id /usr/local/scripts/wm/new-wallpaper.sh
 exec --no-startup-id /usr/local/scripts/wm/start-autolock.sh
 exec --no-startup-id /usr/local/scripts/wm/gmail-check-notify.py
-exec --no-startup-id ~/Programming/misc/python/Twitter/toxic_bot_service.sh start
 exec --no-startup-id redshift
 exec --no-startup-id pamixer --unmute
 exec --no-startup-id udiskie --notify

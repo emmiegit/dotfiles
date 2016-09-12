@@ -219,10 +219,11 @@ nnoremap <leader>s :mksession<cr>
 " Settings for vim powerline
 set laststatus=2
 set t_Co=256
-let g:powerline_pycmd='py3'
+let g:powerline_pycmd = 'py3'
 
-" Set blank .tex files to be LaTeX
-let g:tex_flavor='latex'
+" LaTeX settings
+let g:tex_flavor = 'latex'
+let g:Imap_UsePlaceHolders = 0
 
 " YouCompleteMe options
 let g:ycm_global_ycm_extra_conf = '/etc/vim/ycm_extra_conf.py'
@@ -236,12 +237,9 @@ let g:localvimrc_count = 1
 let g:localvimrc_persistent = 2
 let g:localvimrc_persistence_file = expand('$HOME') . '/.vim_runtime/localvimrc_persist'
 
-" Only source .lvimrc files in ~/Programming
+" Only source .lvimrc files in ~/Programming or ~/Documents
 let g:localvimrc_blacklist = '.*'
-let g:localvimrc_whitelist = [expand('$HOME') . '/Documents/.*', expand('$HOME') . '/Programming/.*']
-
-" Instant Markdown
-let g:instant_markdown_autostart = 0
+let g:localvimrc_whitelist = [expand('$HOME') . '/Programming/.*', expand('$HOME') . '/Documents/.*']
 " }}}
 
 " Helper functions {{{
@@ -256,10 +254,13 @@ endfunc
 " And call it on certain files
 if has("autocmd")
   autocmd BufWrite *.c :call DeleteTrailingWS()
+  autocmd BufWrite *.cc :call DeleteTrailingWS()
   autocmd BufWrite *.cpp :call DeleteTrailingWS()
   autocmd BufWrite *.h :call DeleteTrailingWS()
+  autocmd BufWrite *.hh :call DeleteTrailingWS()
   autocmd BufWrite *.hpp :call DeleteTrailingWS()
   autocmd BufWrite *.py :call DeleteTrailingWS()
+  autocmd BufWrite *.java :call DeleteTrailingWS()
   autocmd BufWrite Makefile :call DeleteTrailingWS()
 endif
 
@@ -285,15 +286,22 @@ func! VisualSelection()
   let @/ = l:pattern
   let @" = l:saved_reg
 endfunc
+
+func! OpenTabs(...)
+  for filename in a:000
+    :tabnew &filename
+  endfor
+endfunc
+
 " }}}
 
 " File-Specific Settings {{{
 autocmd BufRead *.c setl cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab
 autocmd BufRead *.h setl cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab
-autocmd BufRead *.cc setl cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab
-autocmd BufRead *.hh setl cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab
-autocmd BufRead *.cpp setl cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab
-autocmd BufRead *.hpp setl cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab
+autocmd BufRead *.cc setl cindent shiftwidth=4 tabstop=4 softtabstop=4
+autocmd BufRead *.hh setl cindent shiftwidth=4 tabstop=4 softtabstop=4
+autocmd BufRead *.cpp setl cindent shiftwidth=4 tabstop=4 softtabstop=4
+autocmd BufRead *.hpp setl cindent shiftwidth=4 tabstop=4 softtabstop=4
 autocmd BufRead *.sh setl shiftwidth=4 tabstop=4 noexpandtab
 
 " Transparent GPG Encryption

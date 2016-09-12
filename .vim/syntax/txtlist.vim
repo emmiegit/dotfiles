@@ -16,7 +16,8 @@ syn sync minlines=5
 
 " Expressions
 syn match txtlistLabel          "^[^\n]\+:\($\|\s\+\)"
-syn match txtlistCategory       "^\[[^\n]\+\]"
+syn match txtlistCheckbox       "^\s*\[[ X\-]\]"
+syn match txtlistCategory       "^\[[^\n]\{2,\}\]"
 syn match txtlistBullet         "^[\t ]*\*"
 syn region txtlistComment       start="\s*#" end="$"
 
@@ -50,6 +51,7 @@ if version >= 508 || !exists("did_txtlist_syn_inits")
         " Type
 
         HiLink txtlistLabel     Statement
+        HiLink txtlistCheckbox  Constant
         HiLink txtlistCategory  Identifier
         HiLink txtlistBullet    Define
         HiLink txtlistComment   Comment
@@ -60,4 +62,4 @@ endif
 
 let b:current_syntax = "txtlist"
 
-" vim: ts=8 sw=2
+" vim: ts=8 sw=2:
