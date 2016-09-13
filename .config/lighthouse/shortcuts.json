@@ -1,5 +1,6 @@
 {
     "anime": "pcmanfm -n /home/ammon/Videos/Anime /home/ammon/Incoming /home/ammon/Pictures/Anime",
+    "bt": "qbittorrent",
     "charmap": "gucharmap",
     "discord": "discord-canary",
     "intellij": "idea.sh",
