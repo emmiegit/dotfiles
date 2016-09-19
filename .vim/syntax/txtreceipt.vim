@@ -15,8 +15,9 @@ syn case ignore
 syn sync minlines=5
 
 " Expressions
-syn match txtlistBullet            "^[\t ]*\*"
-syn match txtreceiptMoney          "\$[0-9.]\+"
+syn match txtreceiptBullet         "^[\t ]*\*"
+syn match txtreceiptLabel          "\s*[A-Za-z0-9 .,]\+:"
+syn match txtreceiptMoney          "\$[0-9.,]\+"
 syn match txtreceiptStore          "^\[[^\n]\{2,\}\]"
 syn region txtreceiptComment       start="\s*#" end="$"
 
@@ -51,10 +52,8 @@ if version >= 508 || !exists("did_txtreceipt_syn_inits")
 
         HiLink txtreceiptStore     Identifier
         HiLink txtreceiptBullet    Define
-        HiLink txtreceiptMoney     Constant
-
         HiLink txtreceiptLabel     Statement
-        HiLink txtreceiptBullet    Define
+        HiLink txtreceiptMoney     Constant
         HiLink txtreceiptComment   Comment
         HiLink txtreceiptTodo      Todo
 
