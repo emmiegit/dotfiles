@@ -230,6 +230,8 @@ let g:ycm_global_ycm_extra_conf = '/etc/vim/ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:EclimCompletionMethod = 'omnifunc'
+let g:tern_show_argument_hints = 'on_hold'
+let g:tern_map_keys = 1
 
 " Local vimrc
 let g:localvimrc_reverse = 1
@@ -237,9 +239,9 @@ let g:localvimrc_count = 1
 let g:localvimrc_persistent = 2
 let g:localvimrc_persistence_file = expand('$HOME') . '/.vim_runtime/localvimrc_persist'
 
-" Only source .lvimrc files in ~/Programming or ~/Documents
+" Only source .lvimrc files in ~/Documents or ~/Git
 let g:localvimrc_blacklist = '.*'
-let g:localvimrc_whitelist = [expand('$HOME') . '/Programming/.*', expand('$HOME') . '/Documents/.*']
+let g:localvimrc_whitelist = [expand('$HOME') . '/Documents/.*', expand('$HOME') . '/Git/.*']
 " }}}
 
 " Helper functions {{{
