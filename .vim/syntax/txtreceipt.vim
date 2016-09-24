@@ -16,8 +16,9 @@ syn sync minlines=5
 
 " Expressions
 syn match txtreceiptBullet         "^[\t ]*\*"
+syn match txtreceiptIndependent    "\[[A-Za-z0-9]\]"
 syn match txtreceiptLabel          "\s*[A-Za-z0-9 .,]\+:"
-syn match txtreceiptMoney          "-?\$[0-9.,]\+"
+syn match txtreceiptMoney          "-\?\$[0-9.,]\+"
 syn match txtreceiptStore          "^\[[^\n]\{2,\}\]"
 syn region txtreceiptComment       start="\s*#" end="$"
 
@@ -50,12 +51,13 @@ if version >= 508 || !exists("did_txtreceipt_syn_inits")
         " Todo
         " Type
 
-        HiLink txtreceiptStore     Identifier
-        HiLink txtreceiptBullet    Define
-        HiLink txtreceiptLabel     Statement
-        HiLink txtreceiptMoney     Constant
-        HiLink txtreceiptComment   Comment
-        HiLink txtreceiptTodo      Todo
+        HiLink txtreceiptStore          Identifier
+        HiLink txtreceiptBullet         Define
+        HiLink txtreceiptIndependent    PreProc
+        HiLink txtreceiptLabel          Statement
+        HiLink txtreceiptMoney          Constant
+        HiLink txtreceiptComment        Comment
+        HiLink txtreceiptTodo           Todo
 
 	delcommand HiLink
 endif
