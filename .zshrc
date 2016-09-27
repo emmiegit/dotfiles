@@ -50,5 +50,6 @@ dosource '/usr/share/fzf/key-bindings.zsh'
 dosource '/usr/local/share/fzf/key-bindings.zsh'
 dosource '/usr/share/doc/pkgfile/command-not-found.zsh'
 dosource '/etc/profile.d/fzf-extras.zsh'
+dosource "${HOME}/.travis/travis.sh"
 which thefuck > /dev/null && eval "$(thefuck --alias)"
 
