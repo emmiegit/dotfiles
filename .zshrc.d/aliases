@@ -127,11 +127,10 @@ alias mpvac='mpv --speed=0.67 --audio-pitch-correction=no --no-video'
 
 ### FUNCTIONS ###
 # Shortcut commands
+catls() { [[ -d "$1" ]] && ls "$1" || cat "$1"; }
 cdls() { cd "$@" && ls; }
 cdmv() { mv "$1" "$2" && cd "$2"; }
-catls() { [[ -d "$1" ]] && ls "$1" || cat "$1"; }
 countf() { /usr/bin/ls -1 "$@" | wc -l; }
-# dhex() { dhex "$@" 2> /dev/null; }
 digq() { dig "$@" | grep 'Query time'; }
 lsicon() { ls /usr/share/icons/Numix-Circle/scalable/apps | grep "$1"; }
 mkcd() { mkdir -p "$@" && cd "$@"; }

@@ -286,6 +286,15 @@ totalcol() {
     awk "{total += \$$1} END {print total}"
 }
 
+# Alias for wdiff
+wdiff() {
+    dwdiff \
+        -w "$(tput bold; tput setaf 1)" \
+        -x "$(tput sgr0)" \
+        -y "$(tput bold; tput setaf 2)" \
+        -z "$(tput sgr0)" \
+        "$@"
+}
 # Play some random white noise
 whitenoise() {
     play -n synth 60:00 brownnoise -65 tremolo .20 vol -20db
