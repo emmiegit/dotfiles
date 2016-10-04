@@ -285,7 +285,7 @@ set $Locker /usr/local/scripts/wm/lock.sh
 # Application keybinds {{{
 ##########################
 # Lighthouse launcher
-bindsym $mod+slash exec --no-startup-id printf '%s & disown' "$(lighthouse)" | bash
+bindsym $mod+slash exec printf '%s & disown' "$(lighthouse)" | bash
 
 # Start a terminal
 bindsym $mod+Return exec $Terminal
@@ -301,13 +301,13 @@ bindsym $mod+i exec $Browser
 bindsym $mod+Shift+i exec chromium
 
 # Screen locker
-bindsym $mod+semicolon exec --no-startup-id $Locker
-bindsym $mod+Shift+semicolon exec --no-startup-id /usr/local/scripts/wm/suspend.sh
-bindsym $mod+$alt+semicolon exec --no-startup-id /usr/local/scripts/wm/lock-screen-sleep.sh
+bindsym $mod+semicolon exec $Locker
+bindsym $mod+Shift+semicolon exec systemctl suspend
+bindsym $mod+$alt+semicolon exec /usr/local/scripts/wm/lock-screen-sleep.sh
 
 # Toggle autolock
-bindsym $mod+$alt+l exec --no-startup-id /usr/local/scripts/wm/set-autolock.sh on
-bindsym $mod+$alt+Shift+l exec --no-startup-id /usr/local/scripts/wm/set-autolock.sh off
+bindsym $mod+$alt+l exec --no-startup-id /usr/local/scripts/wm/caffeine.sh --notify start
+bindsym $mod+$alt+Shift+l exec --no-startup-id /usr/local/scripts/wm/caffeine.sh --notify stop
 
 # Volume control
 bindsym XF86AudioLowerVolume exec --no-startup-id pamixer --decrease 1
@@ -339,17 +339,18 @@ bindsym $mod+Shift+y exec --no-startup-id /usr/local/scripts/wm/set-wacom-mode.s
 
 # Start-up applications {{{
 ###########################
-exec --no-startup-id /usr/local/scripts/wm/new-wallpaper.sh
-exec --no-startup-id /usr/local/scripts/wm/start-autolock.sh
-exec --no-startup-id /usr/local/scripts/wm/gmail-check-notify.py
-exec --no-startup-id redshift
-exec --no-startup-id pamixer --unmute
-exec --no-startup-id udiskie --notify
-exec --no-startup-id compton -b --config ~/.config/compton.conf
-exec --no-startup-id nvidia-settings --load-config-only
-exec --no-startup-id mocp --server
-exec --no-startup-id uim-xim
-exec --no-startup-id sleep 20 && steam&
+exec /usr/local/scripts/wm/new-wallpaper.sh
+exec /usr/local/scripts/wm/gmail-check-notify.py
+exec redshift
+exec light-locker --lock-on-suspend
+exec xscreensaver -nosplash
+exec pamixer --unmute
+exec udiskie --notify
+exec compton -b --config ~/.config/compton.conf
+exec nvidia-settings --load-config-only
+exec mocp --server
+exec uim-xim
+exec --no-startup-id sleep 20 && steam
 
 # User startup scripts
 exec --no-startup-id /usr/local/scripts/wm/startup.sh

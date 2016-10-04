@@ -27,9 +27,6 @@ alias ln='ln -v'
 alias mv='mv -v'
 alias rmln='rmln -v'
 
-# Disabled commands
-alias dm-tool='command-disabled'
-
 # Platform-specific commands
 case "$(uname)" in
     Darwin)
