@@ -256,7 +256,6 @@ for_window [class="Icecat" title="Preferences"] floating enable
 for_window [class="Keepassx2" instance="keepassx2"] floating enable
 for_window [class="Nvidia-settings" instance="nvidia-settings"] floating enable
 for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
-for_window [class="Skype" instance="skype"] floating enable
 for_window [class="Steam" instance="Steam"] floating enable
 for_window [class="Tagainijisho" instance="tagainijisho"] floating enable
 for_window [class="Tomboy" instance="Tomboy"] floating enable
@@ -285,7 +284,7 @@ set $Locker /usr/local/scripts/wm/lock.sh
 # Application keybinds {{{
 ##########################
 # Lighthouse launcher
-bindsym $mod+slash exec printf '%s & disown' "$(lighthouse)" | bash
+bindsym $mod+slash exec --no-startup-id printf '%s & disown' "$(lighthouse)" | bash
 
 # Start a terminal
 bindsym $mod+Return exec $Terminal
