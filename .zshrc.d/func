@@ -166,6 +166,22 @@ mostused() {
       | head -n 20
 }
 
+# Reopen a PDF if the viewer closes
+pdf-always() {
+    if [[ $# -eq 0 ]]; then
+        echo >&2 'Usage: pdf-always filename'
+        return 1
+    fi
+
+    while true; do
+        if [[ -f $1 ]]; then
+            mupdf "$1"
+        else
+            sleep 1
+        fi
+    done
+}
+
 # Pretty print a JSON file
 pjson() {
     echo "$@" | python -m json.tool
