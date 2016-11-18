@@ -45,9 +45,9 @@ confirm() {
 
 # Simple function to calculate date differences
 datediff() {
-    d1=$(date -d "$1" +%s)
-    d2=$(date -d "$2" +%s)
-    echo $(( (d1 - d2) / 86400 )) days
+    d1="$(date -d "$1" +%s)"
+    d2="$(date -d "$2" +%s)"
+    echo "$(( (d1 - d2) / 86400 ))" days
 }
 
 # Easily convert from base64
@@ -302,6 +302,26 @@ totalcol() {
     awk "{total += \$$1} END {print total}"
 }
 
+# Copy files to transfer.sh
+transfer() {
+    if [[ $# -eq 0 ]]; then
+        echo >&2 'No arguments specified.'
+        echo >&2 'Usage: transfer [filename]'
+        return 1
+    fi
+
+    local tmpfile="$(mktemp /tmp/transferXXXXXX)"
+    if tty -s; then
+        local basefile="$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g')"
+        curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> "$tmpfile"
+    else
+        curl --progress-bar --upload-file - "https://transfer.sh/$1" >> "$tmpfile"
+    fi
+
+    cat "$tmpfile"
+    rm -f "$tmpfile"
+}
+
 # Alias for wdiff
 wdiff() {
     dwdiff \
@@ -311,6 +331,7 @@ wdiff() {
         -z "$(tput sgr0)" \
         "$@"
 }
+
 # Play some random white noise
 whitenoise() {
     play -n synth 60:00 brownnoise -65 tremolo .20 vol -20db
