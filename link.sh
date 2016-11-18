@@ -3,6 +3,7 @@ set -eu
 
 cd "$(dirname "$0")"
 THIS_DIR="$(pwd -P)"
+FLAGS=
 FILES=(
 	'.bashrc'
 	'.vim'
@@ -13,7 +14,11 @@ FILES=(
 	'.oh-my-zsh'
 )
 
+if [ "$1" == "-f" -o "$1" == "--force" ]; then
+	FLAGS='-f'
+fi
+
 for filename in "${FILES[@]}"; do
-	ln -sv "$THIS_DIR/$filename" "$HOME" || true
+	ln -sv "$FLAGS" "$THIS_DIR/$filename" "$HOME" || true
 done
 
