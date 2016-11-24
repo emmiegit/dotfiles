@@ -199,7 +199,7 @@ roll() {
         local upper=100
     fi
 
-    echo $[ 1 + $[ RANDOM % "$upper" ] ]
+    echo $[ 1 + $[ RANDOM % upper ] ]
 }
 
 # Run one of my scripts without specifying the path
