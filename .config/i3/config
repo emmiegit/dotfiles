@@ -349,7 +349,7 @@ exec compton -b --config ~/.config/compton.conf
 exec nvidia-settings --load-config-only
 exec mocp --server
 exec uim-xim
-exec --no-startup-id sleep 25 && exec steam
+exec --no-startup-id sleep 25 && exec steam -console
 
 # User startup scripts
 exec --no-startup-id /usr/local/scripts/wm/startup.sh
