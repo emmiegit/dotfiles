@@ -13,8 +13,9 @@
 [github]
 	user = ammon
 [alias]
+    alias = !git config -l | grep --color=never ^alias\\.
 	last = log -1 HEAD
-	edit = !$EDITOR $(git ls-files -m)
+	edit = !"$EDITOR" $(git ls-files -m)
 	unstage = reset HEAD --
 	discard = checkout --
 	amend = commit --amend

@@ -182,6 +182,11 @@ pdf-always() {
     done
 }
 
+# Print number of processes
+procno() {
+    find /proc -maxdepth 1 -regex '/proc/[0-9]+' -printf . | wc -c
+}
+
 # Pretty print a JSON file
 pjson() {
     echo "$@" | python -m json.tool
