@@ -1,0 +1,11 @@
+[Unit]
+Description=Music on Curses server
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/mocp --server
+ExecStop=/usr/bin/mocp --exit
+
+[Install]
+WantedBy=default.target
+
