@@ -1,0 +1,10 @@
+[Unit]
+Description=Load NVidia settings
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/nvidia-settings --load-config-only
+
+[Install]
+WantedBy=default.target
+

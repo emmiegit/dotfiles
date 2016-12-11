@@ -345,8 +345,6 @@ exec light-locker --lock-on-suspend
 exec pamixer --unmute
 exec udiskie --notify
 exec compton -b --config ~/.config/compton.conf
-exec nvidia-settings --load-config-only
-exec mocp --server
 exec uim-xim
 exec --no-startup-id sleep 25 && exec steam-native -console
 
