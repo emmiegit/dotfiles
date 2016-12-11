@@ -1,0 +1,5 @@
+[Unit]
+Description=Set environment variables
+Requires=dbus.socket
+IgnoreOnIsolate=true
+
