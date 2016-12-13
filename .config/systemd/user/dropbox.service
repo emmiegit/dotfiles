@@ -2,9 +2,8 @@
 Description=Dropbox autostart
 
 [Service]
-Type=forking
-ExecStart=/usr/local/bin/dropbox start
-ExecStop=/usr/local/bin/dropbox stop
+Type=simple
+ExecStart=/usr/local/bin/dropbox
 
 [Install]
 WantedBy=default.target
