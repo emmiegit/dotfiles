@@ -5,7 +5,7 @@
 ; but if you add other options, the next Save Settings will not save them.
 ; Use a shortcut, an @indirection file, or a .bat file instead.
 ;
--saveDate 1474258375
+-saveDate 1481874178
 -whitePieceColor #FFFFCC
 -blackPieceColor #202020
 -lightSquareColor #C8C365
@@ -132,9 +132,9 @@ Message (name);message $name $input;
 "kc" -icshost alanimus.com -icshelper timeseal
 }
 -recentEngines 4
--recentEngineList {Stockfish
+-recentEngineList {gnuchess
+Stockfish
 GNU Chess
-gnuchess
 stockfish
 }
 -firstChessProgramNames {fairymax
@@ -220,7 +220,7 @@ stockfish
 -logoDir "."
 -autoLogo false
 -featureDefaults ""
--showTargetSquares true
+-showTargetSquares false
 -absoluteAnalysisScores false
 -scoreWhite false
 -evalZoom 1
@@ -240,39 +240,39 @@ stockfish
 -keepLineBreaksICS false
 -winWidth 1920
 -winHeight 1181
--x 0
+-x 1920
 -y 19
 -icsUp false
--icsX -2147483648
+-icsX 2147481728
 -icsY 2147483629
 -icsW -2147483648
 -icsH -2147483648
--commentX -2147483648
+-commentX 2147481728
 -commentY 2147483629
 -commentW -2147483648
 -commentH -2147483648
--tagsX 964
+-tagsX -956
 -tagsY 8
 -tagsW 948
 -tagsH 1165
--gameListX -2147483648
+-gameListX 2147481728
 -gameListY 2147483629
 -gameListW 500
 -gameListH 300
--slaveX -2147483648
+-slaveX 2147481728
 -slaveY 2147483629
 -moveHistoryUp false
--moveHistoryX -2147483648
+-moveHistoryX 2147481728
 -moveHistoryY 2147483629
 -moveHistoryW -2147483648
 -moveHistoryH -2147483648
 -evalGraphUp false
--evalGraphX -2147483648
+-evalGraphX 2147481728
 -evalGraphY 2147483629
 -evalGraphW -2147483648
 -evalGraphH -2147483648
 -engineOutputUp false
--engineOutputX -2147483648
+-engineOutputX 2147481728
 -engineOutputY 2147483629
 -engineOutputW -2147483648
 -engineOutputH -2147483648
