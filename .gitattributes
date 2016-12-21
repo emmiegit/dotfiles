@@ -1,7 +1,4 @@
 # To prevent vimscript from occuppying 99% of the language bar
-.vim/after linguist-vendored=false
-.vim/autoload linguist-vendored=false
-.vim/colors linguist-vendored=false
-.vim/ftplugin linguist-vendored=false
-.vim/plugin linguist-vendored=false
+.vim/* linguist-vendored
+.vim/syntax linguist-vendored=false
 
