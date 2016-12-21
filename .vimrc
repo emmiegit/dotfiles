@@ -298,6 +298,22 @@ func! OpenTabs(...)
   endfor
 endfunc
 
+func! Wipeout()
+  " List all buffers that are visible
+  let visible = {}
+  for t in range(1, tabpagenr('$'))
+    for b in tabpagebuflist(t)
+      let visible[b] = 1
+    endfor
+  endfor
+  " Close any buffer that's not in the list
+  for b in range(1, bufnr('$'))
+    if bufloaded(b) && !has_key(visible, b)
+      exe 'bd ' . b
+    endif
+  endfor
+endfun
+
 " }}}
 
 " File-Specific Settings {{{
