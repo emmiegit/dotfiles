@@ -1,5 +1,10 @@
 #!/usr/bin/env zsh
 
+# 256 colors please
+if [[ "$TERM" == xterm ]]; then
+    export TERM=xterm-256color
+fi
+
 # Set the home/end keys
 bindkey "${terminfo[khome]}" beginning-of-line
 bindkey "${terminfo[kend]}" end-of-line
@@ -10,7 +15,7 @@ which fzf > /dev/null || bindkey '^R' history-incremental-search-backward
 python()  { [[ $# -eq 0 ]] && bpython  || env python  "$@"; }
 python2() { [[ $# -eq 0 ]] && bpython2 || env python2 "$@"; }
 
-if [[ $EUID -eq 0 ]]; then
+if [[ "$EUID" -eq 0 ]]; then
     case "$(uname)" in
         Darwin)
             alias ls='ls -AGF'

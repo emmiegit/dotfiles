@@ -166,6 +166,16 @@ mostused() {
       | head -n 20
 }
 
+# Print the 256 terminal colors (if supported)
+p256() {
+    local x="$(tput op)"
+    local y="$(printf %$((${COLUMNS}-6))s)"
+    for i in {0..256}; do
+        local o="00$i"
+        echo -e "${o:${#o}-3:3} "$(tput setaf $i; tput setab $i)"${y// /=}$x"
+    done
+}
+
 # Reopen a PDF if the viewer closes
 pdf-always() {
     if [[ $# -eq 0 ]]; then
