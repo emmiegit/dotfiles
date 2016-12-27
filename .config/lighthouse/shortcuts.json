@@ -5,7 +5,7 @@
     "discord": "discord-canary",
     "intellij": "idea.sh",
     "league": "league-of-legends",
-    "melee": "dolphin-emu-cli --exec /usr/share/iso/wii+gamecube/super-smash-bros-melee-usa-20xx-4.05.iso",
+    "melee": "dolphin-emu-cli --exec /usr/share/iso/wii+gamecube/super-smash-bros-melee-usa.iso",
     "new-wallpaper": "/usr/local/scripts/wm/new-wallpaper.sh",
     "projectm": "dolphin-emu-cli --exec /usr/share/iso/wii+gamecube/gecko-1931.elf",
     "pvz": "/usr/share/playonlinux/playonlinux --run \"Plants Vs Zombies (Pogo Launcher)\"",
