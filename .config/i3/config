@@ -346,7 +346,7 @@ exec pamixer --unmute
 exec udiskie --notify
 exec compton -b --config ~/.config/compton.conf
 exec uim-xim
-exec --no-startup-id sleep 25 && exec steam-native -console
+exec --no-startup-id sleep 25 && exec steam-native
 
 # User startup scripts
 exec --no-startup-id /usr/local/scripts/wm/startup.sh
