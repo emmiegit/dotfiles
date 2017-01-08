@@ -1,10 +1,5 @@
 #!/usr/bin/env zsh
 
-# 256 colors please
-if [[ "$TERM" == xterm ]]; then
-    export TERM=xterm-256color
-fi
-
 # Set the home/end keys
 bindkey "${terminfo[khome]}" beginning-of-line
 bindkey "${terminfo[kend]}" end-of-line
