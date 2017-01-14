@@ -13,7 +13,7 @@ alias pdflatex='pdflatex -halt-on-error'
 alias pgrep='pgrep -afl'
 alias shred='shred -uv'
 alias sudo='sudo -EH'
-alias view='vim -Rp'
+alias view='vim -R'
 alias vim='vim -p'
 alias xsnow='xsnow -nokeepsnow -notrees'
 
@@ -86,6 +86,7 @@ alias nonetwork='LD_PRELOAD=/usr/local/lib/nonetwork.so'
 alias sctl='sudo -E systemctl'
 alias srcrc='source ~/.zshrc'
 alias sshagent='eval $(ssh-agent -t 15m)'
+alias tty-clock='/usr/local/scripts/wm/tty-clock.sh'
 alias vii3='vim ~/.config/i3/config'
 alias virc='vim -p ~/.zshrc ~/.zshrc.d/*'
 alias vibrc='vim ~/.bashrc'
@@ -136,9 +137,12 @@ lsicon() { ls /usr/share/icons/Numix-Circle/scalable/apps | grep "$1"; }
 mkcd() { mkdir -p "$@" && cd "$@"; }
 myip() { wget -qO- http://ipecho.net/plain; echo; }
 pacbin() { pacman -Ql "$1" | /usr/bin/grep --color=never /bin/ | awk '{print $2}'; }
-pexec() { echo $@; $@; }
+pexec() { echo "$@"; "$@"; }
 pls() { sudo -- "${SHELL:-zsh}" -c "$(fc -ln -1)"; }
 trash() { [[ $# -eq 0 ]] && trash-list || trash-put $@; }
+
+# Misc
+note() { env note "$@" 2> /dev/null; }
 
 # Colorize text
 red()    { printf "\e[31m\e[1m"$@"\e[0m"; }
