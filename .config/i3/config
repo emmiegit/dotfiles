@@ -276,6 +276,7 @@ set $Terminal terminator
 set $Explorer pcmanfm
 set $Editor gvim
 set $Browser icecat
+set $Browser2 chromium
 set $Email claws-mail
 set $Locker /usr/local/scripts/wm/lock.sh
 # }}}
@@ -296,7 +297,7 @@ bindsym $mod+Shift+Return exec $Editor
 
 # Web browser
 bindsym $mod+i exec $Browser
-bindsym $mod+Shift+i exec chromium
+bindsym $mod+Shift+i exec $Browser2
 
 # Screen locker
 bindsym $mod+semicolon exec $Locker

@@ -2,7 +2,7 @@
 # xprofile - Commands to run before the window manager is started.
 
 # Swap escape and caps lock for vim
-/usr/local/scripts/wm/vim-keyswap.sh
+/usr/local/scripts/wm/vi-keyswap.sh
 
 # Disable acceleration
 xset m 0 0
