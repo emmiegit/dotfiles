@@ -8,13 +8,9 @@
 xset m 0 0
 
 # Set device-specific settings
-xinput --set-prop 'ZLY ZELOTES GAME MOUSE' 'Device Accel Constant Deceleration' 0.4
-xinput --set-prop 'ZLY ZELOTES GAME MOUSE' 'Device Accel Adaptive Deceleration' 1
-xinput --set-prop 'ZLY ZELOTES GAME MOUSE' 'Device Accel Velocity Scaling' 10
+xinput --set-prop 'ZLY ZELOTES GAME MOUSE' 'libinput Accel Speed' -0.4
 
-xinput --set-prop 'USB Optical Mouse' 'Device Accel Constant Deceleration' 1
-xinput --set-prop 'USB Optical Mouse' 'Device Accel Adaptive Deceleration' 1
-xinput --set-prop 'USB Optical Mouse' 'Device Accel Velocity Scaling' 7
+xinput --set-prop 'USB Optical Mouse' 'libinput Accel Speed' 1
 
 export XMODIFIERS=@uim=xim
 export GTK_IM_MODULE=uim
