@@ -139,8 +139,8 @@ add_directory         = A
 plist_add_stream      = ^u
 delete_from_playlist  = d
 playlist_full_paths   = P
-plist_move_up         =
-plist_move_down       =
+plist_move_up         = K
+plist_move_down       = J
 save_playlist         = V
 remove_dead_entries   = Y
 clear_playlist        = C
@@ -158,8 +158,8 @@ cancel                = ^x ESCAPE
 hide_message          = M
 
 # Softmixer specific keys:
-toggle_softmixer      = w
-toggle_make_mono      = J
+toggle_softmixer      =
+toggle_make_mono      =
 
 # Equalizer specific keys:
 toggle_equalizer      = E
