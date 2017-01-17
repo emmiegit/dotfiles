@@ -41,6 +41,7 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # Source files from .zshrc.d/
 source "${HOME}/.zshrc.d/aliases"
+source "${HOME}/.zshrc.d/aliases-systemd"
 source "${HOME}/.zshrc.d/func"
 source "${HOME}/.zshrc.d/env"
 source "${HOME}/.zshrc.d/misc"
