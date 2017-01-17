@@ -3,7 +3,7 @@ Description=Dropbox autostart
 
 [Service]
 Type=simple
-ExecStart=/usr/local/bin/dropbox
+ExecStart=/usr/bin/dropbox
 
 [Install]
 WantedBy=default.target
