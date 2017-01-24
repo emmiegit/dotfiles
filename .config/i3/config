@@ -283,6 +283,9 @@ set $Locker /usr/local/scripts/wm/lock.sh
 
 # Application keybinds {{{
 ##########################
+# Filler window
+bindsym $mod+period exec xfiller
+
 # Lighthouse launcher
 bindsym $mod+slash exec --no-startup-id printf '%s & disown' "$(lighthouse)" | bash
 
@@ -353,7 +356,7 @@ exec --no-startup-id sleep 25 && exec steam-native
 exec --no-startup-id /usr/local/scripts/wm/startup.sh
 
 # Default workspaces
-exec i3-msg 'workspace 2; exec $Terminal; exec discord-canary; exec pidgin'
+exec i3-msg 'workspace 2; exec $Terminal; exec discord; exec pidgin'
 exec i3-msg 'workspace 3; exec $Email'
 # }}}
 
