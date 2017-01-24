@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 # zsh settings for environment variables
 
+# To prevent PATH from getting huge when re-sourcing
 unset PATH
 source /etc/profile
 
@@ -22,4 +23,14 @@ export GPGKEY='2C3CF0C7'
 export LD_LIBRARY_PATH='/usr/local/lib'
 export WINEPREFIX="$HOME/.wine/"
 export WINEHOME="$HOME/.wine/"
+
+# Import systemd environment
+systemctl --user show-environment | \
+    while read -r var; do
+        name=$(cut -d= -f1 <<< "$var")
+        if eval "[[ ! \${$name+x} ]]"; then
+            eval "export $var"
+        fi
+    done
+    unset name
 
