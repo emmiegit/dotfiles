@@ -7,12 +7,12 @@ IgnoreOnIsolate=true
 [Service]
 Type=forking
 Environment=SSH_AUTH_SOCK=%t/ssh-agent.socket
-ExecStart=/usr/bin/ssh-agent -a $SSH_AUTH_SOCK
-ExecStartPost=/usr/bin/systemctl --user set-environment SSH_AUTH_SOCK=$SSH_AUTH_SOCK
+ExecStart=/usr/bin/ssh-agent -a "$SSH_AUTH_SOCK"
+ExecStartPost=/usr/bin/systemctl --user set-environment SSH_AUTH_SOCK="%t/ssh-agent.socket"
 ExecStartPost=/bin/sh -c "pgrep ssh-agent > %t/ssh-agent.pid"
 ExecStartPost=/bin/sh -c "systemctl --user set-environment SSH_AGENT_PID=$(cat %t/ssh-agent.pid)"
 ExecStop=/bin/sh -c "kill $(cat %t/ssh-agent.pid)"
-ExecStopPost=/bin/rm $SSH_AUTH_SOCK
+ExecStopPost=/bin/rm "$SSH_AUTH_SOCK"
 
 [Install]
 WantedBy=default.target
