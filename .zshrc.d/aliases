@@ -18,9 +18,6 @@ alias vim='vim -p'
 alias xsnow='xsnow -nokeepsnow -notrees'
 
 # Modifiers on file operations
-# * Verbosity so you know what's going on
-# * Prevent rm from removing file systems
-# * Prevent chmod from operating on /
 alias cp='cp -v'
 alias ln='ln -v'
 alias mv='mv -v'
@@ -38,7 +35,7 @@ case "$(uname)" in
         alias vim='env vim -p'
         ;;
     Linux)
-        alias chmod='chmod -v --preserve-root'
+        alias chmod='chmod -c --preserve-root'
         alias ls='ls -hHFN --group-directories-first --color=tty'
         alias rm='rm -v --one-file-system'
         alias grep='grep -I --color'
