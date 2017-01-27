@@ -336,6 +336,27 @@ transfer() {
     rm -f "$tmpfile"
 }
 
+# Get weather via wttr.in
+weather() {
+    if [[ $# -eq 0 ]]; then
+        echo >&2 'Give a location. Ex: "ucr".'
+        return 1
+    fi
+
+    case "$1" in
+        ucr)
+            local location='Riverside'
+            ;;
+        irvine)
+            local location='Irvine';
+            ;;
+        *)
+            printf >&2 'Unknown location: %s.\n', "$1"
+            ;;
+    esac
+    curl -s "wttr.in/$location"
+}
+
 # Alias for wdiff
 wdiff() {
     dwdiff \
