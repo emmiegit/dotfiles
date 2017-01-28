@@ -1,0 +1,10 @@
+[Unit]
+Description=PID consumption grapher
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/pid-grapher '%h/.local/share/pid-grapher.txt'
+
+[Install]
+WantedBy=default.target
+
