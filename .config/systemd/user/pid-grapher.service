@@ -4,6 +4,8 @@ Description=PID consumption grapher
 [Service]
 Type=simple
 ExecStart=/usr/local/bin/pid-grapher '%h/.local/share/pid-grapher.txt'
+RestartSec=5
+Restart=always
 
 [Install]
 WantedBy=default.target
