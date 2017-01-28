@@ -11,4 +11,6 @@ set trash            = "imaps://imap.gmail.com/[Gmail]/Trash"
 set move             = no
 set smtp_url         = "smtp://ammon.i.smith@smtp.gmail.com:587/"
 
+source "gpg -d ~/.mutt/passwords.ammonismith.gpg |"
+
 # vim: set ft=muttrc:

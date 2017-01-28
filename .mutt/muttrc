@@ -1,8 +1,6 @@
 set realname         = "Ammon Smith"
 set charset          = "utf-8"
 
-source "gpg -d ~/.mutt/passwords.gpg |"
-
 set header_cache     = ~/.mutt/caches/headers
 set message_cachedir = ~/.mutt/caches/bodies
 set certificate_file = ~/.mutt/certificates
