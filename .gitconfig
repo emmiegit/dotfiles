@@ -1,31 +1,32 @@
 [user]
-	email = ammon.i.smith@gmail.com
-	name = Ammon Smith
-	signingkey = "2C3CF0C7"
+    email = ammon.i.smith@gmail.com
+    name = Ammon Smith
+    signingkey = "2C3CF0C7"
 [core]
     editor = vim
     precomposeunicode = true
-	pager = less -x1,9
+    pager = less -x1,9
 [credential]
-	helper = cache --timeout 1800
+    helper = cache --timeout 1800
 [push]
-	default = simple
+    default = simple
 [github]
-	user = ammon
+    user = ammon
 [alias]
     alias = !git config -l | grep --color=never ^alias\\.
-	last = log -1 HEAD
-	edit = !"$EDITOR" $(git ls-files -m)
-	unstage = reset HEAD --
-	discard = checkout --
-	amend = commit --amend
-	graph = log --graph --branches --remotes --tags --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d' --date-order
+    last = log -1 HEAD
+    edit = !"$EDITOR" $(git ls-files -m)
+    unstage = reset HEAD --
+    discard = checkout --
+    amend = commit --amend
+    graph = log --graph --branches --remotes --tags --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d' --date-order
     untrack = rm -r --cached
     branches = branch -a
     tags = tag
     stashes = stash list
     remotes = remote -a
 [commit]
-	gpgsign = false
+    gpgsign = false
 [push]
     default = current
+
