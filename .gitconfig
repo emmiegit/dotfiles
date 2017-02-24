@@ -29,4 +29,20 @@
     gpgsign = false
 [push]
     default = current
+[url "https://aur.archlinux.org/"]
+    insteadOf = aur://
+[url "https://ssh+git://aur4.archlinux.org/"]
+    pushInsteadOf = aur://
+[url "https://github.com/"]
+    insteadOf = gh://
+[url "git@github.com:"]
+    pushInsteadOf = gh://
+[url "git@github.com:"]
+    insteadOf = gh2://
+[url "https://gitlab.com/"]
+    insteadOf = gl://
+[url "git@gitlab.com:"]
+    pushInsteadOf = gl://
+[url "git@gitlab.com:"]
+    insteadOf = gl2://
 
