@@ -165,6 +165,12 @@ mostused() {
       | head -n 20
 }
 
+# Create a new shell without ssh-agent
+nossh() {
+    unset SSH_AGENT_PID
+    unset SSH_AUTH_SOCK
+}
+
 # Print the 256 terminal colors (if supported)
 p256() {
     local x="$(tput op)"
