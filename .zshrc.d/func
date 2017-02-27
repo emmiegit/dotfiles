@@ -328,11 +328,14 @@ transfer() {
         echo >&2 'No arguments specified.'
         echo >&2 'Usage: transfer [filename]'
         return 1
+    elif ! confirm; then
+        echo >&2 'Come back when you'\''re more sure.'
+        return 1
     fi
 
-    local tmpfile="$(mktemp /tmp/transferXXXXXX)"
+    readonly local tmpfile="$(mktemp /tmp/transfershXXXXXX)"
     if tty -s; then
-        local basefile="$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g')"
+        readonly local basefile="$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g')"
         curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> "$tmpfile"
     else
         curl --progress-bar --upload-file - "https://transfer.sh/$1" >> "$tmpfile"
@@ -345,31 +348,45 @@ transfer() {
 # Get weather via wttr.in
 weather() {
     if [[ $# -eq 0 ]]; then
-        echo >&2 'Give a location. Ex: "ucr".'
+        echo >&2 'Give a location. Ex: "ucr"'
         return 1
     fi
 
     case "$1" in
         ucr)
-            local location='Riverside'
+            readonly local location='Riverside'
             ;;
         irvine)
-            local location='Irvine';
+            readonly local location='Irvine';
             ;;
         *)
             printf >&2 'Unknown location: %s.\n', "$1"
+            return 1
             ;;
     esac
     curl -s "wttr.in/$location"
 }
 
+# Convert audio webms to opus without reencoding
+webm2opus() {
+    for fn in *.webm; do
+        local dest="${fn:0:-4}opus"
+        ffmpeg -i "$fn" -acodec copy "$dest"
+    done
+}
+
 # Alias for wdiff
 wdiff() {
+    readonly local bold="$(tput bold)"
+    readonly local sgr0="$(tput sgr0)"
+    readonly local af1="$(tput setaf 1)"
+    readonly local af2="$(tput setaf 2)"
+
     dwdiff \
-        -w "$(tput bold; tput setaf 1)" \
-        -x "$(tput sgr0)" \
-        -y "$(tput bold; tput setaf 2)" \
-        -z "$(tput sgr0)" \
+        -w "${bold}${af1}" \
+        -x "${sgr0}" \
+        -y "${bold}${af2}" \
+        -z "${sgr0}" \
         "$@"
 }
 

@@ -1,4 +1,5 @@
 {
+    "20xx": "dolphin-emu-cli --exec /usr/share/iso/wii+gamecube/super-smash-bros-melee-usa-20xx-4.05.iso",
     "anime": "pcmanfm -n /home/ammon/Videos/Anime /home/ammon/Incoming /home/ammon/Pictures/Anime",
     "bt": "qbittorrent",
     "charmap": "gucharmap",
