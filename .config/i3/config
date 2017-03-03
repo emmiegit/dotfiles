@@ -345,7 +345,7 @@ exec /usr/local/scripts/wm/new-wallpaper.sh
 exec /usr/local/scripts/wm/daemon/gmail-check-notify.py
 exec /usr/local/scripts/wm/daemon/light-locker.sh
 exec /usr/local/scripts/wm/daemon/udiskie.sh
-exec /usr/local/scripts/wm/start-autolock.sh
+exec /usr/local/scripts/wm/daemon/start-autolock.sh
 exec redshift
 exec pamixer --unmute
 exec compton -b --config ~/.config/compton.conf
