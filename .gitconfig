@@ -37,12 +37,10 @@
     insteadOf = gh://
 [url "git@github.com:"]
     pushInsteadOf = gh://
-[url "git@github.com:"]
     insteadOf = gh2://
 [url "https://gitlab.com/"]
     insteadOf = gl://
 [url "git@gitlab.com:"]
     pushInsteadOf = gl://
-[url "git@gitlab.com:"]
     insteadOf = gl2://
 
