@@ -43,6 +43,16 @@ confirm() {
     esac
 }
 
+# Detach from TTY
+daemon() {
+    "$@" \
+        < /dev/null \
+        > /dev/null \
+        2> /dev/null \
+        &
+    disown
+}
+
 # Simple function to calculate date differences
 datediff() {
     d1="$(date -d "$1" +%s)"
