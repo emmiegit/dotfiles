@@ -1,10 +1,10 @@
-#!/bin/sh
-set -e
+#!/bin/bash
+set -euo pipefail
 
 cd "$(dirname "$0")"
-THIS_DIR="$(pwd -P)"
-FLAGS=
-FILES=(
+this_dir="$(pwd -P)"
+flags=()
+files=(
 	'.bashrc'
 	'.vim'
 	'.vimrc'
@@ -14,11 +14,11 @@ FILES=(
 	'.oh-my-zsh'
 )
 
-if [ "$1" == "-f" -o "$1" == "--force" ]; then
-	FLAGS='-f'
+if [[ "$1" == '-f' ]] || [[ "$1" == '--force' ]]; then
+	flags+=('-f')
 fi
 
-for filename in "${FILES[@]}"; do
-	ln -sv $FLAGS "$THIS_DIR/$filename" "$HOME" || true
+for filename in "${files[@]}"; do
+	ln -sv "${flags[@]}" "$this_dir/$filename" "$HOME" || true
 done
 
