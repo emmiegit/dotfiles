@@ -2,406 +2,406 @@
 
 # For screenfetches on anonymous imageboards
 anon() {
-    local name="anonymous"
-    local host="gentoo"
+	local name="anonymous"
+	local host="gentoo"
 
-    PS1=${PS1//\%n/"$name"} PS1=${PS1//\%M/"$host"}
-    printf '\033c'
+	PS1=${PS1//\%n/"$name"} PS1=${PS1//\%M/"$host"}
+	printf '\033c'
 }
 
 # For comparing binary files
 bdiff() {
-    if [[ $# -lt 2 ]]; then
-        echo >&2 'Not enough arguments.'
-        echo >&2 'Usage: bdiff first-file second-file'
-        return 1
-    fi
+	if [[ $# -lt 2 ]]; then
+		echo >&2 'Not enough arguments.'
+		echo >&2 'Usage: bdiff first-file second-file'
+		return 1
+	fi
 
-    cmp -l "$1" "$2" | gawk '{printf "%08X %02X %02X\n", $1-1, strtonum(0$2), strtonum(0$3)}'
+	cmp -l "$1" "$2" | gawk '{printf "%08X %02X %02X\n", $1-1, strtonum(0$2), strtonum(0$3)}'
 }
 
 # Currency conversion. Be sure to use official abbreviations
 cconv() {
-    wget -qO- "http://www.google.com/finance/converter?a=$1&from=$2&to=$3" | sed '/res/!d;s/<[^>]*>//g';
+	wget -qO- "http://www.google.com/finance/converter?a=$1&from=$2&to=$3" | sed '/res/!d;s/<[^>]*>//g';
 }
 
 # A command replacement that says 'this command is disabled'.
 command-disabled() {
-    echo >&2 'This command has been disabled for safety purposes.'
-    echo >&2 'If you really want to run it, invoke it directly. (e.g. /bin/false instead of false)'
-    return 1
+	echo >&2 'This command has been disabled for safety purposes.'
+	echo >&2 'If you really want to run it, invoke it directly. (e.g. /bin/false instead of false)'
+	return 1
 }
 
 # A simple confirmation message. Usage: 'confirm && (action)'
 confirm() {
-    read -p "Are you sure? [y/N] " confirm
-    case "$confirm" in
-        yes) return 0 ;;
-        y) return 0 ;;
-        Y) return 0 ;;
-        *) return 1 ;;
-    esac
+	read -p "Are you sure? [y/N] " confirm
+	case "$confirm" in
+		yes) return 0 ;;
+		y) return 0 ;;
+		Y) return 0 ;;
+		*) return 1 ;;
+	esac
 }
 
 # Detach from TTY
 daemon() {
-    "$@" \
-        < /dev/null \
-        > /dev/null \
-        2> /dev/null \
-        &
-    disown
+	"$@" \
+		< /dev/null \
+		> /dev/null \
+		2> /dev/null \
+		&
+	disown
 }
 
 # Simple function to calculate date differences
 datediff() {
-    d1="$(date -d "$1" +%s)"
-    d2="$(date -d "$2" +%s)"
-    echo "$(( (d1 - d2) / 86400 ))" days
+	d1="$(date -d "$1" +%s)"
+	d2="$(date -d "$2" +%s)"
+	echo "$(( (d1 - d2) / 86400 ))" days
 }
 
 # Easily convert from base64
 decode64() {
-    if [[ $# -eq 0 ]]; then
-        cat | base64 --decode
-    else
-        echo "$1" | base64 --decode
-    fi
+	if [[ $# -eq 0 ]]; then
+		cat | base64 --decode
+	else
+		echo "$1" | base64 --decode
+	fi
 }
 
 # Easily convert to base64
 encode64() {
-    if [[ $# -eq 0 ]]; then
-        cat | base64
-    else
-        echo "$1" | base64
-    fi
+	if [[ $# -eq 0 ]]; then
+		cat | base64
+	else
+		echo "$1" | base64
+	fi
 }
 
 # Batch converts from one format to another
 ffbatch() {
-    if [[ $# -lt 2 ]]; then
-        echo >&2 'Not enough arguments.'
-        echo >&2 'Usage: ffbatch mp3 ogg'
-    fi
+	if [[ $# -lt 2 ]]; then
+		echo >&2 'Not enough arguments.'
+		echo >&2 'Usage: ffbatch mp3 ogg'
+	fi
 
-    find -type f -name "*.$1" -print0 \
-        | while read -d $'\0' a; do
-            ffmpeg -i "$a" "${a[@]/%$1/$2}" < /dev/null
-        done
-    #rm -ir **/*.$1
+	find -type f -name "*.$1" -print0 \
+		| while read -d $'\0' a; do
+			ffmpeg -i "$a" "${a[@]/%$1/$2}" < /dev/null
+		done
+	#rm -ir **/*.$1
 }
 
 # Joins L and R tracks into a single file.
 ffstereo() {
-    if [[ $# -lt 3 ]]; then
-        echo >&2 'Not enough arguments.'
-        echo >&2 'Usage: ffstereo left-track-file right-track-file output-file'
-        return 1
-    fi
+	if [[ $# -lt 3 ]]; then
+		echo >&2 'Not enough arguments.'
+		echo >&2 'Usage: ffstereo left-track-file right-track-file output-file'
+		return 1
+	fi
 
-    ffmpeg -i "$1" -i "$2" -filter_complex "[0:a][1:a]amerge=inputs=2[aout]" -map "[aout]" -c:a flac "$3"
+	ffmpeg -i "$1" -i "$2" -filter_complex "[0:a][1:a]amerge=inputs=2[aout]" -map "[aout]" -c:a flac "$3"
 }
 
 # Changes the volume of a video or audio file.
 ffvolume() {
-    if [[ $# -lt 3 ]]; then
-        echo >&2 'Not enough arguments.'
-        echo >&2 'Usage: ffvolume input-file output-file volume-modifier'
-        return 1
-    fi
+	if [[ $# -lt 3 ]]; then
+		echo >&2 'Not enough arguments.'
+		echo >&2 'Usage: ffvolume input-file output-file volume-modifier'
+		return 1
+	fi
 
-    ffmpeg -i "$1" -af "volume=$3" "$2"
+	ffmpeg -i "$1" -af "volume=$3" "$2"
 }
 
 # Look for a certain .desktop file
 findapp() {
-    for arg in "$@"; do
-        grep -rnw "$arg" /usr/share/applications/
-        grep -rnw "$arg" ~/.local/share/applications/
-    done
+	for arg in "$@"; do
+		grep -rnw "$arg" /usr/share/applications/
+		grep -rnw "$arg" ~/.local/share/applications/
+	done
 }
 
 # Insult the user if their command fails.
 insult() {
-    # Warning: slow
-    printf 'root says: '
-    curl -s randominsults.net | sed -n '/<strong>/{s;^.*<i>\(.*\)</i>.*$;\1;p}'
+	# Warning: slow
+	printf 'root says: '
+	curl -s randominsults.net | sed -n '/<strong>/{s;^.*<i>\(.*\)</i>.*$;\1;p}'
 }
 
 # List dbus services
 lsdbus() {
-    if [[ $# -eq 0 ]] || [[ $1 == '--help' ]]; then
-        echo >&2 'Not enough arguments.'
-        echo >&2 'Usage: lsdbus (session | system)'
-        return 1
-    fi
+	if [[ $# -eq 0 ]] || [[ $1 == '--help' ]]; then
+		echo >&2 'Not enough arguments.'
+		echo >&2 'Usage: lsdbus (session | system)'
+		return 1
+	fi
 
-    dbus-send "--$1" \
-              --dest=org.freedesktop.DBus \
-              --type=method_call \
-              --print-reply \
-              /org/freedesktop \
-              org.freedesktop.DBus.ListNames
+	dbus-send "--$1" \
+			  --dest=org.freedesktop.DBus \
+			  --type=method_call \
+			  --print-reply \
+			  /org/freedesktop \
+			  org.freedesktop.DBus.ListNames
 }
 
 # List osu! songs
 lsosu() {
-    if [[ $# -eq 0 ]]; then
-        ls /opt/osu/game/Songs
-    else
-        ls /opt/osu/game/Songs | grep -i "$1"
-    fi
+	if [[ $# -eq 0 ]]; then
+		ls /opt/osu/game/Songs
+	else
+		ls /opt/osu/game/Songs | grep -i "$1"
+	fi
 }
 
 ## Print man output without pager
 #mancat() {
-#    tbl < "$@" | groff -mtty-char -Tascii -mandoc -c | ul
+#	tbl < "$@" | groff -mtty-char -Tascii -mandoc -c | ul
 #}
 #
 ## Automatically update man page
 #manwatch() {
-#    local watchflags='-tce'
-#    watch -tce mancat "$@"
+#	local watchflags='-tce'
+#	watch -tce mancat "$@"
 #}
 
 # Print your most used shell commands
 mostused() {
-    history \
-      | awk 'BEGIN {FS="[ \t]+|\\|"} {print $3}' \
-      | sort \
-      | uniq -c \
-      | sort -nr \
-      | head -n 20
+	history \
+	  | awk 'BEGIN {FS="[ \t]+|\\|"} {print $3}' \
+	  | sort \
+	  | uniq -c \
+	  | sort -nr \
+	  | head -n 20
 }
 
 # Create a new shell without ssh-agent
 nossh() {
-    unset SSH_AGENT_PID
-    unset SSH_AUTH_SOCK
+	unset SSH_AGENT_PID
+	unset SSH_AUTH_SOCK
 }
 
 # Print the 256 terminal colors (if supported)
 p256() {
-    local x="$(tput op)"
-    local y="$(printf %$((${COLUMNS}-6))s)"
-    for i in {0..256}; do
-        local o="00$i"
-        echo -e "${o:${#o}-3:3} "$(tput setaf $i; tput setab $i)"${y// /=}$x"
-    done
+	local x="$(tput op)"
+	local y="$(printf %$((${COLUMNS}-6))s)"
+	for i in {0..256}; do
+		local o="00$i"
+		echo -e "${o:${#o}-3:3} "$(tput setaf $i; tput setab $i)"${y// /=}$x"
+	done
 }
 
 # Reopen a PDF if the viewer closes
 pdf-always() {
-    if [[ $# -eq 0 ]]; then
-        echo >&2 'Usage: pdf-always filename'
-        return 1
-    fi
+	if [[ $# -eq 0 ]]; then
+		echo >&2 'Usage: pdf-always filename'
+		return 1
+	fi
 
-    while true; do
-        if [[ -f $1 ]]; then
-            mupdf "$1"
-        else
-            sleep 1
-        fi
-    done
+	while true; do
+		if [[ -f $1 ]]; then
+			mupdf "$1"
+		else
+			sleep 1
+		fi
+	done
 }
 
 # Print number of processes
 procno() {
-    find /proc -maxdepth 1 -regex '/proc/[0-9]+' -printf . | wc -c
+	find /proc -maxdepth 1 -regex '/proc/[0-9]+' -printf . | wc -c
 }
 
 # Pretty print a JSON file
 pjson() {
-    python -m json.tool <<< "$@"
+	python -m json.tool <<< "$@"
 }
 
 # Generate a dice roll
 roll() {
-    if [[ $# -gt 1 ]]; then
-        case "$1" in
-            d*) local upper="${1:1}" ;;
-            D*) local upper="${1:1}" ;;
-            *) local upper="$1" ;;
-        esac
-    else
-        local upper=100
-    fi
+	if [[ $# -gt 1 ]]; then
+		case "$1" in
+			d*) local upper="${1:1}" ;;
+			D*) local upper="${1:1}" ;;
+			*) local upper="$1" ;;
+		esac
+	else
+		local upper=100
+	fi
 
-    echo $[ 1 + $[ RANDOM % upper ] ]
+	echo $[ 1 + $[ RANDOM % upper ] ]
 }
 
 # Run one of my scripts without specifying the path
 scr() {
-    if [[ $# -eq 0 ]]; then
-        printf >&2 'Usage: scr script-name.\n'
-        return 1
-    fi
+	if [[ $# -eq 0 ]]; then
+		printf >&2 'Usage: scr script-name.\n'
+		return 1
+	fi
 
-    IFS=$'\n' \
-    local scripts=($(find -L '/usr/local/scripts' -iname "*$1*" -executable -print))
-    local scriptcount="${#scripts[@]}"
+	IFS=$'\n' \
+	local scripts=($(find -L '/usr/local/scripts' -iname "*$1*" -executable -print))
+	local scriptcount="${#scripts[@]}"
 
-    if [[ $scriptcount -eq 0 ]]; then
-        printf >&2 'Cannot find script "%s".\n' "$1"
-        return 1
-    elif [[ $scriptcount -gt 1 ]]; then
-        printf >&2 'Multiple script candidates:\n'
-        printf >&2 '%s\n' "${scripts[@]}"
-        return 1
-    else
-        local script="${scripts[1]}"
-        echo "$script"
-        shift
-        "$script" "$@"
-        return 0
-    fi
+	if [[ $scriptcount -eq 0 ]]; then
+		printf >&2 'Cannot find script "%s".\n' "$1"
+		return 1
+	elif [[ $scriptcount -gt 1 ]]; then
+		printf >&2 'Multiple script candidates:\n'
+		printf >&2 '%s\n' "${scripts[@]}"
+		return 1
+	else
+		local script="${scripts[1]}"
+		echo "$script"
+		shift
+		"$script" "$@"
+		return 0
+	fi
 }
 
 # Set the title of the terminal
 settitle() {
-    echo -ne "\e]2;$@\a\e]1;$@\a"
+	echo -ne "\e]2;$@\a\e]1;$@\a"
 }
 
 # Changes up how the sl train looks
 sl() {
-    local sett=e
-    local rand=$RANDOM
+	local sett=e
+	readonly local rand="$RANDOM"
 
-    [[ $[ $rand & 1 ] -gt 0 ]] && sett+=a
-    [[ $[ $rand & 2 ] -gt 0 ]] && sett+=l
-    [[ $[ $rand & 4 ] -gt 0 ]] && sett+=F
-    [[ $[ $rand & 8 ] -gt 0 ]] && sett+=c
-    
-    env sl "-$sett"
+	[[ $[ $rand & 1 ] -gt 0 ]] && sett+=a
+	[[ $[ $rand & 2 ] -gt 0 ]] && sett+=l
+	[[ $[ $rand & 4 ] -gt 0 ]] && sett+=F
+	[[ $[ $rand & 8 ] -gt 0 ]] && sett+=c
+
+	env sl "-$sett"
 }
 
 # Make sure the user is shutting down the right machine
 shutdown() {
-    sleep 0.5
-    printf 'About to shutdown %s. You sure? ' "$(cat /etc/hostname)"
-    read -r response
-    case "$response" in
-        y*) sudo shutdown now ;;
-        Y*) sudo shutdown now ;;
-        *) echo >&2 'Aborting.'
-    esac
+	sleep 0.5
+	printf 'About to shutdown %s. You sure? ' "$(cat /etc/hostname)"
+	read -r response
+	case "$response" in
+		y*) sudo shutdown now ;;
+		Y*) sudo shutdown now ;;
+		*) echo >&2 'Aborting.'
+	esac
 }
 
 # Ask for confirmation and then suspend
 suspend() {
-    confirm && \
-    suspendnow
+	confirm && \
+	suspendnow
 }
 
 # Suspend the computer
 suspendnow() {
-    systemctl suspend
+	systemctl suspend
 }
 
 # Suspend and lock the screen
 suspendlock() {
-    confirm && {
-        suspendnow
-        scr i3_lock.sh
-    }
+	confirm && {
+		suspendnow
+		scr i3_lock.sh
+	}
 }
 
 # Suspend and lock the tty
 suspendvlock() {
-    confirm && {
-        suspendnow
-        vlock
-    }
+	confirm && {
+		suspendnow
+		vlock
+	}
 }
 
 # List the options supported by this terminal.
 termsupport() {
-    infocmp -1 | \
-      sed -nu 's/^[ \000\t]*//;s/[ \000\t]*$//;/[^ \t\000]\{1,\}/!d;/acsc/d;s/=.*,//p' | \
-      column -c80
+	infocmp -1 | \
+	  sed -nu 's/^[ \000\t]*//;s/[ \000\t]*$//;/[^ \t\000]\{1,\}/!d;/acsc/d;s/=.*,//p' | \
+	  column -c80
 }
 
 # Make a total of all the integer items in a column
 totalcol() {
-    if [[ -z $1 ]]; then
-        return 1
-    fi
+	if [[ -z $1 ]]; then
+		return 1
+	fi
 
-    awk "{total += \$$1} END {print total}"
+	awk "{total += \$$1} END {print total}"
 }
 
 # Copy files to transfer.sh
 transfer() {
-    if [[ $# -eq 0 ]]; then
-        echo >&2 'No arguments specified.'
-        echo >&2 'Usage: transfer [filename]'
-        return 1
-    elif ! confirm; then
-        echo >&2 'Come back when you'\''re more sure.'
-        return 1
-    fi
+	if [[ $# -eq 0 ]]; then
+		echo >&2 'No arguments specified.'
+		echo >&2 'Usage: transfer [filename]'
+		return 1
+	elif ! confirm; then
+		echo >&2 'Come back when you'\''re more sure.'
+		return 1
+	fi
 
-    readonly local tmpfile="$(mktemp /tmp/transfershXXXXXX)"
-    if tty -s; then
-        readonly local basefile="$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g')"
-        curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> "$tmpfile"
-    else
-        curl --progress-bar --upload-file - "https://transfer.sh/$1" >> "$tmpfile"
-    fi
+	readonly local tmpfile="$(mktemp /tmp/transfershXXXXXX)"
+	if tty -s; then
+		readonly local basefile="$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g')"
+		curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> "$tmpfile"
+	else
+		curl --progress-bar --upload-file - "https://transfer.sh/$1" >> "$tmpfile"
+	fi
 
-    cat "$tmpfile"
-    rm -f "$tmpfile"
+	cat "$tmpfile"
+	rm -f "$tmpfile"
 }
 
 # Get weather via wttr.in
 weather() {
-    if [[ $# -eq 0 ]]; then
-        echo >&2 'Give a location. Ex: "ucr"'
-        return 1
-    fi
+	if [[ $# -eq 0 ]]; then
+		echo >&2 'Give a location. Ex: "ucr"'
+		return 1
+	fi
 
-    case "$1" in
-        ucr)
-            readonly local location='Riverside'
-            ;;
-        irvine)
-            readonly local location='Irvine';
-            ;;
-        *)
-            printf >&2 'Unknown location: %s.\n', "$1"
-            return 1
-            ;;
-    esac
-    curl -s "wttr.in/$location"
+	case "$1" in
+		ucr)
+			readonly local location='Riverside'
+			;;
+		irvine)
+			readonly local location='Irvine';
+			;;
+		*)
+			printf >&2 'Unknown location: %s.\n', "$1"
+			return 1
+			;;
+	esac
+	curl -s "wttr.in/$location"
 }
 
 # Convert audio webms to opus without reencoding
 webm2opus() {
-    for fn in *.webm; do
-        local dest="${fn:0:-4}opus"
-        ffmpeg -i "$fn" -acodec copy "$dest"
-    done
+	for fn in *.webm; do
+		local dest="${fn:0:-4}opus"
+		ffmpeg -i "$fn" -acodec copy "$dest"
+	done
 }
 
 # Alias for wdiff
 wdiff() {
-    readonly local bold="$(tput bold)"
-    readonly local sgr0="$(tput sgr0)"
-    readonly local af1="$(tput setaf 1)"
-    readonly local af2="$(tput setaf 2)"
+	readonly local bold="$(tput bold)"
+	readonly local sgr0="$(tput sgr0)"
+	readonly local af1="$(tput setaf 1)"
+	readonly local af2="$(tput setaf 2)"
 
-    dwdiff \
-        -w "${bold}${af1}" \
-        -x "${sgr0}" \
-        -y "${bold}${af2}" \
-        -z "${sgr0}" \
-        "$@"
+	dwdiff \
+		-w "${bold}${af1}" \
+		-x "${sgr0}" \
+		-y "${bold}${af2}" \
+		-z "${sgr0}" \
+		"$@"
 }
 
 # Play some random white noise
 whitenoise() {
-    play -n synth 60:00 brownnoise -65 tremolo .20 vol -20db
+	play -n synth 60:00 brownnoise -65 tremolo .20 vol -20db
 }
 

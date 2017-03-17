@@ -1,12 +1,12 @@
 # Path to your oh-my-zsh installation.
 
 case "$(uname)" in
-    Darwin)
-        ZSH=~/.oh-my-zsh
-        ;;
-    Linux)
-        ZSH=/usr/share/oh-my-zsh/
-        ;;
+	Darwin)
+		ZSH=~/.oh-my-zsh
+		;;
+	Linux)
+		ZSH=/usr/share/oh-my-zsh/
+		;;
 esac
 
 # Set name of the theme to load.

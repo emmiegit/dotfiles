@@ -30,7 +30,7 @@ bindkey -v
 # End of lines configured by zsh-newuser-install
 
 dosource() {
-    [[ -f "$1" ]] && source "$1"
+	[[ -f "$1" ]] && source "$1"
 }
 
 # Source oh-my-zsh setting

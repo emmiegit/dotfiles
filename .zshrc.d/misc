@@ -12,14 +12,14 @@ python2() { [[ $# -eq 0 ]] && bpython2 || env python2 "$@"; }
 python3() { [[ $# -eq 0 ]] && bpython3 || env python3 "$@"; }
 
 if [[ "$EUID" -eq 0 ]]; then
-    case "$(uname)" in
-        Darwin)
-            alias ls='ls -AGF'
-            ;;
-        Linux)
-            alias ls='ls -AhHF --color=tty'
-            ;;
-    esac
+	case "$(uname)" in
+		Darwin)
+			alias ls='ls -AGF'
+			;;
+		Linux)
+			alias ls='ls -AhHF --color=tty'
+			;;
+	esac
 fi
 
 # Allow GPG signing over SSH

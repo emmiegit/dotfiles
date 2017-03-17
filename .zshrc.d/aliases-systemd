@@ -1,55 +1,55 @@
 #!/usr/bin/env zsh
 
 normal_commands=(
-    'cat'
-    'help'
-    'is-active'
-    'is-enabled'
-    'list-jobs'
-    'list-timers'
-    'list-units'
-    'list-units-files'
-    'show'
-    'show-environment'
-    'status'
+	'cat'
+	'help'
+	'is-active'
+	'is-enabled'
+	'list-jobs'
+	'list-timers'
+	'list-units'
+	'list-units-files'
+	'show'
+	'show-environment'
+	'status'
 )
 
 perm_commands=(
-    'cancel'
-    'daemon-reexec'
-    'daemon-reload'
-    'disable'
-    'edit'
-    'enable'
-    'isolate'
-    'kill'
-    'link'
-    'load'
-    'mask'
-    'preset'
-    'reenable'
-    'reload-or-restart'
-    'reset-failed'
-    'restart'
-    'set-environment'
-    'start'
-    'stop'
-    'try-reload-or-restart'
-    'try-restart'
-    'unmask'
-    'unset-environment'
+	'cancel'
+	'daemon-reexec'
+	'daemon-reload'
+	'disable'
+	'edit'
+	'enable'
+	'isolate'
+	'kill'
+	'link'
+	'load'
+	'mask'
+	'preset'
+	'reenable'
+	'reload-or-restart'
+	'reset-failed'
+	'restart'
+	'set-environment'
+	'start'
+	'stop'
+	'try-reload-or-restart'
+	'try-restart'
+	'unmask'
+	'unset-environment'
 )
 
 for cmd in $normal_commands; do
-    alias "sc-$cmd"="systemctl $cmd"
+	alias "sc-$cmd"="systemctl $cmd"
 done
 
 for cmd in $perm_commands; do
-    alias "sc-$cmd"="sudo systemctl $cmd"
+	alias "sc-$cmd"="sudo systemctl $cmd"
 done
 
 for cmd in $normal_commands $perm_commands; do
-    alias "scu-$cmd"="systemctl --user $cmd"
+	alias "scu-$cmd"="systemctl --user $cmd"
 done
 
 unset cmd

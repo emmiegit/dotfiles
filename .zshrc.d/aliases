@@ -25,31 +25,31 @@ alias rmln='rmln -v'
 
 # Platform-specific commands
 case "$(uname)" in
-    Darwin)
-        alias chmod='chmod -v'
-        alias df='df -kh'
-        alias grep='grep -I --color=auto'
-        alias ls='ls -GFL'
-        alias rm='rm -v'
-        alias stat='gstat'
-        alias vim='env vim -p'
-        ;;
-    Linux)
-        alias chmod='chmod -c --preserve-root'
-        alias ls='ls -hHFN --group-directories-first --color=tty'
-        alias rm='rm -v --one-file-system'
-        alias grep='grep -I --color'
-        alias egrep='egrep --color=auto'
-        alias fgrep='fgrep --color=auto'
-        alias open='xdg-open'
-        alias pbcopy='xsel -bi'
-        alias pbpaste='xsel -b'
-        alias rmdir='rmdir -v'
-        ;;
+	Darwin)
+		alias chmod='chmod -v'
+		alias df='df -kh'
+		alias grep='grep -I --color=auto'
+		alias ls='ls -GFL'
+		alias rm='rm -v'
+		alias stat='gstat'
+		alias vim='env vim -p'
+		;;
+	Linux)
+		alias chmod='chmod -c --preserve-root'
+		alias ls='ls -hHFN --group-directories-first --color=tty'
+		alias rm='rm -v --one-file-system'
+		alias grep='grep -I --color'
+		alias egrep='egrep --color=auto'
+		alias fgrep='fgrep --color=auto'
+		alias open='xdg-open'
+		alias pbcopy='xsel -bi'
+		alias pbpaste='xsel -b'
+		alias rmdir='rmdir -v'
+		;;
 esac
 
 if which gls > /dev/null; then
-    alias ls='gls -hHFN --group-directories-first --color=tty'
+	alias ls='gls -hHFN --group-directories-first --color=tty'
 fi
 
 # Colorize output

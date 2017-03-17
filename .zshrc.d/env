@@ -6,14 +6,14 @@ unset PATH
 source /etc/profile
 
 case "$(uname)" in
-    Darwin)
-        export PATH="$PATH:$HOME/Binaries"
-        ;;
-    Linux)
-        export PATH="$PATH:$HOME/.gem/ruby/2.3.0/bin"
-        export AURDEST="/tmp/$USER/pacaur"
-        export GOPATH="$HOME/Git/misc/go/gopath"
-        ;;
+	Darwin)
+		export PATH="$PATH:$HOME/Binaries"
+		;;
+	Linux)
+		export PATH="$PATH:$HOME/.gem/ruby/2.3.0/bin"
+		export AURDEST="/tmp/$USER/pacaur"
+		export GOPATH="$HOME/Git/misc/go/gopath"
+		;;
 esac
 
 export LANG='en_US.UTF-8'
@@ -26,11 +26,11 @@ export WINEHOME="$HOME/.wine/"
 
 # Import systemd environment
 systemctl --user show-environment \
-    | while read -r var; do
-        name=$(cut -d= -f1 <<< "$var")
-        if eval "[[ ! \${$name+x} ]]"; then
-            eval "export $var"
-        fi
-    done
+	| while read -r var; do
+		name=$(cut -d= -f1 <<< "$var")
+		if eval "[[ ! \${$name+x} ]]"; then
+			eval "export $var"
+		fi
+	done
 unset name
 
