@@ -23,7 +23,7 @@ bdiff() {
 # Currency conversion. Be sure to use official abbreviations
 cconv() {
     wget -qO- "http://www.google.com/finance/converter?a=$1&from=$2&to=$3" | sed '/res/!d;s/<[^>]*>//g';
-} 
+}
 
 # A command replacement that says 'this command is disabled'.
 command-disabled() {
@@ -214,7 +214,7 @@ procno() {
 
 # Pretty print a JSON file
 pjson() {
-    echo "$@" | python -m json.tool
+    python -m json.tool <<< "$@"
 }
 
 # Generate a dice roll
@@ -261,7 +261,7 @@ scr() {
 
 # Set the title of the terminal
 settitle() {
-   echo -ne "\e]2;$@\a\e]1;$@\a"
+    echo -ne "\e]2;$@\a\e]1;$@\a"
 }
 
 # Changes up how the sl train looks

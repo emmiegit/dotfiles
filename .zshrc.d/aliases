@@ -131,6 +131,7 @@ catls() { [[ -d "$1" ]] && ls "$1" || cat "$1"; }
 cdls() { cd "$@" && ls; }
 cdmv() { mv "$1" "$2" && cd "$2"; }
 countf() { /usr/bin/ls -1 "$@" | wc -l; }
+define2() { curl "dict://dict.org/d:$1"; }
 digq() { dig "$@" | grep 'Query time'; }
 lsicon() { ls /usr/share/icons/Numix-Circle/scalable/apps | grep "$1"; }
 mkcd() { mkdir -p "$@" && cd "$@"; }
@@ -139,22 +140,25 @@ pacbin() { pacman -Ql "$1" | /usr/bin/grep --color=never /bin/ | awk '{print $2}
 pexec() { echo "$@"; "$@"; }
 pls() { sudo -- "${SHELL:-zsh}" -c "$(fc -ln -1)"; }
 realwhich() { realpath "$(env which "$1")"; }
+termbin() { nc termbin.com 9999; }
 trash() { [[ $# -eq 0 ]] && trash-list || trash-put $@; }
 
 # Misc
 note() { env note "$@" 2> /dev/null; }
 
 # Colorize text
-red()    { printf "\e[31m\e[1m"$@"\e[0m"; }
-green()  { printf "\e[32m\e[1m"$@"\e[0m"; }
-blue()   { printf "\e[34m\e[1m"$@"\e[0m"; }
-redl()   { printf "\e[31m"$@"\e[0m"; }
-greenl() { printf "\e[32m"$@"\e[0m"; }
-bluel()  { printf "\e[34m"$@"\e[0m"; }
+red()    { printf "\e[31m\e[1m%s\e[0m" "$@"; }
+green()  { printf "\e[32m\e[1m%s\e[0m" "$@"; }
+blue()   { printf "\e[34m\e[1m%s\e[0m" "$@"; }
+redl()   { printf "\e[31m%s\e[0m" "$@"; }
+greenl() { printf "\e[32m%s\e[0m" "$@"; }
+bluel()  { printf "\e[34m%s\e[0m" "$@"; }
 
 # Hash checkers
 md5check()    { [[ $(md5sum    "$2" | cut -d' ' -f1) == "$1" ]] && green '[OK]' || red '[FAIL]'; }
 sha1check()   { [[ $(sha1sum   "$2" | cut -d' ' -f1) == "$1" ]] && green '[OK]' || red '[FAIL]'; }
+sha224check() { [[ $(sha224sum "$2" | cut -d' ' -f1) == "$1" ]] && green '[OK]' || red '[FAIL]'; }
 sha256check() { [[ $(sha256sum "$2" | cut -d' ' -f1) == "$1" ]] && green '[OK]' || red '[FAIL]'; }
+sha384check() { [[ $(sha384sum "$2" | cut -d' ' -f1) == "$1" ]] && green '[OK]' || red '[FAIL]'; }
 sha512check() { [[ $(sha512sum "$2" | cut -d' ' -f1) == "$1" ]] && green '[OK]' || red '[FAIL]'; }
 
