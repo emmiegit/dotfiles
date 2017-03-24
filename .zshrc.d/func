@@ -175,6 +175,32 @@ mostused() {
 	  | head -n 20
 }
 
+# Rename files with the same name to something else.
+# Usage: movc original destination [extensions]
+movc() {
+	case "$#" in
+		2)
+			readonly local exts='ch'
+			;;
+		3)
+			readonly local exts="$3"
+			;;
+		*)
+			printf >&2 'Usage: movc ORIG DEST [EXTENSIONS]\n'
+			return 1
+			;;
+	esac
+
+	sed -e 's/\(.\)/\1\n/g' <<< "$exts" \
+		| while read -r ext; do
+			if [[ -z "$ext" ]]; then
+				break;
+			fi
+
+			mv -v "$1.$ext" "$2.$ext" || true
+		done
+}
+
 # Create a new shell without ssh-agent
 nossh() {
 	unset SSH_AGENT_PID
