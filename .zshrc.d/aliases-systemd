@@ -56,3 +56,4 @@ unset cmd
 unset normal_commands
 unset sudo_commands
 
+# vim: set noet:

@@ -1,3 +1,4 @@
+#!/usr/bin/env zsh
 # Path to your oh-my-zsh installation.
 
 case "$(uname)" in
@@ -46,4 +47,4 @@ ZSH_CUSTOM="$HOME/.oh-my-zsh"
 
 source "$ZSH/oh-my-zsh.sh"
 
-# vim: set ft=zsh:
+# vim: set noet:

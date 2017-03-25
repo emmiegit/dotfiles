@@ -78,7 +78,6 @@ alias doc2pdf='libreoffice --headless --invisible --norestore --convert-to pdf'
 alias dtail='dmesg | tail'
 alias jctl='journalctl'
 alias keyart='ssh-keygen -lv -f'
-alias imgur-dl='imgur-album-downloader'
 alias lsnet='env ls /sys/class/net'
 alias nonetwork='LD_PRELOAD=/usr/local/lib/nonetwork.so'
 alias sctl='systemctl'
@@ -162,3 +161,4 @@ sha256check() { [[ $(sha256sum "$2" | cut -d' ' -f1) == "$1" ]] && green '[OK]' 
 sha384check() { [[ $(sha384sum "$2" | cut -d' ' -f1) == "$1" ]] && green '[OK]' || red '[FAIL]'; }
 sha512check() { [[ $(sha512sum "$2" | cut -d' ' -f1) == "$1" ]] && green '[OK]' || red '[FAIL]'; }
 
+# vim: set noet:

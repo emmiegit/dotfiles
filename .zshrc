@@ -54,3 +54,4 @@ dosource '/etc/profile.d/fzf-extras.zsh'
 dosource "${HOME}/.travis/travis.sh"
 which thefuck > /dev/null && eval "$(thefuck --alias)"
 
+# vim: set noet:

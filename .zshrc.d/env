@@ -34,3 +34,4 @@ systemctl --user show-environment \
 	done
 unset name
 
+# vim: set noet:

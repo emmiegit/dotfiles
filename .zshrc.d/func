@@ -122,6 +122,17 @@ findapp() {
 	done
 }
 
+# Download imgur albums
+imgur-dl() {
+	if [[ $# -eq 2 ]]; then
+		local location="$2"
+	else
+		local location=.
+	fi
+
+	imgur-album-downloader "$1" "$location"
+}
+
 # Insult the user if their command fails.
 insult() {
 	# Warning: slow
@@ -431,3 +442,4 @@ whitenoise() {
 	play -n synth 60:00 brownnoise -65 tremolo .20 vol -20db
 }
 
+# vim: set noet:
