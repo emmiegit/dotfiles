@@ -27,11 +27,15 @@ export WINEHOME="$HOME/.wine/"
 # Import systemd environment
 systemctl --user show-environment \
 	| while read -r var; do
-		name=$(cut -d= -f1 <<< "$var")
+		name="$(cut -d= -f1 <<< "$var")"
 		if eval "[[ ! \${$name+x} ]]"; then
 			eval "export $var"
 		fi
 	done
 unset name
+
+# z options
+export _Z_NO_RESOLVE_SYMLINKS=1
+#export _Z_NO_PROMPT_COMMAND=1
 
 # vim: set noet:

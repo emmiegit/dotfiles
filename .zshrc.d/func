@@ -156,12 +156,28 @@ lsdbus() {
 			  org.freedesktop.DBus.ListNames
 }
 
+# Search for files in your $PATH
+lspath() {
+	if [[ $# -eq 0 ]]; then
+		echo >&2 'Not enough arguments.'
+		echo >&2 'Usage: lspath search-term...'
+		return 1
+	fi
+
+	tr : '\n' <<< "$PATH" | \
+		while read -r path; do
+			find "$path" -maxdepth 1 -iname "*$1*" -executable -print
+		done
+}
+
 # List osu! songs
 lsosu() {
+	readonly local osu_song_dir=/media/media/Games/osu\!/Songs
+
 	if [[ $# -eq 0 ]]; then
-		ls /opt/osu/game/Songs
+		ls "$osu_song_dir"
 	else
-		ls /opt/osu/game/Songs | grep -i "$1"
+		ls "$osu_song_dir" | grep -i "$1"
 	fi
 }
 
@@ -252,21 +268,6 @@ procno() {
 # Pretty print a JSON file
 pjson() {
 	python -m json.tool <<< "$@"
-}
-
-# Generate a dice roll
-roll() {
-	if [[ $# -gt 1 ]]; then
-		case "$1" in
-			d*) local upper="${1:1}" ;;
-			D*) local upper="${1:1}" ;;
-			*) local upper="$1" ;;
-		esac
-	else
-		local upper=100
-	fi
-
-	echo $[ 1 + $[ RANDOM % upper ] ]
 }
 
 # Run one of my scripts without specifying the path
