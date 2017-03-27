@@ -97,6 +97,9 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 
+" Print whitespace
+set list listchars=tab:»\ ,trail:·
+
 " Set the behavior when switching between buffers
 try
   set switchbuf=useopen,usetab,newtab
@@ -164,8 +167,11 @@ noremap <leader>dos mmHmt:%s/<C-v><cr>//ge<cr>'tzt'm
 " :W sudo saves the file
 command W w !sudo tee % > /dev/null
 
+" :Y copies an entire file
+command Y ggVG"+p``
+
 " :Cstyle sets my preferred formatting for C programs
-command Cstyle set shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab
+command Cstyle set cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab
 
 " Move between windows easier
 nnoremap <SID> <Plug>IMAP_JumpForward
@@ -204,14 +210,22 @@ map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 " Switch the cwd to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
-" Move a line of text using ALT+[jk]
-nmap <M-j> mz:m+<cr>`z
-nmap <M-k> mz:m-2<cr>`z
-vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+" Move a line of text using SHIFT+ALT+[jk]
+nmap <M-S-j> mz:m+<cr>`z
+nmap <M-S-k> mz:m-2<cr>`z
+vmap <M-S-j> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <M-S-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
 " ss toggles spellcheck
 map <leader>ss :setlocal spell!<cr>
+
+" System clipboard
+nmap <leader>p "+p
+nmap <leader>y "+y
+nmap <leader>x "+x
+vmap <leader>p "+p
+vmap <leader>y "+y
+vmap <leader>x "+x
 
 " Save session
 nnoremap <leader>s :mksession<cr>
@@ -230,6 +244,8 @@ let g:Imap_UsePlaceHolders = 0
 
 " YouCompleteMe options
 let g:ycm_global_ycm_extra_conf = '/etc/vim/ycm_extra_conf.py'
+let g:ycm_python_binary_path = '/usr/bin/python3'
+let g:ycm_server_python_interpreter = '/usr/bin/python2'
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:EclimCompletionMethod = 'omnifunc'
@@ -298,31 +314,15 @@ func! OpenTabs(...)
   endfor
 endfunc
 
-func! Wipeout()
-  " List all buffers that are visible
-  let visible = {}
-  for t in range(1, tabpagenr('$'))
-    for b in tabpagebuflist(t)
-      let visible[b] = 1
-    endfor
-  endfor
-  " Close any buffer that's not in the list
-  for b in range(1, bufnr('$'))
-    if bufloaded(b) && !has_key(visible, b)
-      exe 'bd ' . b
-    endif
-  endfor
-endfun
-
 " }}}
 
 " File-Specific Settings {{{
 autocmd BufRead *.c setl cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab
-autocmd BufRead *.h setl cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab
-autocmd BufRead *.cc setl cindent shiftwidth=4 tabstop=4 softtabstop=4
-autocmd BufRead *.hh setl cindent shiftwidth=4 tabstop=4 softtabstop=4
-autocmd BufRead *.cpp setl cindent shiftwidth=4 tabstop=4 softtabstop=4
-autocmd BufRead *.hpp setl cindent shiftwidth=4 tabstop=4 softtabstop=4
+autocmd BufRead *.h setl cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab ft=c
+autocmd BufRead *.cc setl cindent
+autocmd BufRead *.hh setl cindent
+autocmd BufRead *.cpp setl cindent
+autocmd BufRead *.hpp setl cindent
 autocmd BufRead *.sh setl shiftwidth=4 tabstop=4 noexpandtab
 autocmd BufRead *.yaml setl shiftwidth=2 tabstop=2
 
