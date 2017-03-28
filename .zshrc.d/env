@@ -25,14 +25,16 @@ export WINEPREFIX="$HOME/.wine/"
 export WINEHOME="$HOME/.wine/"
 
 # Import systemd environment
-systemctl --user show-environment \
-	| while read -r var; do
-		name="$(cut -d= -f1 <<< "$var")"
-		if eval "[[ ! \${$name+x} ]]"; then
-			eval "export $var"
-		fi
-	done
-unset name
+if which systemctl > /dev/null; then
+	systemctl --user show-environment \
+		| while read -r var; do
+			name="$(cut -d= -f1 <<< "$var")"
+			if eval "[[ ! \${$name+x} ]]"; then
+				eval "export $var"
+			fi
+		done
+	unset name
+fi
 
 # z options
 export _Z_NO_RESOLVE_SYMLINKS=1
