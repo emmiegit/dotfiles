@@ -6,20 +6,23 @@
 # Warning: this file is a pretty big mess. If you want all my latest stuff in
 # a more sane format, look at my .zshrc (and respective files in .zshrc.d)
 
-source /usr/share/fzf/key-bindings.bash
-source /usr/share/doc/pkgfile/command-not-found.bash
-source /usr/local/scripts/apps/gvim.sh
+dosource() {
+    [[ -f $1 ]] && source "$1"
+}
+
+dosource /usr/share/fzf/key-bindings.bash
+dosource /usr/share/doc/pkgfile/command-not-found.bash
+dosource /usr/local/scripts/apps/gvim.sh
 
 export PROMPT_COMMAND=__prompt_command  # Func to gen PS1 after CMDs
 
 __prompt_command() {
-    local RET="$?"
     local RESET='\[\e[0m\]'
     local RED='\[\e[0;31m\]'
     local GREEN='\[\e[0;32m\]'
     local YELLOW='\[\e[0;33m\]'
 
-    if [[ $RET -eq 0 ]]; then
+    if [[ $? -eq 0 ]]; then
         PS1=""
     else
         PS1="${RED}${RET}${RESET} "
@@ -37,8 +40,8 @@ __prompt_command() {
 PS2='... '
 
 ### ENVIRONMENT ###
-export EDITOR=vi
-export VISUAL=$EDITOR
+export EDITOR=vim
+export VISUAL="$EDITOR"
 export GPGKEY=2C3CF0C7
 export LD_LIBRARY_PATH='/usr/local/lib'
 
