@@ -160,6 +160,12 @@ nnoremap <C-l> :nohl<cr><C-l>
 
 " Remove ^M from Windows newlines
 noremap <leader>dos mmHmt:%s/<C-v><cr>//ge<cr>'tzt'm
+
+" Set :grep to use ripgrep
+if executable('rg')
+  set grepprg=rg\ --no-heading\ --vimgrep\ --smart-case
+  set grepformat=%f:%l:%c:%m
+endif
 " }}}
 
 " New commands {{{
