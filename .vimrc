@@ -323,6 +323,7 @@ endfunc
 " }}}
 
 " File-Specific Settings {{{
+autocmd BufRead *.go setl shiftwidth=4 tabstop=4 softtabstop=4 noexpandtab textwidth=72
 autocmd BufRead *.c setl cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab
 autocmd BufRead *.h setl cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab ft=c
 autocmd BufRead *.cc setl cindent

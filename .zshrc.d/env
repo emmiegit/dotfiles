@@ -10,9 +10,9 @@ case "$(uname)" in
 		export PATH="$PATH:$HOME/Binaries"
 		;;
 	Linux)
-		export PATH="$PATH:$HOME/.gem/ruby/2.3.0/bin:$HOME/.cabal/bin"
 		export AURDEST="/tmp/$USER/pacaur"
-		export GOPATH="$HOME/Git/misc/go/gopath"
+		export GOPATH="$HOME/Git/Go"
+		export PATH="$PATH:$HOME/.gem/ruby/2.3.0/bin:$HOME/.cabal/bin:$GOPATH/bin"
 		;;
 esac
 
