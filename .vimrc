@@ -288,6 +288,7 @@ if has("autocmd")
   autocmd BufWrite *.hpp :call DeleteTrailingWS()
   autocmd BufWrite *.py :call DeleteTrailingWS()
   autocmd BufWrite *.java :call DeleteTrailingWS()
+  autocmd BufWrite *.tex :call DeleteTrailingWS()
   autocmd BufWrite Makefile :call DeleteTrailingWS()
 endif
 
@@ -324,13 +325,14 @@ endfunc
 
 " File-Specific Settings {{{
 autocmd BufRead *.go setl shiftwidth=4 tabstop=4 softtabstop=4 noexpandtab textwidth=72
-autocmd BufRead *.c setl cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab
-autocmd BufRead *.h setl cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab ft=c
+autocmd BufRead *.c setl cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab textwidth=80
+autocmd BufRead *.h setl cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab textwidth=80 filetype=c
 autocmd BufRead *.cc setl cindent
 autocmd BufRead *.hh setl cindent
 autocmd BufRead *.cpp setl cindent
 autocmd BufRead *.hpp setl cindent
 autocmd BufRead *.sh setl shiftwidth=4 tabstop=4 noexpandtab
+autocmd BufRead *.tex setl nowrap
 autocmd BufRead *.yaml setl shiftwidth=2 tabstop=2
 
 " Transparent GPG Encryption
@@ -341,7 +343,7 @@ augroup gpg_encrypted
   autocmd BufReadPre,FileReadPre *.gpg set viminfo=
   autocmd BufReadPre,FileReadPre *.gpg set noswapfile noundofile nobackup
 
-  " Switch to binary moe
+  " Switch to binary mode
   autocmd BufReadPre,FileReadPre *.gpg set bin
   autocmd BufReadPre,FileReadPre *.gpg let ch_save = &ch|set ch=2
   autocmd BufReadPost,FileReadPost *.gpg '[,']!gpg --decrypt 2> /dev/null
