@@ -15,6 +15,7 @@ alias shred='shred -uv'
 alias sudo='sudo -EH'
 alias view='vim -R'
 alias vim='vim -p'
+alias which='which -a'
 alias xsnow='xsnow -nokeepsnow -notrees'
 
 # Modifiers on file operations

@@ -117,8 +117,20 @@ ffvolume() {
 # Look for a certain .desktop file
 findapp() {
 	for arg in "$@"; do
-		grep -rnw "$arg" /usr/share/applications/
-		grep -rnw "$arg" ~/.local/share/applications/
+		grep -rnw "$arg" "/usr/share/applications/"
+		grep -rnw "$arg" "$HOME/.local/share/applications/"
+	done
+}
+
+# Run gofmt on *.go files
+gofmtall() {
+	if [[ $# -eq 0 ]]; then
+		gofmtall *.go
+		return $?
+	fi
+
+	for fn in "$@"; do
+		gofmt "$fn" | sponge "$fn"
 	done
 }
 
