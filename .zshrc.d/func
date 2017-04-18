@@ -182,7 +182,7 @@ lsfd() {
 			env pgrep "$arg" | \
 				while read -r pid; do
 					echo "$pid"
-					ls -l "/proc/$pid/fd"
+					ls -lv "/proc/$pid/fd"
 				done
 		fi
 	done
