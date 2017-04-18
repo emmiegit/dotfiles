@@ -5,7 +5,7 @@
 ; but if you add other options, the next Save Settings will not save them.
 ; Use a shortcut, an @indirection file, or a .bat file instead.
 ;
--saveDate 1491797566
+-saveDate 1492423911
 -whitePieceColor #FFFFCC
 -blackPieceColor #202020
 -lightSquareColor #C8C365
@@ -42,12 +42,12 @@
 -onlyOwnGames false
 -monoMode false
 -showCoords false
--showThinking false
+-showThinking true
 -ponderNextMove true
 -periodicUpdates true
 -popupExitMessage true
 -popupMoveErrors false
--boardSize Colossal
+-boardSize Titanic
 -alwaysOnTop false
 -autoCallFlag false
 -autoComment false
@@ -132,18 +132,17 @@ Message (name);message $name $input;
 "kc" -icshost alanimus.com -icshelper timeseal
 }
 -recentEngines 4
--recentEngineList {gnuchess
-Stockfish
+-recentEngineList {Stockfish
+gnuchess
+Nilatac
 GNU Chess
-stockfish
 }
 -firstChessProgramNames {fairymax
 "Fruit 2.1" -fcp fruit -fUCI
 "Crafty" -fcp crafty
 "GNU Chess" -fcp gnuchess
 "Stockfish" -fcp "/usr/bin/stockfish" -fd "." -fn "Stockfish" -fUCI
-"gnuchess -x"
-}
+"Nilatac" -fcp nilatac}
 -themeNames {"native" -ubt false -pid "" -trueColors false -flipBlack false -overrideLineGap -1
 "classic" -ubt false -lsc #c8c365 -dsc #77a26d -pid "" -wpc #ffffcc -bpc #202020 -hsc #ffff00 -phc #ff0000 -overrideLineGap -1 -flipBlack false
 "wood" -ubt true -lbtf ~~/themes/textures/wood_l.png -dbtf ~~/themes/textures/wood_d.png -pid ""  -hsc #ffff00 -phc #ff0000 -overrideLineGap 1
@@ -157,7 +156,7 @@ stockfish
 }
 -showButtonBar true
 -pgnExtendedInfo true
--hideThinkingFromHuman false
+-hideThinkingFromHuman true
 -pgnTimeLeft false
 -liteBackTextureFile "/usr/share/games/xboard/themes/textures/wood_l.png"
 -darkBackTextureFile "/usr/share/games/xboard/themes/textures/wood_d.png"
@@ -238,41 +237,41 @@ stockfish
 -analysisBell 0
 -timeOddsMode 0
 -keepLineBreaksICS false
--winWidth 948
--winHeight 1165
--x 2884
--y 27
+-winWidth 1920
+-winHeight 1181
+-x 1920
+-y 19
 -icsUp false
--icsX 2147480764
--icsY 2147483621
+-icsX 2147481728
+-icsY 2147483629
 -icsW -2147483648
 -icsH -2147483648
--commentX 2147480764
--commentY 2147483621
+-commentX 2147481728
+-commentY 2147483629
 -commentW -2147483648
 -commentH -2147483648
--tagsX -1920
--tagsY 0
--tagsW 948
+-tagsX 1284
+-tagsY 8
+-tagsW 628
 -tagsH 1165
--gameListX 2147480764
--gameListY 2147483621
+-gameListX 2147481728
+-gameListY 2147483629
 -gameListW 500
 -gameListH 300
--slaveX 2147480764
--slaveY 2147483621
+-slaveX 2147481728
+-slaveY 2147483629
 -moveHistoryUp false
--moveHistoryX 2147480764
--moveHistoryY 2147483621
+-moveHistoryX 2147481728
+-moveHistoryY 2147483629
 -moveHistoryW -2147483648
 -moveHistoryH -2147483648
 -evalGraphUp false
--evalGraphX 2147480764
--evalGraphY 2147483621
+-evalGraphX 2147481728
+-evalGraphY 2147483629
 -evalGraphW -2147483648
 -evalGraphH -2147483648
 -engineOutputUp false
--engineOutputX 2147480764
--engineOutputY 2147483621
--engineOutputW -2147483648
--engineOutputH -2147483648
+-engineOutputX -636
+-engineOutputY 8
+-engineOutputW 628
+-engineOutputH 1165
