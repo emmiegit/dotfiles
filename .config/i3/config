@@ -339,11 +339,11 @@ bindsym $mod+Shift+y exec --no-startup-id /usr/local/scripts/wm/set-wacom-mode.s
 
 # Start-up applications {{{
 ###########################
-exec /usr/local/scripts/wm/new-wallpaper.sh
 exec /usr/local/scripts/wm/daemon/gmail-check-notify.py
 exec /usr/local/scripts/wm/daemon/light-locker.sh
 exec /usr/local/scripts/wm/daemon/udiskie.sh
 exec /usr/local/scripts/wm/daemon/start-autolock.sh
+exec /usr/local/scripts/wm/new-wallpaper.sh
 exec redshift
 exec pamixer --unmute
 exec compton -b --config ~/.config/compton.conf
