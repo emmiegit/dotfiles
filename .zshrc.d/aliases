@@ -37,7 +37,7 @@ case "$(uname)" in
 		;;
 	Linux)
 		alias chmod='chmod -c --preserve-root'
-		alias ls='ls -hHFN --group-directories-first --color=tty'
+		alias ls='ls -hHFNv --group-directories-first --color=tty'
 		alias rm='rm -v --one-file-system'
 		alias grep='grep -I --color'
 		alias egrep='egrep --color=auto'

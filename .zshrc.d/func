@@ -34,7 +34,8 @@ command-disabled() {
 
 # A simple confirmation message. Usage: 'confirm && (action)'
 confirm() {
-	read -p "Are you sure? [y/N] " confirm
+	printf 'Are you sure? [y/N] '
+	read -r confirm
 	case "$confirm" in
 		yes) return 0 ;;
 		y) return 0 ;;
