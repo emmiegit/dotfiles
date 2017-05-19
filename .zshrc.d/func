@@ -25,6 +25,21 @@ cconv() {
 	wget -qO- "http://www.google.com/finance/converter?a=$1&from=$2&to=$3" | sed '/res/!d;s/<[^>]*>//g';
 }
 
+# Run a command in a subshell with a different cwd
+cddo() {
+	if [[ $# -lt 2 ]]; then
+		echo >&2 'Not enough arguments.'
+		echo >&2 'Usage: cddo directory program [arguments...]'
+		return 1
+	fi
+
+	(
+	cd "$1"
+	shift
+	"$@"
+	)
+}
+
 # A command replacement that says 'this command is disabled'.
 command-disabled() {
 	echo >&2 'This command has been disabled for safety purposes.'
