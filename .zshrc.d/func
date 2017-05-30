@@ -388,6 +388,22 @@ suspendvlock() {
 	}
 }
 
+# Use taffy to automatically tag a song
+taffyit() {
+	if [[ $# -eq 0 ]]; then
+		echo >&2 'No files specified.'
+		return 1
+	fi
+
+	local artist="$(basename "$(pwd)")"
+
+	for fn in "$@"; do
+		local title="${fn%.*}"
+		echo "$fn: $title by $artist"
+		taffy -r "$artist" -t "$title" "$fn"
+	done
+}
+
 # List the options supported by this terminal.
 termsupport() {
 	infocmp -1 | \
