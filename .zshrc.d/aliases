@@ -43,8 +43,8 @@ case "$(uname)" in
 		alias egrep='egrep --color=auto'
 		alias fgrep='fgrep --color=auto'
 		alias open='xdg-open'
-		alias pbcopy='xsel -bi'
-		alias pbpaste='xsel -b'
+		alias pbcopy='xclip -i'
+		alias pbpaste='xclip -o'
 		alias rmdir='rmdir -v'
 		;;
 esac
