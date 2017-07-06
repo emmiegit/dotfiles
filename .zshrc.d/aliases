@@ -8,7 +8,9 @@ alias df='df -kTh'
 alias du='du -kh'
 alias ed='ed -p: -v'
 alias free='free -h'
-alias iotop='sudo iotop -o'
+alias iftop='env sudo iftop'
+alias iotop='env sudo iotop -o'
+alias nethogs='sudo nethogs'
 alias pdflatex='pdflatex -halt-on-error'
 alias pgrep='pgrep -afl'
 alias shred='shred -uv'
@@ -43,7 +45,7 @@ case "$(uname)" in
 		alias egrep='egrep --color=auto'
 		alias fgrep='fgrep --color=auto'
 		alias open='xdg-open'
-		alias pbcopy='xclip -i'
+		alias pbcopy='xsel -bi'
 		alias pbpaste='xclip -o'
 		alias rmdir='rmdir -v'
 		;;
@@ -121,7 +123,7 @@ alias smallest="find . -printf '%s %p\n' | sort -nr | tail"
 
 # For fun
 alias chanstamp='date +%s%3N'
-alias maze='Z=╱╲;for((;;)){ printf ${Z:RANDOM&1:1};sleep .01;};unset Z'
+alias maze='_maze=╱╲;for((;;)){ printf ${_maze:RANDOM&1:1};sleep .01;};unset _maze'
 alias mpvnc='mpv --speed=1.5 --audio-pitch-correction=no --no-video'
 alias mpvac='mpv --speed=0.67 --audio-pitch-correction=no --no-video'
 
@@ -146,6 +148,7 @@ trash() { [[ $# -eq 0 ]] && trash-list || trash-put $@; }
 
 # Misc
 note() { env note "$@" 2> /dev/null; }
+ytdl_quiet() { ytdl "$@" >/dev/null 2>&1 & }
 
 # Colorize text
 red()    { printf "\e[31m\e[1m%s\e[0m" "$@"; }

@@ -54,4 +54,7 @@ dosource '/usr/lib/z.sh'
 dosource "${HOME}/.travis/travis.sh"
 which thefuck > /dev/null && eval "$(thefuck --alias)"
 
+# Final stuff
+unalias l
+
 # vim: set noet:

@@ -138,6 +138,11 @@ findapp() {
 	done
 }
 
+# Finds the volume of an audio file in decibels
+getvolume() {
+	ffmpeg -i "$1" -af 'volumedetect' -f null /dev/null
+}
+
 # Run gofmt on *.go files
 gofmtall() {
 	if [[ $# -eq 0 ]]; then
