@@ -931,9 +931,11 @@ case "$(uname)" in
 	Linux)
 		export AURDEST="/tmp/$USER/pacaur"
 		export GOPATH="$HOME/Git/Go"
-		export PATH="$PATH:$HOME/.local/bin:$HOME/.gem/ruby/2.3.0/bin:$HOME/.cabal/bin:$HOME/.npm/bin:$GOPATH/bin"
+		export PATH="$PATH:$HOME/.gem/ruby/2.3.0/bin:$HOME/.cabal/bin:$HOME/.npm/bin:$GOPATH/bin"
 		;;
 esac
+
+export PATH="$PATH:$HOME/.local/bin:$HOME/.cargo/bin"
 
 # Import systemd environment
 if which systemctl > /dev/null; then
