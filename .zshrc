@@ -119,8 +119,8 @@ alias df='df -kTh'
 alias du='du -kh'
 alias ed='ed -p: -v'
 alias free='free -h'
-alias iftop='env sudo iftop'
-alias iotop='env sudo iotop -o'
+alias iftop='sudo iftop'
+alias iotop='sudo iotop -o'
 alias nethogs='sudo nethogs'
 alias pdflatex='pdflatex -halt-on-error'
 alias pgrep='pgrep -afl'
@@ -912,7 +912,8 @@ unset sudo_commands
 #################
 
 # Variables
-export LANG='en_US.UTF-8'
+export LC_ALL='en_US.UTF-8'
+export LANG="$LC_ALL"
 export EDITOR='vim'
 export VISUAL="$EDITOR"
 export GPGKEY='2C3CF0C7'
