@@ -704,6 +704,13 @@ shutdown() {
 	esac
 }
 
+# Get lengths of command line arguments
+strlen() {
+	for str in "$@"; do
+		echo "${#str}"
+	done
+}
+
 # Ask for confirmation and then suspend
 suspend() {
 	confirm && \
