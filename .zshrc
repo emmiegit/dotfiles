@@ -37,24 +37,6 @@ bindkey -v
 #####
 # }}}
 
-# Source files {{{
-##################
-
-dosource() {
-	[[ -f "$1" ]] && source "$1"
-}
-
-dosource '/usr/share/fzf/key-bindings.zsh'
-dosource '/usr/local/share/fzf/key-bindings.zsh'
-dosource '/usr/share/doc/pkgfile/command-not-found.zsh'
-dosource '/etc/profile.d/fzf-extras.zsh'
-dosource '/usr/lib/z.sh'
-dosource "${HOME}/.travis/travis.sh"
-which thefuck > /dev/null && eval "$(thefuck --alias)"
-
-#####
-# }}}
-
 # oh-my-zsh {{{
 ###############
 
@@ -960,6 +942,24 @@ fi
 # z options
 export _Z_NO_RESOLVE_SYMLINKS=1
 #export _Z_NO_PROMPT_COMMAND=1
+
+#####
+# }}}
+
+# Source files {{{
+##################
+
+dosource() {
+	[[ -f "$1" ]] && source "$1"
+}
+
+dosource '/usr/share/fzf/key-bindings.zsh'
+dosource '/usr/local/share/fzf/key-bindings.zsh'
+dosource '/usr/share/doc/pkgfile/command-not-found.zsh'
+dosource '/etc/profile.d/fzf-extras.zsh'
+dosource '/usr/lib/z.sh'
+dosource "${HOME}/.travis/travis.sh"
+which thefuck > /dev/null && eval "$(thefuck --alias)"
 
 #####
 # }}}
