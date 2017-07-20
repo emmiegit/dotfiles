@@ -138,6 +138,7 @@ case "$(uname)" in
 		alias rm='rm -v'
 		alias stat='gstat'
 		alias vim='env vim -p'
+		alias ldd='otool -L'
 		;;
 	Linux)
 		alias chmod='chmod -c --preserve-root'
