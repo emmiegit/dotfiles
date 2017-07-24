@@ -3,6 +3,7 @@ Description=Music on Curses server
 After=network.target sound.target
 
 [Service]
+Restart=always
 Type=forking
 RemainAfterExit=yes
 ExecStart=/usr/bin/mocp --server
