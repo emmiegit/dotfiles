@@ -1,6 +1,9 @@
 .vim/bundle/
 .vim/.netrwhist
-.oh-my-zsh/plugins
+.oh-my-zsh/lib/
+.oh-my-zsh/plugins/
+.oh-my-zsh/templates/
+.oh-my-zsh/tools/
 
 *.*.swp
 __pycache__
