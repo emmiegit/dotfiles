@@ -678,7 +678,7 @@ sl() {
 # Make sure the user is shutting down the right machine
 shutdown() {
 	sleep 0.5
-	printf 'About to shutdown %s. You sure? ' "$(cat /etc/hostname)"
+	printf "About to shutdown \e[1m%s\e[0m. You sure? " "$(cat /etc/hostname)"
 	read -r response
 	case "$response" in
 		y*) sudo shutdown now ;;
