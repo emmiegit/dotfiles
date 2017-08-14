@@ -76,7 +76,7 @@ DISABLE_AUTO_UPDATE="true"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(jsontools nyan pip safe-paste urltools vi-mode zsh-autosuggestions)
+plugins=(colored-man-pages jsontools nyan pip safe-paste urltools vi-mode zsh-autosuggestions)
 
 # User configuration
 # You may need to manually set your language environment
@@ -142,7 +142,7 @@ case "$(uname)" in
 		;;
 	Linux)
 		alias chmod='chmod -c --preserve-root'
-		alias ls='ls -hHFNv --group-directories-first --color=tty'
+		alias ls='ls -hHFNv --color=tty'
 		alias rm='rm -v --one-file-system'
 		alias grep='grep -I --color'
 		alias egrep='egrep --color=auto'
@@ -655,6 +655,17 @@ pjson() {
 	python -m json.tool <<< "$@"
 }
 
+# Make sure the user is rebooting the right machine
+reboot() {
+	sleep 0.5
+	printf "About to reboot \e[1m%s\e[0m. You sure? " "$(cat /etc/hostname)"
+	read -r response
+	case "$response" in
+		y*|Y*) sudo reboot ;;
+		*) echo >&2 'Aborting.'
+	esac
+}
+
 # Run one of my scripts without specifying the path
 scr() {
 	if [[ $# -eq 0 ]]; then
@@ -706,8 +717,7 @@ shutdown() {
 	printf "About to shutdown \e[1m%s\e[0m. You sure? " "$(cat /etc/hostname)"
 	read -r response
 	case "$response" in
-		y*) sudo shutdown now ;;
-		Y*) sudo shutdown now ;;
+		y*|Y*) sudo shutdown now ;;
 		*) echo >&2 'Aborting.'
 	esac
 }

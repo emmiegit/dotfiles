@@ -1,4 +1,5 @@
 # i3 config file (v4)
+
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 # Basics {{{
@@ -266,12 +267,13 @@ for_window [class="com-dreamcodex-wumpus-HuntTheWumpus"] floating enable
 for_window [class="net-minecraft-bootstrap-Bootst"] floating enable
 for_window [class="net-technicpack-launcher-LauncherMain"] floating enable
 for_window [instance="Toplevel"] floating enable
+for_window [class="pinentry" instance="pinentry"] floating enable
 for_window [title="Terminator Preferences"] floating enable
 # }}}
 
 # Default applications {{{
 ##########################
-set $Terminal terminator
+set $Terminal alacritty
 set $Explorer pcmanfm
 set $Editor gvim
 set $Browser icecat
@@ -290,6 +292,7 @@ bindsym $mod+slash exec --no-startup-id printf '%s & disown' "$(lighthouse)" | b
 
 # Start a terminal
 bindsym $mod+Return exec $Terminal
+bindsym $mod+$alt+Return exec terminator
 
 # File explorer
 bindsym $mod+t exec $Explorer
