@@ -200,8 +200,25 @@ alias ytdl='noglob youtube-dl -f bestvideo+bestaudio --prefer-free-formats -i -o
 alias ytmp3='noglob youtube-dl -x -f bestaudio --prefer-free-formats -o "%(title)s.%(ext)s"'
 alias md='mkdir -p'
 
+# SSH shortcuts
+alias adam='ssh Adam'
+alias titus='ssh Titus'
+alias f1='nossh2 ammon@falcon1'
+alias f2='nossh2 ammon@falcon2'
+alias f3='nossh2 ammon@falcon3'
+alias f4='nossh2 ammon@falcon4'
+alias f5='nossh2 ammon@falcon5'
+alias f6='nossh2 ammon@falcon6'
+alias f7='nossh2 ammon@falcon7'
+alias f8='nossh2 ammon@falcon8'
+alias f9='nossh2 ammon@falcon9'
+alias f10='nossh2 ammon@falcon10'
+alias f11='nossh2 ammon@falcon11'
+alias f12='nossh2 ammon@falcon12'
+alias f13='nossh2 ammon@falcon13'
+
 # Valgrind shortcuts
-alias memcheck='valgrind --tool=memcheck --track-origins=yes'
+alias memcheck='valgrind --tool=memcheck'
 alias cachegrind='valgrind --tool=cachegrind'
 alias callgrind='valgrind --tool=callgrind'
 alias helgrind='valgrind --tool=helgrind'
@@ -592,6 +609,14 @@ movc() {
 nossh() {
 	unset SSH_AGENT_PID
 	unset SSH_AUTH_SOCK
+}
+
+# Run the given process without ssh-agent
+nossh2() {
+	(
+	nossh
+	exec ssh "$@"
+	)
 }
 
 # Print the 256 terminal colors (if supported)
