@@ -94,6 +94,8 @@ workspace 7 output DVI-D-1
 workspace 8 output DVI-D-0
 workspace 9 output VGA-0
 workspace 10 output DVI-D-1
+workspace 11 output DVI-D-0
+workspace 12 output VGA-0
 # }}}
 
 # Workspace switching {{{
@@ -109,6 +111,8 @@ bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
+bindsym $mod+Control+1 workspace 11
+bindsym $mod+Control+2 workspace 12
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -266,8 +270,8 @@ for_window [class="Uim-pref-gtk" instance="uim-pref-gtk"] floating enable
 for_window [class="com-dreamcodex-wumpus-HuntTheWumpus"] floating enable
 for_window [class="net-minecraft-bootstrap-Bootst"] floating enable
 for_window [class="net-technicpack-launcher-LauncherMain"] floating enable
+for_window [class="Pinentry" instance="pinentry"] floating enable
 for_window [instance="Toplevel"] floating enable
-for_window [class="pinentry" instance="pinentry"] floating enable
 for_window [title="Terminator Preferences"] floating enable
 # }}}
 
@@ -356,7 +360,7 @@ exec --no-startup-id sleep 25 && exec steam-native
 exec --no-startup-id /usr/local/scripts/wm/startup.sh
 
 # Default workspaces
-exec i3-msg 'workspace 1; exec $Terminal; exec discord'
+exec i3-msg 'workspace 1; exec discord'
 exec i3-msg 'workspace 2; exec $Terminal'
 exec i3-msg 'workspace 3; exec $Browser'
 exec i3-msg 'workspace 4; exec $Email'
