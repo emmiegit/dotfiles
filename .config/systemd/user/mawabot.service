@@ -1,0 +1,12 @@
+[User]
+Description=Maware's self-bot
+After=network.target
+
+[Service]
+Restart=always
+Type=simple
+ExecStart=/bin/sh -c 'cd ~/Git/mawabot; exec python3.6 -m mawabot -d config.json'
+
+[Install]
+WantedBy=default.target
+
