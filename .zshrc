@@ -808,7 +808,8 @@ transfer() {
 	fi
 
 	cat "$tmpfile"
-	rm -f "$tmpfile"
+	echo
+	rm -f "$tmpfile" > /dev/null
 }
 
 # Get weather via wttr.in

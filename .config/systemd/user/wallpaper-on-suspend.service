@@ -4,7 +4,6 @@ After=suspend.target
 
 [Service]
 Type=oneshot
-User=ammon
 Environment="DISPLAY=:0"
 ExecStart=/usr/local/scripts/wm/new-wallpaper.sh
 
