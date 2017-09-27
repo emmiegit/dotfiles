@@ -266,10 +266,11 @@ for_window [title="Terminator Preferences"] floating enable
 
 # Default applications {{{
 ##########################
-set $Terminal alacritty
+set $Terminal terminator
+set $Terminal2 alacritty
 set $Explorer pcmanfm
 set $Editor gvim
-set $Browser icecat
+set $Browser firefox-developer
 set $Browser2 chromium
 set $Email claws-mail
 set $Locker /usr/local/scripts/wm/lock.sh
@@ -285,7 +286,7 @@ bindsym $mod+slash exec --no-startup-id printf '%s & disown' "$(lighthouse)" | b
 
 # Start a terminal
 bindsym $mod+Return exec $Terminal
-bindsym $mod+$alt+Return exec terminator
+bindsym $mod+$alt+Return exec $Terminal2
 
 # File explorer
 bindsym $mod+t exec $Explorer

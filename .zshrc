@@ -76,7 +76,7 @@ DISABLE_AUTO_UPDATE="true"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(colored-man-pages jsontools nyan pip safe-paste urltools vi-mode zsh-autosuggestions)
+plugins=(jsontools nyan pip safe-paste urltools vi-mode zsh-autosuggestions)
 
 # User configuration
 # You may need to manually set your language environment
@@ -196,8 +196,8 @@ alias vibrc='vim ~/.bashrc'
 alias vimrc='vim ~/.vimrc'
 alias week='date +%V'
 alias ytalb='noglob youtube-dl -x --prefer-free-formats -o "%(autonumber)s - %(title)s.%(ext)s" --autonumber-size 2'
-alias ytdl='noglob youtube-dl -f bestvideo+bestaudio --prefer-free-formats -i -o "%(title)s.%(ext)s"'
-alias ytmp3='noglob youtube-dl -x -f bestaudio --prefer-free-formats -o "%(title)s.%(ext)s"'
+alias ytdl='noglob youtube-dl -f bestvideo+bestaudio -i -o "%(title)s.%(ext)s"'
+alias ytmp3='noglob youtube-dl -x -f bestaudio -o "%(title)s.%(ext)s"'
 alias md='mkdir -p'
 
 # SSH shortcuts
