@@ -1,5 +1,4 @@
 #!/bin/bash
-set -euo pipefail
 
 cd "$(dirname "$0")"
 this_dir="$(pwd -P)"
@@ -11,7 +10,6 @@ files=(
 	'.gitconfig'
 	'.gvimrc'
 	'.zshrc'
-	'.zshrc.d'
 	'.oh-my-zsh'
 )
 
