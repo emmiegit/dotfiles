@@ -84,18 +84,18 @@ bindsym $mod+d focus child
 # Workspaces {{{
 ################
 # Set workspaces to be on certain monitors
-workspace 1 output DVI-D-1
-workspace 2 output DVI-D-0
-workspace 3 output VGA-0
-workspace 4 output DVI-D-1
-workspace 5 output DVI-D-0
-workspace 6 output VGA-0
-workspace 7 output DVI-D-1
-workspace 8 output DVI-D-0
-workspace 9 output VGA-0
-workspace 10 output DVI-D-1
-workspace 11 output DVI-D-0
-workspace 12 output VGA-0
+## workspace 1 output DVI-D-1
+## workspace 2 output DVI-D-0
+## workspace 3 output VGA-0
+## workspace 4 output DVI-D-1
+## workspace 5 output DVI-D-0
+## workspace 6 output VGA-0
+## workspace 7 output DVI-D-1
+## workspace 8 output DVI-D-0
+## workspace 9 output VGA-0
+## workspace 10 output DVI-D-1
+## workspace 11 output DVI-D-0
+## workspace 12 output VGA-0
 # }}}
 
 # Workspace switching {{{
@@ -113,6 +113,14 @@ bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 bindsym $mod+Control+1 workspace 11
 bindsym $mod+Control+2 workspace 12
+bindsym $mod+Control+3 workspace 13
+bindsym $mod+Control+4 workspace 14
+bindsym $mod+Control+5 workspace 15
+bindsym $mod+Control+6 workspace 16
+bindsym $mod+Control+7 workspace 17
+bindsym $mod+Control+8 workspace 18
+bindsym $mod+Control+9 workspace 19
+bindsym $mod+Control+0 workspace 20
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -125,6 +133,16 @@ bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+Control+1 move container to workspace 11
+bindsym $mod+Shift+Control+2 move container to workspace 12
+bindsym $mod+Shift+Control+3 move container to workspace 13
+bindsym $mod+Shift+Control+4 move container to workspace 14
+bindsym $mod+Shift+Control+5 move container to workspace 15
+bindsym $mod+Shift+Control+6 move container to workspace 16
+bindsym $mod+Shift+Control+7 move container to workspace 17
+bindsym $mod+Shift+Control+8 move container to workspace 18
+bindsym $mod+Shift+Control+9 move container to workspace 19
+bindsym $mod+Shift+Control+0 move container to workspace 20
 
 # move focused container to workspace and switch there
 bindsym $mod+$alt+1 move container to workspace 1; workspace 1
@@ -137,6 +155,16 @@ bindsym $mod+$alt+7 move container to workspace 7; workspace 7
 bindsym $mod+$alt+8 move container to workspace 8; workspace 8
 bindsym $mod+$alt+9 move container to workspace 9; workspace 9
 bindsym $mod+$alt+0 move container to workspace 10; workspace 10
+bindsym $mod+$alt+Control+1 move container to workspace 1; workspace 11
+bindsym $mod+$alt+Control+2 move container to workspace 2; workspace 12
+bindsym $mod+$alt+Control+3 move container to workspace 3; workspace 13
+bindsym $mod+$alt+Control+4 move container to workspace 4; workspace 14
+bindsym $mod+$alt+Control+5 move container to workspace 5; workspace 15
+bindsym $mod+$alt+Control+6 move container to workspace 6; workspace 16
+bindsym $mod+$alt+Control+7 move container to workspace 7; workspace 17
+bindsym $mod+$alt+Control+8 move container to workspace 8; workspace 18
+bindsym $mod+$alt+Control+9 move container to workspace 9; workspace 19
+bindsym $mod+$alt+Control+0 move container to workspace 10; workspace 20
 
 # Switch to the last workspace
 workspace_auto_back_and_forth yes
@@ -246,8 +274,10 @@ for_window [class="Gpa" instance="gpa"] floating enable
 for_window [class="Gucharmap" instance="gucharmap"] floating enable
 for_window [class="Haguichi" instance="haguichi"] floating enable
 for_window [class="Keepassx2" instance="keepassx2"] floating enable
+for_window [class="Nm-connection-editor"] floating enable
 for_window [class="Nvidia-settings" instance="nvidia-settings"] floating enable
 for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
+for_window [class="Pinentry" instance="pinentry"] floating enable
 for_window [class="Steam" instance="Steam"] floating enable
 for_window [class="Tagainijisho" instance="tagainijisho"] floating enable
 for_window [class="Tomboy" instance="Tomboy"] floating enable
@@ -259,7 +289,6 @@ for_window [class="Uim-pref-gtk" instance="uim-pref-gtk"] floating enable
 for_window [class="com-dreamcodex-wumpus-HuntTheWumpus"] floating enable
 for_window [class="net-minecraft-bootstrap-Bootst"] floating enable
 for_window [class="net-technicpack-launcher-LauncherMain"] floating enable
-for_window [class="Pinentry" instance="pinentry"] floating enable
 for_window [instance="Toplevel"] floating enable
 for_window [title="Terminator Preferences"] floating enable
 # }}}
@@ -340,9 +369,10 @@ exec /usr/local/scripts/wm/daemon/light-locker.sh
 exec /usr/local/scripts/wm/daemon/udiskie.sh
 exec /usr/local/scripts/wm/daemon/start-autolock.sh
 exec /usr/local/scripts/wm/new-wallpaper.sh
-exec redshift
-exec pamixer --unmute
 exec compton -b --config ~/.config/compton.conf
+exec nm-applet
+exec pamixer --unmute
+exec redshift
 exec uim-xim
 exec --no-startup-id sleep 25 && exec steam-native
 
