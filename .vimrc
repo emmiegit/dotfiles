@@ -335,6 +335,7 @@ autocmd BufRead *.hpp setl cindent
 autocmd BufRead *.sh setl shiftwidth=4 tabstop=4 noexpandtab
 autocmd BufRead *.tex setl nowrap
 autocmd BufRead *.yaml setl shiftwidth=2 tabstop=2
+autocmd BufRead *.yml setl shiftwidth=2 tabstop=2
 
 " Transparent GPG Encryption
 augroup gpg_encrypted
