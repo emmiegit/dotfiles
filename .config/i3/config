@@ -297,7 +297,7 @@ set $Terminal terminator
 set $Terminal2 alacritty
 set $Explorer pcmanfm
 set $Editor gvim
-set $Browser firefox-developer
+set $Browser firefox-developer-edition
 set $Browser2 chromium
 set $Email claws-mail
 set $Locker /usr/local/scripts/wm/lock.sh
