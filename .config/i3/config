@@ -309,7 +309,7 @@ set $Locker /usr/local/scripts/wm/lock.sh
 bindsym $mod+period exec xfiller
 
 # Lighthouse launcher
-bindsym $mod+slash exec --no-startup-id printf '%s & disown' "$(lighthouse)" | bash
+bindsym $mod+slash exec --no-startup-id /usr/local/scripts/wm/rofi.sh
 
 # Start a terminal
 bindsym $mod+Return exec $Terminal
