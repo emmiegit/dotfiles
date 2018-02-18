@@ -166,16 +166,36 @@ fi
 
 # Derivative
 alias cpa='cp -a'
-alias la='ls -A'
-alias latr='ls -Altr'
-alias lc='ls -ltcr'      # Sort by change time, most recent last
-alias lk='ls -lSr'       # Sort by size, biggest last
-alias ll='ls -l'
-alias lla='ls -Al'
-alias lm='ll | less'
-alias ltr='ls -ltr'      # Sort by date, most recent last
-alias lu='ls -ltur'      # Sort by access time, most recent last
-alias lxb='ls -lXB'      # Sort by extension
+
+# 'ls' commands
+if which exa > /dev/null; then
+	alias ls='exa'
+	alias la='exa -a'
+	alias laa='exa -aa'
+	alias latr='exa -al --sort=newest'
+	alias lc='exa -lr --sort=created'
+	alias lk='exa -l --sort=size'
+	alias ll='exa -l'
+	alias lla='exa -la'
+	alias llaa='exa -laa'
+	alias lm='exa -l | less'
+	alias ltr='exa -l --sort=newest'
+	alias lu='exa -l --sort=accessed'
+	alias lxb='exa -l --sort=extension'
+else
+	alias la='ls -A'
+	alias laa='ls -a'
+	alias latr='ls -Altr'
+	alias lc='ls -ltcr'      # Sort by change time, most recent last
+	alias lk='ls -lSr'       # Sort by size, biggest last
+	alias ll='ls -l'
+	alias lla='ls -Al'
+	alias llaa='ls -al'
+	alias lm='ll | less'
+	alias ltr='ls -ltr'      # Sort by date, most recent last
+	alias lu='ls -ltur'      # Sort by access time, most recent last
+	alias lxb='ls -lXB'      # Sort by extension
+fi
 
 # Custom operations
 alias allgrp='cut -d: -f1 /etc/group'
@@ -888,6 +908,7 @@ perm_commands=(
 	'mask'
 	'preset'
 	'reenable'
+	'reload'
 	'reload-or-restart'
 	'reset-failed'
 	'restart'
@@ -964,7 +985,7 @@ fi
 
 # z options
 export _Z_NO_RESOLVE_SYMLINKS=1
-#export _Z_NO_PROMPT_COMMAND=1
+export _Z_NO_PROMPT_COMMAND=1
 
 #####
 # }}}
@@ -976,8 +997,8 @@ dosource() {
 	[[ -f "$1" ]] && source "$1"
 }
 
+dosource '/usr/bin/aws_zsh_completer.sh'
 dosource '/usr/share/fzf/key-bindings.zsh'
-dosource '/usr/local/share/fzf/key-bindings.zsh'
 dosource '/usr/share/doc/pkgfile/command-not-found.zsh'
 dosource '/etc/profile.d/fzf-extras.zsh'
 dosource '/usr/lib/z.sh'
