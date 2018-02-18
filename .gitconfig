@@ -6,6 +6,12 @@
     editor = vim
     precomposeunicode = true
     pager = less -x1,9
+[color]
+    branch = auto
+    diff = auto
+    status = auto
+    showbranch = auto
+    ui = true
 [credential]
     helper = cache --timeout 1800
 [push]

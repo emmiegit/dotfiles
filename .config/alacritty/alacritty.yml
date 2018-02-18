@@ -1,6 +1,5 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator
 
-
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
 # set by alacritty it self.
@@ -49,12 +48,12 @@ font:
 
   # The bold font face
   bold:
-    family: monospace
+    family: courier
     style: Bold
 
   # The italic font face
   italic:
-    family: monospace
+    family: courier
     style: Italic
 
   # Point size of the font
