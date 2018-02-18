@@ -244,6 +244,9 @@ set laststatus=2
 set t_Co=256
 let g:powerline_pycmd = 'py3'
 
+" rust.vim
+let g:autofmt_autosave = 1
+
 " LaTeX settings
 let g:tex_flavor = 'latex'
 let g:Imap_UsePlaceHolders = 0
@@ -265,9 +268,9 @@ let g:localvimrc_count = 1
 let g:localvimrc_persistent = 2
 let g:localvimrc_persistence_file = expand('$HOME') . '/.vim_runtime/localvimrc_persist'
 
-" Only source .lvimrc files in ~/Documents or ~/Git
+" Only source .lvimrc files in ~/Git
 let g:localvimrc_blacklist = '.*'
-let g:localvimrc_whitelist = [expand('$HOME') . '/Documents/.*', expand('$HOME') . '/Git/.*']
+let g:localvimrc_whitelist = [expand('$HOME') . '/Git/.*']
 " }}}
 
 " Helper functions {{{
