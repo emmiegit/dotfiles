@@ -1,0 +1,6 @@
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/mkdir -p /tmp/ammon/%i
+
+[Install]
+WantedBy=default.target

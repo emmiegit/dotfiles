@@ -3,7 +3,7 @@ Description=Load NVidia settings
 
 [Service]
 Type=oneshot
-ExecStart=/usr/local/scripts/load-nvidia-settings.sh
+ExecStart=/usr/local/scripts/wm/load-nvidia-settings.sh
 
 [Install]
 WantedBy=default.target

@@ -1,5 +1,6 @@
 [Unit]
 Description=Discord rich presence for MPD
+Requires=mpd.service
 After=network.target sound.target
 
 [Service]
