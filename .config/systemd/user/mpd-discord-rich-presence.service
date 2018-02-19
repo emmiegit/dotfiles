@@ -1,0 +1,11 @@
+[Unit]
+Description=Discord rich presence for MPD
+After=network.target sound.target
+
+[Service]
+Restart=always
+RestartSec=30
+ExecStart=/usr/local/bin/mpd_discord_richpresence
+
+[Install]
+WantedBy=default.target

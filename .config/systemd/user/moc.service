@@ -11,4 +11,3 @@ ExecStop=/usr/bin/mocp --exit
 
 [Install]
 WantedBy=default.target
-
