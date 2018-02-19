@@ -5,7 +5,7 @@ mpd_host = localhost
 mpd_port = 6600
 mpd_music_dir = ~/Music
 
-song_list_format = {%t}{%f}{ - %a}{ (%n)}
+song_list_format = {%t}|{%f}{ - %a}{ (%n)}
 song_window_title_format = {%t}|{%f}{ - %a}
 
 current_item_prefix = $r
@@ -21,6 +21,7 @@ mouse_support = yes
 mouse_list_scroll_whole_page = no
 empty_tag_marker = ""
 tags_separator = " | "
+progressbar_look = "=>"
 
 visualizer_fifo_path = "/tmp/ammon/mpd.fifo"
 visualizer_output_name = "mpd_audio_fifo"
