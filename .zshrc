@@ -1040,6 +1040,9 @@ export GPG_TTY="$(tty)"
 # I dislike this ls alias
 unalias l
 
+# FIXME: hack to get rustc colors to work
+cargo() { TERM=xterm env cargo "$@"; }
+
 #####
 # }}}
 
