@@ -308,7 +308,7 @@ set $Locker /usr/local/scripts/wm/lock.sh
 # Filler window
 bindsym $mod+period exec xfiller
 
-# Lighthouse launcher
+# Launcher
 bindsym $mod+slash exec --no-startup-id /usr/local/scripts/wm/rofi.sh
 
 # Start a terminal
