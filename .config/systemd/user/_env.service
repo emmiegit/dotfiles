@@ -1,0 +1,8 @@
+[Service]
+EnvironmentFile=/tmp/ammon/env-file
+Type=oneshot
+ExecStart=/bin/sh -c 'env > /tmp/ammon/env-results'
+
+[Install]
+WantedBy=default.target
+
