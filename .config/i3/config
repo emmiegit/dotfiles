@@ -173,7 +173,7 @@ bindsym $mod+Shift+z move container to workspace back_and_forth; workspace back_
 
 # Goto marks
 bindsym $mod+m exec i3-input -F 'mark %s' -P 'Mark name: '
-bindsym $mod+' exec i3-input -F '[con_mark=%s] focus' -P 'Go to mark: '
+bindsym $mod+apostrophe exec i3-input -F '[con_mark=%s] focus' -P 'Go to mark: '
 # }}}
 
 # Basic keybinds {{{
