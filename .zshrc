@@ -728,6 +728,17 @@ shutdown() {
 	esac
 }
 
+# Make sure the user is rebooting the right machine
+reboot() {
+	sleep 0.5
+	printf "About to reboot \e[1m%s\e[0m. You sure? " "$(cat /etc/hostname)"
+	read -r response
+	case "$response" in
+		y*|Y*) sudo reboot ;;
+		*) echo >&2 'Aborting.'
+	esac
+}
+
 # Get lengths of command line arguments
 strlen() {
 	for str in "$@"; do
@@ -963,7 +974,7 @@ case "$(uname)" in
 		export PATH="$PATH:$HOME/Binaries"
 		;;
 	Linux)
-		export AURDEST="/tmp/$USER/pacaur"
+		export AURDEST="/tmp/$USER/aur"
 		export GOPATH="$HOME/Git/Go"
 		export PATH="$PATH:$HOME/.gem/ruby/2.3.0/bin:$HOME/.cabal/bin:$HOME/.npm/bin:$GOPATH/bin"
 		;;
