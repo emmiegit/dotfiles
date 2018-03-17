@@ -1,7 +1,8 @@
 [Service]
-EnvironmentFile=/tmp/ammon/env-file
 Type=oneshot
 ExecStart=/bin/sh -c 'env > /tmp/ammon/env-results'
+Environment=SECRET='sakdjfklasjflaskdf'
+Environment=FLAGS="abc def"
 
 [Install]
 WantedBy=default.target
