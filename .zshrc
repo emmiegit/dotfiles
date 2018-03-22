@@ -899,7 +899,7 @@ normal_commands=(
 	'list-jobs'
 	'list-timers'
 	'list-units'
-	'list-units-files'
+	'list-unit-files'
 	'show'
 	'show-environment'
 	'status'
