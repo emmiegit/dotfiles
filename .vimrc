@@ -227,11 +227,15 @@ map <leader>ss :setlocal spell!<cr>
 
 " System clipboard
 nmap <leader>p "+p
+nmap <leader>P "+P
 nmap <leader>y "+y
 nmap <leader>x "+x
+nmap <leader>d "+d
 vmap <leader>p "+p
+vmap <leader>P "+P
 vmap <leader>y "+y
 vmap <leader>x "+x
+vmap <leader>d "+d
 
 " Save session
 nnoremap <leader>s :mksession<cr>
@@ -293,6 +297,7 @@ if has("autocmd")
   autocmd BufWrite *.py :call DeleteTrailingWS()
   autocmd BufWrite *.java :call DeleteTrailingWS()
   autocmd BufWrite *.tex :call DeleteTrailingWS()
+  autocmd BufWrite *.txt :call DeleteTrailingWS()
   autocmd BufWrite Makefile :call DeleteTrailingWS()
 endif
 
