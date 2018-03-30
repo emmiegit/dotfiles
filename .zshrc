@@ -107,6 +107,7 @@ alias nethogs='sudo nethogs'
 alias pdflatex='pdflatex -halt-on-error'
 alias pgrep='pgrep -afl'
 alias shred='shred -uv'
+alias socat='noglob socat'
 alias sudo='sudo -EH'
 alias view='vim -R'
 alias vim='vim -p'
@@ -280,7 +281,7 @@ digq() {
 }
 
 lsicon() {
-	ls /usr/share/icons/Numix-Circle/scalable/apps | grep "$1"
+	ls -1 /usr/share/icons/Numix-Circle/scalable/apps | grep "$1"
 }
 
 mkcd() {
@@ -288,8 +289,18 @@ mkcd() {
 }
 
 myip() {
+	myip4
+	myip6
+}
+
+myip4() {
 	wget -qO- http://ipecho.net/plain
 	echo
+}
+
+myip6() {
+	wget -qO- http://ip6echo.net/plain/ \
+		| sed -Ee 's/<[^>]+>|[[:space:]]+|What'\''s My IPv6 Address\?//g' -e '/^$/d'
 }
 
 pacbin() {
@@ -357,6 +368,21 @@ anon() {
 
 	PS1=${PS1//\%n/"$name"} PS1=${PS1//\%M/"$host"}
 	printf '\033c'
+}
+
+# Manually download PKGBUILD for building
+aur() {
+	if [[ $# -eq 0 ]]; then
+		echo >&2 'No packages specified.'
+		return 1
+	fi
+
+	(
+	cd "$AURDEST"
+	for pkg in "$@"; do
+		git clone "https://aur.archlinux.org/$pkg.git"
+	done
+	)
 }
 
 # For comparing binary files
@@ -523,6 +549,17 @@ insult() {
 	curl -s randominsults.net | sed -n '/<strong>/{s;^.*<i>\(.*\)</i>.*$;\1;p}'
 }
 
+# Make sure the user is kexec'ing the right machine
+kexec() {
+	sleep 0.5
+	printf "About to reboot (via kexec) \e[1m%s\e[0m. You sure? " "$(cat /etc/hostname)"
+	read -r response
+	case "$response" in
+		y*|Y*) sudo systemctl kexec ;;
+		*) echo >&2 'Aborting.'
+	esac
+}
+
 # List dbus services
 lsdbus() {
 	if [[ $# -eq 0 ]] || [[ $1 == '--help' ]]; then
@@ -681,22 +718,44 @@ scr() {
 
 	IFS=$'\n' \
 	local scripts=($(find -L '/usr/local/scripts' -iname "*$1*" -executable -print))
-	local scriptcount="${#scripts[@]}"
+	case "${#scripts[@]}" in
+		0)
+			printf >&2 'Cannot find script "%s".\n' "$1"
+			return 1
+			;;
+		1)
+			local script="${scripts[1]}"
+			echo "$script"
+			shift
+			"$script" "$@"
+			return 0
+			;;
+		*)
+			printf >&2 'Multiple script candidates:\n'
+			printf >&2 '%s\n' "${scripts[@]}"
+			return 1
+			;;
+	esac
+}
 
-	if [[ $scriptcount -eq 0 ]]; then
-		printf >&2 'Cannot find script "%s".\n' "$1"
+# Default options for securefs mount
+secmount() {
+	if [[ $# -eq 0 ]]; then
+		printf >&2 'Usage: secmount crypt-dir mount-dir [extra-flags].\n'
 		return 1
-	elif [[ $scriptcount -gt 1 ]]; then
-		printf >&2 'Multiple script candidates:\n'
-		printf >&2 '%s\n' "${scripts[@]}"
-		return 1
-	else
-		local script="${scripts[1]}"
-		echo "$script"
-		shift
-		"$script" "$@"
-		return 0
 	fi
+
+	if [[ $# -ge 2 ]]; then
+		local crypt_dir="$1"
+		local mount_dir="$2"
+		shift 2
+	else
+		local crypt_dir="$1.secfs"
+		local mount_dir="$1"
+		shift 1
+	fi
+
+	securefs mount -b --log "$crypt_dir/.securefs.log" "$@" -- "$crypt_dir" "$mount_dir"
 }
 
 # Set the title of the terminal
