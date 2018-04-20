@@ -138,7 +138,7 @@ endif
 
 " Set number of lines to the cursor when moving vertically
 if (&lines > 35)
-  set scrolloff=9     
+  set scrolloff=9
 else
   set scrolloff=2
 endif
