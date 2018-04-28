@@ -220,6 +220,9 @@ alias ytdl='noglob youtube-dl -i -o "%(title)s.%(ext)s"'
 alias ytmp3='noglob youtube-dl -x -o "%(title)s.%(ext)s"'
 alias md='mkdir -p'
 
+# Program modifiers
+alias jp='LC_ALL=ja_JP.UTF-8'
+
 # SSH shortcuts
 alias adam='ssh Adam'
 alias titus='ssh Titus'
