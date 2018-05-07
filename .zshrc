@@ -1023,7 +1023,7 @@ export LANG="$LC_ALL"
 export EDITOR='vim'
 export VISUAL="$EDITOR"
 export GPGKEY='2C3CF0C7'
-export LD_LIBRARY_PATH='/usr/local/lib'
+export LD_LIBRARY_PATH="/usr/local/lib:$(rustc --print sysroot)/lib"
 export WINEPREFIX="$HOME/.wine/"
 export WINEHOME="$HOME/.wine/"
 
