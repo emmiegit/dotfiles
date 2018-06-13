@@ -300,7 +300,7 @@ set $Explorer pcmanfm
 set $Editor gvim
 set $Browser firefox-developer-edition
 set $Browser2 chromium
-set $Email claws-mail
+set $Email thunderbird
 set $Locker /usr/local/scripts/wm/lock.sh
 # }}}
 
@@ -383,7 +383,7 @@ exec --no-startup-id /usr/local/scripts/wm/startup.sh
 # Default workspaces
 exec i3-msg 'workspace 1; exec $Terminal'
 exec i3-msg 'workspace 2; exec discord'
-exec i3-msg 'workspace 3; exec $Email'
+#exec i3-msg 'workspace 3; exec $Email'
 exec i3-msg 'workspace 4; exec $Browser'
 # }}}
 
