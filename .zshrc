@@ -291,6 +291,10 @@ mkcd() {
 	mkdir -p "$@" && cd "$@"
 }
 
+mvcd() {
+	mv "$@" && cd "${@: -1}"
+}
+
 myip() {
 	myip4
 	myip6
@@ -355,8 +359,8 @@ sha384check() { [[ $(sha384sum "$2" | cut -d' ' -f1) == "$1" ]] && green '[OK]' 
 sha512check() { [[ $(sha512sum "$2" | cut -d' ' -f1) == "$1" ]] && green '[OK]' || red '[FAIL]'; }
 
 # Misc
-note() { env note "$@" 2> /dev/null; }
-ytdl_quiet() { ytdl "$@" >/dev/null 2>&1 & }
+note() { scr note "$@" 2> /dev/null; }
+ytdlq() { ytdl "$@" >/dev/null 2>&1 & }
 
 #####
 # }}}
