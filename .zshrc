@@ -749,7 +749,7 @@ scr() {
 # Default options for securefs mount
 secmount() {
 	if [[ $# -eq 0 ]]; then
-		printf >&2 'Usage: secmount crypt-dir mount-dir [extra-flags].\n'
+		echo >&2 "Usage: secmount crypt-dir mount-dir [extra-flags]."
 		return 1
 	fi
 
@@ -761,6 +761,15 @@ secmount() {
 		local crypt_dir="$1.secfs"
 		local mount_dir="$1"
 		shift 1
+	fi
+
+	if [[ -f "$crypt_dir/.securefs.lock" ]]; then
+		if pgrep securefs > /dev/null; then
+			echo >&2 "securefs mount already running. if you're sure this isn't true, then remove $crypt_dir/.securefs.lock"
+			return 1
+		else
+			rm "$crypt_dir/.securefs.lock"
+		fi
 	fi
 
 	securefs mount -b --log "$crypt_dir/.securefs.log" "$@" -- "$crypt_dir" "$mount_dir"
