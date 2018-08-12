@@ -360,6 +360,7 @@ sha512check() { [[ $(sha512sum "$2" | cut -d' ' -f1) == "$1" ]] && green '[OK]' 
 
 # Misc
 note() { scr note "$@" 2> /dev/null; }
+mpvq() { @ mpv --no-terminal "$@" & }
 ytdlq() { ytdl "$@" >/dev/null 2>&1 & }
 
 #####
