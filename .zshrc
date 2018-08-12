@@ -1066,7 +1066,7 @@ case "$(uname)" in
 		;;
 	Linux)
 		export AURDEST="/tmp/$USER/aur"
-		export GOPATH="$HOME/Git/Go"
+		export GOPATH="$HOME/git/go"
 		export PATH="$PATH:$HOME/.gem/ruby/2.3.0/bin:$HOME/.cabal/bin:$HOME/.npm/bin:$GOPATH/bin"
 		;;
 esac
@@ -1084,10 +1084,6 @@ if which systemctl > /dev/null; then
 		done
 	unset name
 fi
-
-# z options
-export _Z_NO_RESOLVE_SYMLINKS=1
-export _Z_NO_PROMPT_COMMAND=1
 
 #####
 # }}}
