@@ -333,13 +333,14 @@ endfunc
 " }}}
 
 " File-Specific Settings {{{
-autocmd BufRead *.go setl shiftwidth=4 tabstop=4 softtabstop=4 noexpandtab textwidth=72
 autocmd BufRead *.c setl cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab textwidth=80
-autocmd BufRead *.h setl cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab textwidth=80 filetype=c
 autocmd BufRead *.cc setl cindent
-autocmd BufRead *.hh setl cindent
 autocmd BufRead *.cpp setl cindent
+autocmd BufRead *.go setl shiftwidth=4 tabstop=4 softtabstop=4 noexpandtab textwidth=72
+autocmd BufRead *.h setl cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab textwidth=80 filetype=c
+autocmd BufRead *.hh setl cindent
 autocmd BufRead *.hpp setl cindent
+autocmd BufRead *.js setl shiftwidth=2 tabstop=2
 autocmd BufRead *.sh setl shiftwidth=4 tabstop=4 noexpandtab
 autocmd BufRead *.tex setl nowrap
 autocmd BufRead *.yaml setl shiftwidth=2 tabstop=2
