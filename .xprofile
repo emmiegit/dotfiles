@@ -4,15 +4,14 @@
 # Swap escape and caps lock for vim
 /usr/local/scripts/wm/vi-keyswap.sh
 
-# Disable acceleration
+# Disable mouse acceleration
 xset m 0 0
 
-# Set device-specific settings
 xinput --set-prop 'ZLY ZELOTES GAME MOUSE' 'libinput Accel Speed' -0.4
 
-xinput --set-prop 'USB Optical Mouse' 'libinput Accel Speed' 1
+xinput --set-prop 'USB Optical Mouse' 'libinput Accel Speed' -0.2
+xinput --set-prop 'USB Optical Mouse' 'libinput Accel Profile Enabled' 0 0
 
 export XMODIFIERS=@uim=xim
 export GTK_IM_MODULE=uim
 export QT_IM_MODULE=uim
-
