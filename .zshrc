@@ -361,6 +361,7 @@ sha512check() { [[ $(sha512sum "$2" | cut -d' ' -f1) == "$1" ]] && green '[OK]' 
 
 # Misc
 note() { scr note "$@" 2> /dev/null; }
+mpvq() { @ mpv --no-terminal "$@" & }
 ytdlq() { ytdl "$@" >/dev/null 2>&1 & }
 
 #####
@@ -749,7 +750,7 @@ scr() {
 # Default options for securefs mount
 secmount() {
 	if [[ $# -eq 0 ]]; then
-		printf >&2 'Usage: secmount crypt-dir mount-dir [extra-flags].\n'
+		echo >&2 "Usage: secmount crypt-dir mount-dir [extra-flags]."
 		return 1
 	fi
 
@@ -761,6 +762,15 @@ secmount() {
 		local crypt_dir="$1.secfs"
 		local mount_dir="$1"
 		shift 1
+	fi
+
+	if [[ -f "$crypt_dir/.securefs.lock" ]]; then
+		if pgrep securefs > /dev/null; then
+			echo >&2 "securefs mount already running. if you're sure this isn't true, then remove $crypt_dir/.securefs.lock"
+			return 1
+		else
+			rm "$crypt_dir/.securefs.lock"
+		fi
 	fi
 
 	securefs mount -b --log "$crypt_dir/.securefs.log" "$@" -- "$crypt_dir" "$mount_dir"
@@ -1043,28 +1053,30 @@ export LANG="$LC_ALL"
 export EDITOR='vim'
 export VISUAL="$EDITOR"
 export GPGKEY='2C3CF0C7'
-export LD_LIBRARY_PATH="/usr/local/lib:$(rustc --print sysroot)/lib"
+export LD_LIBRARY_PATH="/usr/local/lib:$HOME/lib"
 export AURDEST="/tmp/$USER/aur"
-export WINEPREFIX="$HOME/.wine/"
-export WINEHOME="$HOME/.wine/"
+export GOPATH="$HOME/git/go"
+export WINEPREFIX="$HOME/.wine"
+export WINEHOME="$HOME/.wine"
 
 # To prevent PATH from getting larger each time when re-sourcing
 unset PATH
 source /etc/profile
 
+if [[ $EUID != 0 ]]; then
+	export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$(rustc --print sysroot)/lib"
+fi
+
 case "$(cat /etc/hostname)" in
 	Titus)
-		export GOPATH="$HOME/Git/Go"
-		export PATH="$PATH:$HOME/.gem/ruby/2.3.0/bin:$HOME/.cabal/bin:$GOPATH/bin"
+		export PATH="$PATH:$HOME/.gem/ruby/2.3.0/bin:$HOME/.cabal/bin"
 		;;
 	Augustus)
-		export GOPATH="$HOME/git/go"
-		export PATH="$PATH:$HOME/bin:$GOPATH/bin"
-		export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/lib"
+		# Nothing unique
 		;;
 esac
 
-export PATH="$PATH:$HOME/.npm/bin:$HOME/.local/bin:$HOME/.cargo/bin"
+export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/.npm/bin:$HOME/.cargo/bin"
 
 # Import systemd environment
 if which systemctl > /dev/null; then
@@ -1077,10 +1089,6 @@ if which systemctl > /dev/null; then
 		done
 	unset name
 fi
-
-# z options
-export _Z_NO_RESOLVE_SYMLINKS=1
-export _Z_NO_PROMPT_COMMAND=1
 
 #####
 # }}}

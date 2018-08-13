@@ -4,33 +4,34 @@
 
 " General options {{{
 """""""""""""""""""""
-set autoread         " Set to auto read when a file is changed
-set autowrite        " Automatically save before commands like :next and :make
-set backupcopy=yes   " Preserve hard links when making copies
-set confirm          " Instead of failing a command, raise a dialog asking what to do
-set encoding=utf8    " Set default encoding
-set ffs=unix,dos     " Set Unix as the standard line ending
-set hidden           " Hide buffers when they are abandoned
-set hlsearch         " Highlight matches when searching
-set incsearch        " Incremental search
-set lazyredraw       " Don't redraw when running macros
-set magic            " Use traditional regular expressions (see wiki)
-set mat=2            " How many tenths of a second to blink when matching brackets
-set mouse=n          " Enable mouse usage (normal mode only)
-set nocompatible     " Disable vi compatibility options
-set noshowmode       " Powerline does this for me, so disable the default mode
-set nosmartindent    " Prevent audo dedent on Python comment
-set relativenumber   " Use relative line numbers (see below)
-set ruler            " Display the bar at the bottom 
-set secure           " Shell and write commands are disallowed in local vimrcs
-set showcmd          " Show (partial) command in status line
-set showmatch        " Show matching brackets
-set smartcase        " Do smart case matching
-set smarttab         " Use smart tabbing
-set tabpagemax=500   " Maximum number of tabs
-set timeoutlen=50    " To prevent the lag on 'O'
-set undolevels=10000 " Allow for 10,000 undos
-set wrap             " Wrap long lines
+set autoread              " Set to auto read when a file is changed
+set autowrite             " Automatically save before commands like :next and :make
+set backupcopy=yes        " Preserve hard links when making copies
+set confirm               " Instead of failing a command, raise a dialog asking what to do
+set encoding=utf8         " Set default encoding
+set fileformats=unix,dos  " Set Unix as the standard line ending
+set foldlevelstart=3      " How many folds to show at file open
+set hidden                " Hide buffers when they are abandoned
+set hlsearch              " Highlight matches when searching
+set incsearch             " Incremental search
+set lazyredraw            " Don't redraw when running macros
+set magic                 " Use traditional regular expressions (see wiki)
+set matchtime=1           " How many tenths of a second to blink when matching brackets
+set mouse=n               " Enable mouse usage (normal mode only)
+set nocompatible          " Disable vi compatibility options
+set noshowmode            " Powerline does this for me, so disable the default mode
+set nosmartindent         " Prevent audo dedent on Python comment
+set relativenumber        " Use relative line numbers (see below)
+set ruler                 " Display the bar at the bottom 
+set secure                " Shell and write commands are disallowed in local vimrcs
+set showcmd               " Show (partial) command in status line
+set showmatch             " Show matching brackets
+set smartcase             " Do smart case matching
+set smarttab              " Use smart tabbing
+set tabpagemax=500        " Maximum number of tabs
+set timeoutlen=50         " To prevent the lag on 'O'
+set undolevels=10000      " Allow for 10,000 undos
+set wrap                  " Wrap long lines
 
 " Set leader key
 let mapleader = '\'
@@ -121,7 +122,7 @@ set whichwrap+=<,>,h,l
 " Allow tab completion in the menu
 set wildmode=longest,list,full
 set wildmenu
-set wildignore=*.o,*.d,*~,*.pyc,.git
+set wildignore=*.o,*.d,*.so,*~,*.pyc,.git
 
 " Set viminfo
 set viminfo=%,\"100,'10,/50,:100,h,f0,n~/.viminfo
@@ -294,7 +295,9 @@ if has("autocmd")
   autocmd BufWrite *.h :call DeleteTrailingWS()
   autocmd BufWrite *.hh :call DeleteTrailingWS()
   autocmd BufWrite *.hpp :call DeleteTrailingWS()
+  autocmd BufWrite *.go :call DeleteTrailingWS()
   autocmd BufWrite *.py :call DeleteTrailingWS()
+  autocmd BufWrite *.rs :call DeleteTrailingWS()
   autocmd BufWrite *.java :call DeleteTrailingWS()
   autocmd BufWrite *.tex :call DeleteTrailingWS()
   autocmd BufWrite *.txt :call DeleteTrailingWS()
@@ -333,18 +336,20 @@ endfunc
 " }}}
 
 " File-Specific Settings {{{
-autocmd BufRead *.c setl cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab textwidth=80
-autocmd BufRead *.cc setl cindent
-autocmd BufRead *.cpp setl cindent
-autocmd BufRead *.go setl shiftwidth=4 tabstop=4 softtabstop=4 noexpandtab textwidth=72
-autocmd BufRead *.h setl cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab textwidth=80 filetype=c
-autocmd BufRead *.hh setl cindent
-autocmd BufRead *.hpp setl cindent
+autocmd BufRead *.c setl cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab textwidth=80 foldmethod=syntax
+autocmd BufRead *.cc setl cindent foldmethod=syntax
+autocmd BufRead *.cpp setl cindent foldmethod=syntax
+autocmd BufRead *.go setl shiftwidth=4 tabstop=4 softtabstop=4 noexpandtab textwidth=72 foldmethod=syntax
+autocmd BufRead *.h setl cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab textwidth=80 foldmethod=syntax filetype=c
+autocmd BufRead *.hh setl cindent foldmethod=syntax
+autocmd BufRead *.hpp setl cindent foldmethod=syntax
 autocmd BufRead *.js setl shiftwidth=2 tabstop=2
-autocmd BufRead *.sh setl shiftwidth=4 tabstop=4 noexpandtab
+autocmd BufRead *.sh setl shiftwidth=4 tabstop=4 foldmethod=indent noexpandtab
+autocmd BufRead *.rs setl foldmethod=syntax
+autocmd BufRead *.py setl foldmethod=indent
 autocmd BufRead *.tex setl nowrap
-autocmd BufRead *.yaml setl shiftwidth=2 tabstop=2
-autocmd BufRead *.yml setl shiftwidth=2 tabstop=2
+autocmd BufRead *.yaml setl shiftwidth=2 tabstop=2 foldmethod=indent
+autocmd BufRead *.yml setl shiftwidth=2 tabstop=2 foldmethod=indent
 
 " Transparent GPG Encryption
 augroup gpg_encrypted
