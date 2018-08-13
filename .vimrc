@@ -343,10 +343,10 @@ autocmd BufRead *.go setl shiftwidth=4 tabstop=4 softtabstop=4 noexpandtab textw
 autocmd BufRead *.h setl cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab textwidth=80 foldmethod=syntax filetype=c
 autocmd BufRead *.hh setl cindent foldmethod=syntax
 autocmd BufRead *.hpp setl cindent foldmethod=syntax
-autocmd BufRead *.js setl shiftwidth=2 tabstop=2
-autocmd BufRead *.sh setl shiftwidth=4 tabstop=4 foldmethod=indent noexpandtab
-autocmd BufRead *.rs setl foldmethod=syntax
+autocmd BufRead *.js setl shiftwidth=2 tabstop=2 foldmethod=syntax
 autocmd BufRead *.py setl foldmethod=indent
+autocmd BufRead *.rs setl foldmethod=syntax
+autocmd BufRead *.sh setl shiftwidth=4 tabstop=4 foldmethod=indent noexpandtab
 autocmd BufRead *.tex setl nowrap
 autocmd BufRead *.yaml setl shiftwidth=2 tabstop=2 foldmethod=indent
 autocmd BufRead *.yml setl shiftwidth=2 tabstop=2 foldmethod=indent
