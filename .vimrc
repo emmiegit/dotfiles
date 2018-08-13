@@ -252,6 +252,24 @@ let g:powerline_pycmd = 'py3'
 " rust.vim
 let g:autofmt_autosave = 1
 
+" vim-javascript
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_ngdoc = 1
+let g:javascript_plugin_flow = 1
+
+"let g:javascript_conceal_function             = "ƒ"
+"let g:javascript_conceal_null                 = "ø"
+"let g:javascript_conceal_this                 = "@"
+"let g:javascript_conceal_return               = "⇚"
+"let g:javascript_conceal_undefined            = "¿"
+"let g:javascript_conceal_NaN                  = "ℕ"
+"let g:javascript_conceal_prototype            = "¶"
+"let g:javascript_conceal_static               = "•"
+"let g:javascript_conceal_super                = "Ω"
+"let g:javascript_conceal_arrow_function       = "⇒"
+"let g:javascript_conceal_noarg_arrow_function = "🞅"
+"let g:javascript_conceal_underscore_arrow_function = "🞅"
+
 " LaTeX settings
 let g:tex_flavor = 'latex'
 let g:Imap_UsePlaceHolders = 0
@@ -343,7 +361,7 @@ autocmd BufRead *.go setl shiftwidth=4 tabstop=4 softtabstop=4 noexpandtab textw
 autocmd BufRead *.h setl cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab textwidth=80 foldmethod=syntax filetype=c
 autocmd BufRead *.hh setl cindent foldmethod=syntax
 autocmd BufRead *.hpp setl cindent foldmethod=syntax
-autocmd BufRead *.js setl shiftwidth=2 tabstop=2 foldmethod=syntax
+autocmd BufRead *.js setl shiftwidth=2 tabstop=2 foldmethod=syntax conceallevel=1
 autocmd BufRead *.py setl foldmethod=indent
 autocmd BufRead *.rs setl foldmethod=syntax
 autocmd BufRead *.sh setl shiftwidth=4 tabstop=4 foldmethod=indent noexpandtab
