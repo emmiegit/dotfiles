@@ -804,6 +804,26 @@ shutdown() {
 	esac
 }
 
+# Move all files into a directory to the current directory,
+# then delete the directory
+splat() {
+	if [[ $# -eq 0 ]]; then
+		echo "Usage: splat dir..."
+		return 1
+	fi
+
+	for dir in "$@"; do
+		if [[ ! -d $dir ]]; then
+			echo "$dir is not a directory, skipping..."
+			continue
+		fi
+
+		mv "$dir"/* .
+		mv "$dir"/.* .
+		rmdir "$dir"
+	done
+}
+
 # Make sure the user is rebooting the right machine
 reboot() {
 	sleep 0.5
