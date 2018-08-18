@@ -58,3 +58,9 @@
 [url "git@git.ammonsmith.me:"]
     pushInsteadOf = gt://
     insteadOf = gt2://
+
+[url "https://git.programming.im/"]
+    insteadOf = tps://
+[url "gitea@git.programming.im:"]
+    pushInsteadOf = tps://
+    insteadOf = tps2://
