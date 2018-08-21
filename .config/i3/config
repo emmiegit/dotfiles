@@ -354,7 +354,8 @@ bindsym Shift+XF86AudioStop exec --no-startup-id /usr/local/scripts/wm/media/dis
 bindsym Shift+XF86AudioNext exec --no-startup-id /usr/local/scripts/wm/media/tired.sh
 
 # Screenshot commands
-bindsym --release Print exec --no-startup-id /usr/local/scripts/wm/screenshot-region.sh
+bindsym --release Print exec --no-startup-id /usr/local/scripts/wm/screenshot-clipboard.sh
+bindsym --release $alt+Print exec --no-startup-id /usr/local/scripts/wm/screenshot-region.sh
 bindsym --release Shift+Print exec --no-startup-id /usr/local/scripts/wm/screenshot.sh
 
 # Tablet modes
