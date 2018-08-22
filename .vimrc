@@ -362,7 +362,7 @@ autocmd BufRead *.h setl cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandta
 autocmd BufRead *.hh setl cindent foldmethod=syntax
 autocmd BufRead *.hpp setl cindent foldmethod=syntax
 autocmd BufRead *.js setl shiftwidth=2 tabstop=2 foldmethod=syntax conceallevel=1
-autocmd BufRead *.ts setl shiftwidth=2 tabstop=2
+autocmd BufRead *.ts setl shiftwidth=2 tabstop=2 filetype=javascript
 autocmd BufRead *.py setl foldmethod=indent
 autocmd BufRead *.rs setl foldmethod=syntax
 autocmd BufRead *.sh setl shiftwidth=4 tabstop=4 foldmethod=indent noexpandtab
