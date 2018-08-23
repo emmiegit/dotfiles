@@ -370,6 +370,10 @@ autocmd BufRead *.tex setl nowrap
 autocmd BufRead *.yaml setl shiftwidth=2 tabstop=2 foldmethod=indent
 autocmd BufRead *.yml setl shiftwidth=2 tabstop=2 foldmethod=indent
 
+" Secure editing of passwords with 'pass'
+autocmd BufReadPre,FileReadPre /dev/shm/pass.*.txt set viminfo=
+autocmd BufReadPre,FileReadPre /dev/shm/pass.*.txt set noswapfile noundofile nobackup
+
 " Transparent GPG Encryption
 augroup gpg_encrypted
   au!
