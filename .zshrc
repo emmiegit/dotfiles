@@ -151,6 +151,7 @@ case "$(uname)" in
 		alias open='xdg-open'
 		alias pbcopy='xsel -bi'
 		alias pbpaste='xclip -o'
+		alias pbclear='xsel -c'
 		alias rmdir='rmdir -v'
 		;;
 esac
@@ -1072,26 +1073,30 @@ export LANG="$LC_ALL"
 export EDITOR='vim'
 export VISUAL="$EDITOR"
 export GPGKEY='2C3CF0C7'
-export LD_LIBRARY_PATH="/usr/local/lib:$(rustc --print sysroot)/lib"
-export WINEPREFIX="$HOME/.wine/"
-export WINEHOME="$HOME/.wine/"
+export LD_LIBRARY_PATH="/usr/local/lib:$HOME/lib"
+export AURDEST="/tmp/$USER/aur"
+export GOPATH="$HOME/git/go"
+export WINEPREFIX="$HOME/.wine"
+export WINEHOME="$HOME/.wine"
 
 # To prevent PATH from getting larger each time when re-sourcing
 unset PATH
 source /etc/profile
 
-case "$(uname)" in
-	Darwin)
-		export PATH="$PATH:$HOME/Binaries"
+if [[ $EUID != 0 ]]; then
+	export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$(rustc --print sysroot)/lib"
+fi
+
+case "$(cat /etc/hostname)" in
+	Titus)
+		export PATH="$PATH:$HOME/.gem/ruby/2.3.0/bin:$HOME/.cabal/bin"
 		;;
-	Linux)
-		export AURDEST="/tmp/$USER/aur"
-		export GOPATH="$HOME/git/go"
-		export PATH="$PATH:$HOME/.gem/ruby/2.3.0/bin:$HOME/.cabal/bin:$HOME/.npm/bin:$GOPATH/bin"
+	Augustus)
+		# Nothing unique
 		;;
 esac
 
-export PATH="$PATH:$HOME/.local/bin:$HOME/.cargo/bin"
+export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/.npm/bin:$HOME/.cargo/bin"
 
 # Import systemd environment
 if which systemctl > /dev/null; then
@@ -1115,12 +1120,14 @@ dosource() {
 	[[ -f "$1" ]] && source "$1"
 }
 
-dosource '/usr/bin/aws_zsh_completer.sh'
-dosource '/usr/share/fzf/key-bindings.zsh'
-dosource '/usr/share/doc/pkgfile/command-not-found.zsh'
 dosource '/etc/profile.d/fzf-extras.zsh'
+dosource '/usr/bin/aws_zsh_completer.sh'
 dosource '/usr/lib/z.sh'
-dosource "${HOME}/.travis/travis.sh"
+dosource '/usr/share/doc/pkgfile/command-not-found.zsh'
+dosource '/usr/share/fzf/key-bindings.zsh'
+dosource '/usr/share/nvm/init-nvm.sh'
+dosource "$HOME/.travis/travis.sh"
+dosource "$HOME/.zshrc_local"
 which thefuck > /dev/null && eval "$(thefuck --alias)"
 
 #####
