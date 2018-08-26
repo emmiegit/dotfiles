@@ -365,7 +365,7 @@ autocmd BufRead *.js setl shiftwidth=2 tabstop=2 foldmethod=syntax conceallevel=
 autocmd BufRead *.ts setl shiftwidth=2 tabstop=2 filetype=javascript
 autocmd BufRead *.py setl foldmethod=indent
 autocmd BufRead *.rs setl foldmethod=syntax
-autocmd BufRead *.sh setl shiftwidth=4 tabstop=4 foldmethod=indent noexpandtab
+autocmd BufRead *.sh setl shiftwidth=4 tabstop=4 foldmethod=indent makeprg=shellcheck\ -f\ gcc\ % noexpandtab
 autocmd BufRead *.tex setl nowrap
 autocmd BufRead *.yaml setl shiftwidth=2 tabstop=2 foldmethod=indent
 autocmd BufRead *.yml setl shiftwidth=2 tabstop=2 foldmethod=indent
