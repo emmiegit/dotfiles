@@ -365,7 +365,6 @@ bindsym $mod+Shift+y exec --no-startup-id /usr/local/scripts/wm/set-wacom-mode.s
 
 # Start-up applications {{{
 ###########################
-exec /usr/local/scripts/wm/daemon/gmail-check-notify.py
 exec /usr/local/scripts/wm/daemon/light-locker.sh
 exec /usr/local/scripts/wm/daemon/udiskie.sh
 exec /usr/local/scripts/wm/daemon/start-autolock.sh
