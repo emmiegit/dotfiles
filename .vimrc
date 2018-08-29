@@ -180,19 +180,26 @@ command Y ggVG"+p``
 " :Cstyle sets my preferred formatting for C programs
 command Cstyle set cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab
 
+" :Path prints the full path of the current buffer
+command Path :echo expand('%:p')
+
 " Move between windows easier
 nnoremap <SID> <Plug>IMAP_JumpForward
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-" map <C-h> <C-W>h
-" map <C-l> <C-W>l
 
 " Open a newline without going into insert mode
 nmap <cr> o<esc>
 
 " Pressing * or # when in visual mode searches for the current selection
-vnoremap <silent> * :call VisualSelection('f')<cr>
-vnoremap <silent> # :call VisualSelection('b')<cr>
+vnoremap <silent> * :<c-u>
+  \let old_reg=getreg('"')<bar>let old_regtype=getregtype('"')<cr>
+  \gvy/<c-r><c-r>=substitute(
+  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<cr><cr>
+  \gV:call setreg('"', old_reg, old_regtype)<cr>
+vnoremap <silent> # :<c-u>
+  \let old_reg=getreg('"')<bar>let old_regtype=getregtype('"')<cr>
+  \gvy?<c-r><c-r>=substitute(
+  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<cr><cr>
+  \gV:call setreg('"', old_reg, old_regtype)<cr>
 
 " Highlight last inserted text
 nnoremap gV `[v`]
@@ -317,33 +324,12 @@ if has("autocmd")
   autocmd BufWrite *.py :call DeleteTrailingWS()
   autocmd BufWrite *.rs :call DeleteTrailingWS()
   autocmd BufWrite *.java :call DeleteTrailingWS()
+  autocmd BufWrite *.js :call DeleteTrailingWS()
   autocmd BufWrite *.tex :call DeleteTrailingWS()
+  autocmd BufWrite *.ts :call DeleteTrailingWS()
   autocmd BufWrite *.txt :call DeleteTrailingWS()
   autocmd BufWrite Makefile :call DeleteTrailingWS()
 endif
-
-func! CmdLine(str)
-  exe "menu Foo.Bar :" . a:str
-  emenu Foo.Bar
-  unmenu Foo
-endfunc
-
-func! VisualSelection()
-  let l:saved_reg = @"
-  execute "normal! vgvy"
-
-  let l:pattern = escape(@", '\\/.*$^~[]')
-  let l:pattern = substitute(l:pattern, "\n$", "", "")
-
-  if a:direction == 'gv'
-    call CmdLine("Ag \"" . l:pattern . "\" " )
-  elseif a:direction == 'replace'
-    call CmdLine("%s" . '/'. l:pattern . '/')
-  endif
-
-  let @/ = l:pattern
-  let @" = l:saved_reg
-endfunc
 
 func! OpenTabs(...)
   for filename in a:000
