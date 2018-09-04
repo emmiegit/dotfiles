@@ -23,6 +23,7 @@
     edit = !"$EDITOR" $(git ls-files -m)
     unstage = reset HEAD --
     discard = checkout --
+    cached = diff --cached
     amend = commit --amend
     graph = log --graph --branches --remotes --tags --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d' --date-order
     untrack = rm -r --cached
