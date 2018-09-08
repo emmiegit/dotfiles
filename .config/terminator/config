@@ -1,5 +1,6 @@
 [global_config]
   always_split_with_profile = True
+  dbus = False
   enabled_plugins = InactivityWatch, CustomCommandsMenu, TestPlugin, ActivityWatch, TerminalShot, LaunchpadCodeURLHandler, MavenPluginURLHandler, LaunchpadBugURLHandler
   focus = mouse
   geometry_hinting = True
