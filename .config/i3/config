@@ -289,7 +289,7 @@ for_window [class="keepassxc" instance="keepassxc"] floating enable
 for_window [class="net-minecraft-bootstrap-Bootst"] floating enable
 for_window [class="net-technicpack-launcher-LauncherMain"] floating enable
 for_window [instance="Toplevel"] floating enable
-#for_window [name="UNDERTALE"] floating enable
+for_window [title="Android File Transfer for Linux"] floating enable
 for_window [title="Terminator Preferences"] floating enable
 # }}}
 
