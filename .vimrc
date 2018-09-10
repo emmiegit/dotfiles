@@ -187,7 +187,7 @@ command Path :echo expand('%:p')
 command SessionSave :mksession<cr>
 
 " Search for merge conflict markers
-command MergeFail :/\(<<<<<<<\|=======\|>>>>>>>\)
+command MergeFail :/^\(<<<<<<<\|=======\|>>>>>>>\)
 
 " Move between windows easier
 nnoremap <SID> <Plug>IMAP_JumpForward
