@@ -204,6 +204,25 @@ vnoremap <silent> # :<c-u>
 " Highlight last inserted text
 nnoremap gV `[v`]
 
+" Close all hidden buffers
+function! CloseHiddenBuffers()
+  let visible = {}
+  " fetch visible tabs
+  for t in range(1, tabpagenr('$'))
+    for b in tabpagebuflist(t)
+      let visible[b] = 1
+    endfor
+  endfor
+  " close any loaded buffers that are not visible
+  for b in range(1, bufnr('$'))
+    if bufloaded(b) && !has_key(visible, b)
+      exe 'bd ' . b
+    endif
+  endfor
+endfun
+
+command CloseBufs :call CloseHiddenBuffers()
+
 " Close the current buffer
 cmap <leader>bd :Bclose<cr>:tabclose<cr>gT
 
@@ -350,6 +369,8 @@ autocmd BufRead *.hpp setl cindent foldmethod=syntax
 autocmd BufRead *.hbs setl shiftwidth=2 tabstop=2 foldmethod=indent
 autocmd BufRead *.js setl shiftwidth=2 tabstop=2 foldmethod=syntax conceallevel=1
 autocmd BufRead *.ts setl shiftwidth=2 tabstop=2 filetype=javascript
+autocmd BufRead *.css setl cindent foldmethod=syntax
+autocmd BufRead *.scss setl shiftwidth=2 tabstop=2 foldmethod=indent
 autocmd BufRead *.py setl foldmethod=indent
 autocmd BufRead *.rs setl foldmethod=syntax
 autocmd BufRead *.sh setl shiftwidth=4 tabstop=4 foldmethod=indent makeprg=shellcheck\ -f\ gcc\ % noexpandtab
