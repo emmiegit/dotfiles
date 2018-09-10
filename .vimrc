@@ -183,6 +183,12 @@ command Cstyle set cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab
 " :Path prints the full path of the current buffer
 command Path :echo expand('%:p')
 
+" Save session
+command SessionSave :mksession<cr>
+
+" Search for merge conflict markers
+command MergeFail :/\(<<<<<<<\|=======\|>>>>>>>\)
+
 " Move between windows easier
 nnoremap <SID> <Plug>IMAP_JumpForward
 
@@ -264,8 +270,6 @@ vmap <leader>y "+y
 vmap <leader>x "+x
 vmap <leader>d "+d
 
-" Save session
-nnoremap <leader>s :mksession<cr>
 " }}}
 
 " Plugin settings {{{
