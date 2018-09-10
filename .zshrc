@@ -118,7 +118,7 @@ alias xsnow='xsnow -nokeepsnow -notrees'
 
 # Colorize output
 alias diff='colordiff'
-alias less='less -RMi'
+alias less='less -RMSi'
 
 # Modifiers on file operations
 alias cp='cp -v'
