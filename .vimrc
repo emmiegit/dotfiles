@@ -76,7 +76,13 @@ set history=1000
 filetype plugin on
 filetype indent on
 
-" Backup settings
+" Swap files
+try
+  set directory=~/.vim_runtime/swap
+catch
+endtry
+
+" Backup files
 try
   set backup
   set backupdir=~/.vim_runtime/backups
@@ -84,7 +90,7 @@ try
 catch
 endtry
 
-" Allow you to do undoes even when you close vim
+" Undo files
 try
   set undodir=/tmp/ammon/vim_undo
   set undofile
