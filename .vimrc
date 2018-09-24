@@ -195,6 +195,10 @@ command SessionSave :mksession<cr>
 " Search for merge conflict markers
 command MergeFail :/^\(<<<<<<<\|=======\|>>>>>>>\)
 
+" Open all buffers as separate tabs
+" Useful if vim is invoked without -p
+command BuffersToTabs :bufdo tab split
+
 " Move between windows easier
 nnoremap <SID> <Plug>IMAP_JumpForward
 
