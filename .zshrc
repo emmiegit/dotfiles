@@ -982,6 +982,9 @@ weather() {
 	fi
 
 	case "$1" in
+		nyc)
+			readonly local location='NYC'
+			;;
 		ucr)
 			readonly local location='Riverside'
 			;;
