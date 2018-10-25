@@ -76,7 +76,7 @@ DISABLE_AUTO_UPDATE="true"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(jsontools nyan pip safe-paste urltools vi-mode zsh-autosuggestions)
+plugins=(jsontools pip safe-paste urltools vi-mode zsh-autosuggestions)
 
 # User configuration
 # You may need to manually set your language environment
@@ -671,6 +671,20 @@ nossh2() {
 	nossh
 	exec ssh "$@"
 	)
+}
+
+# Opens a caption stored in a directory
+opencaption() {
+	if [[ $# -eq 0 ]]; then
+		echo >&2 'Usage: opencaption directory'
+		return 1
+	fi
+
+	images=("$1"/*.{gif,jpg,jpeg,png}(N))
+	if [[ ${#images} -gt 0 ]]; then
+		nomacs -p "${images[1]}" >/dev/null 2>&1 &
+	fi
+	cat "$1/caption.txt"
 }
 
 # Print the 256 terminal colors (if supported)
