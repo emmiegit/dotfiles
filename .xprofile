@@ -9,6 +9,9 @@ xset m 0 0
 
 xinput --set-prop 'ZLY ZELOTES GAME MOUSE' 'libinput Accel Speed' -0.4
 
+xinput --set-prop 'MOSART Semi. 2.4G Wireless Mouse Mouse' 'libinput Accel Speed' 0
+xinput --set-prop 'MOSART Semi. 2.4G Wireless Mouse Mouse' 'libinput Accel Profile Enabled' 0 0
+
 xinput --set-prop 'USB Optical Mouse' 'libinput Accel Speed' -0.2
 xinput --set-prop 'USB Optical Mouse' 'libinput Accel Profile Enabled' 0 0
 
