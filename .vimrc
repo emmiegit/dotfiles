@@ -24,6 +24,7 @@ set nosmartindent         " Prevent audo dedent on Python comment
 set relativenumber        " Use relative line numbers (see below)
 set ruler                 " Display the bar at the bottom 
 set secure                " Shell and write commands are disallowed in local vimrcs
+set shell=/bin/bash       " Use bash as the vim shell
 set showcmd               " Show (partial) command in status line
 set showmatch             " Show matching brackets
 set smartcase             " Do smart case matching
@@ -280,6 +281,33 @@ vmap <leader>y "+y
 vmap <leader>x "+x
 vmap <leader>d "+d
 
+" }}}
+
+" Vim bundle settings {{{
+"""""""""""""""""""""""""
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" Vundle itself
+Plugin 'VundleVim/Vundle.vim'
+
+" Syntax highlighting
+Plugin 'Slava/vim-spacebars'
+Plugin 'cespare/vim-toml'
+Plugin 'mboughaba/i3config.vim'
+Plugin 'rust-lang/rust.vim'
+
+" IDE-like
+Plugin 'Valloric/YouCompleteMe'
+
+" Operation helpers
+Plugin 'mattn/emmet-vim'
+Plugin 'scrooloose/nerdcommenter'
+
+" End vundle setup
+call vundle#end()
+filetype plugin indent on
 " }}}
 
 " Plugin settings {{{
