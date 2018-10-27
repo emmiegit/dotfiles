@@ -388,4 +388,4 @@ exec i3-msg 'workspace 3; exec $Browser'
 exec i3-msg 'workspace 4; exec $Email'
 # }}}
 
-# vim: ft=i3 fdm=marker foldlevel=0:
+# vim: ft=i3config fdm=marker foldlevel=0:
