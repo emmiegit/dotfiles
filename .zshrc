@@ -609,7 +609,7 @@ lsfd() {
 
 # List osu! songs
 lsosu() {
-	readonly local osu_song_dir='/media/media/Games/osu!/Songs'
+	readonly local osu_song_dir='/media/media/games/osu!/Songs'
 
 	if [[ $# -eq 0 ]]; then
 		ls "$osu_song_dir"
