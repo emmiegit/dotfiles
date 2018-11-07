@@ -1,6 +1,6 @@
 ZSH_THEME_GIT_PROMPT_PREFIX=" (%F{blue}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%F{reset})"
-ZSH_THEME_GIT_PROMPT_DIRTY="%F{red}!%F{reset}"
+ZSH_THEME_GIT_PROMPT_DIRTY="%F{red}.%F{reset}"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 
 PS1='%F{green}%n@%m%f %F{yellow}%~%f%(!.%F{red}#%f.$)$(git_prompt_info) '
