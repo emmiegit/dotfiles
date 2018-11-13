@@ -355,8 +355,8 @@ bindsym Shift+XF86AudioNext exec --no-startup-id /usr/local/scripts/wm/media/tir
 
 # Screenshot commands
 bindsym --release Print exec --no-startup-id /usr/local/scripts/wm/screenshot-clipboard.sh
-bindsym --release $alt+Print exec --no-startup-id /usr/local/scripts/wm/screenshot-region.sh
-bindsym --release Shift+Print exec --no-startup-id /usr/local/scripts/wm/screenshot.sh
+bindsym --release Shift+Print exec --no-startup-id /usr/local/scripts/wm/screenshot-region.sh
+bindsym --release $alt+Print exec --no-startup-id /usr/local/scripts/wm/screenshot.sh
 
 # Tablet modes
 bindsym $mod+y exec --no-startup-id /usr/local/scripts/wm/set-wacom-mode.sh draw
