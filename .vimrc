@@ -283,8 +283,8 @@ vmap <leader>d "+d
 
 " }}}
 
-" Vim bundle settings {{{
-"""""""""""""""""""""""""
+" Plugins {{{
+"""""""""""""
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -300,6 +300,7 @@ Plugin 'rust-lang/rust.vim'
 
 " IDE-like
 Plugin 'matchit.zip'
+Plugin 'mhinz/vim-signify'
 Plugin 'Valloric/YouCompleteMe'
 
 " Operation helpers
