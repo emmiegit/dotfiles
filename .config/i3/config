@@ -376,13 +376,13 @@ exec pamixer --unmute
 exec redshift
 exec uim-xim
 exec uim-toolbar-gtk3-systray
-exec --no-startup-id sleep 25 && exec steam-native
+exec --no-startup-id steam-native
 
 # User startup scripts
 exec --no-startup-id /usr/local/scripts/wm/startup.sh
 
 # Default workspaces
-exec i3-msg 'workspace 1; exec $Terminal; exec $Terminal2; exec discord'
+exec i3-msg 'workspace 1; exec $Terminal; exec $Terminal; exec discord'
 exec i3-msg 'workspace 2; exec $Terminal'
 exec i3-msg 'workspace 3; exec $Browser'
 exec i3-msg 'workspace 4; exec $Email'
