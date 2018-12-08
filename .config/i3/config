@@ -291,6 +291,9 @@ for_window [class="net-technicpack-launcher-LauncherMain"] floating enable
 for_window [instance="Toplevel"] floating enable
 for_window [title="Android File Transfer for Linux"] floating enable
 for_window [title="Terminator Preferences"] floating enable
+
+# Disable Ctrl_Q on Firefox
+bindsym control+q exec /usr/local/scripts/wm/no-firefox-ctrl-q.sh
 # }}}
 
 # Default applications {{{
