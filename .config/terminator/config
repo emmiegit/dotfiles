@@ -71,4 +71,5 @@
     icon_bell = False
     palette = "#1d1f21:#a54242:#8c9440:#dea95f:#5c7387:#85678f:#5e8d87:#8e8e8e:#282a2e:#cc6666:#b5bd68:#f0c674:#81a2be:#b294bb:#8abeb7:#c5c8c6"
     scrollback_infinite = True
+    show_titlebar = False
     use_system_font = False
