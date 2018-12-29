@@ -12,28 +12,26 @@ if !exists('main_syntax')
   let main_syntax = 'wikidot'
 endif
 
-runtime! syntax/html.vim
 unlet! b:current_syntax
 
-  syn region  cCommentL	start="//" skip="\\$" end="$" keepend contains=@cCommentGroup,cComment2String,cCharacter,cNumbersCom,cSpaceError,cWrongComTail,@Spell
+syntax match wikidotComment '\[!--.*--\]'
+syntax match wikidotElement '\[\[\([^\]]\|\n\)\+\]\]'
+syntax match wikidotLink '\(\[\[\[\([^\]]\|\n\)\+\]\]\]\|\[\w\+:\/\/\w\+\.\w\+.*\]\)'
+syntax match wikidotBullet '^\s*\* '
+syntax match wikidotTable '||\~\?'
 
+syntax region wikidotBold matchgroup=wikidotBold start='\*\*' end='\*\*'
+syntax region wikidotItalic matchgroup=wikidotItalic start='//' end='//'
+syntax region wikidotUnderline matchgroup=wikidotUnderline start='__' end='__'
+syntax region wikidotBoldUnderline matchgroup=wikidotBoldUnderline start='\(\*\*__\|__\*\*\)' end='\(\*\*__\|__\*\*\)'
+syntax region wikidotBoldItalic matchgroup=wikidotBoldItalic start='\(\*\*\/\/\|\/\/\*\*\)' end='\(\*\*\/\/\|\/\/\*\*\)'
 
-syn match wikidotComment '\[!-- .* --\]'
-syn match wikidotElement '\[\[\([^\]]\|\n\)\+\]\]'
-syn match wikidotLink '\(\[\[\[\([^\]]\|\n\)\+\]\]\]\|\[\w\+:\/\/\w\+\.\w\+.*\]\)'
-syn match wikidotBullet '\s*\*'
-syn region wikidotBold matchgroup=wikidotBold start='\*\*' end='\*\*'
-syn region wikidotItalic matchgroup=wikidotItalic start='//' end='//'
-syn region wikidotUnderline matchgroup=wikidotUnderline start='__' end='__'
-syn region wikidotBoldUnderline matchgroup=wikidotBoldUnderline start='\(\*\*__\|__\*\*\)' end='\(\*\*__\|__\*\*\)'
-syn region wikidotBoldItalic matchgroup=wikidotBoldItalic start='\(\*\*\/\/\|\/\/\*\*\)' end='\(\*\*\/\/\|\/\/\*\*\)'
-
-syn region wikidotH1 matchgroup=wikidotH1 start='^\s*+' end='$' keepend oneline
-syn region wikidotH2 matchgroup=wikidotH2 start='^\s*++' end='$' keepend oneline
-syn region wikidotH3 matchgroup=wikidotH3 start='^\s*+++' end='$' keepend oneline
-syn region wikidotH4 matchgroup=wikidotH4 start='^\s*++++' end='$' keepend oneline
-syn region wikidotH5 matchgroup=wikidotH5 start='^\s*+++++' end='$' keepend oneline
-syn region wikidotH6 matchgroup=wikidotH6 start='^\s*++++++' end='$' keepend oneline
+syntax region wikidotH1 matchgroup=wikidotH1 start='^\s*+' end='$' keepend oneline
+syntax region wikidotH2 matchgroup=wikidotH2 start='^\s*++' end='$' keepend oneline
+syntax region wikidotH3 matchgroup=wikidotH3 start='^\s*+++' end='$' keepend oneline
+syntax region wikidotH4 matchgroup=wikidotH4 start='^\s*++++' end='$' keepend oneline
+syntax region wikidotH5 matchgroup=wikidotH5 start='^\s*+++++' end='$' keepend oneline
+syntax region wikidotH6 matchgroup=wikidotH6 start='^\s*++++++' end='$' keepend oneline
 
 highlight def Bold term=bold cterm=bold gui=bold
 highlight def Italic term=italic cterm=italic gui=italic
@@ -45,7 +43,8 @@ highlight def ItalicUnderline term=italic,underline cterm=italic,underline gui=i
 highlight default link wikidotComment Comment
 highlight default link wikidotElement Structure
 highlight default link wikidotLink String
-highlight default link wikidotBullet Syntax
+highlight default link wikidotBullet Statement
+highlight default link wikidotTable Statement
 
 highlight default link wikidotBold Bold
 highlight default link wikidotItalic Italic
