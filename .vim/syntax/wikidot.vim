@@ -19,6 +19,7 @@ syntax match wikidotElement '\[\[\([^\]]\|\n\)\+\]\]'
 syntax match wikidotLink '\(\[\[\[\([^\]]\|\n\)\+\]\]\]\|\[\w\+:\/\/\w\+\.\w\+.*\]\)'
 syntax match wikidotBullet '^\s*\* '
 syntax match wikidotTable '||\~\?'
+syntax match wikidotSeparator '-\{6,}'
 
 syntax region wikidotBold matchgroup=wikidotBold start='\*\*' end='\*\*'
 syntax region wikidotItalic matchgroup=wikidotItalic start='//' end='//'
@@ -45,6 +46,7 @@ highlight default link wikidotElement Structure
 highlight default link wikidotLink String
 highlight default link wikidotBullet Statement
 highlight default link wikidotTable Statement
+highlight default link wikidotSeparator PreProc
 
 highlight default link wikidotBold Bold
 highlight default link wikidotItalic Italic
