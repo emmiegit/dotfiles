@@ -19,7 +19,7 @@ syntax match wikidotElement '\[\[\([^\]]\|\n\)\+\]\]'
 syntax match wikidotLink '\(\[\[\[\([^\]]\|\n\)\+\]\]\]\|\[\w\+:\/\/\w\+\.\w\+.*\]\)'
 syntax match wikidotBullet '^\s*\* '
 syntax match wikidotTable '||\~\?'
-syntax match wikidotSeparator '-\{6,}'
+syntax match wikidotSeparator '-\{4,}'
 
 syntax region wikidotBold matchgroup=wikidotBold start='\*\*' end='\*\*'
 syntax region wikidotItalic matchgroup=wikidotItalic start='//' end='//'
