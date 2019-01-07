@@ -293,6 +293,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Syntax highlighting
+Plugin 'ammongit/vim-wikidot'
 Plugin 'Slava/vim-spacebars'
 Plugin 'cespare/vim-toml'
 Plugin 'mboughaba/i3config.vim'
