@@ -2,7 +2,7 @@
 " Language:     Wikidot Syntax
 " Maintainer:   Ammon Smith <ammon.i.smith@gmail.com>
 " Filenames:    *.wikidot
-" Last Change:  2018 December
+" Last Change:  2019 January
 
 if exists("b:current_syntax")
   finish
@@ -20,6 +20,7 @@ syntax match wikidotLink '\(\[\[\[\([^\]]\|\n\)\+\]\]\]\|\[\w\+:\/\/\w\+\.\w\+.*
 syntax match wikidotBullet '^\s*\* '
 syntax match wikidotTable '||\~\?'
 syntax match wikidotSeparator '-\{4,}'
+syntax match wikidotColor '##\(#\?\w\+|\)\?'
 
 syntax region wikidotBold matchgroup=wikidotBold start='\*\*' end='\*\*'
 syntax region wikidotItalic matchgroup=wikidotItalic start='//' end='//'
@@ -27,12 +28,12 @@ syntax region wikidotUnderline matchgroup=wikidotUnderline start='__' end='__'
 syntax region wikidotBoldUnderline matchgroup=wikidotBoldUnderline start='\(\*\*__\|__\*\*\)' end='\(\*\*__\|__\*\*\)'
 syntax region wikidotBoldItalic matchgroup=wikidotBoldItalic start='\(\*\*\/\/\|\/\/\*\*\)' end='\(\*\*\/\/\|\/\/\*\*\)'
 
-syntax region wikidotH1 matchgroup=wikidotH1 start='^\s*+' end='$' keepend oneline
-syntax region wikidotH2 matchgroup=wikidotH2 start='^\s*++' end='$' keepend oneline
-syntax region wikidotH3 matchgroup=wikidotH3 start='^\s*+++' end='$' keepend oneline
-syntax region wikidotH4 matchgroup=wikidotH4 start='^\s*++++' end='$' keepend oneline
-syntax region wikidotH5 matchgroup=wikidotH5 start='^\s*+++++' end='$' keepend oneline
-syntax region wikidotH6 matchgroup=wikidotH6 start='^\s*++++++' end='$' keepend oneline
+syntax region wikidotH1 matchgroup=wikidotH1 start='^\s*+' end='$' keepend oneline contains=wikidotComment,wikidotLink,wikidotColor
+syntax region wikidotH2 matchgroup=wikidotH2 start='^\s*++' end='$' keepend oneline contains=wikidotComment,wikidotLink,wikidotColor
+syntax region wikidotH3 matchgroup=wikidotH3 start='^\s*+++' end='$' keepend oneline contains=wikidotComment,wikidotLink,wikidotColor
+syntax region wikidotH4 matchgroup=wikidotH4 start='^\s*++++' end='$' keepend oneline contains=wikidotComment,wikidotLink,wikidotColor
+syntax region wikidotH5 matchgroup=wikidotH5 start='^\s*+++++' end='$' keepend oneline contains=wikidotComment,wikidotLink,wikidotColor
+syntax region wikidotH6 matchgroup=wikidotH6 start='^\s*++++++' end='$' keepend oneline contains=wikidotComment,wikidotLink,wikidotColor
 
 highlight def Bold term=bold cterm=bold gui=bold
 highlight def Italic term=italic cterm=italic gui=italic
@@ -47,6 +48,7 @@ highlight default link wikidotLink String
 highlight default link wikidotBullet Statement
 highlight default link wikidotTable Statement
 highlight default link wikidotSeparator PreProc
+highlight default link wikidotColor Statement
 
 highlight default link wikidotBold Bold
 highlight default link wikidotItalic Italic
