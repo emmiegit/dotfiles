@@ -294,6 +294,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 " Syntax highlighting
 Plugin 'ammongit/vim-wikidot'
+Plugin 'amadeus/vim-mjml'
 Plugin 'Slava/vim-spacebars'
 Plugin 'cespare/vim-toml'
 Plugin 'mboughaba/i3config.vim'
@@ -420,6 +421,7 @@ autocmd BufRead *.handlebars setl shiftwidth=2 tabstop=2 foldmethod=indent
 autocmd BufRead *.hbs setl shiftwidth=2 tabstop=2 foldmethod=indent
 autocmd BufRead *.mustache setl shiftwidth=2 tabstop=2 foldmethod=indent
 autocmd BufRead *.mst setl shiftwidth=2 tabstop=2 foldmethod=indent
+autocmd BufRead *.mjml setl shiftwidth=2 tabstop=2 foldmethod=indent
 autocmd BufRead *.js setl shiftwidth=2 tabstop=2 foldmethod=syntax conceallevel=1
 autocmd BufRead *.json setl foldmethod=syntax conceallevel=2
 autocmd BufRead *.ts setl shiftwidth=2 tabstop=2 filetype=javascript
