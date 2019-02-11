@@ -62,9 +62,9 @@
 [plugins]
 [profiles]
   [[default]]
-    audible_bell = True
     background_color = "#151428"
     background_darkness = 0.86
+    background_image = None
     cursor_color = "#949494"
     font = Monospace 10
     foreground_color = "#949494"
