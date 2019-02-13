@@ -181,9 +181,6 @@ endif
 " :W sudo saves the file
 command W w !sudo tee % > /dev/null
 
-" :Y copies an entire file
-command Y ggVG"+p``
-
 " :Cstyle sets my preferred formatting for C programs
 command Cstyle set cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab
 

@@ -1126,6 +1126,7 @@ export GPGKEY='2C3CF0C7'
 export LD_LIBRARY_PATH="/usr/local/lib:$HOME/lib"
 export AURDEST="/tmp/$USER/aur"
 export GOPATH="$HOME/git/go"
+export TESSDATA_PREFIX='/usr/share/tessdata'
 export WINEPREFIX="$HOME/.wine"
 export WINEHOME="$HOME/.wine"
 
