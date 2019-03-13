@@ -290,9 +290,9 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Syntax highlighting
-Plugin 'ammongit/vim-wikidot'
-Plugin 'amadeus/vim-mjml'
+Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'Slava/vim-spacebars'
+Plugin 'ammongit/vim-wikidot'
 Plugin 'cespare/vim-toml'
 Plugin 'mboughaba/i3config.vim'
 Plugin 'rust-lang/rust.vim'
