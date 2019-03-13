@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 cd "$(dirname "$0")"
 this_dir="$(pwd -P)"
@@ -31,4 +32,3 @@ done
 for filename in "${files[@]}"; do
 	ln "${flags[@]}" "$this_dir/$filename" "$HOME" || true
 done
-
