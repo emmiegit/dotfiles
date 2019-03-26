@@ -26,6 +26,7 @@
     cached = diff --cached
     amend = commit --amend
     graph = log --graph --branches --remotes --tags --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d' --date-order
+    wdiff = diff --word-diff=color --word-diff-regex=.
     untrack = rm -r --cached
     branches = branch -a
     tags = tag

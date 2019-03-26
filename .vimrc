@@ -416,9 +416,10 @@ autocmd BufRead *.hh setl cindent foldmethod=syntax
 autocmd BufRead *.hpp setl cindent foldmethod=syntax
 autocmd BufRead *.handlebars setl shiftwidth=2 tabstop=2 foldmethod=indent
 autocmd BufRead *.hbs setl shiftwidth=2 tabstop=2 foldmethod=indent
+autocmd BufRead *.html setl shiftwidth=2 tabstop=2 foldmethod=indent
+autocmd BufRead *.htm setl shiftwidth=2 tabstop=2 foldmethod=indent
 autocmd BufRead *.mustache setl shiftwidth=2 tabstop=2 foldmethod=indent
 autocmd BufRead *.mst setl shiftwidth=2 tabstop=2 foldmethod=indent
-autocmd BufRead *.mjml setl shiftwidth=2 tabstop=2 foldmethod=indent filetype=jinja
 autocmd BufRead *.js setl shiftwidth=2 tabstop=2 foldmethod=syntax conceallevel=1
 autocmd BufRead *.json setl foldmethod=syntax conceallevel=2
 autocmd BufRead *.ts setl shiftwidth=2 tabstop=2 filetype=javascript
@@ -430,6 +431,9 @@ autocmd BufRead *.sh setl shiftwidth=4 tabstop=4 foldmethod=indent makeprg=shell
 autocmd BufRead *.tex setl nowrap
 autocmd BufRead *.yaml setl shiftwidth=2 tabstop=2 foldmethod=indent
 autocmd BufRead *.yml setl shiftwidth=2 tabstop=2 foldmethod=indent
+
+" Project-specific
+autocmd BufRead ~/git/mortgage*/relay/emails/*.{mjml,txt} setl shiftwidth=2 tabstop=2 foldmethod=indent filetype=jinja
 
 " Secure editing of passwords with 'pass'
 autocmd BufReadPre,FileReadPre /dev/shm/pass.*.txt set viminfo=
