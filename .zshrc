@@ -481,6 +481,13 @@ encode64() {
 	fi
 }
 
+# Disable fancy zsh completion on slow filesystems (e.g. NFS)
+ftab() {
+	zstyle ':completion:*' path-completion false
+	zstyle ':completion:*' accept-exact-dirs true
+	echo 'Disabled fancy tab completion'
+}
+
 # Batch converts from one format to another
 ffbatch() {
 	if [[ $# -lt 2 ]]; then
