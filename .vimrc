@@ -291,10 +291,11 @@ Plugin 'VundleVim/Vundle.vim'
 
 " Syntax highlighting
 Plugin 'Glench/Vim-Jinja2-Syntax'
+Plugin 'Nu-SCPTheme/vim-wikidot'
 Plugin 'Slava/vim-spacebars'
-Plugin 'ammongit/vim-wikidot'
 Plugin 'cespare/vim-toml'
 Plugin 'mboughaba/i3config.vim'
+Plugin 'qnighy/lalrpop.vim'
 Plugin 'rust-lang/rust.vim'
 
 " IDE-like
