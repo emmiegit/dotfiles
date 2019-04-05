@@ -73,7 +73,7 @@ DISABLE_AUTO_UPDATE="true"
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="yyyy/mm/dd"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 plugins=(jsontools pip safe-paste urltools vi-mode zsh-autosuggestions)
@@ -481,6 +481,13 @@ encode64() {
 	fi
 }
 
+# Disable fancy zsh completion on slow filesystems (e.g. NFS)
+ftab() {
+	zstyle ':completion:*' path-completion false
+	zstyle ':completion:*' accept-exact-dirs true
+	echo 'Disabled fancy tab completion'
+}
+
 # Batch converts from one format to another
 ffbatch() {
 	if [[ $# -lt 2 ]]; then
@@ -542,17 +549,6 @@ gofmtall() {
 	done
 }
 
-# Download imgur albums
-imgur-dl() {
-	if [[ $# -eq 2 ]]; then
-		local location="$2"
-	else
-		local location=.
-	fi
-
-	imgur-album-downloader "$1" "$location"
-}
-
 # Insult the user if their command fails.
 insult() {
 	# Warning: slow
@@ -580,11 +576,11 @@ lsdbus() {
 	fi
 
 	dbus-send "--$1" \
-			  --dest=org.freedesktop.DBus \
-			  --type=method_call \
-			  --print-reply \
-			  /org/freedesktop \
-			  org.freedesktop.DBus.ListNames
+			--dest=org.freedesktop.DBus \
+			--type=method_call \
+			--print-reply \
+			/org/freedesktop \
+			org.freedesktop.DBus.ListNames
 }
 
 # List file descriptors of the given pids or processes
@@ -617,11 +613,6 @@ lsosu() {
 		ls "$osu_song_dir" | grep -i "$1"
 	fi
 }
-
-## Print man output without pager
-#mancat() {
-#	tbl < "$@" | groff -mtty-char -Tascii -mandoc -c | ul
-#}
 
 # Print your most used shell commands
 mostused() {
