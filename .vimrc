@@ -295,7 +295,6 @@ Plugin 'Nu-SCPTheme/vim-wikidot'
 Plugin 'Slava/vim-spacebars'
 Plugin 'cespare/vim-toml'
 Plugin 'mboughaba/i3config.vim'
-Plugin 'qnighy/lalrpop.vim'
 Plugin 'rust-lang/rust.vim'
 
 " IDE-like
