@@ -1,5 +1,5 @@
-[User]
-Description=Run a minecraft server
+[Unit]
+Description=Run a local minecraft server
 Wants=network-online.target
 After=network.target network-online.target
 
@@ -7,7 +7,7 @@ After=network.target network-online.target
 Restart=always
 RestartSec=240
 Type=simple
-ExecStart=/bin/sh -c 'cd ~/documents/games/Minecraft Server/%I; exec ./run.sh'
+ExecStart=%h/documents/games/minecraft-servers/%I/run.sh
 
 [Install]
 WantedBy=default.target
