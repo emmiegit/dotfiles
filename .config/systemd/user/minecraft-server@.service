@@ -1,13 +1,13 @@
-[User]
-Description=Maware's self-bot
+[Unit]
+Description=Run a local minecraft server
 Wants=network-online.target
 After=network.target network-online.target
 
 [Service]
 Restart=always
-RestartSec=10
+RestartSec=240
 Type=simple
-ExecStart=/bin/sh -c 'cd ~/git/mawabot; exec python3.6 -m mawabot -d config.yaml'
+ExecStart=%h/documents/games/minecraft-servers/%I/run.sh
 
 [Install]
 WantedBy=default.target

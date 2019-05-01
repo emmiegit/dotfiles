@@ -155,6 +155,7 @@ case "$(uname)" in
 		alias pbpaste='xclip -o'
 		alias pbclear='xsel -c'
 		alias rmdir='rmdir -v'
+		alias livestreamer='streamlink'
 		;;
 esac
 

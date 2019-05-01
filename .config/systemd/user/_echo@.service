@@ -4,4 +4,3 @@ ExecStart=/usr/bin/echo '%I'
 
 [Install]
 WantedBy=default.target
-
