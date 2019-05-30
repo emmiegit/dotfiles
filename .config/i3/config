@@ -277,7 +277,7 @@ for_window [class="Nvidia-settings" instance="nvidia-settings"] floating enable
 for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
 for_window [class="Pinentry" instance="pinentry"] floating enable
 for_window [class="Steam" instance="Steam"] floating enable
-for_window [class="Tagainijisho" instance="tagainijisho"] floating enable
+for_window [instance="tagainijisho"] floating enable
 for_window [class="Tomboy" instance="Tomboy"] floating enable
 for_window [class="Tor Browser" instance="Navigator"] floating enable
 for_window [class="Tor Browser" instance="Update"] floating enable
