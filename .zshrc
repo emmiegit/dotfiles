@@ -92,6 +92,37 @@ source "$ZSH/oh-my-zsh.sh"
 #####
 # }}}
 
+# pyenv {{{
+###########
+
+export PYENV_SHELL=zsh
+command pyenv rehash 2> /dev/null
+
+pyenv() {
+	local command
+	command="${1:-}"
+	if [[ $# -gt 0 ]]; then
+		shift
+	fi
+
+	case "$command" in
+		rehash|shell)
+			eval "$(pyenv "sh-$command" "$@")"
+			;;
+		*)
+			command pyenv "$command" "$@"
+			;;
+	esac
+}
+
+# Use bpython when not invoking pyenv
+python()  { [[ $# -eq 0 ]] && bpython  || "$HOME/.pyenv/shims/python"  "$@"; }
+python2() { [[ $# -eq 0 ]] && bpython2 ||                 env python2  "$@"; }
+python3() { [[ $# -eq 0 ]] && bpython3 || "$HOME/.pyenv/shims/python3" "$@"; }
+
+#####
+# }}}
+
 # Default Aliases {{{
 #####################
 
@@ -1139,7 +1170,7 @@ case "$(cat /etc/hostname)" in
 		;;
 esac
 
-export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/.npm/bin:$HOME/.cargo/bin"
+export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/.npm/bin:$HOME/.cargo/bin:$HOME/.pyenv/shims"
 
 # Import systemd environment
 if which systemctl > /dev/null; then
@@ -1184,11 +1215,6 @@ bindkey "${terminfo[khome]}" beginning-of-line
 bindkey "${terminfo[kend]}" end-of-line
 
 which fzf > /dev/null || bindkey '^R' history-incremental-search-backward
-
-# Makes bpython the default interactive shell
-python()  { [[ $# -eq 0 ]] && bpython  || env python  "$@"; }
-python2() { [[ $# -eq 0 ]] && bpython2 || env python2 "$@"; }
-python3() { [[ $# -eq 0 ]] && bpython3 || env python3 "$@"; }
 
 if [[ "$EUID" -eq 0 ]]; then
 	case "$(uname)" in
