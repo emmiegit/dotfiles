@@ -171,6 +171,10 @@ bindsym $mod+z workspace back_and_forth
 # Move a window back and forth
 bindsym $mod+Shift+z move container to workspace back_and_forth; workspace back_and_forth
 
+# Navigate through workspaces
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
 # Goto marks
 bindsym $mod+m exec i3-input -F 'mark %s' -P 'Mark name: '
 bindsym $mod+apostrophe exec i3-input -F '[con_mark=%s] focus' -P 'Go to mark: '
