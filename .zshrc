@@ -656,7 +656,7 @@ lsosu() {
 # Print your most used shell commands
 mostused() {
 	history \
-	  | awk 'BEGIN {FS="[ \t]+|\\|"} {print $3}' \
+	  | awk '{ print $4 }' \
 	  | sort \
 	  | uniq -c \
 	  | sort -nr \
