@@ -95,30 +95,37 @@ source "$ZSH/oh-my-zsh.sh"
 # pyenv {{{
 ###########
 
-export PYENV_SHELL=zsh
-command pyenv rehash 2> /dev/null
+if which pyenv > /dev/null; then
+	export PYENV_SHELL=zsh
+	command pyenv rehash 2> /dev/null
 
-pyenv() {
-	local command
-	command="${1:-}"
-	if [[ $# -gt 0 ]]; then
-		shift
-	fi
+	pyenv() {
+		local command
+		command="${1:-}"
+		if [[ $# -gt 0 ]]; then
+			shift
+		fi
 
-	case "$command" in
-		rehash|shell)
-			eval "$(pyenv "sh-$command" "$@")"
-			;;
-		*)
-			command pyenv "$command" "$@"
-			;;
-	esac
-}
+		case "$command" in
+			rehash|shell)
+				eval "$(pyenv "sh-$command" "$@")"
+				;;
+			*)
+				command pyenv "$command" "$@"
+				;;
+		esac
+	}
 
-# Use bpython when not invoking pyenv
-python()  { [[ $# -eq 0 ]] && bpython  || "$HOME/.pyenv/shims/python"  "$@"; }
-python2() { [[ $# -eq 0 ]] && bpython2 ||                 env python2  "$@"; }
-python3() { [[ $# -eq 0 ]] && bpython3 || "$HOME/.pyenv/shims/python3" "$@"; }
+	# Use bpython when not invoking pyenv
+	python()  { [[ $# -eq 0 ]] && bpython  || "$HOME/.pyenv/shims/python"  "$@"; }
+	python2() { [[ $# -eq 0 ]] && bpython2 ||                 env python2  "$@"; }
+	python3() { [[ $# -eq 0 ]] && bpython3 || "$HOME/.pyenv/shims/python3" "$@"; }
+else
+	# Use regular bpython
+	python()  { bpython  "$@"; }
+	python2() { bpython2 "$@"; }
+	python3() { bpython3 "$@"; }
+fi
 
 #####
 # }}}
