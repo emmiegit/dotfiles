@@ -290,7 +290,7 @@ for_window [class="Uim-input-pad-ja" instance="Uim-input-pad-ja"] floating enabl
 for_window [class="Uim-pref-gtk" instance="uim-pref-gtk"] floating enable
 for_window [class="com-dreamcodex-wumpus-HuntTheWumpus"] floating enable
 for_window [class="keepassxc" instance="keepassxc"] floating enable
-for_window [class="net-minecraft-bootstrap-Bootst"] floating enable
+for_window [class="net-minecraft-bootstrap-Bootstrap"] floating enable
 for_window [class="net-technicpack-launcher-LauncherMain"] floating enable
 for_window [instance="Toplevel"] floating enable
 for_window [title="Android File Transfer for Linux"] floating enable
