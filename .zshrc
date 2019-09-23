@@ -325,6 +325,10 @@ digq() {
 	dig "$@" | grep 'Query time'
 }
 
+home() {
+	cd "$HOME" && clear
+}
+
 lsicon() {
 	ls -1 /usr/share/icons/Numix-Circle/scalable/apps | grep "$1"
 }
