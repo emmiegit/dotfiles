@@ -417,6 +417,7 @@ autocmd BufRead *.hh setl cindent foldmethod=syntax
 autocmd BufRead *.hpp setl cindent foldmethod=syntax
 autocmd BufRead *.handlebars setl shiftwidth=2 tabstop=2 foldmethod=indent
 autocmd BufRead *.hbs setl shiftwidth=2 tabstop=2 foldmethod=indent
+autocmd BufRead *.j2 setl shiftwidth=2 tabstop=2 foldmethod=indent
 autocmd BufRead *.html setl shiftwidth=2 tabstop=2 foldmethod=indent
 autocmd BufRead *.htm setl shiftwidth=2 tabstop=2 foldmethod=indent
 autocmd BufRead *.mustache setl shiftwidth=2 tabstop=2 foldmethod=indent
