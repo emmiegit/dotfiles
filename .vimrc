@@ -437,6 +437,7 @@ autocmd BufRead *.yaml setl shiftwidth=2 tabstop=2 foldmethod=indent
 autocmd BufRead *.yml setl shiftwidth=2 tabstop=2 foldmethod=indent
 
 " Project-specific
+autocmd BufRead tsconfig.json setl shiftwidth=2 tabstop=2
 autocmd BufRead ~/git/mortgage*/relay/emails/*.{mjml,txt} setl shiftwidth=2 tabstop=2 foldmethod=indent filetype=jinja
 
 " Secure editing of passwords with 'pass'
