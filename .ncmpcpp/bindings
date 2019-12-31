@@ -78,3 +78,6 @@ def_key "N"
 
 def_key ":"
     execute_command
+
+def_key "B"
+    jump_to_playlist_editor
