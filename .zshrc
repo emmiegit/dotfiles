@@ -1181,7 +1181,7 @@ case "$(cat /etc/hostname)" in
 		;;
 esac
 
-export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/.npm/bin:$HOME/.cargo/bin:$HOME/.pyenv/shims"
+export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.npm/bin:$HOME/.cargo/bin:$HOME/.pyenv/shims:$PATH"
 
 # Import systemd environment
 if which systemctl > /dev/null; then
