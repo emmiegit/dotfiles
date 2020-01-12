@@ -278,6 +278,9 @@ vmap <leader>y "+y
 vmap <leader>x "+x
 vmap <leader>d "+d
 
+" YouCompleteMe - jump to definition
+nmap <leader>o :YcmCompleter GoTo<cr>
+
 " }}}
 
 " Plugins {{{
