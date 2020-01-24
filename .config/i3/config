@@ -271,6 +271,7 @@ bar {
 # Available tokens: class, instance, window_role, con_id, id, window_type, con_mark, title, urgent, workspace
 for_window [class="Bleachbit" instance="bleachbit"] floating enable
 for_window [class="Dolphin-emu" instance="dolphin-emu"] floating enable
+for_window [class="Gnome-power-statistics" instance="gnome-power-statistics"] floating enable
 for_window [class="Gnome-system-monitor" instance="gnome-system-monitor"] floating enable
 for_window [class="Gpa" instance="gpa"] floating enable
 for_window [class="Gucharmap" instance="gucharmap"] floating enable
