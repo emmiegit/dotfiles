@@ -346,16 +346,6 @@ let g:ycm_rust_src_path = expand('$HOME') . '/documents/relic/git/rust/src'
 let g:EclimCompletionMethod = 'omnifunc'
 let g:tern_show_argument_hints = 'on_hold'
 let g:tern_map_keys = 1
-
-" Local vimrc
-let g:localvimrc_reverse = 1
-let g:localvimrc_count = 1
-let g:localvimrc_persistent = 2
-let g:localvimrc_persistence_file = expand('$HOME') . '/.vim_runtime/localvimrc_persist'
-
-" Only source .lvimrc files in ~/Git
-let g:localvimrc_blacklist = '.*'
-let g:localvimrc_whitelist = [expand('$HOME') . '/git/.*']
 " }}}
 
 " Helper functions {{{
