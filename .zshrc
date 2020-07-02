@@ -1247,6 +1247,14 @@ if [[ "$EUID" -eq 0 ]]; then
 	esac
 fi
 
+# Set up NVM
+if [[ $(uname) == Darwin ]]; then
+  export NVM_DIR="$HOME/.nvm"
+
+  [[ -s "/usr/local/opt/nvm/nvm.sh" ]] && source "/usr/local/opt/nvm/nvm.sh"
+  [[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ]] && source "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
+fi
+
 # Allow GPG signing over SSH
 export GPG_TTY="$(tty)"
 [[ -n "$SSH_CONNECTION" ]] && export PINENTRY_USER_DATA='USE_CURSES=1'
