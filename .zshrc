@@ -1177,23 +1177,18 @@ export WINEHOME="$HOME/.wine"
 unset PATH
 source /etc/profile
 
-if [[ $(uname) != Darwin ]]; then
-	if [[ $EUID != 0 ]]; then
-		export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$(rustc --print sysroot)/lib"
-	fi
+case "$(uname)" in
+	Linux)
+		if [[ $EUID != 0 ]]; then
+			export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$(rustc --print sysroot)/lib"
+		fi
 
-	case "$(cat /etc/hostname)" in
-		Titus)
-			export PATH="$PATH:$HOME/.gem/ruby/2.3.0/bin:$HOME/.cabal/bin"
-			;;
-		Augustus)
-			# Nothing unique
-			;;
-	esac
+		export PATH="$PATH:$HOME/.gem/ruby/2.3.0/bin:$HOME/.cabal/bin"
 
-	# I dislike this ls alias
-	unalias l
-fi
+		# I dislike this ls alias
+		unalias l
+		;;
+esac
 
 export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.npm/bin:$HOME/.cargo/bin:$HOME/.pyenv/shims:/var/lib/snapd/snap/bin:$PATH"
 
