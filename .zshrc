@@ -799,8 +799,16 @@ scr() {
 		return 1
 	fi
 
+	dofind() {
+		if [[ $(uname) == Linux ]]; then
+			find -L '/usr/local/scripts' -iname "*$1*" -executable -print
+		else
+			find -L "$HOME/git/scripts" -iname "*$1*" -perm +x -print
+		fi
+	}
+
 	IFS=$'\n' \
-	local scripts=($(find -L '/usr/local/scripts' -iname "*$1*" -executable -print))
+	local scripts=($(dofind "$1"))
 	case "${#scripts[@]}" in
 		0)
 			printf >&2 'Cannot find script "%s".\n' "$1"
@@ -1261,12 +1269,11 @@ if [[ "$EUID" -eq 0 ]]; then
 	esac
 fi
 
-# Set up NVM
+# Set up nvm
 if [[ $(uname) == Darwin ]]; then
+	mkdir -p /tmp/ammon/vim_undo
 	export NVM_DIR="$HOME/.nvm"
-
-	[[ -s "/usr/local/opt/nvm/nvm.sh" ]] && source "/usr/local/opt/nvm/nvm.sh"
-	[[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ]] && source "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
+	dosource '/usr/local/opt/nvm/nvm.sh'
 fi
 
 # Allow GPG signing over SSH
