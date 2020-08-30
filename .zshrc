@@ -165,6 +165,9 @@ alias ln='ln -v'
 alias mv='mv -v'
 alias rmln='rmln -v'
 
+# Others
+alias i3-resurrect="i3-resurrect --directory $HOME/.config/i3"
+
 #####
 # }}}
 
