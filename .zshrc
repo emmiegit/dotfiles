@@ -166,7 +166,12 @@ alias mv='mv -v'
 alias rmln='rmln -v'
 
 # Others
-alias i3-resurrect="i3-resurrect --directory $HOME/.config/i3"
+i3-resurrect() {
+	local command="$1"
+	shift
+
+	env i3-resurrect "$command" --directory "$HOME/.config/i3" "$@"
+}
 
 #####
 # }}}
