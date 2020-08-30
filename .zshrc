@@ -170,7 +170,10 @@ i3-resurrect() {
 	local command="$1"
 	shift
 
-	env i3-resurrect "$command" --directory "$HOME/.config/i3" "$@"
+	env \
+		i3-resurrect "$command" \
+			--directory "$HOME/.config/i3/i3-resurrect" \
+			"$@"
 }
 
 #####
