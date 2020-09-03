@@ -1202,7 +1202,7 @@ case "$(uname)" in
 		;;
 esac
 
-export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.npm/bin:$HOME/.cargo/bin:$HOME/.pyenv/shims:/var/lib/snapd/snap/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.npm/bin:$HOME/.cargo/bin:$HOME/.pyenv/shims:$PATH"
 
 # Import systemd environment
 if which systemctl > /dev/null; then
