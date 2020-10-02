@@ -3,7 +3,7 @@ use_console_editor = "yes"
 
 mpd_host = localhost
 mpd_port = 6600
-mpd_music_dir = ~/Music
+mpd_music_dir = ~/music
 mpd_connection_timeout = 15
 
 song_list_format = "{%t}|{%f}{ - %a}{ (%n)}"
