@@ -1263,10 +1263,10 @@ fi
 
 # Set up NVM
 if [[ $(uname) == Darwin ]]; then
-  export NVM_DIR="$HOME/.nvm"
+	export NVM_DIR="$HOME/.nvm"
 
-  [[ -s "/usr/local/opt/nvm/nvm.sh" ]] && source "/usr/local/opt/nvm/nvm.sh"
-  [[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ]] && source "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
+	[[ -s "/usr/local/opt/nvm/nvm.sh" ]] && source "/usr/local/opt/nvm/nvm.sh"
+	[[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ]] && source "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
 fi
 
 # Allow GPG signing over SSH
