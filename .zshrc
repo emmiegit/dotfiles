@@ -1235,8 +1235,6 @@ dosource "$HOME/.travis/travis.sh"
 dosource "$HOME/.zshrc_local"
 which thefuck > /dev/null && eval "$(thefuck --alias)"
 
-eval "$(ssh-agent -s)" > /dev/null
-
 #####
 # }}}
 
