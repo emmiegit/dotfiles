@@ -165,6 +165,9 @@ alias ln='ln -v'
 alias mv='mv -v'
 alias rmln='rmln -v'
 
+# Use 2018 syntax version of Rust
+alias rustfmt='rustfmt --edition=2018'
+
 # Others
 i3-resurrect() {
 	local command="$1"
