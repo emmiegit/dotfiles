@@ -120,7 +120,7 @@ if which pyenv > /dev/null; then
 	python()  { [[ $# -eq 0 ]] && bpython  || "$HOME/.pyenv/shims/python"  "$@"; }
 	python2() { [[ $# -eq 0 ]] && bpython2 ||                 env python2  "$@"; }
 	python3() { [[ $# -eq 0 ]] && bpython3 || "$HOME/.pyenv/shims/python3" "$@"; }
-else
+elif which bpython > /dev/null; then
 	# Use regular bpython
 	python()  { bpython  "$@"; }
 	python2() { bpython2 "$@"; }
@@ -195,6 +195,8 @@ case "$(uname)" in
 		alias stat='gstat'
 		alias vim='env vim -p'
 		alias ldd='otool -L'
+
+		alias plutus-login='plutus login; eval $(plutus login --export)'
 		;;
 	Linux)
 		alias chmod='chmod -c --preserve-root'
