@@ -389,11 +389,8 @@ exec --no-startup-id steam-native
 # User startup scripts
 exec --no-startup-id /usr/local/scripts/wm/startup.sh
 
-# Default workspaces
-exec i3-msg 'workspace 1; exec $Terminal; exec discord; exec quasselclient'
-exec i3-msg 'workspace 2; exec $Terminal'
-exec i3-msg 'workspace 3; exec $Browser'
-exec i3-msg 'workspace 4; exec $Email'
+# Restore layout
+exec /usr/local/scripts/wm/i3-resurrect-all.sh
 # }}}
 
 # vim: ft=i3config fdm=marker foldlevel=0:
