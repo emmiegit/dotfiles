@@ -1,0 +1,127 @@
+{
+    "border": "normal",
+    "current_border_width": -1,
+    "floating": "auto_off",
+    "fullscreen_mode": 1,
+    "geometry": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+    },
+    "layout": "splitv",
+    "marks": [],
+    "name": "1",
+    "orientation": "vertical",
+    "percent": null,
+    "scratchpad_state": "none",
+    "sticky": false,
+    "type": "workspace",
+    "workspace_layout": "default",
+    "nodes": [
+        {
+            "border": "normal",
+            "current_border_width": 2,
+            "floating": "auto_off",
+            "fullscreen_mode": 0,
+            "geometry": {
+                "x": 0,
+                "y": 0,
+                "width": 651,
+                "height": 429
+            },
+            "layout": "splith",
+            "marks": [],
+            "name": "ncmpcpp",
+            "orientation": "none",
+            "percent": 0.3,
+            "scratchpad_state": "none",
+            "sticky": false,
+            "type": "con",
+            "workspace_layout": "default",
+            "swallows": [
+                {
+                    "class": "^Terminator$",
+                    "instance": "^terminator$"
+                }
+            ]
+        },
+        {
+            "border": "normal",
+            "current_border_width": -1,
+            "floating": "auto_off",
+            "fullscreen_mode": 0,
+            "geometry": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            },
+            "layout": "tabbed",
+            "marks": [],
+            "name": null,
+            "orientation": "horizontal",
+            "percent": 0.7,
+            "scratchpad_state": "none",
+            "sticky": false,
+            "type": "con",
+            "workspace_layout": "default",
+            "nodes": [
+                {
+                    "border": "normal",
+                    "current_border_width": 2,
+                    "floating": "auto_off",
+                    "fullscreen_mode": 0,
+                    "geometry": {
+                        "x": 2,
+                        "y": 391,
+                        "width": 1916,
+                        "height": 807
+                    },
+                    "layout": "splith",
+                    "marks": [],
+                    "name": "Discord",
+                    "orientation": "none",
+                    "percent": 0.5,
+                    "scratchpad_state": "none",
+                    "sticky": false,
+                    "type": "con",
+                    "workspace_layout": "default",
+                    "swallows": [
+                        {
+                            "class": "^discord$",
+                            "instance": "^discord$"
+                        }
+                    ]
+                },
+                {
+                    "border": "normal",
+                    "current_border_width": 2,
+                    "floating": "auto_off",
+                    "fullscreen_mode": 0,
+                    "geometry": {
+                        "x": 2,
+                        "y": 391,
+                        "width": 1916,
+                        "height": 807
+                    },
+                    "layout": "splith",
+                    "marks": [],
+                    "name": "Quassel IRC",
+                    "orientation": "none",
+                    "percent": 0.5,
+                    "scratchpad_state": "none",
+                    "sticky": false,
+                    "type": "con",
+                    "workspace_layout": "default",
+                    "swallows": [
+                        {
+                            "class": "^quassel$",
+                            "instance": "^quasselclient$"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

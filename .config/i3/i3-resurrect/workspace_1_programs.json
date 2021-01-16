@@ -1,0 +1,14 @@
+[
+    {
+        "command": [
+            "/usr/bin/terminator"
+        ],
+        "working_directory": "/home/ammon"
+    },
+    {
+        "command": [
+            "/usr/bin/quasselclient"
+        ],
+        "working_directory": "/home/ammon"
+    }
+]

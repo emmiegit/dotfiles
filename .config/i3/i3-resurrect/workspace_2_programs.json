@@ -1,0 +1,8 @@
+[
+    {
+        "command": [
+            "/usr/bin/terminator"
+        ],
+        "working_directory": "/home/ammon"
+    }
+]

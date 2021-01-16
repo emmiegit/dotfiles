@@ -1,0 +1,8 @@
+[
+    {
+        "command": [
+            "/usr/bin/firefox-developer-edition"
+        ],
+        "working_directory": "/home/ammon"
+    }
+]
