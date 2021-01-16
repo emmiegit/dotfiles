@@ -1,7 +1,7 @@
 [
     {
         "command": [
-            "/usr/bin/thunderbird"
+            "/usr/local/bin/thunderbird"
         ],
         "working_directory": "/home/ammon"
     }

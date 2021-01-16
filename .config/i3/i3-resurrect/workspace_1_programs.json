@@ -10,5 +10,11 @@
             "/usr/bin/quasselclient"
         ],
         "working_directory": "/home/ammon"
+    },
+    {
+        "command": [
+            "/usr/bin/discord"
+        ],
+        "working_directory": "/home/ammon"
     }
 ]

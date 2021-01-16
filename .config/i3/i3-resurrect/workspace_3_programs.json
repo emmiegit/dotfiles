@@ -1,7 +1,7 @@
 [
     {
         "command": [
-            "/usr/bin/firefox-developer-edition"
+            "/usr/local/bin/firefox-developer-edition"
         ],
         "working_directory": "/home/ammon"
     }
