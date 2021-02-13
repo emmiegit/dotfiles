@@ -149,6 +149,7 @@ alias pgrep='pgrep -afl'
 alias rg='noglob rg'
 alias shred='shred -uv'
 alias socat='noglob socat'
+alias splat='splat -v'
 alias sudo='sudo -EH'
 alias view='vim -R'
 alias vim='vim -p'
@@ -887,26 +888,6 @@ shutdown() {
 		y*|Y*) sudo shutdown now ;;
 		*) echo >&2 'Aborting.'
 	esac
-}
-
-# Move all files into a directory to the current directory,
-# then delete the directory
-splat() {
-	if [[ $# -eq 0 ]]; then
-		echo "Usage: splat dir..."
-		return 1
-	fi
-
-	for dir in "$@"; do
-		if [[ ! -d $dir ]]; then
-			echo "$dir is not a directory, skipping..."
-			continue
-		fi
-
-		mv "$dir"/* .
-		mv "$dir"/.* .
-		rmdir "$dir"
-	done
 }
 
 # Make sure the user is rebooting the right machine
