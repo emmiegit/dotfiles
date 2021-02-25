@@ -1225,6 +1225,7 @@ dosource '/usr/bin/aws_zsh_completer.sh'
 dosource '/usr/lib/z.sh'
 dosource '/usr/share/doc/pkgfile/command-not-found.zsh'
 dosource '/usr/share/fzf/key-bindings.zsh'
+dosource "$HOME/.fzf.zsh"
 dosource "$HOME/.travis/travis.sh"
 dosource "$HOME/.zshrc_local"
 which thefuck > /dev/null && eval "$(thefuck --alias)"
