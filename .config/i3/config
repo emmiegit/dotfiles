@@ -294,6 +294,7 @@ for_window [class="com-dreamcodex-wumpus-HuntTheWumpus"] floating enable
 for_window [class="keepassxc" instance="keepassxc"] floating enable
 for_window [class="net-minecraft-bootstrap-Bootstrap"] floating enable
 for_window [class="net-technicpack-launcher-LauncherMain"] floating enable
+for_window [class="com-jgaap-JGAAP" instance="com-jgaap-JGAAP"] floating enable
 for_window [instance="Toplevel"] floating enable
 for_window [title="Android File Transfer for Linux"] floating enable
 for_window [title="Terminator Preferences"] floating enable
