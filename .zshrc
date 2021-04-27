@@ -30,6 +30,7 @@ compinit
 HISTFILE=~/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=100000
+FUNCNEST=1000
 setopt appendhistory autocd extendedglob nomatch notify hist_ignore_space
 unsetopt beep
 bindkey -v
