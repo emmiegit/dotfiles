@@ -76,7 +76,7 @@ DISABLE_AUTO_UPDATE="true"
 HIST_STAMPS="yyyy-mm-dd"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(jsontools pip safe-paste urltools zsh-autosuggestions)
+plugins=(jsontools pip safe-paste urltools vi-mode zsh-autosuggestions)
 
 # User configuration
 # You may need to manually set your language environment
@@ -1224,7 +1224,6 @@ dosource '/usr/bin/aws_zsh_completer.sh'
 dosource '/usr/lib/z.sh'
 dosource '/usr/share/doc/pkgfile/command-not-found.zsh'
 dosource '/usr/share/fzf/key-bindings.zsh'
-dosource '/usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh'
 dosource "$HOME/.fzf.zsh"
 dosource "$HOME/.travis/travis.sh"
 dosource "$HOME/.zshrc_local"
