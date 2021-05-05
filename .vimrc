@@ -49,7 +49,7 @@ if has("syntax")
     colorscheme delek
   endtry
 endif
-"
+
 " Linebreak at 500 characters
 set linebreak
 set textwidth=500
@@ -245,12 +245,12 @@ map <leader>bn :bnext<cr>
 map <leader>bp :bprevious<cr>
 
 " Useful mappings for managing tabs
-map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove<cr>
+map <leader>tm :tabmove<Space>
 
-" Open a new tab with the current buffer's path
+" Open a new tab (\te has the current buffer's path)
+map <leader>tn :tabnew<Space>
 map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 
 " Switch the cwd to the directory of the open buffer
