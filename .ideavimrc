@@ -70,6 +70,9 @@ set list listchars=tab:»\ ,trail:·
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 
+" Append newlines to files if missing
+set fixeol
+
 " }}}
 
 " New commands {{{
