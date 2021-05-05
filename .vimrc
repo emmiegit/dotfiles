@@ -21,8 +21,7 @@ set mouse=n               " Enable mouse usage (normal mode only)
 set nocompatible          " Disable vi compatibility options
 set noshowmode            " Powerline does this for me, so disable the default mode
 set nosmartindent         " Prevent audo dedent on Python comment
-set relativenumber        " Use relative line numbers (see below)
-set ruler                 " Display the bar at the bottom 
+set ruler                 " Display the bar at the bottom
 set secure                " Shell and write commands are disallowed in local vimrcs
 set shell=/bin/bash       " Use bash as the vim shell
 set showcmd               " Show (partial) command in status line
