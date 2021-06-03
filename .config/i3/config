@@ -385,7 +385,7 @@ exec pamixer --unmute
 exec redshift
 exec uim-xim
 exec uim-toolbar-gtk3-systray
-exec --no-startup-id steam-native
+exec --no-startup-id sleep 60 && steam
 
 # User startup scripts
 exec --no-startup-id /usr/local/scripts/wm/startup.sh
