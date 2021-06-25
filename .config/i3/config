@@ -383,8 +383,6 @@ exec megasync
 exec nm-applet
 exec pamixer --unmute
 exec redshift
-exec uim-xim
-exec uim-toolbar-gtk3-systray
 exec --no-startup-id sleep 60 && steam
 
 # User startup scripts
