@@ -1,11 +1,9 @@
-# Copy of ammon.zsh-theme, with a hardcoded username
-
 ZSH_THEME_GIT_PROMPT_PREFIX=" (%F{blue}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%f)"
 ZSH_THEME_GIT_PROMPT_DIRTY="%F{red}.%f"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 
-PS1='%F{green}emmie@%m%f %F{yellow}%~%f%(!.%F{red}#%f.$)$(git_prompt_info) '
+PS1='%F{green}%n@%m%f %F{yellow}%~%f%(!.%F{red}#%f.$)$(git_prompt_info) '
 RPS1='%(?..%F{red}%? ↵%F{reset})'
 PS2='%F{red}\ %F{reset}'
 
