@@ -92,7 +92,7 @@ endtry
 
 " Undo files
 try
-  set undodir=/tmp/ammon/vim_undo
+  set undodir=/tmp/emmie/vim_undo
   set undofile
 catch
 endtry

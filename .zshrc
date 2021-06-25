@@ -1252,13 +1252,6 @@ if [[ "$EUID" -eq 0 ]]; then
 	esac
 fi
 
-# Set up nvm
-if [[ $(uname) == Darwin ]]; then
-	mkdir -p /tmp/ammon/vim_undo
-	export NVM_DIR="$HOME/.nvm"
-	dosource '/usr/local/opt/nvm/nvm.sh'
-fi
-
 # Allow GPG signing over SSH
 export GPG_TTY="$(tty)"
 [[ -n "$SSH_CONNECTION" ]] && export PINENTRY_USER_DATA='USE_CURSES=1'
