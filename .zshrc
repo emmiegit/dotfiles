@@ -965,37 +965,6 @@ taffyit() {
 	fi
 }
 
-# Use mid3v2 to automatically tag a song
-tagit() {
-	if [[ $1 == '-n' ]]; then
-		add_artist=false
-		shift
-	else
-		add_artist=true
-	fi
-
-	if [[ $# -eq 0 ]]; then
-		echo >&2 'No files specified.'
-		return 1
-	fi
-
-	if "$add_artist"; then
-		local artist="${PWD##*/}"
-
-		for fn in "$@"; do
-			local title="${fn%.*}"
-			echo "$fn: $title by $artist"
-			mid3v2 -a "$artist" -t "$title" "$fn"
-		done
-	else
-		for fn in "$@"; do
-			local title="${fn%.*}"
-			echo "$fn: $title"
-			mid3v2 -t "$title" "$fn"
-		done
-	fi
-}
-
 # List the options supported by this terminal.
 termsupport() {
 	infocmp -1 | \
