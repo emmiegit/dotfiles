@@ -1,6 +1,0 @@
-[Service]
-Type=oneshot
-ExecStart=/usr/bin/sh -c 'mkdir -p /tmp/ammon/%i && chmod 700 /tmp/ammon/%i'
-
-[Install]
-WantedBy=default.target
