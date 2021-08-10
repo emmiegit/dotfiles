@@ -293,7 +293,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 " Syntax highlighting
 Plugin 'Glench/Vim-Jinja2-Syntax'
-Plugin 'Nu-SCPTheme/vim-wikidot'
+Plugin 'scpwiki/vim-wikidot'
 Plugin 'Slava/vim-spacebars'
 Plugin 'cespare/vim-toml'
 Plugin 'mboughaba/i3config.vim'
