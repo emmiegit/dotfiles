@@ -61,7 +61,7 @@ font:
   # false.
   use_thin_strokes: false
 
-# Colors (Tomorrow Night Bright)
+# Colors
 colors:
   # Default colors
   primary:
