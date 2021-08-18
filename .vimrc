@@ -301,12 +301,10 @@ Plugin 'pest-parser/pest.vim'
 Plugin 'rust-lang/rust.vim'
 
 " IDE-like
-Plugin 'matchit.zip'
 Plugin 'mhinz/vim-signify'
 Plugin 'Valloric/YouCompleteMe'
 
 " Operation helpers
-Plugin 'mattn/emmet-vim'
 Plugin 'scrooloose/nerdcommenter'
 
 " End vundle setup
