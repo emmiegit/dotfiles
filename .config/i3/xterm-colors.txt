@@ -1,5 +1,5 @@
-Background: #949494
-Foreground: #151428
+Foreground: #949494
+Background: #151428
 
 [Dark]
 Black:  #1d1f21
