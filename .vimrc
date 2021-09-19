@@ -304,9 +304,6 @@ Plugin 'rust-lang/rust.vim'
 Plugin 'mhinz/vim-signify'
 Plugin 'Valloric/YouCompleteMe'
 
-" Operation helpers
-Plugin 'scrooloose/nerdcommenter'
-
 " End vundle setup
 call vundle#end()
 filetype plugin indent on
