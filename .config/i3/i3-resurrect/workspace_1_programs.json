@@ -13,7 +13,7 @@
     },
     {
         "command": [
-            "/usr/bin/discord"
+            "/usr/local/bin/discord"
         ],
         "working_directory": "/home/emmie"
     }
