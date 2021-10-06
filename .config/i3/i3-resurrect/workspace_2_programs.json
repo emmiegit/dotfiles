@@ -3,6 +3,6 @@
         "command": [
             "/usr/bin/terminator"
         ],
-        "working_directory": "/home/ammon"
+        "working_directory": "/home/emmie"
     }
 ]

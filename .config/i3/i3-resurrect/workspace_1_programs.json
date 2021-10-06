@@ -3,18 +3,18 @@
         "command": [
             "/usr/bin/terminator"
         ],
-        "working_directory": "/home/ammon"
+        "working_directory": "/home/emmie"
     },
     {
         "command": [
             "/usr/bin/quasselclient"
         ],
-        "working_directory": "/home/ammon"
+        "working_directory": "/home/emmie"
     },
     {
         "command": [
             "/usr/bin/discord"
         ],
-        "working_directory": "/home/ammon"
+        "working_directory": "/home/emmie"
     }
 ]
