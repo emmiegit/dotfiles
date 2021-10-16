@@ -1,20 +1,28 @@
 #!/bin/sh
 # xprofile - Commands to run before the window manager is started.
 
+doecho() {
+	echo "$@"
+	"$@"
+}
+
+# Adjust monitor configuration
+doecho /usr/local/scripts/wm/screenlayout/run.sh
+
 # Swap escape and caps lock for vim
-/usr/local/scripts/wm/vi-keyswap.sh
+doecho /usr/local/scripts/wm/vi-keyswap.sh
 
-# Disable mouse acceleration
-xset m 0 0
+# Set device-specific settings
+doecho xinput --set-prop '2.5G Mouse' 'libinput Accel Speed' 0.50
+doecho xinput --set-prop 'USB Optical Mouse' 'libinput Accel Speed' -0.25
 
-xinput --set-prop 'ZLY ZELOTES GAME MOUSE' 'libinput Accel Speed' -0.4
-
-xinput --set-prop 'MOSART Semi. 2.4G Wireless Mouse' 'libinput Accel Speed' -0.4
-xinput --set-prop 'MOSART Semi. 2.4G Wireless Mouse' 'libinput Accel Profile Enabled' 0 0
-
-xinput --set-prop 'USB Optical Mouse' 'libinput Accel Speed' -0.2
-xinput --set-prop 'USB Optical Mouse' 'libinput Accel Profile Enabled' 0 0
+# Disable acceleration
+doecho xset m 0 0
 
 export XMODIFIERS=@uim=xim
 export GTK_IM_MODULE=uim
 export QT_IM_MODULE=uim
+
+unset doecho
+
+# vim: set ft=sh:
