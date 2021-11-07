@@ -410,7 +410,7 @@ autocmd BufRead *.mst setl shiftwidth=2 tabstop=2 foldmethod=indent
 autocmd BufRead *.tera setl shiftwidth=2 tabstop=2 filetype=jinja
 autocmd BufRead *.tf setl shiftwidth=2 tabstop=2
 autocmd BufRead *.js setl shiftwidth=2 tabstop=2 foldmethod=syntax conceallevel=1
-autocmd BufRead *.json setl foldmethod=syntax conceallevel=2
+autocmd BufRead *.json setl shiftwidth=2 tabstop=2 foldmethod=syntax conceallevel=2
 autocmd BufRead *.ts setl shiftwidth=2 tabstop=2 filetype=javascript
 autocmd BufRead *.css setl cindent foldmethod=syntax
 autocmd BufRead *.scss setl shiftwidth=2 tabstop=2 foldmethod=indent
@@ -422,8 +422,6 @@ autocmd BufRead *.yaml setl shiftwidth=2 tabstop=2 foldmethod=indent
 autocmd BufRead *.yml setl shiftwidth=2 tabstop=2 foldmethod=indent
 
 " Project-specific
-autocmd BufRead tsconfig.json setl shiftwidth=2 tabstop=2
-autocmd BufRead ~/git/mortgage*/relay/{emails,tenant_overrides/*}/*.{mjml,txt} setl shiftwidth=2 tabstop=2 foldmethod=indent filetype=jinja
 autocmd BufRead ~/git/wikijump*/*/templates/*.tpl setl noexpandtab
 
 " Secure editing of passwords with 'pass'
