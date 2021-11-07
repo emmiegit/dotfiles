@@ -410,7 +410,8 @@ autocmd BufRead *.mst setl shiftwidth=2 tabstop=2 foldmethod=indent
 autocmd BufRead *.tera setl shiftwidth=2 tabstop=2 filetype=jinja
 autocmd BufRead *.tf setl shiftwidth=2 tabstop=2
 autocmd BufRead *.js setl shiftwidth=2 tabstop=2 foldmethod=syntax conceallevel=1
-autocmd BufRead *.json setl shiftwidth=2 tabstop=2 foldmethod=syntax conceallevel=2
+autocmd BufRead package*.json setl shiftwidth=2 tabstop=2
+autocmd BufRead *.json setl foldmethod=syntax conceallevel=2
 autocmd BufRead *.ts setl shiftwidth=2 tabstop=2 filetype=javascript
 autocmd BufRead *.css setl cindent foldmethod=syntax
 autocmd BufRead *.scss setl shiftwidth=2 tabstop=2 foldmethod=indent
