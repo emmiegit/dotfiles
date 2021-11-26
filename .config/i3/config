@@ -379,7 +379,6 @@ exec /usr/local/scripts/wm/daemon/udiskie.sh
 exec /usr/local/scripts/wm/daemon/start-autolock.sh
 exec /usr/local/scripts/wm/startup.sh
 exec picom -b --config ~/.config/picom.conf
-exec megasync
 exec nm-applet
 exec pamixer --unmute
 exec redshift
