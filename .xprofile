@@ -19,10 +19,6 @@ doecho xinput --set-prop 'USB Optical Mouse' 'libinput Accel Speed' -0.25
 # Disable acceleration
 doecho xset m 0 0
 
-export XMODIFIERS=@uim=xim
-export GTK_IM_MODULE=uim
-export QT_IM_MODULE=uim
-
 unset doecho
 
 # vim: set ft=sh:
