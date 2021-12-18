@@ -1,0 +1,78 @@
+; Polybar configuration for all devices
+; Designate which bar(s) you want to use on startup
+;
+; See https://github.com/polybar/polybar/wiki for information
+
+; Constant color data
+[colors]
+; TODO
+background = #222
+background-alt = #444
+foreground = #dfdfdf
+foreground-alt = #555
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
+
+[bar/laptop]
+monitor = ${env:MONITOR:eDP1}
+
+; Modules
+modules-left = 
+modules-center = window
+modules-right = datetime
+
+; Style
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+; TODO
+line-size = 3
+line-color = #f00
+
+border-size = 4
+border-color = #00000000
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 2
+
+enable-ipc = true
+
+; Fonts
+; font-N = "<fontconfig pattenr>;<vertical offset>"
+font-0 = "Source Code Pro:size=11;0"
+font-1 = "Droid Sans:size=11;1"
+font-2 = "Noto Color Emoji:size=9;2"
+
+[module/datetime]
+type = internal/date
+
+; Seconds to sleep between updates
+interval = 1.0
+
+; See "https://en.cppreference.com/w/cpp/io/manip/put_time" for options in formatting dates
+; A time format is optional
+date = %Y/%m/%d
+time = %I:%M:%S %p
+
+; Clicking on the module toggles to an alternate date/time format
+date-alt = %A %B %d, %Y
+time-alt = %I:%M:%S %p
+
+; Other formatting options
+format = 🕓 <label>
+format-background = ${colors.background-datetime}
+format-foreground = ${colors.background-datetime}
+
+label = %date% %time%
+label-font = 0
+
+[module/window]
+type = internal/xwindow
+label = %title:0:30:...%
+label-font = 1
+
+; vim: set ft=dosini;
