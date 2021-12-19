@@ -56,7 +56,7 @@ enable-ipc = true
 ; Modules
 modules-left = i3 mpd
 modules-center = window
-modules-right = cpu memory battery pulseaudio datetime
+modules-right = wifi cpu memory battery pulseaudio datetime
 
 ; Styling
 radius = ${style.radius}
@@ -162,7 +162,7 @@ label = %percentage_used%%
 type = internal/battery
 battery = BAT0
 adapter = ADP1
-full-at = 85
+full-at = 95
 
 # How often to poll the battery if inotify events aren't coming through
 poll-interval = 5
@@ -190,6 +190,10 @@ animation-charging-framerate = 750
 
 # Mouse actions
 click-right = gnome-power-statistics
+
+;;
+; AUDIO AND MUSIC
+;;
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -236,6 +240,9 @@ interval = 2
 format-online = <bar-progress> <label-time>  <label-song>
 format-playing = ${self.format-online}
 format-paused = <bar-progress> <label-time>  <label-song>
+;;
+; AUDIO AND MUSIC
+;;
 format-stopped = " "
 
 label-song = %artist:0:8:...% - %title:0:16:...%
@@ -250,5 +257,83 @@ bar-progress-width = 10
 bar-progress-indicator = |
 bar-progress-fill = ─
 bar-progress-empty = ─
+
+;;
+; NETWORK
+;;
+
+[module/ethernet]
+type = internal/network
+interface = eno1
+
+; Seconds to sleep between updates
+interval = 1
+
+; Formats and Labels
+format-connected = <ramp-signal> <label-connected>
+format-disconnected = <label-disconnected>
+format-packetloss = <animation-packetloss> <label-connected>
+
+label-connected = %essid%
+label-connected-alt = %essid%  %upspeed%  %downspeed%
+label-connected-foreground = #eefafafa
+
+label-disconnected = not connected
+label-disconnected-foreground = ${colors.foreground-alt}
+
+label-packetloss = %essid%
+label-packetloss-foreground = ${colors.secondary}
+
+; Connectivity levels, applies if <ramp-signal> is used
+ramp-signal-0 = ""
+ramp-signal-1 = ""
+ramp-signal-2 = ""
+ramp-signal-3 = ""
+
+; Only applies if <animation-packetloss> is used
+; TODO
+animation-packetloss-0 = ⚠
+animation-packetloss-0-foreground = #ffa64c
+animation-packetloss-1 = 📶
+animation-packetloss-1-foreground = #000000
+; Framerate in milliseconds
+animation-packetloss-framerate = 500
+
+[module/wifi]
+type = internal/network
+interface = wlp4s0
+
+; Seconds to sleep between updates
+interval = 5
+
+; Formats and Labels
+format-connected = <ramp-signal> <label-connected>
+format-disconnected = <label-disconnected>
+format-packetloss = <animation-packetloss> <label-connected>
+
+label-connected = %essid%
+label-connected-alt = %essid%  %upspeed%  %downspeed%
+label-connected-foreground = #eefafafa
+
+label-disconnected = not connected
+label-disconnected-foreground = ${colors.foreground-alt}
+
+label-packetloss = %essid%
+label-packetloss-foreground = ${colors.secondary}
+
+; Connectivity levels, applies if <ramp-signal> is used
+ramp-signal-0 = ""
+ramp-signal-1 = ""
+ramp-signal-2 = ""
+ramp-signal-3 = ""
+
+; Only applies if <animation-packetloss> is used
+; TODO
+animation-packetloss-0 = ⚠
+animation-packetloss-0-foreground = #ffa64c
+animation-packetloss-1 = 📶
+animation-packetloss-1-foreground = #000000
+; Framerate in milliseconds
+animation-packetloss-framerate = 500
 
 ; vim: set ft=dosini:
