@@ -188,6 +188,9 @@ animation-charging-2 = 
 animation-charging-foreground = ${colors.foreground}
 animation-charging-framerate = 750
 
+# Mouse actions
+click-right = gnome-power-statistics
+
 [module/pulseaudio]
 type = internal/pulseaudio
 
