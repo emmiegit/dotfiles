@@ -330,7 +330,7 @@ format-stopped = " "
 format-stopped-background = ${colors.music-background}
 format-stopped-foreground = ${colors.music-foreground}
 
-label-song = %artist:0:14:...% - %title:0:28:...%
+label-song = %artist:0:12:...% - %title:0:24:...%
 label-time = %elapsed% / %total%
 
 format-offline = <label-offline>
