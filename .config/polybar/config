@@ -59,7 +59,7 @@ enable-ipc = true
 ; Modules
 modules-left = i3 mpd
 modules-center = window
-modules-right = wifi cpu memory battery pulseaudio datetime
+modules-right = wifi cpu memory battery backlight pulseaudio datetime
 
 ; Styling
 radius = ${style.radius}
@@ -77,7 +77,8 @@ module-margin-right = ${style.module-margin-right}
 font-0 = "Source Code Pro:size=10;0"
 font-1 = "Droid Sans:size=11;0"
 font-2 = "Noto Sans Symbols2:size=9;2"
-font-3 = "siji:pixelsize=10;0"
+font-3 = "DejaVu Sans:size=9;1"
+font-4 = "siji:pixelsize=10;0"
 
 [bar/desktop]
 ; TODO
@@ -204,6 +205,24 @@ animation-charging-framerate = 750
 
 # Mouse actions
 click-right = gnome-power-statistics
+
+[module/backlight]
+type = internal/xbacklight
+output = ${env:MONITOR:eDP1}
+
+; Allow using scroll to set the backlight value.
+enable-scroll = false
+
+; Display format for module
+format = <ramp> <label>
+
+label = %percentage%%
+
+ramp-0 = 🌕
+ramp-1 = 🌔
+ramp-2 = 🌓
+ramp-3 = 🌒
+ramp-4 = 🌑
 
 ;;
 ; AUDIO AND MUSIC
