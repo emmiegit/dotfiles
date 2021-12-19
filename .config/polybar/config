@@ -38,10 +38,10 @@ backlight-background = ${self.background}
 backlight-foreground = #fff2cc
 
 cpu-background = ${self.background}
-cpu-foreground = #d0e0e3
+cpu-foreground = #f4cccc
 
 memory-background = ${self.background}
-memory-foreground = #f4cccc
+memory-foreground = #d0e0e3
 
 pulseaudio-background = ${self.background}
 pulseaudio-foreground = #fce5cd
