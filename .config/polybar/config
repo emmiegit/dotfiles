@@ -24,13 +24,13 @@ workspaces-background = ${self.background}
 workspaces-foreground = ${self.foreground}
 
 window-background = ${self.background}
-window-foreground = #98caa3
+window-foreground = #9fc7a8
 
 music-background = ${self.background}
 music-foreground = #ead1dc
 
 network-connected-background = ${self.background}
-network-connected-foreground = #d9d2e9
+network-connected-foreground = ${self.foreground}
 network-disconnected-background = ${self.background}
 network-disconnected-foreground = ${self.foreground-alt}
 
@@ -50,7 +50,7 @@ datetime-background = ${self.background}
 datetime-foreground = #d9ead3
 
 battery-background = ${self.background}
-battery-foreground = #cfe2f3
+battery-foreground = #a7d7c6
 battery-underline-full = #01cc92
 battery-underline-charging = ${self.primary}
 battery-underline-discharging = ${self.foreground-alt}
