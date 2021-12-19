@@ -238,9 +238,7 @@ type = internal/mpd
 
 host = localhost
 port = 6600
-; No password, read-only access only
-; Use media keys for control
-password = ""
+password = ${env:MPD_PASSWORD}
 
 ; Seconds to wait sleep between sync
 interval = 1
