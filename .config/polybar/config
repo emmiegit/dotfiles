@@ -217,4 +217,4 @@ ramp-volume-3 = " "
 # Mouse actions
 click-right = pavucontrol
 
-; vim: set ft=dosini;
+; vim: set ft=dosini:
