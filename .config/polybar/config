@@ -74,7 +74,16 @@ module-margin-right = ${style.module-margin-right}
 font-0 = "Source Code Pro:size=10;0"
 font-1 = "Droid Sans:size=11;0"
 font-2 = "Noto Sans Symbols2:size=9;2"
-font-3 = "siji:pixelsize=10;1"
+font-3 = "siji:pixelsize=10;0"
+
+[bar/desktop]
+; TODO
+; Will need separate bars for different displays?
+
+; Modules
+modules-left = i3
+modules-center = window
+modules-right = ethernet cpu memory pulseaudio datetime
 
 ;;
 ; MODULES
