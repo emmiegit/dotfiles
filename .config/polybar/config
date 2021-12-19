@@ -276,7 +276,7 @@ format-paused = <bar-progress> <label-time>  <label-song>
 ;;
 format-stopped = " "
 
-label-song = %artist:0:8:...% - %title:0:16:...%
+label-song = %artist:0:10:...% - %title:0:25:...%
 label-time = %elapsed% / %total%
 
 format-offline = <label-offline>
