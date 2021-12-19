@@ -243,7 +243,7 @@ port = 6600
 password = ""
 
 ; Seconds to wait sleep between sync
-interval = 2
+interval = 1
 
 ; Display format
 format-online = <bar-progress> <label-time>  <label-song>
