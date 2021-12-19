@@ -20,9 +20,37 @@ primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 
-window-background = #000
+workspaces-background = ${self.background}
+workspaces-foreground = ${self.foreground}
+
+window-background = ${self.background}
 window-foreground = #98caa3
 
+music-background = ${self.background}
+music-foreground = #ead1dc
+
+network-connected-background = ${self.background}
+network-connected-foreground = #d9d2e9
+network-disconnected-background = ${self.background}
+network-disconnected-foreground = ${self.foreground-alt}
+
+backlight-background = ${self.background}
+backlight-foreground = #fff2cc
+
+cpu-background = ${self.background}
+cpu-foreground = #d0e0e3
+
+memory-background = ${self.background}
+memory-foreground = #f4cccc
+
+pulseaudio-background = ${self.background}
+pulseaudio-foreground = #fce5cd
+
+datetime-background = ${self.background}
+datetime-foreground = #d9ead3
+
+battery-background = ${self.background}
+battery-foreground = #cfe2f3
 battery-underline-full = #01cc92
 battery-underline-charging = ${self.primary}
 battery-underline-discharging = ${self.foreground-alt}
@@ -40,8 +68,8 @@ line-color = #f00
 border-size = 4
 border-color = #000
 
-padding-left = 0
-padding-right = 0
+padding-left = 1
+padding-right = 1
 
 module-margin-left = 1
 module-margin-right = 1
@@ -62,6 +90,8 @@ modules-center = window
 modules-right = wifi cpu memory battery backlight pulseaudio datetime
 
 ; Styling
+background = ${colors.background}
+foreground = ${colors.foreground}
 radius = ${style.radius}
 line-size = ${style.line-size}
 line-color = ${style.line-color}
@@ -109,7 +139,7 @@ enable-click = true
 enable-scroll = false
 
 ; Format
-format =  <label-state> <label-mode>
+format = " <label-state> <label-mode>"
 
 ; Colors
 label-mode-padding = ${style.workspace-padding}
@@ -144,7 +174,7 @@ label-foreground = ${colors.window-foreground}
 type = internal/date
 
 ; Seconds to sleep between updates
-interval = 1.0
+interval = 1
 
 ; See "https://en.cppreference.com/w/cpp/io/manip/put_time" for options in formatting dates
 ; A time format is optional
@@ -156,7 +186,9 @@ date-alt = %A %B %d, %Y
 time-alt = %I:%M:%S %p
 
 ; Other formatting options
-format =  <label>
+format = " <label>"
+format-background = ${colors.datetime-background}
+format-foreground = ${colors.datetime-foreground}
 
 label = %date% %time%
 label-font = 0
@@ -164,14 +196,20 @@ label-font = 0
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
 label = %percentage%%
+
+format-prefix = " "
+format-background = ${colors.cpu-background}
+format-foreground = ${colors.cpu-foreground}
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
 label = %percentage_used%%
+
+format-prefix = " "
+format-background = ${colors.memory-background}
+format-foreground = ${colors.memory-foreground}
 
 [module/battery]
 type = internal/battery
@@ -185,9 +223,13 @@ poll-interval = 5
 # Format and styling for the battery
 format-charging = <animation-charging> <label-charging>
 format-charging-underline = ${colors.battery-underline-charging}
+format-charging-background = ${colors.battery-background}
+format-charging-foreground = ${colors.battery-foreground}
 
 format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-underline = ${colors.battery-underline-discharging}
+format-discharging-background = ${colors.battery-background}
+format-discharging-foreground = ${colors.battery-foreground}
 
 format-full-prefix = " "
 format-full-underline = ${colors.battery-underline-full}
@@ -215,6 +257,8 @@ enable-scroll = false
 
 ; Display format for module
 format = <ramp> <label>
+format-background = ${colors.backlight-background}
+format-foreground = ${colors.backlight-foreground}
 
 label = %percentage%%
 
@@ -243,10 +287,12 @@ interval = 5
 ; Formats and labels
 label-volume = %percentage%%
 format-volume = <ramp-volume> <label-volume>
-format-foreground = ${colors.foreground}
+format-volume-background = ${colors.pulseaudio-background}
+format-volume-foreground = ${colors.pulseaudio-foreground}
 
 label-muted = " "
 format-muted = <label-muted>--%
+format-muted-background = ${colors.pulseaudio-background}
 format-muted-foreground = ${colors.foreground-alt}
 
 ramp-volume-0 = ""
@@ -269,14 +315,22 @@ interval = 1
 
 ; Display format
 format-online = <bar-progress> <label-time>  <label-song>
-format-playing = ${self.format-online}
-format-paused = <bar-progress> <label-time>  <label-song>
-;;
-; AUDIO AND MUSIC
-;;
-format-stopped = " "
+format-online-background = ${colors.music-background}
+format-online-foreground = ${colors.music-foreground}
 
-label-song = %artist:0:10:...% - %title:0:25:...%
+format-playing = ${self.format-online}
+format-playing-background = ${colors.music-background}
+format-playing-foreground = ${colors.music-foreground}
+
+format-paused = <bar-progress> <label-time>  <label-song>
+format-paused-background = ${colors.music-background}
+format-paused-foreground = ${colors.music-foreground}
+
+format-stopped = " "
+format-stopped-background = ${colors.music-background}
+format-stopped-foreground = ${colors.music-foreground}
+
+label-song = %artist:0:14:...% - %title:0:28:...%
 label-time = %elapsed% / %total%
 
 format-offline = <label-offline>
@@ -302,8 +356,16 @@ interval = 1
 
 ; Formats and Labels
 format-connected = <ramp-signal> <label-connected>
+format-connected-background = ${colors.network-connected-background}
+format-connected-foreground = ${colors.network-connected-foreground}
+
 format-disconnected = <label-disconnected>
+format-disconnected-background = ${colors.network-disconnected-background}
+format-disconnected-foreground = ${colors.network-disconnected-background}
+
 format-packetloss = <animation-packetloss> <label-connected>
+format-packetless-background = ${colors.network-disconnected-background}
+format-packetless-foreground = ${colors.network-disconnected-background}
 
 label-connected = %essid%
 label-connected-alt = %essid%  %upspeed%  %downspeed%
@@ -339,8 +401,16 @@ interval = 5
 
 ; Formats and Labels
 format-connected = <ramp-signal> <label-connected>
+format-connected-background = ${colors.network-connected-background}
+format-connected-foreground = ${colors.network-connected-foreground}
+
 format-disconnected = <label-disconnected>
+format-disconnected-background = ${colors.network-disconnected-background}
+format-disconnected-foreground = ${colors.network-disconnected-background}
+
 format-packetloss = <animation-packetloss> <label-connected>
+format-packetless-background = ${colors.network-disconnected-background}
+format-packetless-foreground = ${colors.network-disconnected-background}
 
 label-connected = %essid%
 label-connected-alt = %essid%  %upspeed%  %downspeed%
