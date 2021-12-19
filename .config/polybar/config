@@ -54,7 +54,7 @@ monitor = ${env:MONITOR:eDP1}
 enable-ipc = true
 
 ; Modules
-modules-left = i3
+modules-left = i3 mpd
 modules-center = window
 modules-right = cpu memory battery pulseaudio datetime
 
@@ -216,5 +216,36 @@ ramp-volume-3 = " "
 
 # Mouse actions
 click-right = pavucontrol
+
+[module/mpd]
+type = internal/mpd
+
+host = localhost
+port = 6600
+; No password, read-only access only
+; Use media keys for control
+password = ""
+
+; Seconds to wait sleep between sync
+interval = 2
+
+; Display format
+format-online = <bar-progress> <label-time>  <label-song>
+format-playing = ${self.format-online}
+format-paused = <bar-progress> <label-time>  <label-song>
+format-stopped = " "
+
+label-song = %artist:0:8:...% - %title:0:16:...%
+label-time = %elapsed% / %total%
+
+format-offline = <label-offline>
+format-offline-foreground = ${colors.alert}
+label-offline = " mpd is offline"
+
+; Only applies if <bar-progress> is used
+bar-progress-width = 10
+bar-progress-indicator = |
+bar-progress-fill = ─
+bar-progress-empty = ─
 
 ; vim: set ft=dosini:
