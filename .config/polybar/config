@@ -17,14 +17,17 @@ primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 
-background-datetime = #222
-foreground-datetime = #dfdfdf
+battery-underline-full = #01cc92
+battery-underline-charging = ${self.primary}
+battery-underline-discharging = ${self.foreground-alt}
 
 ;;
 ; STYLING
 ;;
 
 [style]
+radius = 0
+
 line-size = 3
 line-color = #f00
 
@@ -32,10 +35,12 @@ border-size = 4
 border-color = #000
 
 padding-left = 0
-padding-right = 2
+padding-right = 0
 
 module-margin-left = 1
-module-margin-right = 2
+module-margin-right = 1
+
+workspace-padding = 1
 
 ;;
 ; BAR CONFIGURATIONS
@@ -48,9 +53,10 @@ enable-ipc = true
 ; Modules
 modules-left = i3
 modules-center = window
-modules-right = datetime
+modules-right = volume cpu memory battery datetime
 
 ; Styling
+radius = ${style.radius}
 line-size = ${style.line-size}
 line-color = ${style.line-color}
 border-size = ${style.border-size}
@@ -62,9 +68,10 @@ module-margin-right = ${style.module-margin-right}
 
 ; Fonts
 ; font-N = "<fontconfig pattenr>;<vertical offset>"
-font-0 = "Source Code Pro:size=11;0"
-font-1 = "Droid Sans:size=11;1"
-font-2 = "Noto Sans Symbols2:size=10;2"
+font-0 = "Source Code Pro:size=10;0"
+font-1 = "Droid Sans:size=11;0"
+font-2 = "Noto Sans Symbols2:size=9;2"
+font-3 = "siji:pixelsize=10;1"
 
 ;;
 ; MODULES
@@ -84,6 +91,31 @@ enable-click = true
 
 ; Allow scrolling on workspaces
 enable-scroll = false
+
+; Format
+format = <label-state> <label-mode>
+
+; Colors
+label-mode-padding = ${style.workspace-padding}
+label-mode-foreground = ${colors.foreground}
+label-mode-background = ${colors.primary}
+
+label-focused = %index%
+label-focused-background = ${colors.background-alt}
+label-focused-underline = ${colors.primary}
+label-focused-padding = ${style.workspace-padding}
+
+label-unfocused = %index%
+label-unfocused-padding = ${style.workspace-padding}
+
+label-visible = %index%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-background}
+label-visible-padding = ${style.workspace-padding}
+
+label-urgent = %index%
+label-urgent-underline = ${colors.secondary}
+label-urgent-padding = ${style.workspace-padding}
 
 [module/window]
 type = internal/xwindow
@@ -107,10 +139,78 @@ time-alt = %I:%M:%S %p
 
 ; Other formatting options
 format = 🕓 <label>
-format-background = ${colors.background-datetime}
-format-foreground = ${colors.foreground-datetime}
 
 label = %date% %time%
 label-font = 0
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+label = %percentage%%
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+label = %percentage_used%%
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = ADP1
+full-at = 85
+
+# How often to poll the battery if inotify events aren't coming through
+poll-interval = 5
+
+# Format and styling for the battery
+format-charging = <animation-charging> <label-charging>
+format-charging-underline = ${colors.battery-underline-charging}
+
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-underline = ${colors.battery-underline-discharging}
+
+format-full-prefix = " "
+format-full-underline = ${colors.battery-underline-full}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-foreground = ${colors.foreground}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-foreground = ${colors.foreground}
+animation-charging-framerate = 750
+
+[module/volume]
+type = internal/volume
+
+format-volume = <label-volume> <bar-volume>
+label-volume = VOL
+label-volume-foreground = ${colors.foreground}
+
+format-muted-prefix = " "
+format-muted-foreground = ${colors.foreground-alt}
+label-muted = sound muted
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
 
 ; vim: set ft=dosini;
