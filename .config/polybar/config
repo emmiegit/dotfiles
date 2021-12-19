@@ -20,6 +20,9 @@ primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 
+window-background = #000
+window-foreground = #98caa3
+
 battery-underline-full = #01cc92
 battery-underline-charging = ${self.primary}
 battery-underline-discharging = ${self.foreground-alt}
@@ -131,8 +134,10 @@ label-urgent-padding = ${style.workspace-padding}
 
 [module/window]
 type = internal/xwindow
-label = %title:0:40:...%
+label = %title:0:50:...%
 label-font = 1
+label-background = ${colors.window-background}
+label-foreground = ${colors.window-foreground}
 
 [module/datetime]
 type = internal/date
