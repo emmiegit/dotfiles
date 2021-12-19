@@ -1,6 +1,9 @@
 ; Polybar configuration for all devices
 ; Designate which bar(s) you want to use on startup
 ;
+; Note that this configuration uses several PUA glyphs
+; from the font siji.
+;
 ; See https://github.com/polybar/polybar/wiki for information
 
 ;;
@@ -53,7 +56,7 @@ enable-ipc = true
 ; Modules
 modules-left = i3
 modules-center = window
-modules-right = volume cpu memory battery datetime
+modules-right = pulseaudio cpu memory battery datetime
 
 ; Styling
 radius = ${style.radius}
@@ -93,7 +96,7 @@ enable-click = true
 enable-scroll = false
 
 ; Format
-format = <label-state> <label-mode>
+format =  <label-state> <label-mode>
 
 ; Colors
 label-mode-padding = ${style.workspace-padding}
@@ -138,7 +141,7 @@ date-alt = %A %B %d, %Y
 time-alt = %I:%M:%S %p
 
 ; Other formatting options
-format = 🕓 <label>
+format =  <label>
 
 label = %date% %time%
 label-font = 0
@@ -185,32 +188,33 @@ animation-charging-2 = 
 animation-charging-foreground = ${colors.foreground}
 animation-charging-framerate = 750
 
-[module/volume]
-type = internal/volume
+[module/pulseaudio]
+type = internal/pulseaudio
 
-format-volume = <label-volume> <bar-volume>
-label-volume = VOL
-label-volume-foreground = ${colors.foreground}
+; Get pulseaudio sinks using 'pacmd list-sinks'
+sink = alsa_output.pci-0000_00_1f.3.analog-stereo
 
-format-muted-prefix = " "
+; Use PA_VOLUME_UI_MAX (~153%) if true, or PA_VOLUME_NORM (100%) if false
+use-ui-max = false
+
+; Interval for volume changes, in %
+interval = 5
+
+; Formats and labels
+label-volume = %percentage%%
+format-volume = <ramp-volume> <label-volume>
+format-foreground = ${colors.foreground}
+
+label-muted = " "
+format-muted = <label-muted>--%
 format-muted-foreground = ${colors.foreground-alt}
-label-muted = sound muted
 
-bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
+ramp-volume-0 = ""
+ramp-volume-1 = ""
+ramp-volume-2 = ""
+ramp-volume-3 = " "
+
+# Mouse actions
+right-click = pavucontrol
 
 ; vim: set ft=dosini;
