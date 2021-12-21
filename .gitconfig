@@ -25,6 +25,7 @@
     discard = checkout --
     cached = diff --cached
     amend = commit --amend
+    develop = checkout develop
     master = checkout master
     main = checkout main
     graph = log --graph --branches --remotes --tags --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d' --date-order
