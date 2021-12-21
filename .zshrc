@@ -278,9 +278,9 @@ alias virc='vim ~/.zshrc'
 alias vibrc='vim ~/.bashrc'
 alias vimrc='vim ~/.vimrc'
 alias week='date +%V'
-alias ytalb='noglob youtube-dl -x --prefer-free-formats -o "%(autonumber)s - %(title)s.%(ext)s" --autonumber-size 2'
-alias ytdl='noglob youtube-dl -i -o "%(title)s.%(ext)s"'
-alias ytmp3='noglob youtube-dl -x -o "%(title)s.%(ext)s"'
+alias ytalb='noglob yt-dlp -x --prefer-free-formats -o "%(autonumber)s - %(title)s.%(ext)s" --autonumber-size 2'
+alias ytdl='noglob yt-dlp -i -o "%(title)s.%(ext)s"'
+alias ytmp3='noglob yt-dlp -x -o "%(title)s.%(ext)s"'
 alias md='mkdir -p'
 
 # Program modifiers
