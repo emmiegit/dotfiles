@@ -293,12 +293,13 @@ Plugin 'VundleVim/Vundle.vim'
 
 " Syntax highlighting
 Plugin 'Glench/Vim-Jinja2-Syntax'
-Plugin 'scpwiki/vim-wikidot'
 Plugin 'Slava/vim-spacebars'
 Plugin 'cespare/vim-toml'
+Plugin 'evanleck/vim-svelte'
 Plugin 'mboughaba/i3config.vim'
 Plugin 'pest-parser/pest.vim'
 Plugin 'rust-lang/rust.vim'
+Plugin 'scpwiki/vim-wikidot'
 
 " IDE-like
 Plugin 'mhinz/vim-signify'
