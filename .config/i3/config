@@ -382,7 +382,6 @@ exec picom -b --config ~/.config/picom.conf
 exec nm-applet
 exec pamixer --unmute
 exec redshift
-exec --no-startup-id sleep 60 && steam
 
 # User startup scripts
 exec --no-startup-id /usr/local/scripts/wm/startup.sh
