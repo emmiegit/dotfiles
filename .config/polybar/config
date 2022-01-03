@@ -89,6 +89,12 @@ modules-left = i3 mpd
 modules-center = window
 modules-right = wifi cpu memory battery backlight pulseaudio datetime
 
+; System tray
+tray-position = right
+tray-detached = false
+tray-maxsize = 16
+tray-background = ${colors.background}
+
 ; Styling
 background = ${colors.background}
 foreground = ${colors.foreground}
