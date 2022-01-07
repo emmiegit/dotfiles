@@ -1160,14 +1160,14 @@ case "$(uname)" in
 			export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$(rustc --print sysroot)/lib"
 		fi
 
-		export PATH="$PATH:$HOME/.gem/ruby/2.3.0/bin:$HOME/.cabal/bin"
+		export PATH="$PATH:$HOME/.cabal/bin"
 
 		# I dislike this ls alias
 		unalias l
 		;;
 esac
 
-export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.npm/bin:$HOME/.cargo/bin:$HOME/.pyenv/shims:$PATH"
+export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.npm/bin:$HOME/.cargo/bin:$PATH"
 
 # Import systemd environment
 if which systemctl > /dev/null; then
