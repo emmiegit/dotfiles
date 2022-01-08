@@ -45,9 +45,8 @@
 [interactive]
     diffFilter = diff-so-fancy --patch
 [diff-so-fancy]
-    markEmptyLines = true
+    markEmptyLines = false
     stripLeadingSymbols = false
-    useUnicodeRuler = false
 
 [url "https://aur.archlinux.org/"]
     insteadOf = aur://
