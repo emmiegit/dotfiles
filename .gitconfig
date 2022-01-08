@@ -5,7 +5,7 @@
 [core]
     editor = vim
     precomposeunicode = true
-    pager = less -x1,9
+    pager = diff-so-fancy | less -RFX
 [color]
     branch = auto
     diff = auto
@@ -25,9 +25,9 @@
     discard = checkout --
     cached = diff --cached
     amend = commit --amend
-    develop = checkout develop
     master = checkout master
     main = checkout main
+    develop = checkout develop
     graph = log --graph --branches --remotes --tags --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d' --date-order
     wdiff = diff --word-diff=color --word-diff-regex=.
     untrack = rm -r --cached
@@ -39,6 +39,15 @@
     gpgsign = false
 [push]
     default = current
+[pull]
+    rebase = true
+
+[interactive]
+    diffFilter = diff-so-fancy --patch
+[diff-so-fancy]
+    markEmptyLines = true
+    stripLeadingSymbols = false
+    useUnicodeRuler = false
 
 [url "https://aur.archlinux.org/"]
     insteadOf = aur://
