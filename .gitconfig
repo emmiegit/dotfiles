@@ -20,7 +20,7 @@
     user = ammon
 [alias]
     last = log -1 HEAD
-    edit = !vim -p $(git ls-files -m)
+    edit = !vim -p $(git ls-files -m | uniq)
     unstage = reset HEAD --
     discard = checkout --
     cached = diff --cached
