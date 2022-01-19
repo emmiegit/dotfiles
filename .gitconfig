@@ -65,7 +65,6 @@
     pushInsteadOf = gl://
     insteadOf = gl2://
 
-
 [url "https://git.ammonsmith.me/"]
     insteadOf = gt://
 [url "git@git.ammonsmith.me:"]
