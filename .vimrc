@@ -153,12 +153,6 @@ endif
 
 " Modified commands {{{
 """""""""""""""""""""""
-" Move by visual line
-nnoremap j gj
-nnoremap k gk
-vnoremap j gj
-vnoremap k gk
-
 " Have Y act like C and D rather than yy
 map Y y$
 
