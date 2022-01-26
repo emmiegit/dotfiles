@@ -10,7 +10,7 @@ set backupcopy=yes        " Preserve hard links when making copies
 set confirm               " Instead of failing a command, raise a dialog asking what to do
 set encoding=utf8         " Set default encoding
 set fileformats=unix,dos  " Set Unix as the standard line ending
-set foldlevelstart=3      " How many folds to show at file open
+set foldlevelstart=4      " How many folds to show at file open
 set hidden                " Hide buffers when they are abandoned
 set hlsearch              " Highlight matches when searching
 set incsearch             " Incremental search
