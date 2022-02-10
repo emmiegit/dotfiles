@@ -339,8 +339,8 @@ bindsym $mod+Shift+i exec $Browser2
 
 # Screen locker
 bindsym $mod+semicolon exec $Locker
-bindsym $mod+Shift+semicolon exec systemctl suspend
-bindsym $mod+$alt+semicolon exec /usr/local/scripts/wm/i3-lock.sh
+bindsym $mod+Shift+semicolon exec /usr/local/scripts/wm/suspend.sh
+bindsym $mod+$alt+semicolon exec /usr/local/scripts/wm/i3-lock.py
 
 # Toggle autolock
 bindsym $mod+$alt+l exec --no-startup-id /usr/local/scripts/wm/set-autolock.sh on
