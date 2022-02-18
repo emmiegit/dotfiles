@@ -836,7 +836,7 @@ scr() {
 # Default options for securefs mount
 secmount() {
 	if [[ $# -eq 0 ]]; then
-		echo >&2 "Usage: secmount crypt-dir mount-dir [extra-flags]."
+		echo >&2 "Usage: secmount crypt-dir mount-dir [extra-flags]"
 		return 1
 	fi
 
@@ -860,6 +860,16 @@ secmount() {
 	fi
 
 	securefs mount -b --log "$crypt_dir/.securefs.log" "$@" -- "$crypt_dir" "$mount_dir"
+}
+
+secumount() {
+	if [[ $# -eq 0 ]]; then
+		echo >&2 "Usage: secumount crypt-dir"
+		return 1
+	fi
+
+	fusermount -u "$1"
+	rmdir "$1"
 }
 
 # Set the title of the terminal
