@@ -868,7 +868,7 @@ secumount() {
 		return 1
 	fi
 
-	fusermount -u "$1"
+	fusermount -u "$1" && \
 	rmdir "$1"
 }
 
