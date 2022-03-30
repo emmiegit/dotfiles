@@ -296,7 +296,7 @@ Plugin 'rust-lang/rust.vim'
 Plugin 'scpwiki/vim-wikidot'
 
 " IDE-like
-Plugin 'neoclide/coc.nvim'
+Plugin 'neoclide/coc.nvim', {'pinned': 1}
 Plugin 'mhinz/vim-signify'
 Plugin 'Valloric/YouCompleteMe'
 
