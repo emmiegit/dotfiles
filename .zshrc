@@ -516,7 +516,6 @@ daemon() {
 		> /dev/null \
 		2> /dev/null \
 		&
-	disown
 }
 
 # Simple function to calculate date differences
