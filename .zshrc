@@ -428,7 +428,7 @@ sha512check() { [[ $(sha512sum "$2" | cut -d' ' -f1) == "$1" ]] && green '[OK]' 
 note() { scr note "$@" 2> /dev/null; }
 mpva() { @ mpv --no-video "$@"; }
 mpvq() { @ mpv --no-terminal "$@" & }
-ytdlq() { ytdl "$@" >/dev/null 2>&1 & }
+ytdlq() { ytdl --no-playlist "$@" >/dev/null 2>&1 & }
 
 #####
 # }}}
