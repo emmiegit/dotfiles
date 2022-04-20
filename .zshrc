@@ -261,6 +261,7 @@ else
 fi
 
 # Custom operations
+alias 7x='7z x'
 alias allgrp='cut -d: -f1 /etc/group'
 alias allusr='cut -d: -f1 /etc/passwd'
 alias ctime='date +"%A %B %d, %Y %I:%M:%S %p"'
