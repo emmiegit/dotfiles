@@ -243,6 +243,7 @@ format-full-underline = ${colors.battery-underline-full}
 ramp-capacity-0 = 
 ramp-capacity-1 = 
 ramp-capacity-2 = 
+ramp-capacity-3 = 
 ramp-capacity-foreground = ${colors.foreground}
 
 animation-charging-0 = 
