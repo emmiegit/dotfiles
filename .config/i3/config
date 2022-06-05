@@ -380,7 +380,6 @@ bindsym $mod+Shift+y exec --no-startup-id /usr/local/scripts/wm/set-wacom-mode.s
 ###########################
 exec /usr/local/scripts/wm/daemon/udiskie.sh
 exec /usr/local/scripts/wm/daemon/start-autolock.sh
-exec /usr/local/scripts/wm/startup.sh
 exec picom -b --config ~/.config/picom.conf
 exec nm-applet
 exec pamixer --unmute
