@@ -221,7 +221,7 @@ format-foreground = ${colors.memory-foreground}
 type = internal/battery
 battery = BAT0
 adapter = ADP1
-full-at = 95
+full-at = 98
 
 # How often to poll the battery if inotify events aren't coming through
 poll-interval = 5
