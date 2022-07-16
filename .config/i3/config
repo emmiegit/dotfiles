@@ -357,7 +357,7 @@ exec pamixer --unmute
 exec redshift
 
 # Run bar (needs to restart when i3 does)
-exec_always --no-startup-id /usr/local/scripts/wm/polybar-launch.sh desktop
+exec_always --no-startup-id /usr/local/scripts/wm/polybar-launch.sh desktop-left desktop-center desktop-right
 
 # User startup scripts
 exec --no-startup-id /usr/local/scripts/wm/startup.sh
