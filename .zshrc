@@ -325,6 +325,11 @@ catls() {
 		|| cat "$1"
 }
 
+cdd() {
+	# Used if the current directory was deleted and recreated.
+	cd "$PWD"
+}
+
 cdls() {
 	cd "$@" && ls
 }
