@@ -198,8 +198,6 @@ case "$(uname)" in
 		alias stat='gstat'
 		alias vim='env vim -p'
 		alias ldd='otool -L'
-
-		alias plutus-login='plutus login; eval $(plutus login --export)'
 		;;
 	Linux)
 		alias chmod='chmod -c --preserve-root'
