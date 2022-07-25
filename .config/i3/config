@@ -247,6 +247,7 @@ for_window [class="Gnome-system-monitor" instance="gnome-system-monitor"] floati
 for_window [class="Gpa" instance="gpa"] floating enable
 for_window [class="Gucharmap" instance="gucharmap"] floating enable
 for_window [class="Haguichi" instance="haguichi"] floating enable
+for_window [class="helvum" instance="helvum"] floating enable
 for_window [class="Keepassx2" instance="keepassx2"] floating enable
 for_window [class="Nm-connection-editor"] floating enable
 for_window [class="Nvidia-settings" instance="nvidia-settings"] floating enable
