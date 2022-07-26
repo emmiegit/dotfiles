@@ -1,0 +1,12 @@
+[Unit]
+Description=Discord rich presence for MPD
+Requires=pipewire.service wireplumber.service
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=30
+ExecStart=/usr/bin/easyeffects --gapplication-service
+
+[Install]
+WantedBy=default.target
