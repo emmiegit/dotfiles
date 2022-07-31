@@ -237,39 +237,73 @@ font pango:Droid Sans 9
 popup_during_fullscreen smart
 # }}}
 
+# Gaps {{{
+# Gaps between windows
+smart_gaps on
+gaps inner 16
+
+# Hide title
+default_border pixel 0
+default_floating_border pixel 0
+
+# Border settings
+smart_borders no_gaps
+hide_edge_borders smart_no_gaps
+# }}}
+
 # Window-specific settings {{{
 ##############################
 # Available tokens: class, instance, window_role, con_id, id, window_type, con_mark, title, urgent, workspace
-for_window [class="Bleachbit" instance="bleachbit"] floating enable
-for_window [class="Dolphin-emu" instance="dolphin-emu"] floating enable
-for_window [class="Gnome-power-statistics" instance="gnome-power-statistics"] floating enable
-for_window [class="Gnome-system-monitor" instance="gnome-system-monitor"] floating enable
-for_window [class="Gpa" instance="gpa"] floating enable
-for_window [class="Gucharmap" instance="gucharmap"] floating enable
-for_window [class="Haguichi" instance="haguichi"] floating enable
-for_window [class="helvum" instance="helvum"] floating enable
-for_window [class="Keepassx2" instance="keepassx2"] floating enable
-for_window [class="Nm-connection-editor"] floating enable
-for_window [class="Nvidia-settings" instance="nvidia-settings"] floating enable
-for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
-for_window [class="Pinentry" instance="pinentry"] floating enable
-for_window [class="Steam" instance="Steam"] floating enable
-for_window [class="Gtick"] floating enable
-for_window [instance="tagainijisho"] floating enable
-for_window [class="Tomboy" instance="Tomboy"] floating enable
-for_window [class="Tor Browser" instance="Navigator"] floating enable
-for_window [class="Tor Browser" instance="Update"] floating enable
-for_window [class="Uim-im-switcher-gtk" instance="uim-im-switcher-gtk"] floating enable
-for_window [class="Uim-input-pad-ja" instance="Uim-input-pad-ja"] floating enable
-for_window [class="Uim-pref-gtk" instance="uim-pref-gtk"] floating enable
-for_window [class="com-dreamcodex-wumpus-HuntTheWumpus"] floating enable
-for_window [class="keepassxc" instance="keepassxc"] floating enable
-for_window [class="net-minecraft-bootstrap-Bootstrap"] floating enable
-for_window [class="net-technicpack-launcher-LauncherMain"] floating enable
-for_window [class="com-jgaap-JGAAP" instance="com-jgaap-JGAAP"] floating enable
-for_window [instance="Toplevel"] floating enable
-for_window [title="Android File Transfer for Linux"] floating enable
-for_window [title="Terminator Preferences"] floating enable
+
+## CHECK
+##for_window [class="Bleachbit" instance="bleachbit"] floating enable
+##for_window [class="Dolphin-emu" instance="dolphin-emu"] floating enable
+##for_window [class="Gnome-power-statistics" instance="gnome-power-statistics"] floating enable
+##for_window [class="Gnome-system-monitor" instance="gnome-system-monitor"] floating enable
+##for_window [class="Gpa" instance="gpa"] floating enable
+##for_window [class="Gucharmap" instance="gucharmap"] floating enable
+##for_window [class="Haguichi" instance="haguichi"] floating enable
+##for_window [class="helvum" instance="helvum"] floating enable
+##for_window [class="Keepassx2" instance="keepassx2"] floating enable
+##for_window [class="Nm-connection-editor"] floating enable
+##for_window [class="Nvidia-settings" instance="nvidia-settings"] floating enable
+##for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
+##for_window [class="Pinentry" instance="pinentry"] floating enable
+##for_window [class="Steam" instance="Steam"] floating enable
+##for_window [class="Gtick"] floating enable
+##for_window [instance="tagainijisho"] floating enable
+##for_window [class="Tomboy" instance="Tomboy"] floating enable
+##for_window [class="Tor Browser" instance="Navigator"] floating enable
+##for_window [class="Tor Browser" instance="Update"] floating enable
+##for_window [class="Uim-im-switcher-gtk" instance="uim-im-switcher-gtk"] floating enable
+##for_window [class="Uim-input-pad-ja" instance="Uim-input-pad-ja"] floating enable
+##for_window [class="Uim-pref-gtk" instance="uim-pref-gtk"] floating enable
+##for_window [class="com-dreamcodex-wumpus-HuntTheWumpus"] floating enable
+##for_window [class="keepassxc" instance="keepassxc"] floating enable
+##for_window [class="net-minecraft-bootstrap-Bootstrap"] floating enable
+##for_window [class="net-technicpack-launcher-LauncherMain"] floating enable
+##for_window [class="com-jgaap-JGAAP" instance="com-jgaap-JGAAP"] floating enable
+##for_window [instance="Toplevel"] floating enable
+##for_window [title="Android File Transfer for Linux"] floating enable
+##for_window [title="Terminator Preferences"] floating enable
+
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+
+for_window [class="(?i)gnome-power-statistics"] floating enable
+for_window [class="(?i)nm-connection-editor"] floating enable
+for_window [class="(?i)pinentry"] floating enable
+for_window [class="(?i)tor browser"] floating enable
+for_window [instance="(?i)tagainijisho"] floating enable
+for_window [title="(?i)terminator preferences"] floating enable
+
+for_window [class="(?i)pavucontrol"] floating enable, move position mouse
+for_window [class="(?i)pavucontrol" instance="pavucontrol-bar"] move down $height px
 
 # Disable Ctrl_Q on Firefox
 bindsym control+q exec /usr/local/scripts/wm/no-firefox-ctrl-q.sh
