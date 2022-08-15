@@ -269,7 +269,6 @@ hide_edge_borders smart_no_gaps
 ##for_window [class="Nvidia-settings" instance="nvidia-settings"] floating enable
 ##for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
 ##for_window [class="Pinentry" instance="pinentry"] floating enable
-##for_window [class="Steam" instance="Steam"] floating enable
 ##for_window [class="Gtick"] floating enable
 ##for_window [instance="tagainijisho"] floating enable
 ##for_window [class="Tomboy" instance="Tomboy"] floating enable
@@ -301,6 +300,8 @@ for_window [class="(?i)pinentry"] floating enable
 for_window [class="(?i)tor browser"] floating enable
 for_window [instance="(?i)tagainijisho"] floating enable
 for_window [title="(?i)terminator preferences"] floating enable
+for_window [class="(?i)steam"] floating enable
+for_window [class="(?i)anki"] floating enable
 
 for_window [class="(?i)pavucontrol"] floating enable, move position mouse
 for_window [class="(?i)pavucontrol" instance="pavucontrol-bar"] move down $height px
