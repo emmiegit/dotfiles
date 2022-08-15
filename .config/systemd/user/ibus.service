@@ -1,0 +1,13 @@
+[Unit]
+Description=ibus daemon
+Wants=environment.target
+Before=environment.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/ibus-daemon -rvx --desktop=i3
+ExecAfter=/usr/local/scripts/wm/vi-keyswap.sh
+Restart=always
+
+[Install]
+WantedBy=default.target
