@@ -1,5 +1,5 @@
 [Unit]
-Description=Discord rich presence for MPD
+Description=EasyEffects source/sink daemon
 Requires=pipewire.service wireplumber.service
 
 [Service]
