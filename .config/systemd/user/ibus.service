@@ -5,6 +5,7 @@ Before=environment.target
 
 [Service]
 Type=simple
+Environment=DISPLAY=:0
 ExecStart=/usr/bin/ibus-daemon -rvx --desktop=i3
 Restart=always
 
