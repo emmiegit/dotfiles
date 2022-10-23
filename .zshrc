@@ -366,6 +366,11 @@ mvcd() {
 	mv "$@" && cd "${@: -1}"
 }
 
+# Renames all *.jpeg files to *.jpg
+mvjpeg() {
+	nomino -r "$@" '(.+)\.jpeg' '{}.jpg'
+}
+
 myip() {
 	myip4
 	myip6
