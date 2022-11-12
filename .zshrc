@@ -877,6 +877,7 @@ secumount() {
 		return 1
 	fi
 
+	~/git/scripts/nomacs-wipe.sh
 	fusermount -u "$1" && \
 	rmdir "$1"
 }
