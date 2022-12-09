@@ -2,6 +2,8 @@
     email = ammon.i.smith@gmail.com
     name = Ammon Smith
     signingkey = "2C3CF0C7"
+[init]
+    defaultBranch = main
 [core]
     editor = vim
     precomposeunicode = true
