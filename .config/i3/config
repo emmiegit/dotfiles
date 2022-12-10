@@ -262,11 +262,12 @@ for_window [window_role="Preferences"] floating enable
 
 for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
+for_window [window_type="splash"] floating enable
 
 for_window [class="(?i)gnome-power-statistics"] floating enable
 for_window [class="(?i)nm-connection-editor"] floating enable
 for_window [class="(?i)pinentry"] floating enable
-for_window [class="(?i)tor browser"] floating enable
+for_window [title="(?i)tor browser"] floating enable
 for_window [instance="(?i)tagainijisho"] floating enable
 for_window [title="(?i)terminator preferences"] floating enable
 for_window [class="(?i)steam"] floating enable
