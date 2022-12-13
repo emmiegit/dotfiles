@@ -133,18 +133,6 @@ totalcol() {
     awk "{total += \$$1} END {print total}"
 }
 
-md5check() {
-    test `md5sum $2 | cut -d' ' -f1` == "$1" && green [OK] || red [FAIL]
-}
-
-sha1check() {
-    test `sha1sum $2 | cut -d' ' -f1` == "$1" && green [OK] || red [FAIL]
-}
-
-cconv() {
-  wget -qO- "http://www.google.com/finance/converter?a=$1&from=$2&to=$3" |  sed '/res/!d;s/<[^>]*>//g';
-} 
-
 whitenoise() {
     play -n synth 60:00 brownnoise -65 tremolo .20 vol -20db
 }
