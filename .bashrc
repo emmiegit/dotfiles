@@ -106,7 +106,7 @@ sl() {
     [ $[ $rand & 2 ] -gt 0 ] && sett+=l
     [ $[ $rand & 4 ] -gt 0 ] && sett+=F
     [ $[ $rand & 8 ] -gt 0 ] && sett+=c
-    
+
     env sl -$sett
 }
 
