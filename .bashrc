@@ -170,7 +170,6 @@ alias wkclear='/usr/bin/clear'
 alias clear='printf "\033c"'
 alias shred='shred -uv'
 alias which='which -a'
-alias mocp='mocp -T black_theme'
 alias randomart='ssh-keygen -lv -f'
 alias checkip='curl ifconfig.me'
 alias largest="find . -printf '%s %p\n' | sort -nr | head"
