@@ -3,9 +3,6 @@
 # If not running interactively, don't do anything
 [[ "$-" == *i* ]] || return
 
-# Warning: this file is a pretty big mess. If you want all my latest stuff in
-# a more sane format, look at my .zshrc (and respective files in .zshrc.d)
-
 dosource() {
     [[ -f $1 ]] && source "$1"
 }
