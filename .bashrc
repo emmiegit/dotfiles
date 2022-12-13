@@ -47,15 +47,6 @@ export LD_LIBRARY_PATH='/usr/local/lib'
 
 ### FUNCTIONS ###
 
-# Insult the user if their command fails.
-#trap "insult" ERR
-insult() {
-    # Warning: slow
-    printf 'root says: '
-    curl -s randominsults.net | sed -n '/<strong>/{s;^.*<i>\(.*\)</i>.*$;\1;p}'
-}
-
-
 # For math commands, e.g. = 2+5*3
 =() {
     if [[ $1 == -h ]] || [[ $1 == --help ]]; then
