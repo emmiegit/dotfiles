@@ -212,13 +212,6 @@ red()   { echo -e "\e[31m\e[1m"$@"\e[0m"; }
 green() { echo -e "\e[32m\e[1m"$@"\e[0m"; }
 blue()  { echo -e "\e[34m\e[1m"$@"\e[0m"; }
 
-# Functions
-#
-# Some people use a different file for functions
-# if [ -f "${HOME}/.bash_functions" ]; then
-#   source "${HOME}/.bash_functions"
-# fi
-
 settitle() {
    echo -ne "\e]2;$@\a\e]1;$@\a"; 
 }
