@@ -110,10 +110,6 @@ sl() {
     env sl -$sett
 }
 
-# Makes bpython the default interactive shell
-python()  { [ $# -eq 0 ] && bpython  || env python $@; }
-python2() { [ $# -eq 0 ] && bpython2 || env python $@; }
-
 confirm() {
     read -p "Are you sure? [y/N] " confirm
     case "$confirm" in
