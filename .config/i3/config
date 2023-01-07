@@ -348,6 +348,10 @@ bindsym --release Print exec --no-startup-id /usr/local/scripts/wm/screenshot-cl
 bindsym --release Shift+Print exec --no-startup-id /usr/local/scripts/wm/screenshot-region.sh
 bindsym --release $alt+Print exec --no-startup-id /usr/local/scripts/wm/screenshot.sh
 
+# Speaker modes
+bindsym $mod+u exec --no-startup-id /usr/local/scripts/wm/set-speaker-mode.sh television
+bindsym $mod+Shift+u exec --no-startup-id /usr/local/scripts/wm/set-speaker-mode.sh headphones
+
 # Tablet modes
 bindsym $mod+y exec --no-startup-id /usr/local/scripts/wm/set-wacom-mode.sh draw
 bindsym $mod+Shift+y exec --no-startup-id /usr/local/scripts/wm/set-wacom-mode.sh osu
