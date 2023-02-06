@@ -2,12 +2,11 @@
     email = emmie.maeda@gmail.com
     name = Emmie Maeda
     signingkey = "2C3CF0C7"
-[init]
-    defaultBranch = main
 [core]
     editor = vim
     precomposeunicode = true
     pager = diff-so-fancy | less -RFX
+    autocrlf = input
 [color]
     branch = auto
     diff = auto
@@ -18,12 +17,10 @@
     helper = cache --timeout 1800
 [push]
     default = simple
-[github]
-    user = emmiegit
 [alias]
     last = log -1 HEAD
     edit = !vim -p $(git ls-files -m | uniq)
-    unstage = reset HEAD --
+    unstage = restore --staged --
     discard = checkout --
     cached = diff --cached
     amend = commit --amend
@@ -78,3 +75,8 @@
 [url "gitea@git.programming.im:"]
     pushInsteadOf = tps://
     insteadOf = tps2://
+[filter "lfs"]
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
