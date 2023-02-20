@@ -722,14 +722,6 @@ movc() {
 		done
 }
 
-# (WORK) rename a JS file to TS and commit the change
-mvts() {
-	local stem="${1%.*}"
-
-	git mv "$stem.js" "$stem.ts"
-	git commit -m "Rename $stem.ts"
-}
-
 # Create a new shell without ssh-agent
 nossh() {
 	unset SSH_AGENT_PID
