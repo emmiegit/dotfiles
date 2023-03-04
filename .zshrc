@@ -417,6 +417,10 @@ trash() {
 		|| trash-put "$@"
 }
 
+vimpc() {
+	env vimpc -h "$(cat ~/.mpd/password)@localhost"
+}
+
 # Colorize text
 red()    { printf "\e[31m\e[1m%s\e[0m" "$@"; }
 green()  { printf "\e[32m\e[1m%s\e[0m" "$@"; }
