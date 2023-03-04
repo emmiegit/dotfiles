@@ -411,12 +411,6 @@ termbin() {
 	nc termbin.com 9999
 }
 
-trash() {
-	[[ $# -eq 0 ]] \
-		&& trash-list \
-		|| trash-put "$@"
-}
-
 vimpc() {
 	env vimpc -h "$(cat ~/.mpd/password)@localhost"
 }
