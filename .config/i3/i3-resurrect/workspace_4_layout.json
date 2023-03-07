@@ -41,7 +41,7 @@
             "workspace_layout": "default",
             "swallows": [
                 {
-                    "class": "^Thunderbird$",
+                    "class": "^thunderbird$",
                     "instance": "^Mail$"
                 }
             ]
