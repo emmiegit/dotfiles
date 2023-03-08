@@ -51,7 +51,7 @@ bindsym $mod+x [urgent=latest] focus
 mouse_warping none
 
 # Toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+c floating toggle
 
 # Change focus between tiling / floating windows
 bindsym $mod+f focus mode_toggle
