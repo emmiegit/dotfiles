@@ -384,6 +384,7 @@ myip4() {
 myip6() {
 	wget -qO- http://ip6echo.net/plain/ \
 		| sed -Ee 's/<[^>]+>|[[:space:]]+|What'\''s My IPv6 Address\?//g' -e '/^$/d'
+	echo
 }
 
 pacbin() {
