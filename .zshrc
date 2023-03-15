@@ -381,8 +381,8 @@ mvpre() {
 	prefix="$1"
 	shift
 
-	for path in "$@"; do
-		mv -n "$path" "$prefix$path"
+	for fn in "$@"; do
+		mv -n "${fn}" "${prefix}${fn}"
 	done
 }
 
@@ -396,8 +396,8 @@ mvsuf() {
 	suffix="$1"
 	shift
 
-	for path in "$@"; do
-		mv -n "$path" "$path$suffix"
+	for fn in "$@"; do
+		mv -n "${fn}" "${fn}${suffix}"
 	done
 }
 
