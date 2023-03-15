@@ -371,6 +371,36 @@ mvjpeg() {
 	nomino -r "$@" '(.+)\.jpeg' '{}.jpg'
 }
 
+# Renames to add a prefix to each path
+mvpre() {
+	if [[ $# -lt 2 ]]; then
+		echo >&2 "Usage: mvpre <prefix-to-add> [path...]"
+		return 1
+	fi
+
+	prefix="$1"
+	shift
+
+	for path in "$@"; do
+		mv -n "$path" "$prefix$path"
+	done
+}
+
+# Renames to add a suffix to each path
+mvsuf() {
+	if [[ $# -lt 2 ]]; then
+		echo >&2 "Usage: mvsuf <suffix-to-add> [path...]"
+		return 1
+	fi
+
+	suffix="$1"
+	shift
+
+	for path in "$@"; do
+		mv -n "$path" "$path$suffix"
+	done
+}
+
 myip() {
 	myip4
 	myip6
