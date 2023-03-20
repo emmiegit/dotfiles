@@ -6,18 +6,14 @@ doecho() {
 	"$@"
 }
 
-# Adjust monitor configuration
-doecho /usr/local/scripts/wm/screenlayout/run.sh
-
 # Swap escape and caps lock for vim
 doecho /usr/local/scripts/wm/vi-keyswap.sh
 
-# Set device-specific settings
-doecho xinput --set-prop '2.5G Mouse' 'libinput Accel Speed' 0.50
-doecho xinput --set-prop 'USB Optical Mouse' 'libinput Accel Speed' -0.25
+# Disable mouse acceleration
+doecho /usr/local/scripts/wm/disable-mouse-acceleration.sh
 
-# Disable acceleration
-doecho xset m 0 0
+# Set repeat rate
+doecho xset r rate 200 30
 
 unset doecho
 
