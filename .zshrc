@@ -446,6 +446,11 @@ vimpc() {
 	env vimpc -h "$(cat ~/.mpd/password)@localhost"
 }
 
+# Sets the current directory as the WINEPREFIX
+winehere() {
+	export WINEPREFIX=$PWD WINEHOME=$PWD
+}
+
 # Colorize text
 red()    { printf "\e[31m\e[1m%s\e[0m" "$@"; }
 green()  { printf "\e[32m\e[1m%s\e[0m" "$@"; }
