@@ -13,7 +13,7 @@ doecho /usr/local/scripts/wm/vi-keyswap.sh
 doecho /usr/local/scripts/wm/disable-mouse-acceleration.sh
 
 # Set repeat rate
-doecho xset r rate 200 30
+doecho xset r rate 170 30
 
 unset doecho
 
