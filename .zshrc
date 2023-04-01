@@ -451,6 +451,11 @@ winehere() {
 	export WINEPREFIX=$PWD WINEHOME=$PWD
 }
 
+# Kills all wine processes in the current WINEPREFIX
+winekill() {
+	wineserver -k
+}
+
 # Colorize text
 red()    { printf "\e[31m\e[1m%s\e[0m" "$@"; }
 green()  { printf "\e[32m\e[1m%s\e[0m" "$@"; }
