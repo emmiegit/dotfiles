@@ -873,10 +873,40 @@ scr() {
 	esac
 }
 
+# Default options for encfs mount
+encmount() {
+	if [[ $# -eq 0 ]]; then
+		echo >&2 "Usage: secmount <crypt-dir> <mount-dir> [extra-flags]"
+		return 1
+	fi
+
+	if [[ $# -ge 2 ]]; then
+		local crypt_dir="$1"
+		local mount_dir="$2"
+		shift 2
+	else
+		local crypt_dir="$1.secfs"
+		local mount_dir="$1"
+		shift 1
+	fi
+
+	encfs -v "$(realpath "$crypt_dir")" "$(realpath "$mount_dir")"
+}
+
+encumount() {
+	if [[ $# -eq 0 ]]; then
+		echo "Usage: encumount <mount-dir>"
+		return 1
+	fi
+
+	~/git/scripts/nomacs-wipe.sh
+	encfs -u "$(realpath "$1")"
+}
+
 # Default options for securefs mount
 secmount() {
 	if [[ $# -eq 0 ]]; then
-		echo >&2 "Usage: secmount crypt-dir mount-dir [extra-flags]"
+		echo >&2 "Usage: secmount <crypt-dir> <mount-dir> [extra-flags]"
 		return 1
 	fi
 
@@ -904,7 +934,7 @@ secmount() {
 
 secumount() {
 	if [[ $# -eq 0 ]]; then
-		echo >&2 "Usage: secumount crypt-dir"
+		echo >&2 "Usage: secumount <mount-dir>"
 		return 1
 	fi
 
