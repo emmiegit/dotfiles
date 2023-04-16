@@ -885,12 +885,12 @@ encmount() {
 		local mount_dir="$2"
 		shift 2
 	else
-		local crypt_dir="$1.secfs"
+		local crypt_dir="$1.encfs"
 		local mount_dir="$1"
 		shift 1
 	fi
 
-	encfs -v "$(realpath "$crypt_dir")" "$(realpath "$mount_dir")"
+	encfs "$(realpath "$crypt_dir")" "$(realpath "$mount_dir")"
 }
 
 encumount() {
@@ -900,7 +900,8 @@ encumount() {
 	fi
 
 	~/git/scripts/nomacs-wipe.sh
-	encfs -u "$(realpath "$1")"
+	encfs -u "$(realpath "$1")" && \
+	rmdir "$1"
 }
 
 # Default options for securefs mount
