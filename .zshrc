@@ -258,6 +258,9 @@ else
 	alias lxb='ls -lXB'      # Sort by extension
 fi
 
+# Bacman was removed, fakepkg does the same thing
+alias bacman='fakepkg'
+
 # Custom operations
 alias 7x='7z x'
 alias allgrp='cut -d: -f1 /etc/group'
