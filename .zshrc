@@ -437,6 +437,11 @@ realwhich() {
 	realpath "$(env which "$1")"
 }
 
+# Add all SSH keys to agent
+sshadd() {
+	ssh-add ~/.ssh/ssh-*-{rsa,ed25519}
+}
+
 shreddit() {
 	env shreddit -c "$HOME/.config/shreddit/$1.yml" -u "$1"
 }
