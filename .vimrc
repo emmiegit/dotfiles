@@ -288,7 +288,6 @@ Plugin 'VundleVim/Vundle.vim'
 " Syntax highlighting
 Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'Slava/vim-spacebars'
-Plugin 'emmiegit/vim-mediawiki'
 Plugin 'cespare/vim-toml'
 Plugin 'evanleck/vim-svelte'
 Plugin 'mboughaba/i3config.vim'
