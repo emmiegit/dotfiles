@@ -1,6 +1,6 @@
 " Vim syntax file
 " Language:     "TextList"
-" Author:       Ammon Smith
+" Author:       Emmie Maeda
 " License:      CC0
 
 " For version 5.x: Clear all syntax items
