@@ -35,27 +35,27 @@ if version >= 508 || !exists("did_txtlist_syn_inits")
 		command -nargs=+ HiLink hi def link <args>
 	endif
 
-        " Valid colors:
-        " Comment
-        " Constant
-        " Define
-        " Delimiter
-        " Float
-        " Identifier
-        " Number
-        " Operator
-        " PreProc
-        " Statement
-        " String
-        " Todo
-        " Type
+	" Valid colors:
+	" Comment
+	" Constant
+	" Define
+	" Delimiter
+	" Float
+	" Identifier
+	" Number
+	" Operator
+	" PreProc
+	" Statement
+	" String
+	" Todo
+	" Type
 
-        HiLink txtlistLabel     Statement
-        HiLink txtlistCheckbox  Constant
-        HiLink txtlistCategory  Identifier
-        HiLink txtlistBullet    Define
-        HiLink txtlistComment   Comment
-        HiLink txtlistTodo      Todo
+	HiLink txtlistLabel     Statement
+	HiLink txtlistCheckbox  Constant
+	HiLink txtlistCategory  Identifier
+	HiLink txtlistBullet    Define
+	HiLink txtlistComment   Comment
+	HiLink txtlistTodo      Todo
 
 	delcommand HiLink
 endif
