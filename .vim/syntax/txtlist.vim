@@ -18,7 +18,7 @@ syn sync minlines=5
 syn match txtlistLabel          "^[^\n]\+:\($\|\s\+\)"
 syn match txtlistCheckbox       "^\s*\[[ X\-]\]"
 syn match txtlistCategory       "^\[[^\n]\{2,\}\]"
-syn match txtlistBullet         "^[\t ]*\*"
+syn match txtlistBullet         "^[\t ]*[\*\-]"
 syn region txtlistComment       start="\s*#" end="$"
 
 " Keywords
