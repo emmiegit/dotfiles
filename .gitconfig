@@ -2,6 +2,8 @@
     email = emmie.maeda@gmail.com
     name = Emmie Maeda
     signingkey = "2C3CF0C7"
+[init]
+    defaultBranch = main
 [core]
     editor = vim
     precomposeunicode = true
