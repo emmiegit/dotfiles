@@ -410,7 +410,7 @@ autocmd BufRead tsconfig*.json setl shiftwidth=2 tabstop=2
 autocmd BufRead *eslint*.json setl shiftwidth=2 tabstop=2
 autocmd BufRead *.json setl foldmethod=syntax conceallevel=2
 autocmd BufRead *.ts setl shiftwidth=2 tabstop=2
-autocmd BufRead *.css setl cindent foldmethod=syntax
+autocmd BufRead *.css setl shiftwidth=2 tabstop=2 foldmethod=syntax
 autocmd BufRead *.scss setl shiftwidth=2 tabstop=2 foldmethod=indent
 autocmd BufRead *.svelte setl shiftwidth=2 tabstop=2 foldmethod=indent
 autocmd BufRead *.py setl foldmethod=indent
