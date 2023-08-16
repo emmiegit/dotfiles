@@ -274,6 +274,9 @@ vmap <leader>d "+d
 " YouCompleteMe - jump to definition
 nmap <leader>o :YcmCompleter GoTo<cr>
 
+" Toggle into 'paste mode' (no indentation on new line)
+set pastetoggle=<F11>
+
 " }}}
 
 " Plugins {{{
