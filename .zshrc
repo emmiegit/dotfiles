@@ -495,9 +495,9 @@ ytdlq() { ytdl --no-playlist "$@" >/dev/null 2>&1 & }
 # For screenfetches on anonymous imageboards
 anon() {
 	local name="anonymous"
-	local host="gentoo"
+	local host="computer"
 
-	PS1=${PS1//\%n/"$name"} PS1=${PS1//\%M/"$host"}
+	PS1=${PS1//\%n/"$name"} PS1=${PS1//\%m/"$host"}
 	printf '\033c'
 }
 
