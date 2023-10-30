@@ -26,6 +26,7 @@
     discard = checkout --
     cached = diff --cached
     amend = commit --amend
+    pushfl = push --force-with-lease
     master = checkout master
     main = checkout main
     develop = checkout develop
