@@ -45,6 +45,7 @@
   insert_number = None
   insert_padded = None
   layout_launcher = None
+  preferences_keybindings = ""
   help = None
 [profiles]
   [[default]]
