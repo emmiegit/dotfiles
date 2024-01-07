@@ -90,3 +90,6 @@ def_key "E"
 
 def_key "P"
     save_tag_changes
+
+def_key "ctrl-b"
+    sort_playlist
