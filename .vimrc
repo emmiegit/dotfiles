@@ -171,8 +171,11 @@ endif
 
 " New commands {{{
 """"""""""""""""""
-" :W sudo saves the file
-command W w !sudo tee % > /dev/null
+" :W is the same as w, for typos
+command W w
+
+" :Sudo does a  sudo save on the file
+command Sudo w !sudo tee % > /dev/null
 
 " :Cstyle sets my preferred formatting for C programs
 command Cstyle set cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab
