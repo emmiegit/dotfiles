@@ -465,6 +465,11 @@ winekill() {
 	wineserver -k
 }
 
+# Sources xprofile in this shell
+xprofile() {
+	source "$HOME/.xprofile"
+}
+
 # Colorize text
 red()    { printf "\e[31m\e[1m%s\e[0m" "$@"; }
 green()  { printf "\e[32m\e[1m%s\e[0m" "$@"; }
