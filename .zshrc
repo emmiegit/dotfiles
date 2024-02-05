@@ -439,10 +439,6 @@ sshadd() {
 	ssh-add ~/.ssh/ssh-*-{rsa,ed25519}
 }
 
-shreddit() {
-	env shreddit -c "$HOME/.config/shreddit/$1.yml" -u "$1"
-}
-
 termbin() {
 	nc termbin.com 9999
 }
