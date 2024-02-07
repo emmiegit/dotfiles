@@ -38,8 +38,7 @@ hi SpecialKey	guifg=yellowgreen
 hi StatusLine	guibg=black guifg=#cccccc gui=none
 hi StatusLineNC	guibg=black guifg=grey40 gui=none
 hi Title	guifg=indianred
-hi Visual	gui=none guifg=khaki guibg=olivedrab
-"hi VisualNOS
+hi Visual	cterm=none ctermbg=0 ctermfg=none guibg=grey40
 hi WarningMsg	guifg=salmon
 "hi WildMenu
 "hi Menu
