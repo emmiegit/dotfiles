@@ -1,0 +1,2 @@
+files = [emoji, math, chess_symbols, currency_symbols, miscellaneous_symbols, latin-1_supplement]
+skin-tone = neutral
