@@ -1,2 +1,2 @@
-files = [emoji, math, chess_symbols, currency_symbols, miscellaneous_symbols, latin-1_supplement]
+files = [emoji, math, chess_symbols, currency_symbols, miscellaneous_symbols, latin-1_supplement, cjk_radicals_supplement, cjk_japanese_kun, cjk_japanese_on]
 skin-tone = neutral
