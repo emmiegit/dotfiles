@@ -349,8 +349,8 @@ bindsym --release Shift+Print exec --no-startup-id /usr/local/scripts/wm/screens
 bindsym --release $alt+Print exec --no-startup-id /usr/local/scripts/wm/screenshot.sh
 
 # Speaker modes
-bindsym $mod+u exec --no-startup-id /usr/local/scripts/wm/set-speaker-mode.sh television
-bindsym $mod+Shift+u exec --no-startup-id /usr/local/scripts/wm/set-speaker-mode.sh headphones
+bindsym $mod+u exec --no-startup-id /usr/local/scripts/wm/set-speaker-mode.sh headphones
+bindsym $mod+Shift+u exec --no-startup-id /usr/local/scripts/wm/set-speaker-mode.sh television
 
 # Tablet modes
 bindsym $mod+y exec --no-startup-id /usr/local/scripts/wm/set-wacom-mode.sh draw
