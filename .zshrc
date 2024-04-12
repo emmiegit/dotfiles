@@ -1237,6 +1237,10 @@ export TESSDATA_PREFIX='/usr/share/tessdata'
 export WINEPREFIX="$HOME/.wine"
 export WINEHOME="$HOME/.wine"
 
+# Force use of pinentry-curses on shell, and GUI when not
+# See https://superuser.com/a/1547940
+export DBUS_SESSION_BUS_ADDRESS=/dev/null
+
 # To prevent PATH from getting larger each time when re-sourcing
 unset PATH
 source /etc/profile
