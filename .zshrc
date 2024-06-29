@@ -282,8 +282,8 @@ alias vibrc='vim ~/.bashrc'
 alias vimrc='vim ~/.vimrc'
 alias week='date +%V'
 alias ytalb='noglob yt-dlp -x --prefer-free-formats -o "%(autonumber)s - %(title)s.%(ext)s" --autonumber-size 2'
-alias ytdl='noglob yt-dlp -i -o "%(title)s.%(ext)s"'
-alias ytmp3='noglob yt-dlp -x -o "%(title)s.%(ext)s"'
+alias ytdl='noglob yt-dlp --no-playlist -i -o "%(title)s.%(ext)s"'
+alias ytmp3='noglob yt-dlp --no-playlist -x -o "%(title)s.%(ext)s"'
 alias md='mkdir -p'
 
 # Program modifiers
