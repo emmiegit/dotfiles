@@ -882,7 +882,7 @@ scr() {
 # Default options for encfs mount
 encmount() {
 	if [[ $# -eq 0 ]]; then
-		echo >&2 "Usage: secmount <crypt-dir> <mount-dir> [extra-flags]"
+		echo >&2 "Usage: encmount <crypt-dir> <mount-dir> [extra-flags]"
 		return 1
 	fi
 
