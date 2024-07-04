@@ -880,9 +880,9 @@ scr() {
 }
 
 # Default options for encfs mount
-encmount() {
+encmnt() {
 	if [[ $# -eq 0 ]]; then
-		echo >&2 "Usage: encmount <crypt-dir> <mount-dir> [extra-flags]"
+		echo >&2 "Usage: encmnt <crypt-dir> <mount-dir> [extra-flags]"
 		return 1
 	fi
 
@@ -899,9 +899,9 @@ encmount() {
 	encfs "$(realpath "$crypt_dir")" "$(realpath "$mount_dir")"
 }
 
-encumount() {
+encumnt() {
 	if [[ $# -eq 0 ]]; then
-		echo "Usage: encumount <mount-dir>"
+		echo "Usage: encumnt <mount-dir>"
 		return 1
 	fi
 
