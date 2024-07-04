@@ -896,6 +896,10 @@ encmnt() {
 		shift 1
 	fi
 
+	if [[ ! -d $mount_dir ]]; then
+		mkdir "$mount_dir"
+	fi
+
 	encfs "$(realpath "$crypt_dir")" "$(realpath "$mount_dir")"
 }
 
