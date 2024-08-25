@@ -41,7 +41,7 @@
             "workspace_layout": "default",
             "swallows": [
                 {
-                    "class": "^firefoxdeveloperedition$",
+                    "class": "^firefox-developer-edition$",
                     "instance": "^Navigator$"
                 }
             ]
