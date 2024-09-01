@@ -88,7 +88,11 @@ ZSH_CUSTOM="$HOME/.oh-my-zsh"
 # LS_COLORS is part of oh-my-zsh, so set completion colors here
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
+# Source oh-my-zsh data
 source "$ZSH/oh-my-zsh.sh"
+
+# Remove unwanted aliases
+unalias lsa
 
 #####
 # }}}
