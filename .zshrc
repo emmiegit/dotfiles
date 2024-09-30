@@ -50,20 +50,16 @@ case "$(uname)" in
 		;;
 esac
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
+# Set name of the theme to load. Look in ~/.oh-my-zsh/themes/
 ZSH_THEME="emmie"
 
-# Uncomment the following line to use case-sensitive completion.
+# Completion settings
 CASE_SENSITIVE="false"
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
+# Case sensitive completion must be off. _ and - will be interchangeable.
 HYPHEN_INSENSITIVE="true"
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
+# Disable bi-weekly auto-update checks.
 DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line if you want to disable marking untracked files
@@ -71,8 +67,6 @@ DISABLE_AUTO_UPDATE="true"
 # much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 HIST_STAMPS="yyyy-mm-dd"
 
