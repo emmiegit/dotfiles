@@ -76,6 +76,10 @@ DISABLE_AUTO_UPDATE="true"
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 HIST_STAMPS="yyyy-mm-dd"
 
+# Don't yank or put from system clipboard.
+# This makes workflows like delete + replace with clipboard rather annoying.
+VI_MODE_DISABLE_CLIPBOARD="true"
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 plugins=(jsontools pip safe-paste urltools vi-mode zsh-autosuggestions)
 
