@@ -651,6 +651,14 @@ findapp() {
 	done
 }
 
+# Fix DBUS session bus issue
+findfox() {
+	(
+		unset DBUS_SESSION_BUS_ADDRESS
+		env findfox "$@"
+	)
+}
+
 # Finds the volume of an audio file in decibels
 getvolume() {
 	ffmpeg -i "$1" -af 'volumedetect' -f null /dev/null
