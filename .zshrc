@@ -118,16 +118,6 @@ if which pyenv > /dev/null; then
 				;;
 		esac
 	}
-
-	# Use bpython when not invoking pyenv
-	python()  { [[ $# -eq 0 ]] && bpython  || "$HOME/.pyenv/shims/python"  "$@"; }
-	python2() { [[ $# -eq 0 ]] && bpython2 ||                 env python2  "$@"; }
-	python3() { [[ $# -eq 0 ]] && bpython3 || "$HOME/.pyenv/shims/python3" "$@"; }
-elif which bpython > /dev/null; then
-	# Use regular bpython
-	python()  { bpython  "$@"; }
-	python2() { bpython2 "$@"; }
-	python3() { bpython3 "$@"; }
 fi
 
 #####
