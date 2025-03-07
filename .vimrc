@@ -297,6 +297,7 @@ Plugin 'mboughaba/i3config.vim'
 Plugin 'pest-parser/pest.vim'
 Plugin 'rust-lang/rust.vim'
 Plugin 'scpwiki/vim-wikidot'
+Plugin 'vim-scripts/fountain.vim'
 
 " IDE-like
 Plugin 'mhinz/vim-signify'
