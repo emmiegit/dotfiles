@@ -369,6 +369,7 @@ endfunc
 " }}}
 
 " File-Specific Settings {{{
+autocmd BufRead Caddyfile setl noexpandtab
 autocmd BufRead *.c setl cindent shiftwidth=8 tabstop=8 softtabstop=8 noexpandtab textwidth=80 foldmethod=syntax
 autocmd BufRead *.cc setl cindent foldmethod=syntax
 autocmd BufRead *.cpp setl cindent foldmethod=syntax
