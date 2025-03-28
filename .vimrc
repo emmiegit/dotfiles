@@ -115,7 +115,7 @@ catch
 endtry
 
 " Enable auto indent
-set ai
+set autoindent
 
 " Turn off physical line wrapping (i.e. the automatic insert of newlines)
 set textwidth=0
