@@ -73,9 +73,15 @@
 [url "https://ssh+git://aur4.archlinux.org/"]
     pushInsteadOf = aur://
 
-[url "https://git.ammonsmith.me/"]
+[url "https://git.emmie.tech/"]
     insteadOf = gt://
-[url "git@git.ammonsmith.me:"]
+[url "git@git.emmie.tech:"]
     pushInsteadOf = gt://
     insteadOf = gt2://
+
+[url "https://git.ammonsmith.me/"]
+    insteadOf = gtx://
+[url "git@git.ammonsmith.me:"]
+    pushInsteadOf = gtx://
+    insteadOf = gtx2://
 
