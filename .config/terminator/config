@@ -5,7 +5,6 @@
   scroll_tabbar = True
   inactive_color_offset = 0.86
   enabled_plugins = InactivityWatch, CustomCommandsMenu, TestPlugin, ActivityWatch, TerminalShot, LaunchpadCodeURLHandler, MavenPluginURLHandler, LaunchpadBugURLHandler
-  suppress_multiple_term_dialog = True
   always_split_with_profile = True
 [keybindings]
   cycle_next = None
