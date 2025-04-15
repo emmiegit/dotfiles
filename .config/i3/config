@@ -322,10 +322,6 @@ bindsym $mod+semicolon exec $Locker
 bindsym $mod+Shift+semicolon exec /usr/local/scripts/wm/suspend.sh
 bindsym $mod+$alt+semicolon exec /usr/local/scripts/wm/i3-lock.py
 
-# Toggle autolock
-bindsym $mod+$alt+l exec --no-startup-id /usr/local/scripts/wm/set-autolock.sh on
-bindsym $mod+$alt+Shift+l exec --no-startup-id /usr/local/scripts/wm/set-autolock.sh off
-
 # Volume control
 bindsym XF86AudioLowerVolume exec --no-startup-id pamixer --decrease 1
 bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer --increase 1
