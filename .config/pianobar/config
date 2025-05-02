@@ -1,7 +1,7 @@
 user = grawcards@gmail.com
 password_command = gpg -d ~/.config/pianobar/pandora_password.gpg
 
-event_command = /home/ammon/.config/pianobar/pianobar-event-handler.sh
+event_command = /home/emmie/.config/pianobar/pianobar-event-handler.sh
 
 autostart_station = 1845213479252313920
 audio_quality = high

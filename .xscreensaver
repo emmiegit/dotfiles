@@ -1,5 +1,5 @@
 # XScreenSaver Preferences File
-# Written by xscreensaver-demo 5.35 for ammon on Mon Oct  3 11:36:28 2016.
+# Written by xscreensaver-demo 5.35 for emmie on Mon Oct  3 11:36:28 2016.
 # https://www.jwz.org/xscreensaver/
 
 timeout:	0:03:00
@@ -32,14 +32,14 @@ dpmsOff:	1:00:00
 grabDesktopImages:  False
 grabVideoFrames:    False
 chooseRandomImages: True
-imageDirectory:	/home/ammon/Pictures/Art/Rob Gonsalves
+imageDirectory:	/home/emmie/Pictures/Art/Rob Gonsalves
 
 mode:		random
 selected:	-1
 
 textMode:	file
 textLiteral:	XScreenSaver
-textFile:	/home/ammon/Documents/Stock/navy-seal-copypasta.txt
+textFile:	/home/emmie/Documents/Stock/navy-seal-copypasta.txt
 textProgram:	fortune
 textURL:	http://fridge.ubuntu.com/node/feed
 

@@ -1,9 +1,8 @@
 [Service]
 Type=oneshot
-ExecStart=/bin/sh -c 'env > /tmp/ammon/env-results'
+ExecStart=/bin/sh -c 'env > /tmp/emmie/env-results'
 Environment=SECRET='sakdjfklasjflaskdf'
 Environment=FLAGS="abc def"
 
 [Install]
 WantedBy=default.target
-
