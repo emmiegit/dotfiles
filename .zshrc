@@ -1099,31 +1099,6 @@ transfer() {
 	rm -f "$tmpfile" > /dev/null
 }
 
-# Get weather via wttr.in
-weather() {
-	if [[ $# -eq 0 ]]; then
-		echo >&2 'Give a location. Ex: "ucr"'
-		return 1
-	fi
-
-	case "$1" in
-		nyc)
-			readonly local location='NYC'
-			;;
-		ucr)
-			readonly local location='Riverside'
-			;;
-		irvine)
-			readonly local location='Irvine';
-			;;
-		*)
-			printf >&2 'Unknown location: %s.\n', "$1"
-			return 1
-			;;
-	esac
-	curl -s "wttr.in/$location"
-}
-
 # Convert audio webms to opus without reencoding
 webm2opus() {
 	for fn in *.webm; do
