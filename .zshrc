@@ -1127,6 +1127,63 @@ whitenoise() {
 	play -n synth 60:00 brownnoise -65 tremolo .20 vol -20db
 }
 
+# Jump around the filesystem
+# Inspired by https://github.com/rupa/z,
+# but with manually-curated shortcuts
+z() {
+	case "$1" in
+		# git repos
+		doc|docs)
+			cd "$HOME/documents"
+			;;
+		git)
+			cd "$HOME/git"
+			;;
+		scr|script|scripts)
+			cd "$HOME/git/scripts"
+			;;
+		dot|dotfile|dotfiles)
+			cd "$HOME/git/dotfiles"
+			;;
+		proj|project|projects)
+			cd "$HOME/documents/projects"
+			;;
+		wj|wikijump)
+			cd "$HOME/git/wikijump"
+			;;
+		# music
+		mus|music)
+			cd "$HOME/music"
+			;;
+		sii|siiva)
+			cd "$HOME/music/SiIvaGunner"
+			;;
+		ttgd)
+			cd "$HOME/music/TimmyTurnersGrandDad"
+			;;
+		# videos
+		vid|video|videos)
+			cd "$HOME/videos"
+			;;
+		vmus|vmusic)
+			cd "$HOME/videos/music"
+			;;
+		film|films)
+			cd "$HOME/videos/films"
+			;;
+		tv|television)
+			cd "$HOME/videos/television"
+			;;
+		trek|startrek)
+			cd "$HOME/videos/television/Star Trek"
+			;;
+		*)
+			echo >&2 "Unknown shortcut: $1"
+			return 1
+			;;
+	esac
+}
+
 #####
 # }}}
 
