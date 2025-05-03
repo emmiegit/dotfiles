@@ -1122,7 +1122,7 @@ wdiff() {
 		"$@"
 }
 
-# Play some random white noise
+# Play some random brown noise
 whitenoise() {
 	play -n synth 60:00 brownnoise -65 tremolo .20 vol -20db
 }
