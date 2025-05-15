@@ -1,7 +1,8 @@
 external_editor = "vim"
 use_console_editor = "yes"
 
-mpd_host = "~/.mpd/socket"
+# Set mpd_host to "~/.mpd/socket" for local FS
+mpd_host = "localhost"
 mpd_port = 6600
 mpd_music_dir = ~/music
 mpd_connection_timeout = 15
