@@ -435,6 +435,15 @@ termbin() {
 	nc termbin.com 9999
 }
 
+# List files in trash if no arguments, otherwise add
+trash() {
+	if [[ $# -eq 0 ]]; then
+		exec trash-list
+	else
+		exec trash-put "$@"
+	fi
+}
+
 vimpc() {
 	env vimpc -h "$(cat ~/.mpd/password)@localhost"
 }
