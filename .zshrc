@@ -437,9 +437,9 @@ termbin() {
 # List files in trash if no arguments, otherwise add
 trash() {
 	if [[ $# -eq 0 ]]; then
-		exec trash-list
+		trash-list
 	else
-		exec trash-put "$@"
+		trash-put "$@"
 	fi
 }
 
