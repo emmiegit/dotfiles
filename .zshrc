@@ -139,7 +139,6 @@ alias grep='noglob rg'
 alias iftop='sudo iftop'
 alias iotop='sudo iotop -o'
 alias nethogs='sudo nethogs'
-alias nomino='noglob nomino -p'
 alias pdflatex='pdflatex -halt-on-error'
 alias pgrep='pgrep -afl'
 alias shred='shred -uv'
@@ -360,7 +359,7 @@ mvcd() {
 
 # Renames all *.jpeg files to *.jpg
 mvjpeg() {
-	nomino -r "$@" '(.+)\.jpeg' '{}.jpg'
+	nomino --no-extension -r "$@" '(.+)\.jpeg' '{}.jpg'
 }
 
 # Renames to add a prefix to each path
