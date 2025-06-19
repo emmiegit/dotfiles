@@ -1169,6 +1169,9 @@ z() {
 		ttgd)
 			cd "$HOME/music/TimmyTurnersGrandDad"
 			;;
+		robva)
+			cd "$HOME/music/RobvaTopper"
+			;;
 		# videos
 		vid|video|videos)
 			cd "$HOME/videos"
