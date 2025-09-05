@@ -449,7 +449,7 @@ vimpc() {
 
 # Sets the current directory as the WINEPREFIX
 winehere() {
-	export WINEPREFIX=$PWD WINEHOME=$PWD
+	export WINEPREFIX=$PWD WINEHOME=$PWD WINEARCH=wow64
 }
 
 # Kills all wine processes in the current WINEPREFIX
