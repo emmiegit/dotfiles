@@ -160,8 +160,8 @@ alias ln='ln -v'
 alias mv='mv -v'
 alias rmln='rmln -v'
 
-# Use 2021 syntax version of Rust
-alias rustfmt='rustfmt --edition=2021'
+# Use 2024 syntax version of Rust
+alias rustfmt='rustfmt --edition=2024'
 
 # Others
 i3-resurrect() {
