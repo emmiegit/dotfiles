@@ -1,0 +1,38 @@
+{
+    "directory": "~/.config/i3-resurrect/workspaces",
+    "window_command_mappings": [
+        {
+            "class": "Terminator",
+            "command": "terminator"
+        },
+        {
+            "class": "Alacritty",
+            "command": "alacritty"
+        },
+        {
+            "class": "discord",
+            "command": "discord"
+        },
+        {
+            "class": "quassel",
+            "command": "quasselclient"
+        },
+        {
+            "class": "Signal",
+            "command": "signal-desktop"
+        },
+        {
+            "class": "org.mozilla.Thunderbird",
+            "command": "thunderbird"
+        },
+        {
+            "class": "firefox-developer-edition",
+            "command": "firefox-developer-edition"
+        }
+    ],
+    "window_swallow_criteria": {},
+    "terminals": [
+        "terminator",
+        "alacritty"
+    ]
+}
