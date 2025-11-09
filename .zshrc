@@ -127,7 +127,6 @@ fi
 #####################
 
 alias clear='printf "\033c"'
-alias cower='cower --color auto'
 alias df='df -kTh'
 alias du='du -kh'
 alias ed='ed -p: -v'
