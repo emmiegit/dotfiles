@@ -1,50 +1,50 @@
 {
-    "border": "pixel",
-    "current_border_width": -1,
-    "floating": "auto_off",
-    "fullscreen_mode": 1,
-    "geometry": {
+  "border": "pixel",
+  "current_border_width": -1,
+  "floating": "auto_off",
+  "fullscreen_mode": 1,
+  "geometry": {
+    "x": 0,
+    "y": 0,
+    "width": 0,
+    "height": 0
+  },
+  "layout": "splith",
+  "marks": [],
+  "name": "2",
+  "orientation": "horizontal",
+  "percent": 0.5,
+  "scratchpad_state": "none",
+  "sticky": false,
+  "type": "workspace",
+  "workspace_layout": "default",
+  "nodes": [
+    {
+      "border": "pixel",
+      "current_border_width": 0,
+      "floating": "auto_off",
+      "fullscreen_mode": 0,
+      "geometry": {
         "x": 0,
         "y": 0,
-        "width": 0,
-        "height": 0
-    },
-    "layout": "splith",
-    "marks": [],
-    "name": "2",
-    "orientation": "horizontal",
-    "percent": 0.5,
-    "scratchpad_state": "none",
-    "sticky": false,
-    "type": "workspace",
-    "workspace_layout": "default",
-    "nodes": [
+        "width": 651,
+        "height": 453
+      },
+      "layout": "splith",
+      "marks": [],
+      "name": "Terminal",
+      "orientation": "none",
+      "percent": 1.0,
+      "scratchpad_state": "none",
+      "sticky": false,
+      "type": "con",
+      "workspace_layout": "default",
+      "swallows": [
         {
-            "border": "pixel",
-            "current_border_width": 0,
-            "floating": "auto_off",
-            "fullscreen_mode": 0,
-            "geometry": {
-                "x": 0,
-                "y": 0,
-                "width": 651,
-                "height": 453
-            },
-            "layout": "splith",
-            "marks": [],
-            "name": "Terminator",
-            "orientation": "none",
-            "percent": 1.0,
-            "scratchpad_state": "none",
-            "sticky": false,
-            "type": "con",
-            "workspace_layout": "default",
-            "swallows": [
-                {
-                    "class": "^Terminator$",
-                    "instance": "^terminator$"
-                }
-            ]
+          "class": "^Terminator$",
+          "instance": "^terminator$"
         }
-    ]
+      ]
+    }
+  ]
 }

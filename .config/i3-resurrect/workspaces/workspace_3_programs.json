@@ -1,8 +1,8 @@
 [
-    {
-        "command": [
-            "/usr/local/bin/firefox-developer-edition"
-        ],
-        "working_directory": "/home/emmie"
-    }
+  {
+    "command": [
+      "firefox-developer-edition"
+    ],
+    "working_directory": "/home/emmie"
+  }
 ]

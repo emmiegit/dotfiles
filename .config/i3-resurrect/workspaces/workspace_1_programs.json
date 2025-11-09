@@ -1,26 +1,26 @@
 [
-    {
-        "command": [
-            "/usr/bin/terminator"
-        ],
-        "working_directory": "/home/emmie"
-    },
-    {
-        "command": [
-            "/usr/bin/quasselclient"
-        ],
-        "working_directory": "/home/emmie"
-    },
-    {
-        "command": [
-            "/usr/bin/discord"
-        ],
-        "working_directory": "/home/emmie"
-    },
-    {
-        "command": [
-            "/usr/bin/signal-desktop"
-        ],
-        "working_directory": "/home/emmie"
-    }
+  {
+    "command": [
+      "terminator"
+    ],
+    "working_directory": "/home/emmie"
+  },
+  {
+    "command": [
+      "discord"
+    ],
+    "working_directory": "/home/emmie"
+  },
+  {
+    "command": [
+      "quasselclient"
+    ],
+    "working_directory": "/home/emmie"
+  },
+  {
+    "command": [
+      "signal-desktop"
+    ],
+    "working_directory": "/home/emmie"
+  }
 ]
