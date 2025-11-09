@@ -163,17 +163,6 @@ alias rmln='rmln -v'
 # Use 2024 syntax version of Rust
 alias rustfmt='rustfmt --edition=2024'
 
-# Others
-i3-resurrect() {
-	local command="$1"
-	shift
-
-	env \
-		i3-resurrect "$command" \
-			--directory "$HOME/.config/i3/i3-resurrect" \
-			"$@"
-}
-
 #####
 # }}}
 
