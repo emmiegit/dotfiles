@@ -1,15 +1,6 @@
 #!/bin/sh
 # xprofile - Commands to run before the window manager is started.
 
-doecho() {
-	echo "$@"
-	"$@"
-}
-
-doecho /usr/local/scripts/wm/vi-keyswap.sh
-doecho /usr/local/scripts/wm/disable-mouse-acceleration.sh
-doecho /usr/local/scripts/wm/reset-repeat-rate.sh
-
-unset doecho
+/usr/local/scripts/wm/keyboard-mouse-setup.sh
 
 # vim: set ft=sh:
