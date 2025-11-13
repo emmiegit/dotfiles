@@ -6,14 +6,9 @@ doecho() {
 	"$@"
 }
 
-# Swap escape and caps lock for vim
 doecho /usr/local/scripts/wm/vi-keyswap.sh
-
-# Disable mouse acceleration
 doecho /usr/local/scripts/wm/disable-mouse-acceleration.sh
-
-# Set repeat rate
-doecho xset r rate 200 30
+doecho /usr/local/scripts/wm/reset-repeat-rate.sh
 
 unset doecho
 
