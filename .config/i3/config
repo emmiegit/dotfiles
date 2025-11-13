@@ -358,8 +358,8 @@ bindsym $mod+Shift+y exec --no-startup-id /usr/local/scripts/wm/set-wacom-mode.s
 exec /usr/local/scripts/wm/daemon/udiskie.sh
 exec /usr/local/scripts/wm/daemon/start-autolock.sh
 exec picom -b --config ~/.config/picom.conf
-exec nm-applet
 exec pamixer --unmute
+exec nm-applet
 exec redshift
 
 # Run bar (needs to restart when i3 does)
