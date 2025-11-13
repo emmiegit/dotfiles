@@ -360,6 +360,7 @@ exec /usr/local/scripts/wm/daemon/start-autolock.sh
 exec picom -b --config ~/.config/picom.conf
 exec pamixer --unmute
 exec nm-applet
+exec trayscale
 exec redshift
 
 # Run bar (needs to restart when i3 does)
