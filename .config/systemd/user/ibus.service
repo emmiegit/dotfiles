@@ -6,6 +6,7 @@ Before=environment.target
 [Service]
 Type=simple
 Environment=DISPLAY=:0
+Environment=XDG_CURRENT_DESKTOP=i3
 ExecStart=/usr/bin/ibus-daemon -rvx --desktop=i3
 Restart=always
 
