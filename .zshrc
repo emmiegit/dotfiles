@@ -1295,7 +1295,9 @@ dosource '/usr/share/doc/pkgfile/command-not-found.zsh'
 dosource '/usr/share/fzf/key-bindings.zsh'
 dosource "$HOME/.fzf.zsh"
 dosource "$HOME/.zshrc_local"
+
 which thefuck > /dev/null && eval "$(thefuck --alias)"
+which tailscale > /dev/null && eval "$(tailscale completion zsh)"
 
 #####
 # }}}
