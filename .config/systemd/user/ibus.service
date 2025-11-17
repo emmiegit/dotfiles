@@ -8,6 +8,7 @@ Type=simple
 Environment=DISPLAY=:0
 Environment=XDG_CURRENT_DESKTOP=i3
 ExecStart=/usr/bin/ibus-daemon -rvx --desktop=i3
+ExecStartPost=/usr/local/scripts/wm/keyboard-mouse-setup.sh
 Restart=always
 
 [Install]
