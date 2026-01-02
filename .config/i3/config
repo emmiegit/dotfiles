@@ -300,6 +300,9 @@ bindsym $mod+period exec xfiller
 # Launcher
 bindsym $mod+slash exec /usr/local/scripts/wm/rofi.sh run
 
+# Calculator
+bindsym $mod+Shift+slash exec /usr/local/scripts/wm/rofi.sh calc
+
 # Emoji selector
 bindsym $mod+comma exec /usr/local/scripts/wm/rofi.sh emoji
 
