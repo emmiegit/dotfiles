@@ -1236,7 +1236,6 @@ export LC_ALL='en_US.UTF-8'
 export LANG="$LC_ALL"
 export EDITOR='vim'
 export VISUAL="$EDITOR"
-export GPGKEY='2C3CF0C7'
 export LD_LIBRARY_PATH="/usr/local/lib:$HOME/lib"
 export AURDEST="/tmp/$USER/aur"
 export GOPATH="$HOME/git/go"
