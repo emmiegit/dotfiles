@@ -1,2 +1,3 @@
 player=mpv
-default-stream=best
+player-args=--cache=no
+default-stream=720p60
