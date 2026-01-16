@@ -100,33 +100,6 @@
           "floating": "auto_off",
           "fullscreen_mode": 0,
           "geometry": {
-            "x": 968,
-            "y": 48,
-            "width": 936,
-            "height": 1136
-          },
-          "layout": "splith",
-          "marks": [],
-          "name": "Quassel IRC",
-          "orientation": "none",
-          "percent": 0.3333333333333333,
-          "scratchpad_state": "none",
-          "sticky": false,
-          "type": "con",
-          "workspace_layout": "default",
-          "swallows": [
-            {
-              "class": "^quassel$",
-              "instance": "^quasselclient$"
-            }
-          ]
-        },
-        {
-          "border": "pixel",
-          "current_border_width": 0,
-          "floating": "auto_off",
-          "fullscreen_mode": 0,
-          "geometry": {
             "x": 16,
             "y": 335,
             "width": 1248,
@@ -145,6 +118,33 @@
             {
               "class": "^Signal$",
               "instance": "^signal$"
+            }
+          ]
+        },
+        {
+          "border": "pixel",
+          "current_border_width": 0,
+          "floating": "auto_off",
+          "fullscreen_mode": 0,
+          "geometry": {
+            "x": 968,
+            "y": 48,
+            "width": 936,
+            "height": 1136
+          },
+          "layout": "splith",
+          "marks": [],
+          "name": "Quassel IRC",
+          "orientation": "none",
+          "percent": 0.3333333333333333,
+          "scratchpad_state": "none",
+          "sticky": false,
+          "type": "con",
+          "workspace_layout": "default",
+          "swallows": [
+            {
+              "class": "^quassel$",
+              "instance": "^quasselclient$"
             }
           ]
         }

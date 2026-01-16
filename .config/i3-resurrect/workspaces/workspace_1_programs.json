@@ -13,13 +13,13 @@
   },
   {
     "command": [
-      "quasselclient"
+      "signal-desktop"
     ],
     "working_directory": "/home/emmie"
   },
   {
     "command": [
-      "signal-desktop"
+      "quasselclient"
     ],
     "working_directory": "/home/emmie"
   }
