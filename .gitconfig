@@ -37,6 +37,9 @@
     tags = tag
     stashes = stash list
     remotes = remote -a
+    rbi = rebase -i
+    rba = rebase --abort
+    rbc = rebase --continue
 [commit]
     gpgsign = false
 [push]
