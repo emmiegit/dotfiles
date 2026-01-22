@@ -23,6 +23,7 @@
     last = log -1 HEAD
     edit = !vim -p $(git ls-files -m | uniq)
     unstage = restore --staged --
+    untrack = rm -r --cached
     discard = checkout --
     cached = diff --cached
     amend = commit --amend
@@ -32,11 +33,10 @@
     develop = checkout develop
     graph = log --graph --branches --remotes --tags --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d' --date-order
     wdiff = diff --word-diff=color --word-diff-regex=.
-    untrack = rm -r --cached
     branches = branch -a
-    tags = tag
-    stashes = stash list
     remotes = remote -a
+    stashes = stash list
+    tags = tag
     rbi = rebase -i
     rba = rebase --abort
     rbc = rebase --continue
