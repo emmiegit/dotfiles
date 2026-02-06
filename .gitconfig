@@ -45,6 +45,7 @@
 
     ; shortcuts
     c = commit
+    ca = commit -a  ; *not* used for "commit --amend", use "amend" for that
     cb = checkout -b  ; 'create branch'
     rb = rebase
     rbi = rebase -i
