@@ -20,23 +20,33 @@
 [push]
     default = simple
 [alias]
-    last = log -1 HEAD
+    ; commit staging
     edit = !vim -p $(git ls-files -m | uniq)
     unstage = restore --staged --
     untrack = rm -r --cached
     discard = checkout --
     cached = diff --cached
     amend = commit --amend
-    pushfl = push --force-with-lease
+
+    ; branches
     master = checkout master
     main = checkout main
     develop = checkout develop
+
+    ; new commands
+    last = log -1 HEAD
+    pushfl = push --force-with-lease
     graph = log --graph --branches --remotes --tags --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d' --date-order
     wdiff = diff --word-diff=color --word-diff-regex=.
     branches = branch -a
     remotes = remote -a
     stashes = stash list
     tags = tag
+
+    ; shortcuts
+    c = commit
+    cb = checkout -b  ; 'create branch'
+    rb = rebase
     rbi = rebase -i
     rba = rebase --abort
     rbc = rebase --continue
