@@ -92,9 +92,3 @@
 [url "git@git.emmie.tech:"]
     pushInsteadOf = gt://
     insteadOf = gt2://
-
-[url "https://git.ammonsmith.me/"]
-    insteadOf = gtx://
-[url "git@git.ammonsmith.me:"]
-    pushInsteadOf = gtx://
-    insteadOf = gtx2://
