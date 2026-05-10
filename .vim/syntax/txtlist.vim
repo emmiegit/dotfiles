@@ -19,6 +19,7 @@ syn match txtlistLabel          "^[^\n]\+:\($\|\s\+\)"
 syn match txtlistCheckbox       "^\s*\[[ X\-]\]"
 syn match txtlistCategory       "^\[[^\n]\{2,\}\]"
 syn match txtlistBullet         "^[\t ]*[\*\-]"
+syn match txtlistOptional       "?$"
 syn region txtlistComment       start="\s*#" end="$"
 
 " Keywords
@@ -54,6 +55,7 @@ if version >= 508 || !exists("did_txtlist_syn_inits")
 	HiLink txtlistCheckbox  Constant
 	HiLink txtlistCategory  Identifier
 	HiLink txtlistBullet    Define
+	HiLink txtlistOptional  Float
 	HiLink txtlistComment   Comment
 	HiLink txtlistTodo      Todo
 
