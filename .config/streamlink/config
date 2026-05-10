@@ -1,3 +1,6 @@
 player=mpv
-player-args=--cache=no
+player-args=--cache=yes --loop-playlist=inf --loop-file=inf
 default-stream=720p60
+twitch-low-latency
+twitch-disable-ads
+# See https://github.com/streamlink/streamlink-twitch-gui/wiki/Recommendations
