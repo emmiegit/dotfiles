@@ -417,6 +417,11 @@ winekill() {
 	wineserver -k
 }
 
+# Used to enable DRM-locked Japanese content
+playdrm() {
+	LANG=ja_JP.utf-8 STEAM_COMPAT_CLIENT_INSTALL_PATH=$PWD STEAM_COMPAT_DATA_PATH=$PWD ~/.local/share/Steam/steamapps/common/Proton\ 7.0/proton waitforexitandrun ./startup.exe
+}
+
 # Sources xprofile in this shell
 xprofile() {
 	source "$HOME/.xprofile"
