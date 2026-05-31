@@ -372,6 +372,13 @@ pacbin() {
 	pacman -Ql "$1" | /usr/bin/grep --color=never /bin/ | awk '{print $2}'
 }
 
+# Install a specific package (e.g. to update it),
+# but ensure it's marked as a dependency
+asdep() {
+	yay -S -- "$@"
+	sudo pacman -D --asdep -- "$@"
+}
+
 pexec() {
 	echo "$@"
 	"$@"
