@@ -358,13 +358,12 @@ myip() {
 }
 
 myip4() {
-	wget -qO- http://ipecho.net/plain
+	wget -qO- http://ipv4.emmie.tech/ip
 	echo
 }
 
 myip6() {
-	wget -qO- http://ip6echo.net/plain/ \
-		| sed -Ee 's/<[^>]+>|[[:space:]]+|What'\''s My IPv6 Address\?//g' -e '/^$/d'
+	wget -qO- http://ipv6.emmie.tech/ip
 	echo
 }
 
