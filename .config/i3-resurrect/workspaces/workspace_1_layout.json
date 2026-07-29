@@ -116,7 +116,7 @@
           "workspace_layout": "default",
           "swallows": [
             {
-              "class": "^Signal$",
+              "class": "^signal$",
               "instance": "^signal$"
             }
           ]
