@@ -875,6 +875,11 @@ encmnt() {
 		shift 1
 	fi
 
+	if [[ ! -d $crypt_dir ]]; then
+		echo >&2 "No such directory: $crypt_dir"
+		return 1
+	fi
+
 	if [[ ! -d $mount_dir ]]; then
 		mkdir "$mount_dir"
 	fi
