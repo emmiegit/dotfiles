@@ -310,6 +310,7 @@ home() {
 }
 
 mkcd() {
+	[[ $# -eq 1 ]] || echo 'Usage: mkcd [directory]' >&2
 	mkdir -p "$@" && cd "$@"
 }
 
